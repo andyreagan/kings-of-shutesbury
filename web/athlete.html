@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Athlete · Kings of Shutesbury</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="back-link" href="index.html">← Kings of Shutesbury</a>
+      <div id="athlete-head"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="athlete-summary"></section>
+    <section id="athlete-segments">
+      <h2>Segment-by-segment</h2>
+      <p class="hint">Every tracked segment with this athlete's standing. Rows with no time are not-yet-attempted — the to-do list. Click a row for the full leaderboard.</p>
+      <div id="athlete-table"></div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p class="muted">Data pulled from Strava's web session • points model is tunable in <code>scoring.py</code></p>
+  </footer>
+
+  <script src="util.js"></script>
+  <script src="athlete.js"></script>
+</body>
+</html>

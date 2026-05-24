@@ -1,0 +1,12 @@
+[project]
+name = "kings-of-shutesbury"
+version = "0.1.0"
+description = "Dashboard tracking progress on Strava cycling segments in Shutesbury, MA"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,179 @@
+"""SQLite schema and helpers for Kings of Shutesbury.
+
+The database (strava.db) is the source of truth and is committed with the repo.
+The list of segment IDs to track lives in the `segments` table — adding a row
+(with no fetched data yet) is how you tell the pipeline to track a new segment.
+"""
+
+from __future__ import annotations
+
+import json
+import sqlite3
+from pathlib import Path
+
+DB_PATH = Path(__file__).resolve().parent / "strava.db"
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS segments (
+    id                  INTEGER PRIMARY KEY,        -- Strava segment id
+    name                TEXT,
+    activity_type       TEXT,
+    display_location    TEXT,
+    climb_category      INTEGER,
+    is_verified         INTEGER,
+    distance_m          REAL,
+    avg_grade           REAL,
+    elev_low            REAL,
+    elev_high           REAL,
+    elev_gain           REAL,                       -- net gain reported by Strava
+    gross_gain          REAL,                       -- summed from elevation stream
+    gross_loss          REAL,                       -- summed from elevation stream
+    terrain             TEXT,                        -- climb | flat | descent
+    total_athletes      INTEGER,
+    total_efforts       INTEGER,
+    star_count          INTEGER,
+    start_lat           REAL,
+    start_lng           REAL,
+    end_lat             REAL,
+    end_lng             REAL,
+    map_image_url       TEXT,
+    streams_json        TEXT,                        -- {distance, elevation, location}
+    difficulty          REAL,                        -- computed by scoring.py
+    in_shutesbury       INTEGER,                     -- 1 if start or end is in town
+    discipline          TEXT,                        -- road | gravel | mtb (manual; NULL=unset)
+    fetched_at          TEXT                         -- ISO8601 UTC; NULL = never fetched
+);
+
+CREATE TABLE IF NOT EXISTS athletes (
+    id                  INTEGER PRIMARY KEY,
+    name                TEXT,
+    avatar_url          TEXT,
+    badge               TEXT
+);
+
+CREATE TABLE IF NOT EXISTS featured_athletes (
+    id                  INTEGER PRIMARY KEY          -- athletes that get their own page
+);
+
+CREATE TABLE IF NOT EXISTS efforts (
+    segment_id          INTEGER NOT NULL,
+    athlete_id          INTEGER NOT NULL,
+    rank                INTEGER,
+    elapsed_time        INTEGER,                     -- seconds
+    avg_speed           REAL,
+    avg_watts           REAL,
+    avg_hr              REAL,
+    effort_id           TEXT,
+    activity_id         TEXT,
+    start_date_local    TEXT,
+    PRIMARY KEY (segment_id, athlete_id),
+    FOREIGN KEY (segment_id) REFERENCES segments(id),
+    FOREIGN KEY (athlete_id) REFERENCES athletes(id)
+);
+"""
+
+
+def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON")
+    return conn
+
+
+def init(conn: sqlite3.Connection) -> None:
+    conn.executescript(SCHEMA)
+    # Lightweight migration: add columns introduced after a DB already existed.
+    existing = {r["name"] for r in conn.execute("PRAGMA table_info(segments)")}
+    for col, decl in (("in_shutesbury", "INTEGER"), ("discipline", "TEXT")):
+        if col not in existing:
+            conn.execute(f"ALTER TABLE segments ADD COLUMN {col} {decl}")
+    conn.commit()
+
+
+def set_in_shutesbury(conn: sqlite3.Connection, segment_id: int,
+                      value: int | None) -> None:
+    conn.execute("UPDATE segments SET in_shutesbury = ? WHERE id = ?",
+                 (value, segment_id))
+
+
+def add_segment_id(conn: sqlite3.Connection, segment_id: int) -> bool:
+    """Register a segment id to track. Returns True if newly added."""
+    cur = conn.execute(
+        "INSERT OR IGNORE INTO segments (id) VALUES (?)", (segment_id,)
+    )
+    conn.commit()
+    return cur.rowcount > 0
+
+
+def segment_ids(conn: sqlite3.Connection) -> list[int]:
+    return [r["id"] for r in conn.execute("SELECT id FROM segments ORDER BY id")]
+
+
+def add_featured_athlete(conn: sqlite3.Connection, athlete_id: int) -> bool:
+    """Mark an athlete to get their own page. Returns True if newly added."""
+    cur = conn.execute(
+        "INSERT OR IGNORE INTO featured_athletes (id) VALUES (?)", (athlete_id,)
+    )
+    conn.commit()
+    return cur.rowcount > 0
+
+
+def featured_athlete_ids(conn: sqlite3.Connection) -> list[int]:
+    return [r["id"] for r in
+            conn.execute("SELECT id FROM featured_athletes ORDER BY id")]
+
+
+def upsert_segment(conn: sqlite3.Connection, seg: dict) -> None:
+    """Upsert parsed segment fields. `streams` is stored as JSON text."""
+    seg = dict(seg)
+    if "streams" in seg:
+        seg["streams_json"] = json.dumps(seg.pop("streams"))
+    cols = [
+        "id", "name", "activity_type", "display_location", "climb_category",
+        "is_verified", "distance_m", "avg_grade", "elev_low", "elev_high",
+        "elev_gain", "gross_gain", "gross_loss", "terrain", "total_athletes",
+        "total_efforts", "star_count", "start_lat", "start_lng", "end_lat",
+        "end_lng", "map_image_url", "streams_json", "fetched_at",
+    ]
+    values = [seg.get(c) for c in cols]
+    placeholders = ", ".join("?" for _ in cols)
+    updates = ", ".join(f"{c}=excluded.{c}" for c in cols if c != "id")
+    conn.execute(
+        f"INSERT INTO segments ({', '.join(cols)}) VALUES ({placeholders}) "
+        f"ON CONFLICT(id) DO UPDATE SET {updates}",
+        values,
+    )
+    conn.commit()
+
+
+def upsert_athlete(conn: sqlite3.Connection, athlete: dict) -> None:
+    conn.execute(
+        "INSERT INTO athletes (id, name, avatar_url, badge) VALUES (?, ?, ?, ?) "
+        "ON CONFLICT(id) DO UPDATE SET name=excluded.name, "
+        "avatar_url=COALESCE(excluded.avatar_url, athletes.avatar_url), "
+        "badge=COALESCE(excluded.badge, athletes.badge)",
+        (athlete["id"], athlete.get("name"), athlete.get("avatar_url"),
+         athlete.get("badge")),
+    )
+
+
+def replace_efforts(conn: sqlite3.Connection, segment_id: int,
+                    efforts: list[dict]) -> None:
+    """Replace all stored efforts for a segment with a fresh leaderboard."""
+    conn.execute("DELETE FROM efforts WHERE segment_id = ?", (segment_id,))
+    conn.executemany(
+        "INSERT OR REPLACE INTO efforts (segment_id, athlete_id, rank, "
+        "elapsed_time, avg_speed, avg_watts, avg_hr, effort_id, activity_id, "
+        "start_date_local) VALUES (:segment_id, :athlete_id, :rank, "
+        ":elapsed_time, :avg_speed, :avg_watts, :avg_hr, :effort_id, "
+        ":activity_id, :start_date_local)",
+        [{"segment_id": segment_id, **e} for e in efforts],
+    )
+    conn.commit()
+
+
+def set_difficulty(conn: sqlite3.Connection, segment_id: int,
+                   difficulty: float) -> None:
+    conn.execute("UPDATE segments SET difficulty = ? WHERE id = ?",
+                 (difficulty, segment_id))
+    conn.commit()

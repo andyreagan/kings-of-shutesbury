@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kings of Shutesbury</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Kings of Shutesbury <span class="crown">♛</span></h1>
+      <p class="sub">Strava segment standings in &amp; around Shutesbury, MA</p>
+      <div class="controls">
+        <input id="highlight" type="search" placeholder="Highlight an athlete (e.g. Andy)…" autocomplete="off">
+        <span id="generated" class="generated"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="featured"></section>
+
+    <section id="king-section">
+      <h2>King of Shutesbury</h2>
+      <p class="hint">Overall standings — Tour-style points awarded on every segment by finishing rank, summed across all tracked segments.</p>
+      <div id="king"></div>
+    </section>
+
+    <section id="segments-section">
+      <h2>Segments <span id="seg-count" class="muted"></span></h2>
+      <p class="hint">Click a segment for its leaderboard, elevation profile, and map. Sort by any column.</p>
+      <div id="segments"></div>
+    </section>
+
+    <section id="filtered-section"></section>
+  </main>
+
+  <div id="detail-overlay" class="hidden">
+    <div id="detail-card">
+      <button id="detail-close" aria-label="Close">×</button>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <p class="muted">Data pulled from Strava's web session • points model is tunable in <code>scoring.py</code></p>
+  </footer>
+
+  <script src="util.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Secrets — never commit the Strava session cookie
+.env
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+
+# Working scratch (HAR extractions, live test dumps)
+.work/
+
+# Local browser captures — huge (~250MB, one file >GitHub's 100MB limit) and
+# contain captured page/session context. Keep local only.
+page-captures/
+
+# NOTE: strava.db and web/data.json are intentionally committed/shipped.
