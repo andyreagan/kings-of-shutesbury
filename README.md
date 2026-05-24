@@ -58,8 +58,14 @@ uv run update_segments.py --list
 
 ## Being gentle on the API
 
-Paced requests (~3s + jitter), leaderboard capped at 100 athletes, recently-fetched
-segments skipped, and segments classified *before* their leaderboard is pulled (so
-out-of-town/run segments cost a single request). On HTTP 429 the client backs off
-exponentially (honoring `Retry-After`) and, if still limited, stops cleanly with all
-progress saved — just rerun to resume.
+Per in-town ride segment we make just **3 requests**: the segment page, the overall
+leaderboard's **first page** (top 25 — all that scores, since points only reach the
+top 10), and the **"following" board** to grab the featured athletes' (Andy/Owen)
+own times even when they're outside the top 25. Following ranks are relative to whom
+you follow, so those efforts are stored with `rank = NULL` (shown, but worth 0
+points). Out-of-town/run segments are classified from the page first and cost a
+single request.
+
+Requests are paced (~4s + jitter), recently-fetched segments are skipped, and on the
+first HTTP 429 (a header-less CloudFront limit, ~100 req/window) the client **stops
+the whole run** with all progress saved — just rerun to resume from where it left off.

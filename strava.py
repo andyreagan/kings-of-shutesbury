@@ -29,7 +29,7 @@ USER_AGENT = (
 # Politeness knobs.
 MIN_INTERVAL = 4.0          # minimum seconds between requests
 JITTER = (1.0, 2.5)         # extra random seconds added to each gap
-MAX_LEADERBOARD_PAGES = 4   # safety cap (25 athletes/page => up to 100)
+MAX_LEADERBOARD_PAGES = 1   # 25 athletes/page; top-10 (all that scores) fits easily
 # Strava's www endpoints sit behind CloudFront and return a header-less 429
 # (no Retry-After, no X-RateLimit). Re-poking just keeps the rolling window hot,
 # so we STOP the whole run on the first 429 and resume after a real cooldown.

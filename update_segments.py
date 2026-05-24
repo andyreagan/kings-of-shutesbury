@@ -105,42 +105,85 @@ def cmd_update(args) -> None:
         return
 
     rows = {r["id"]: r for r in conn.execute(
-        "SELECT id, fetched_at FROM segments")}
+        "SELECT id, fetched_at, efforts_fetched_at, in_shutesbury, activity_type "
+        "FROM segments")}
+    featured_ids = set(db.featured_athlete_ids(conn))
     try:
         boundary = geo.load_boundary()
     except Exception as e:                                      # noqa: BLE001
         boundary = None
-        print(f"! Shutesbury boundary unavailable ({e}); will fetch all leaderboards")
+        print(f"! Shutesbury boundary unavailable ({e}); treating all as in-town")
+
+    def now() -> str:
+        return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+    stopped = False
     with StravaClient() as client:
         for sid in ids:
-            if not args.force and _is_fresh(rows[sid]["fetched_at"]):
-                print(f"= fresh, skipping {sid} (use --force to refetch)")
-                continue
-            print(f"> fetching segment {sid} ...", flush=True)
-            try:
-                seg = client.fetch_segment(sid)
-                # Classify first; only pull the leaderboard if it actually counts.
+            row = rows[sid]
+            in_town = row["in_shutesbury"] == 1
+            is_ride = (row["activity_type"] or "").lower() == "ride"
+
+            # --- Phase 1: segment page (cheap; not the rate-limited endpoint) ---
+            need_page = (args.force or row["fetched_at"] is None
+                         or not _is_fresh(row["fetched_at"]))
+            if need_page:
+                print(f"> page {sid} ...", flush=True)
+                try:
+                    seg = client.fetch_segment(sid)
+                except AuthError as e:
+                    print(f"\nAUTH ERROR: {e}")
+                    return
+                except RateLimitError as e:
+                    print(f"\nRATE LIMITED (segment page): {e}")
+                    stopped = True
+                    break
+                except StravaError as e:
+                    print(f"! failed page {sid}: {e}")
+                    continue
                 in_town = (geo.segment_in_shutesbury(seg, boundary)
                            if boundary is not None else True)
-                seg["in_shutesbury"] = 1 if in_town else 0
                 is_ride = (seg["activity_type"] or "").lower() == "ride"
-                efforts = (client.fetch_leaderboard(sid)
-                           if in_town and is_ride else [])
+                seg["in_shutesbury"] = 1 if in_town else 0
+                seg["fetched_at"] = now()
+                db.upsert_segment(conn, seg)
+                db.set_in_shutesbury(conn, sid, seg["in_shutesbury"])
+                conn.commit()
+                where = "in Shutesbury" if in_town else "OUTSIDE Shutesbury"
+                if not is_ride:
+                    where += f" ({seg['activity_type']})"
+                print(f"  {seg['name']} ({seg['display_location']}) — {where}")
+
+            # --- Phase 2: leaderboard (the rate-limited endpoint) ---
+            if args.pages_only:
+                continue
+            need_lb = (in_town and is_ride) and (
+                args.force or row["efforts_fetched_at"] is None
+                or not _is_fresh(row["efforts_fetched_at"]))
+            if not need_lb:
+                continue
+            print(f"> leaderboard {sid} ...", flush=True)
+            try:
+                # Overall page 1 (top 25) — authoritative ranks for scoring.
+                efforts = client.fetch_leaderboard(sid, "overall")
+                # Following board: ONLY featured athletes' times not already in
+                # the top 25. Following ranks are relative, so store rank=None.
+                if featured_ids:
+                    have = {e["athlete_id"] for e in efforts}
+                    for e in client.fetch_leaderboard(sid, "following"):
+                        if e["athlete_id"] in featured_ids and e["athlete_id"] not in have:
+                            efforts.append({**e, "rank": None})
             except AuthError as e:
                 print(f"\nAUTH ERROR: {e}")
                 return
             except RateLimitError as e:
-                print(f"\nRATE LIMITED: {e}\n"
-                      "Stopping to stay safe. Progress is saved — just rerun "
-                      "`uv run update_segments.py` later to resume.")
+                print(f"\nRATE LIMITED (leaderboard): {e}\n"
+                      "Progress saved — rerun later to resume the leaderboards.")
+                stopped = True
                 break
             except StravaError as e:
-                print(f"! failed {sid}: {e}")
+                print(f"! failed leaderboard {sid}: {e}")
                 continue
-            seg["fetched_at"] = datetime.now(timezone.utc).isoformat(
-                timespec="seconds")
-            db.upsert_segment(conn, seg)
-            db.set_in_shutesbury(conn, sid, seg["in_shutesbury"])
             for eff in efforts:
                 if eff["athlete_id"] is None:
                     continue
@@ -153,12 +196,14 @@ def cmd_update(args) -> None:
                     "avg_watts", "avg_hr", "effort_id", "activity_id",
                     "start_date_local")}
                 for eff in efforts if eff["athlete_id"] is not None])
-            skip = "" if (in_town and is_ride) else \
-                f"  [skipped leaderboard: {'run' if not is_ride else 'outside Shutesbury'}]"
-            print(f"  {seg['name']} ({seg['display_location']}): "
-                  f"{len(efforts)} efforts{skip}")
+            db.set_efforts_fetched_at(conn, sid, now())
+            conn.commit()
+            print(f"  {len(efforts)} efforts")
     conn.commit()
     export_data_json(conn)
+    if stopped:
+        print("\nStopped early on a rate limit. Rerun `uv run update_segments.py` "
+              "to continue from where we left off.")
     conn.close()
 
 
@@ -167,7 +212,7 @@ def _segment_with_efforts(conn, seg_row) -> dict:
     efforts = [dict(r) for r in conn.execute(
         "SELECT e.*, a.name AS athlete_name, a.avatar_url, a.badge "
         "FROM efforts e JOIN athletes a ON a.id = e.athlete_id "
-        "WHERE e.segment_id = ? ORDER BY e.rank", (seg["id"],))]
+        "WHERE e.segment_id = ? ORDER BY e.rank IS NULL, e.rank", (seg["id"],))]
     seg["efforts"] = efforts
     return seg
 
@@ -304,6 +349,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--force", action="store_true",
                         help="refetch even recently-updated segments")
+    parser.add_argument("--pages-only", action="store_true",
+                        help="fetch + classify segment pages, skip leaderboards "
+                             "(the rate-limited endpoint) for later")
     parser.add_argument("--list", action="store_true",
                         help="list tracked segments and exit")
     sub = parser.add_subparsers(dest="command")

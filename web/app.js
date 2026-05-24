@@ -162,7 +162,7 @@ function openDetail(id) {
   const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
   const effortRows = s.efforts.map((e) => `
     <tr class="${matchesHighlight(e.name) ? "hl" : ""}">
-      <td class="num">${e.rank}</td>
+      <td class="num">${e.rank ?? "—"}</td>
       <td><div class="name-cell">${avatar(e.avatar_url, e.name)}${esc(e.name)}</div></td>
       <td class="num">${fmtTime(e.elapsed_time)}</td>
       <td class="num">${e.avg_watts ? Math.round(e.avg_watts) + " W" : "—"}</td>

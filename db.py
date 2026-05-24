@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS segments (
     difficulty          REAL,                        -- computed by scoring.py
     in_shutesbury       INTEGER,                     -- 1 if start or end is in town
     discipline          TEXT,                        -- road | gravel | mtb (manual; NULL=unset)
-    fetched_at          TEXT                         -- ISO8601 UTC; NULL = never fetched
+    fetched_at          TEXT,                        -- when the PAGE was fetched (NULL=never)
+    efforts_fetched_at  TEXT                         -- when the LEADERBOARD was fetched
 );
 
 CREATE TABLE IF NOT EXISTS athletes (
@@ -84,9 +85,16 @@ def init(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA)
     # Lightweight migration: add columns introduced after a DB already existed.
     existing = {r["name"] for r in conn.execute("PRAGMA table_info(segments)")}
-    for col, decl in (("in_shutesbury", "INTEGER"), ("discipline", "TEXT")):
+    for col, decl in (("in_shutesbury", "INTEGER"), ("discipline", "TEXT"),
+                      ("efforts_fetched_at", "TEXT")):
         if col not in existing:
             conn.execute(f"ALTER TABLE segments ADD COLUMN {col} {decl}")
+    # Backfill: segments that already have efforts have had their leaderboard
+    # fetched, so don't re-pull them when the two-phase logic lands.
+    conn.execute(
+        "UPDATE segments SET efforts_fetched_at = fetched_at "
+        "WHERE efforts_fetched_at IS NULL "
+        "AND id IN (SELECT DISTINCT segment_id FROM efforts)")
     conn.commit()
 
 
@@ -94,6 +102,12 @@ def set_in_shutesbury(conn: sqlite3.Connection, segment_id: int,
                       value: int | None) -> None:
     conn.execute("UPDATE segments SET in_shutesbury = ? WHERE id = ?",
                  (value, segment_id))
+
+
+def set_efforts_fetched_at(conn: sqlite3.Connection, segment_id: int,
+                           when: str) -> None:
+    conn.execute("UPDATE segments SET efforts_fetched_at = ? WHERE id = ?",
+                 (when, segment_id))
 
 
 def add_segment_id(conn: sqlite3.Connection, segment_id: int) -> bool:
