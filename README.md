@@ -32,9 +32,6 @@ cp .env.example .env         # then paste your _strava4_session cookie value
 uv run update_segments.py add 38206226
 uv run update_segments.py add https://www.strava.com/segments/8429503
 
-# Give an athlete their own page (linked from the dashboard):
-uv run update_segments.py add-athlete 136573 129008249
-
 # Refresh all tracked segments + rebuild web/data.json (skips ones fetched < 24h ago):
 uv run update_segments.py
 
@@ -56,15 +53,44 @@ uv run update_segments.py --list
   MTB/Road/Gravel — finer discipline tags would need to be set by hand in the
   `segments.discipline` column).
 
+## Classifying discipline (road/gravel/mtb)
+
+Strava doesn't expose road/gravel/MTB at the segment level, so discipline is
+hand-classified and stored in `segments.discipline` (`road`, `gravel`, or `mtb`;
+`NULL` = unclassified). The dashboard uses this field to filter/group segments.
+
+**Interactive (resumable):**
+
+```sh
+uv run classify.py
+```
+
+Walks you through every unclassified in-town ride segment one at a time. Press
+`r`, `g`, `m`, `s` (skip), or `q` (quit). Each classification is committed
+immediately, so you can quit and resume any time.
+
+**One-off edits in a Python shell:**
+
+```python
+import sqlite3
+db = sqlite3.connect("strava.db"); db.row_factory = sqlite3.Row
+for r in db.execute("SELECT id,name,display_location FROM segments "
+                    "WHERE in_shutesbury=1 AND discipline IS NULL ORDER BY name"):
+    print(r["id"], r["name"], "—", r["display_location"])
+db.execute("UPDATE segments SET discipline=? WHERE id=?", ("gravel", 648901)); db.commit()
+```
+
+After classifying, run `uv run update_segments.py --export` (or quit `classify.py`)
+to refresh `web/data.json` with the updated discipline tags.
+
 ## Being gentle on the API
 
-Per in-town ride segment we make just **3 requests**: the segment page, the overall
-leaderboard's **first page** (top 25 — all that scores, since points only reach the
-top 10), and the **"following" board** to grab the featured athletes' (Andy/Owen)
-own times even when they're outside the top 25. Following ranks are relative to whom
-you follow, so those efforts are stored with `rank = NULL` (shown, but worth 0
-points). Out-of-town/run segments are classified from the page first and cost a
-single request.
+Per in-town ride segment the overall **top 25** leaderboard is seeded straight from
+the segment page's embedded `initialLeaderboard` — so a normal refresh costs **one
+request per segment** (the page) and no separate leaderboard calls. Top 25 is all
+that scores (points only reach the top 10). Use `--lb-pages N` to pull deeper boards
+(N*25 athletes) for a bounded set of segments when you want them. Out-of-town/run
+segments are classified from the page and excluded.
 
 Requests are paced (~4s + jitter), recently-fetched segments are skipped, and on the
 first HTTP 429 (a header-less CloudFront limit, ~100 req/window) the client **stops

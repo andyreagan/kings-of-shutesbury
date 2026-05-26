@@ -1,5 +1,7 @@
 "use strict";
-
+// Wrapped in an IIFE so its top-level names (DATA, init, …) don't collide with
+// app.js's globals when both load as classic scripts on the same page.
+(() => {
 let DATA = null;
 let MAP = null;
 let metric = "difficulty";
@@ -17,7 +19,14 @@ function divergingColor(grade) {         // grade% -> blue(descent)..grey..red(c
   const sat = Math.round(15 + 70 * Math.min(1, Math.abs(t)));
   return `hsl(${hue}, ${sat}%, 50%)`;
 }
+function disciplineColor(seg) {
+  if (seg.discipline === "road") return "hsl(210,70%,55%)";
+  if (seg.discipline === "gravel") return "hsl(30,80%,55%)";
+  if (seg.discipline === "mtb") return "hsl(140,65%,45%)";
+  return "#8b93a7";
+}
 function colorFor(seg) {
+  if (metric === "discipline") return disciplineColor(seg);
   if (metric === "grade") return divergingColor(seg.avg_grade);
   const v = metric === "length" ? (seg.distance_m || 0) : (seg.difficulty || 0);
   const r = ranges[metric] || { min: 0, max: 1 };
@@ -38,7 +47,7 @@ function popupHtml(t) {
   const head = `<strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.location || "")}</span>`;
   const stats = `${esc(s.terrain || "")} · ${mi} · ${gr} · importance ${s.difficulty ?? "—"}`;
   if (t.included)
-    return `${head}<br>${stats}<br><a href="index.html#segment/${s.id}">leaderboard →</a>`;
+    return `${head}<br>${stats}<br><a href="#segment/${s.id}">leaderboard →</a>`;
   return `${head}<br><span class="pill out">filtered: ${esc(s.reason || "")}</span><br>${stats}`;
 }
 
@@ -50,7 +59,17 @@ function recolor() {
 function renderLegend() {
   const el = document.getElementById("legend");
   let scale = "";
-  if (metric === "grade") {
+  if (metric === "discipline") {
+    const swatches = [
+      { label: "Road", color: "hsl(210,70%,55%)" },
+      { label: "Gravel", color: "hsl(30,80%,55%)" },
+      { label: "MTB", color: "hsl(140,65%,45%)" },
+      { label: "unclassified", color: "#8b93a7" },
+    ].map((s) =>
+      `<span class="legend-swatch-item"><span class="swatch-dot" style="background:${s.color}"></span>${s.label}</span>`
+    ).join("");
+    scale = `<div class="legend-swatches">${swatches}</div>`;
+  } else if (metric === "grade") {
     scale = `<div class="bar" style="background:linear-gradient(90deg,
       ${divergingColor(-8)}, ${divergingColor(0)}, ${divergingColor(8)})"></div>
       <div class="ends"><span>descent</span><span>flat</span><span>climb</span></div>`;
@@ -62,7 +81,7 @@ function renderLegend() {
       ${sequentialColor(0)}, ${sequentialColor(0.5)}, ${sequentialColor(1)})"></div>
       <div class="ends"><span>${lo}</span><span>${hi}</span></div>`;
   }
-  const label = { difficulty: "Importance", grade: "Average grade", length: "Length" }[metric];
+  const label = { difficulty: "Importance", grade: "Average grade", length: "Length", discipline: "Discipline" }[metric];
   el.innerHTML = `<div class="legend-title">${label}</div>${scale}
     <div class="legend-note"><span class="swatch filtered"></span> grey dashed = filtered out</div>`;
 }
@@ -130,9 +149,22 @@ function init() {
   });
 }
 
-loadData()
-  .then((d) => { DATA = d; init(); })
-  .catch((err) => {
-    document.getElementById("map").innerHTML =
-      `<div class="err" style="margin:20px">Couldn't load <code>data.json</code> (${err}).</div>`;
+function setMapDiscipline(filter) {
+  tracks.forEach((t) => {
+    if (!t.included || !t.layer) return;
+    if (filter === "all" || t.seg.discipline === filter) {
+      t.layer.addTo(MAP);
+    } else {
+      t.layer.remove();
+    }
   });
+}
+
+function initMap(data) {
+  if (!document.getElementById("map")) return;
+  DATA = data;
+  init();
+}
+window.initMap = initMap;
+window.setMapDiscipline = setMapDiscipline;
+})();

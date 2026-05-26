@@ -33,6 +33,11 @@ PAGE_FRESH_HOURS = 24 * 30      # ~30 days; --force to refresh sooner
 LB_FRESH_HOURS = 24 * 30        # leaderboards come from the page; refresh together
 PROFILE_POINTS = 120            # downsample elevation profile to this many points
 MAP_TRACK_POINTS = 64           # downsample GPS track for the map to this many points
+EFFORTS_PER_SEGMENT = 100       # cap efforts shipped per segment (keeps page small)
+# Athletes whose times we always try to refresh via the "following" board, even
+# when they're outside a segment's top 25 (the logged-in session must follow them).
+# Andy Reagan = 136573, Owen Skorupski = 129008249.
+TRACKED_ATHLETES = {136573, 129008249}
 
 
 def resolve_segment_id(client: StravaClient, raw: str) -> int | None:
@@ -98,6 +103,34 @@ def _make_request_logger(conn):
     return log
 
 
+def _supplement_following(client, sid: int, efforts: list) -> list:
+    """Append TRACKED_ATHLETES' (Andy/Owen) times from the following board when
+    they're not already in the overall efforts. Following ranks are relative to
+    who you follow, so store rank=None (shown, worth 0 points). Network call —
+    must be inside the caller's try/except for rate limits."""
+    if not TRACKED_ATHLETES:
+        return efforts
+    have = {e["athlete_id"] for e in efforts}
+    for e in client.fetch_leaderboard(sid, "following"):
+        if e["athlete_id"] in TRACKED_ATHLETES and e["athlete_id"] not in have:
+            efforts.append({**e, "rank": None})
+    return efforts
+
+
+def _capped_efforts(efforts: list) -> list:
+    """Ship at most EFFORTS_PER_SEGMENT ranked efforts per segment to keep
+    data.json small, but always keep the tracked athletes' (Andy/Owen) efforts
+    and the rank-NULL following supplements regardless of rank."""
+    kept, n = [], 0
+    for e in efforts:
+        if (n < EFFORTS_PER_SEGMENT or e["rank"] is None
+                or e["athlete_id"] in TRACKED_ATHLETES):
+            kept.append(e)
+            if e["rank"] is not None:
+                n += 1
+    return kept
+
+
 def _downsample(xs: list, n: int) -> list:
     if not xs or len(xs) <= n:
         return xs
@@ -118,16 +151,6 @@ def cmd_add(args) -> None:
             print(f"{'+ added' if added else '= already tracked'}: {sid}")
     conn.close()
     print("\nRun `uv run update_segments.py` to fetch their data.")
-
-
-def cmd_add_athlete(args) -> None:
-    conn = db.connect()
-    db.init(conn)
-    for aid in args.ids:
-        added = db.add_featured_athlete(conn, aid)
-        print(f"{'+ added page for' if added else '= already featured'}: athlete {aid}")
-    export_data_json(conn)        # no network; just refreshes featured list
-    conn.close()
 
 
 def _is_fresh(fetched_at: str | None, hours: float) -> bool:
@@ -154,7 +177,6 @@ def cmd_update(args) -> None:
     rows = {r["id"]: r for r in conn.execute(
         "SELECT id, fetched_at, efforts_fetched_at, in_shutesbury, activity_type "
         "FROM segments")}
-    featured_ids = set(db.featured_athlete_ids(conn))
     try:
         boundary = geo.load_boundary()
     except Exception as e:                                      # noqa: BLE001
@@ -204,8 +226,7 @@ def cmd_update(args) -> None:
                     where += f" ({seg['activity_type']})"
                 print(f"  {seg['name']} ({seg['display_location']}) — {where}")
 
-            # --- Phase 2: leaderboard. Overall comes from the page (free); only
-            # the "following" supplement for featured athletes is a separate hit. ---
+            # --- Phase 2: leaderboard. Overall comes from the page (free). ---
             need_lb = (in_town and is_ride) and (
                 args.force or seeded_overall is not None
                 or row["efforts_fetched_at"] is None
@@ -224,13 +245,10 @@ def cmd_update(args) -> None:
                 else:
                     print(f"> leaderboard {sid} ...", flush=True)
                     efforts = client.fetch_leaderboard(sid, "overall")
-                # Following board: ONLY featured athletes not already in the top
-                # 25. Skipped in --pages-only (it's a separate request).
-                if featured_ids and not args.pages_only:
-                    have = {e["athlete_id"] for e in efforts}
-                    for e in client.fetch_leaderboard(sid, "following"):
-                        if e["athlete_id"] in featured_ids and e["athlete_id"] not in have:
-                            efforts.append({**e, "rank": None})
+                # Always refresh the tracked athletes' (Andy/Owen) times, even
+                # below top 25. Skipped in --pages-only (separate request).
+                if not args.pages_only:
+                    efforts = _supplement_following(client, sid, efforts)
             except AuthError as e:
                 print(f"\nAUTH ERROR: {e}")
                 return
@@ -332,18 +350,6 @@ def export_data_json(conn) -> None:
                          "avg_grade": s["avg_grade"], "difficulty": s["difficulty"],
                          "track": track_of(s)})
 
-    king = scoring.king_standings(included)
-
-    featured = []
-    for aid in db.featured_athlete_ids(conn):
-        row = conn.execute(
-            "SELECT name, avatar_url FROM athletes WHERE id = ?", (aid,)).fetchone()
-        featured.append({
-            "id": aid,
-            "name": row["name"] if row else None,
-            "avatar_url": row["avatar_url"] if row else None,
-        })
-
     out_segments = []
     for seg in included:
         streams = json.loads(seg.get("streams_json") or "{}")
@@ -380,14 +386,12 @@ def export_data_json(conn) -> None:
                 "badge": e["badge"],
                 "points": scoring.points_for_rank(e["rank"], seg["difficulty"]),
                 "effort_id": e["effort_id"], "activity_id": e["activity_id"],
-            } for e in seg["efforts"]],
+            } for e in _capped_efforts(seg["efforts"])],
         })
     out_segments.sort(key=lambda s: s["difficulty"], reverse=True)
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "king": king,
-        "featured_athletes": featured,
         "segments": out_segments,
         "filtered": filtered,
         "boundary": boundary,
@@ -395,7 +399,7 @@ def export_data_json(conn) -> None:
     WEB_DIR.mkdir(exist_ok=True)
     DATA_JSON.write_text(json.dumps(payload, indent=2))
     print(f"\nWrote {DATA_JSON} — {len(out_segments)} in-Shutesbury ride "
-          f"segments, {len(king)} ranked athletes, {len(filtered)} filtered out.")
+          f"segments, {len(filtered)} filtered out.")
 
 
 def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
@@ -421,7 +425,6 @@ def cmd_deepen(args) -> None:
     conn = db.connect()
     db.init(conn)
     strava.MAX_LEADERBOARD_PAGES = args.lb_pages
-    featured_ids = set(db.featured_athlete_ids(conn))
 
     rows = conn.execute(
         "SELECT id, name FROM segments WHERE in_shutesbury = 1 "
@@ -437,7 +440,7 @@ def cmd_deepen(args) -> None:
         print("No matching in-town ride segments to deepen.")
         return
 
-    per = args.lb_pages + (1 if featured_ids else 0)
+    per = args.lb_pages + (1 if TRACKED_ATHLETES else 0)
     print(f"Deepening {len(targets)} segment(s) to top {args.lb_pages * 25} "
           f"(~{len(targets) * per} leaderboard requests). Stops + saves on any 429.\n")
     names = {r["id"]: r["name"] for r in rows}
@@ -447,11 +450,7 @@ def cmd_deepen(args) -> None:
             print(f"> {sid} {names.get(sid, '')} ...", flush=True)
             try:
                 efforts = client.fetch_leaderboard(sid, "overall")
-                if featured_ids:
-                    have = {e["athlete_id"] for e in efforts}
-                    for e in client.fetch_leaderboard(sid, "following"):
-                        if e["athlete_id"] in featured_ids and e["athlete_id"] not in have:
-                            efforts.append({**e, "rank": None})
+                efforts = _supplement_following(client, sid, efforts)
             except AuthError as e:
                 print(f"\nAUTH ERROR: {e}")
                 return
@@ -542,6 +541,8 @@ def main() -> None:
     parser.add_argument("--pages-only", action="store_true",
                         help="fetch + classify segment pages, skip leaderboards "
                              "(the rate-limited endpoint) for later")
+    parser.add_argument("--export", action="store_true",
+                        help="rebuild web/data.json from the DB (no network)")
     parser.add_argument("--list", action="store_true",
                         help="list tracked segments and exit")
     parser.add_argument("--log", action="store_true",
@@ -558,16 +559,17 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command")
     p_add = sub.add_parser("add", help="track new segment id(s) or URL(s)")
     p_add.add_argument("refs", nargs="+")
-    p_addath = sub.add_parser("add-athlete", help="give an athlete their own page")
-    p_addath.add_argument("ids", nargs="+", type=int)
     args = parser.parse_args()
 
     if args.command == "add":
         cmd_add(args)
-    elif args.command == "add-athlete":
-        cmd_add_athlete(args)
     elif args.lb_pages:
         cmd_deepen(args)
+    elif args.export:
+        conn = db.connect()
+        db.init(conn)
+        export_data_json(conn)
+        conn.close()
     elif args.log:
         cmd_log(args)
     elif args.list:

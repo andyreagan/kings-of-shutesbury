@@ -52,10 +52,6 @@ CREATE TABLE IF NOT EXISTS athletes (
     badge               TEXT
 );
 
-CREATE TABLE IF NOT EXISTS featured_athletes (
-    id                  INTEGER PRIMARY KEY          -- athletes that get their own page
-);
-
 CREATE TABLE IF NOT EXISTS api_log (
     id                  INTEGER PRIMARY KEY AUTOINCREMENT,
     ts                  TEXT NOT NULL,               -- ISO8601 UTC, when the request returned
@@ -96,22 +92,6 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 
 def init(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA)
-    # Lightweight migration: add columns introduced after a DB already existed.
-    existing = {r["name"] for r in conn.execute("PRAGMA table_info(segments)")}
-    for col, decl in (("in_shutesbury", "INTEGER"), ("discipline", "TEXT"),
-                      ("efforts_fetched_at", "TEXT")):
-        if col not in existing:
-            conn.execute(f"ALTER TABLE segments ADD COLUMN {col} {decl}")
-    # Backfill: segments that already have efforts have had their leaderboard
-    # fetched, so don't re-pull them when the two-phase logic lands.
-    conn.execute(
-        "UPDATE segments SET efforts_fetched_at = fetched_at "
-        "WHERE efforts_fetched_at IS NULL "
-        "AND id IN (SELECT DISTINCT segment_id FROM efforts)")
-    # api_log gained a response_body column after it was first created.
-    log_cols = {r["name"] for r in conn.execute("PRAGMA table_info(api_log)")}
-    if "response_body" not in log_cols:
-        conn.execute("ALTER TABLE api_log ADD COLUMN response_body TEXT")
     conn.commit()
 
 
@@ -138,20 +118,6 @@ def add_segment_id(conn: sqlite3.Connection, segment_id: int) -> bool:
 
 def segment_ids(conn: sqlite3.Connection) -> list[int]:
     return [r["id"] for r in conn.execute("SELECT id FROM segments ORDER BY id")]
-
-
-def add_featured_athlete(conn: sqlite3.Connection, athlete_id: int) -> bool:
-    """Mark an athlete to get their own page. Returns True if newly added."""
-    cur = conn.execute(
-        "INSERT OR IGNORE INTO featured_athletes (id) VALUES (?)", (athlete_id,)
-    )
-    conn.commit()
-    return cur.rowcount > 0
-
-
-def featured_athlete_ids(conn: sqlite3.Connection) -> list[int]:
-    return [r["id"] for r in
-            conn.execute("SELECT id FROM featured_athletes ORDER BY id")]
 
 
 def upsert_segment(conn: sqlite3.Connection, seg: dict) -> None:

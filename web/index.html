@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kings of Shutesbury</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,20 +14,42 @@
       <h1>Kings of Shutesbury <span class="crown">♛</span></h1>
       <p class="sub">Strava segment standings in &amp; around Shutesbury, MA</p>
       <div class="controls">
-        <input id="highlight" type="search" placeholder="Highlight an athlete (e.g. Andy)…" autocomplete="off">
-        <a class="nav-link" href="map.html">🗺 Segment map</a>
+        <a class="nav-link" href="#map-section">🗺 Segment map</a>
         <span id="generated" class="generated"></span>
+      </div>
+      <div class="discipline-switch" id="discipline-switch">
+        <span class="muted">discipline:</span>
+        <button data-discipline="all" class="active">All</button>
+        <button data-discipline="road">Road</button>
+        <button data-discipline="gravel">Gravel</button>
+        <button data-discipline="mtb">MTB</button>
+        <span id="unclassified-note" class="muted"></span>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section id="featured"></section>
-
     <section id="king-section">
       <h2>King of Shutesbury</h2>
       <p class="hint">Overall standings — Tour-style points awarded on every segment by finishing rank, summed across all tracked segments.</p>
       <div id="king"></div>
+    </section>
+
+    <section id="map-section">
+      <h2>Segment map</h2>
+      <div class="map-controls">
+        <div class="metric-switch" id="metric-switch">
+          <span class="muted">color by:</span>
+          <button data-metric="difficulty" class="active">Importance</button>
+          <button data-metric="grade">Grade</button>
+          <button data-metric="length">Length</button>
+          <button data-metric="discipline">Discipline</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="show-filtered" checked>
+          show filtered-out</label>
+      </div>
+      <div id="map"></div>
+      <div id="legend" class="legend"></div>
     </section>
 
     <section id="segments-section">
@@ -48,7 +72,10 @@
     <p class="muted">Data pulled from Strava's web session • points model is tunable in <code>scoring.py</code></p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="util.js"></script>
+  <script src="map.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

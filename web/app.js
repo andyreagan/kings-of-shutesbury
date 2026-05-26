@@ -1,49 +1,174 @@
 "use strict";
 
 let DATA = null;
-let highlightTerm = "";
 let kingExpanded = false;
 const KING_CAP = 20;
+const KING_MAX = 100;   // hard cap: only the top 100 are shown / get a popup
+let disciplineFilter = "all";
+let standings = [];
 
-function matchesHighlight(name) {
-  return highlightTerm && name &&
-    name.toLowerCase().includes(highlightTerm);
+// ---- discipline filter helpers ----------------------------------------------
+function segmentsForFilter() {
+  return disciplineFilter === "all"
+    ? DATA.segments
+    : DATA.segments.filter((s) => s.discipline === disciplineFilter);
 }
 
-// ---- featured athlete nav ---------------------------------------------------
-function renderFeatured() {
-  const list = DATA.featured_athletes || [];
-  if (!list.length) { $("#featured").innerHTML = ""; return; }
-  const links = list.map((a) => {
-    const standing = (DATA.king || []).find((k) => k.athlete_id === a.id);
-    const pts = standing ? ` · ${standing.points} pts` : "";
-    const name = a.name || `Athlete ${a.id}`;
-    return `<a class="athlete-chip" href="athlete.html?id=${a.id}">
-      ${avatar(a.avatar_url)}<span>${esc(name)}${pts}</span></a>`;
-  }).join("");
-  $("#featured").innerHTML = `<h2>Athlete pages</h2><div class="chips">${links}</div>`;
+function computeStandings(segments) {
+  const map = new Map();
+  for (const seg of segments) {
+    for (const e of seg.efforts || []) {
+      if (!e.points || e.points <= 0) continue;
+      let rec = map.get(e.athlete_id);
+      if (!rec) {
+        rec = { athlete_id: e.athlete_id, name: e.name, avatar_url: e.avatar_url,
+                points: 0, segments_won: 0, segments_scored: 0 };
+        map.set(e.athlete_id, rec);
+      }
+      rec.points += e.points;
+      rec.segments_scored += 1;
+      if (e.rank === 1) rec.segments_won += 1;
+      rec.name = rec.name || e.name;
+      rec.avatar_url = rec.avatar_url || e.avatar_url;
+    }
+  }
+  const arr = Array.from(map.values());
+  arr.sort((a, b) => b.points - a.points);
+  arr.forEach((a, i) => {
+    a.overall_rank = i + 1;
+    a.points = Math.round(a.points * 10) / 10;
+  });
+  return arr;
+}
+
+function applyDisciplineFilter() {
+  standings = computeStandings(segmentsForFilter());
+
+  const unclassifiedCount = DATA.segments.filter((s) => !s.discipline).length;
+  const noteEl = document.getElementById("unclassified-note");
+  if (noteEl) {
+    noteEl.textContent = (disciplineFilter !== "all" && unclassifiedCount > 0)
+      ? `(${unclassifiedCount} unclassified)`
+      : "";
+  }
+
+  const h2 = document.querySelector("#king-section h2");
+  if (h2) {
+    if (disciplineFilter === "all") {
+      h2.textContent = "King of Shutesbury";
+    } else {
+      const cap = disciplineFilter.charAt(0).toUpperCase() + disciplineFilter.slice(1);
+      h2.textContent = "King of " + cap;
+    }
+  }
+
+  renderKing();
+  renderSegments();
+
+  if (window.setMapDiscipline) window.setMapDiscipline(disciplineFilter);
+}
+
+// ---- athlete helpers (ported from athlete.js) --------------------------------
+function findEffort(seg, id) {
+  return seg.efforts.find((e) => e.athlete_id === id);
+}
+
+function resolveAthlete(id) {
+  const standing = standings.find((k) => k.athlete_id === id);
+  let name = standing ? standing.name : null;
+  let avatarUrl = null;
+  for (const seg of DATA.segments) {
+    const e = findEffort(seg, id);
+    if (e) { name = name || e.name; avatarUrl = avatarUrl || e.avatar_url; }
+    if (name && avatarUrl) break;
+  }
+  return { id, name: name || `Athlete ${id}`, avatarUrl, standing };
+}
+
+// ---- athlete popup ----------------------------------------------------------
+function openAthlete(id) {
+  const ath = resolveAthlete(id);
+  const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
+  const filteredSegs = segmentsForFilter();
+
+  const rows = filteredSegs.map((seg) => {
+    const eff = findEffort(seg, id);
+    const leader = seg.efforts[0];
+    const gap = eff && leader ? eff.elapsed_time - leader.elapsed_time : null;
+    return { seg, eff, gap };
+  });
+  const attempted = rows.filter((r) => r.eff);
+  const remaining = rows.filter((r) => !r.eff);
+  const koms = attempted.filter((r) => r.eff.rank === 1).length;
+  const scored = attempted.filter((r) => (r.eff.points || 0) > 0).length;
+  const earnedPts = attempted.reduce((s, r) => s + (r.eff.points || 0), 0);
+
+  attempted.sort((a, b) => (b.eff.points || 0) - (a.eff.points || 0) ||
+    a.eff.rank - b.eff.rank);
+  remaining.sort((a, b) => b.seg.difficulty - a.seg.difficulty);
+
+  const rowHtml = ({ seg, eff, gap }) => `
+    <tr class="${eff ? "" : "todo"}">
+      <td><a href="#segment/${seg.id}"><strong>${esc(seg.name)}</strong></a><br><span class="muted">${esc(seg.location || "")}</span></td>
+      <td><span class="pill ${seg.terrain}">${seg.terrain}</span></td>
+      <td class="num diff">${seg.difficulty}</td>
+      <td class="num">${eff ? (eff.rank ? "#" + eff.rank : "—") : "—"}</td>
+      <td class="num">${eff ? effortLink(eff, fmtTime(eff.elapsed_time)) : '<span class="muted">not attempted</span>'}</td>
+      <td class="num">${eff && eff.rank !== 1 ? fmtGap(gap) : (eff ? '<span class="kom">KOM</span>' : "—")}</td>
+      <td class="num pts">${eff && eff.points ? eff.points : ""}</td>
+    </tr>`;
+
+  if (location.hash !== `#athlete/${id}`) location.hash = `athlete/${id}`;
+  $("#detail-body").innerHTML = `
+    <div class="athlete-head">
+      ${avatar(ath.avatarUrl)}
+      <div>
+        <h3>${esc(ath.name)}</h3>
+        <p class="sub">${ath.standing
+          ? `King rank #${ath.standing.overall_rank} of ${standings.length} · ${ath.standing.points} pts`
+          : "Not yet on the board"}</p>
+      </div>
+    </div>
+    <div class="stat-grid">
+      ${stat("King rank", ath.standing ? "#" + ath.standing.overall_rank : "—")}
+      ${stat("Points", Math.round(earnedPts * 10) / 10)}
+      ${stat("KOMs", koms)}
+      ${stat("Scoring (top 10)", scored)}
+      ${stat("Attempted", `${attempted.length} / ${filteredSegs.length}`)}
+      ${stat("To do", remaining.length)}
+    </div>
+    <h4>Segment-by-segment</h4>
+    <p class="hint">Every tracked segment with this athlete's standing. Rows with no time are not-yet-attempted — the to-do list. Click a segment name for the full leaderboard.</p>
+    <div class="seg-card"><table>
+      <thead><tr><th>Segment</th><th>Terrain</th><th class="num">Difficulty</th>
+        <th class="num">Rank</th><th class="num">Time</th><th class="num">Gap to KOM</th>
+        <th class="num">Points</th></tr></thead>
+      <tbody>${attempted.map(rowHtml).join("")}${remaining.map(rowHtml).join("")}</tbody>
+    </table></div>
+    <p class="hint" style="margin-top:12px">Note: times outside a segment's top 25 aren't
+    always refreshed, so some efforts here may be missing or stale.</p>`;
+  $("#detail-overlay").classList.remove("hidden");
 }
 
 // ---- King standings ---------------------------------------------------------
 function renderKing() {
-  const all = DATA.king || [];
-  // Show everyone while searching (so a highlighted athlete is never hidden).
-  const showAll = kingExpanded || !!highlightTerm;
-  const shown = showAll ? all : all.slice(0, KING_CAP);
+  const all = standings;
+  const shown = all.slice(0, kingExpanded ? KING_MAX : KING_CAP);
   const rows = shown.map((a) => `
-    <tr class="king-${a.overall_rank} ${matchesHighlight(a.name) ? "hl" : ""}">
+    <tr class="king-${a.overall_rank}">
       <td><span class="rankbadge">${a.overall_rank}</span></td>
-      <td>${esc(a.name)}</td>
+      <td><a href="#athlete/${a.athlete_id}">${esc(a.name)}</a></td>
       <td class="num pts">${a.points}</td>
       <td class="num">${a.segments_won}</td>
       <td class="num">${a.segments_scored}</td>
     </tr>`).join("");
 
   let toggle = "";
-  if (all.length > KING_CAP && !highlightTerm) {
+  if (all.length > KING_CAP) {
+    const expandTo = Math.min(KING_MAX, all.length);
     toggle = kingExpanded
       ? `<button class="expand-btn" id="king-toggle">Show top ${KING_CAP} ▲</button>`
-      : `<button class="expand-btn" id="king-toggle">Show all ${all.length} athletes ▼</button>`;
+      : `<button class="expand-btn" id="king-toggle">Show top ${expandTo} ▼</button>`;
   }
 
   $("#king").innerHTML = `
@@ -92,7 +217,7 @@ function segValue(s, key) {
   return s[key];
 }
 function renderSegments() {
-  const segs = [...DATA.segments].sort((a, b) => {
+  const segs = [...segmentsForFilter()].sort((a, b) => {
     const col = SEG_COLS.find((c) => c.key === sortKey);
     let va = segValue(a, sortKey), vb = segValue(b, sortKey);
     if (col.type === "num") { va = va ?? -Infinity; vb = vb ?? -Infinity; return sortAsc ? va - vb : vb - va; }
@@ -106,7 +231,6 @@ function renderSegments() {
   }).join("");
 
   const body = segs.map((s) => {
-    const leaderHl = s.leader && matchesHighlight(s.leader.name);
     const cells = SEG_COLS.map((c) => {
       if (c.key === "name")
         return `<td><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.location || "")}</span></td>`;
@@ -117,7 +241,7 @@ function renderSegments() {
       const raw = s[c.key];
       return `<td class="num">${c.fmt ? c.fmt(raw) : (raw ?? "—")}</td>`;
     }).join("");
-    return `<tr data-id="${s.id}" class="${leaderHl ? "hl" : ""}">${cells}</tr>`;
+    return `<tr data-id="${s.id}">${cells}</tr>`;
   }).join("");
 
   $("#segments").innerHTML = `
@@ -162,9 +286,9 @@ function openDetail(id) {
   if (!s) return;
   const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
   const effortRows = s.efforts.map((e) => `
-    <tr class="${matchesHighlight(e.name) ? "hl" : ""}">
+    <tr>
       <td class="num">${e.rank ?? "—"}</td>
-      <td><div class="name-cell">${avatar(e.avatar_url, e.name)}${esc(e.name)}</div></td>
+      <td><div class="name-cell">${avatar(e.avatar_url, e.name)}<a href="#athlete/${e.athlete_id}">${esc(e.name)}</a></div></td>
       <td class="num">${effortLink(e, fmtTime(e.elapsed_time))}</td>
       <td class="num">${e.avg_watts ? Math.round(e.avg_watts) + " W" : "—"}</td>
       <td class="num pts">${e.points || ""}</td>
@@ -197,30 +321,38 @@ function openDetail(id) {
 }
 function closeDetail() {
   $("#detail-overlay").classList.add("hidden");
-  if (location.hash.startsWith("#segment/"))
+  if (/^#(segment|athlete)\//.test(location.hash))
     history.replaceState(null, "", location.pathname + location.search);
 }
 function openFromHash() {
-  const m = location.hash.match(/^#segment\/(\d+)$/);
-  if (m) openDetail(+m[1]); else closeDetail();
+  const m = location.hash.match(/^#(athlete|segment)\/(\d+)$/);
+  if (!m) { closeDetail(); return; }
+  if (m[1] === "athlete") openAthlete(+m[2]);
+  else openDetail(+m[2]);
 }
 
 // ---- wiring -----------------------------------------------------------------
-function applyHighlight() { renderKing(); renderSegments(); }
-
 function init() {
   $("#generated").textContent =
     "updated " + new Date(DATA.generated_at).toLocaleString();
-  const preset = new URLSearchParams(location.search).get("athlete");
-  if (preset) { highlightTerm = preset.trim().toLowerCase(); $("#highlight").value = preset; }
-  renderFeatured();
-  renderKing();
-  renderSegments();
+
+  // Discipline filter switch
+  const dsw = document.getElementById("discipline-switch");
+  if (dsw) {
+    dsw.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-discipline]");
+      if (!b) return;
+      disciplineFilter = b.dataset.discipline;
+      dsw.querySelectorAll("button").forEach((x) =>
+        x.classList.toggle("active", x === b));
+      kingExpanded = false;
+      applyDisciplineFilter();
+    });
+  }
+
   renderFiltered();
-  $("#highlight").addEventListener("input", (e) => {
-    highlightTerm = e.target.value.trim().toLowerCase();
-    applyHighlight();
-  });
+  applyDisciplineFilter();
+  if (typeof initMap === "function" && DATA.boundary !== undefined) initMap(DATA);
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-overlay").addEventListener("click", (e) => {
     if (e.target.id === "detail-overlay") closeDetail();
