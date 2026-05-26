@@ -141,8 +141,9 @@ tbody tr { transition: background 0.1s; }
 tr.todo td { opacity: 0.6; }
 .kom { color: var(--gold); font-weight: 700; }
 
-/* methodology */
-#methodology p { max-width: 66ch; margin: 0 0 12px; }
+/* methodology — narrow, centered text; tables keep the fuller width */
+#methodology h2, #methodology p { max-width: 66ch; margin-left: auto; margin-right: auto; }
+#methodology p { margin-bottom: 12px; }
 .formula code { font-size: 14px; padding: 8px 12px; display: inline-block; }
 .method-table { width: auto; margin: 4px 0 16px; border: 1px solid var(--line);
   border-radius: 8px; overflow: hidden; }
