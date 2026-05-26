@@ -1,0 +1,25 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2129"/>
+      <stop offset="1" stop-color="#12141a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="none"/>
+  <g transform="translate(488,118) scale(7)">
+    <path d="M5 23.5 L7 12 L12.5 18 L16 8 L19.5 18 L25 12 L27 23.5 L27 27 L5 27 Z"
+          fill="#f4c542" stroke="#f4c542" stroke-width="0.6" stroke-linejoin="round"/>
+    <circle cx="7"  cy="12" r="1.7" fill="#fc5200"/>
+    <circle cx="16" cy="8"  r="2"   fill="#fc5200"/>
+    <circle cx="25" cy="12" r="1.7" fill="#fc5200"/>
+    <rect x="8.5" y="24.5" width="15" height="1.4" rx="0.7" fill="#2a1d00" opacity="0.5"/>
+  </g>
+  <text x="600" y="440" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="92" font-weight="700" fill="#e8eaf0" letter-spacing="-1">Kings of Shutesbury</text>
+  <text x="600" y="498" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="34" fill="#8b93a7">Strava segment standings in &amp; around Shutesbury, MA</text>
+  <rect x="540" y="540" width="120" height="5" rx="2.5" fill="#fc5200"/>
+</svg>
