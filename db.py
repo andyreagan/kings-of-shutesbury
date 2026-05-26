@@ -56,6 +56,19 @@ CREATE TABLE IF NOT EXISTS featured_athletes (
     id                  INTEGER PRIMARY KEY          -- athletes that get their own page
 );
 
+CREATE TABLE IF NOT EXISTS api_log (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    ts                  TEXT NOT NULL,               -- ISO8601 UTC, when the request returned
+    method              TEXT,
+    endpoint            TEXT,                        -- segment_page | leaderboard_overall | ...
+    url                 TEXT,
+    segment_id          INTEGER,
+    status              INTEGER,                     -- HTTP status (429 = rate limited)
+    elapsed_ms          REAL,
+    response_body       TEXT                         -- pageProps (pages) / raw JSON (leaderboard)
+);
+CREATE INDEX IF NOT EXISTS idx_api_log_ts ON api_log(ts);
+
 CREATE TABLE IF NOT EXISTS efforts (
     segment_id          INTEGER NOT NULL,
     athlete_id          INTEGER NOT NULL,
@@ -95,6 +108,10 @@ def init(conn: sqlite3.Connection) -> None:
         "UPDATE segments SET efforts_fetched_at = fetched_at "
         "WHERE efforts_fetched_at IS NULL "
         "AND id IN (SELECT DISTINCT segment_id FROM efforts)")
+    # api_log gained a response_body column after it was first created.
+    log_cols = {r["name"] for r in conn.execute("PRAGMA table_info(api_log)")}
+    if "response_body" not in log_cols:
+        conn.execute("ALTER TABLE api_log ADD COLUMN response_body TEXT")
     conn.commit()
 
 
@@ -183,6 +200,19 @@ def replace_efforts(conn: sqlite3.Connection, segment_id: int,
         ":activity_id, :start_date_local)",
         [{"segment_id": segment_id, **e} for e in efforts],
     )
+    conn.commit()
+
+
+def log_api_request(conn: sqlite3.Connection, ts: str, method: str,
+                    endpoint: str, url: str, segment_id: int | None,
+                    status: int, elapsed_ms: float,
+                    response_body: str | None = None) -> None:
+    """Record one API request (with its payload). Committed immediately so the
+    log survives a crash or a hard stop on a rate limit."""
+    conn.execute(
+        "INSERT INTO api_log (ts, method, endpoint, url, segment_id, status, "
+        "elapsed_ms, response_body) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (ts, method, endpoint, url, segment_id, status, elapsed_ms, response_body))
     conn.commit()
 
 

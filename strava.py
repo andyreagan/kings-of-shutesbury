@@ -85,6 +85,25 @@ def classify_terrain(avg_grade: float | None) -> str:
     return "flat"
 
 
+def _effort_from_row(r: dict) -> dict:
+    """Normalize one leaderboard row (same shape from the leaderboard endpoint
+    and from the page's embedded initialLeaderboard)."""
+    return {
+        "athlete_id": r.get("athleteId"),
+        "athlete_name": r.get("displayName"),
+        "avatar_url": r.get("avatar"),
+        "badge": r.get("badge"),
+        "rank": r.get("rank"),
+        "elapsed_time": r.get("elapsedTime"),
+        "avg_speed": r.get("avgSpeed"),
+        "avg_watts": r.get("avgWatts"),
+        "avg_hr": r.get("avgHr"),
+        "effort_id": r.get("effortId"),
+        "activity_id": r.get("activityId"),
+        "start_date_local": r.get("startDateLocal"),
+    }
+
+
 def _gross_gain_loss(elevation: list[float]) -> tuple[float, float]:
     gain = loss = 0.0
     for a, b in zip(elevation, elevation[1:]):
@@ -97,7 +116,10 @@ def _gross_gain_loss(elevation: list[float]) -> tuple[float, float]:
 
 
 class StravaClient:
-    def __init__(self, session_cookie: str | None = None):
+    def __init__(self, session_cookie: str | None = None, request_logger=None):
+        # request_logger(method, url, status, elapsed_ms) is called for EVERY
+        # response (including 429/401), before any error handling.
+        self._request_logger = request_logger
         cookie = session_cookie or load_session_cookie()
         self._client = httpx.Client(
             base_url=BASE,
@@ -129,7 +151,15 @@ class StravaClient:
 
     def _get(self, url: str, **kwargs) -> httpx.Response:
         self._throttle()
+        t0 = time.monotonic()
         resp = self._client.get(url, **kwargs)
+        elapsed_ms = round((time.monotonic() - t0) * 1000, 1)
+        if self._request_logger:
+            try:
+                self._request_logger("GET", str(resp.request.url),
+                                     resp.status_code, elapsed_ms, resp.text)
+            except Exception:                                   # noqa: BLE001
+                pass  # logging must never break a fetch
         if resp.status_code in (401, 403):
             raise AuthError(
                 f"{resp.status_code} for {url} — session cookie is likely "
@@ -165,7 +195,14 @@ class StravaClient:
         gross_gain, gross_loss = _gross_gain_loss(elevation)
         map_images = pp.get("mapImages") or []
 
+        # The page already embeds the overall top-25 leaderboard — seed efforts
+        # from it so we never need a separate overall-leaderboard request.
+        il = pp.get("initialLeaderboard") or {}
+        leaders = [_effort_from_row(r) for r in (il.get("leaderboard") or [])]
+
         return {
+            "leaders": leaders,
+            "athlete_pr_rank": il.get("athletePrRank"),
             "id": int(segment_id),
             "name": meta.get("name"),
             "activity_type": meta.get("activityType"),
@@ -212,21 +249,7 @@ class StravaClient:
             rows = data.get("leaderboard") or []
             if total is None:
                 total = data.get("totalCount")
-            for r in rows:
-                efforts.append({
-                    "athlete_id": r.get("athleteId"),
-                    "athlete_name": r.get("displayName"),
-                    "avatar_url": r.get("avatar"),
-                    "badge": r.get("badge"),
-                    "rank": r.get("rank"),
-                    "elapsed_time": r.get("elapsedTime"),
-                    "avg_speed": r.get("avgSpeed"),
-                    "avg_watts": r.get("avgWatts"),
-                    "avg_hr": r.get("avgHr"),
-                    "effort_id": r.get("effortId"),
-                    "activity_id": r.get("activityId"),
-                    "start_date_local": r.get("startDateLocal"),
-                })
+            efforts.extend(_effort_from_row(r) for r in rows)
             if not rows or (total is not None and len(efforts) >= total):
                 break
         return efforts
