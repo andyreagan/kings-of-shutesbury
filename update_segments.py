@@ -175,8 +175,8 @@ def cmd_update(args) -> None:
         return
 
     rows = {r["id"]: r for r in conn.execute(
-        "SELECT id, fetched_at, efforts_fetched_at, in_shutesbury, activity_type "
-        "FROM segments")}
+        "SELECT id, fetched_at, efforts_fetched_at, in_shutesbury, activity_type, "
+        "excluded FROM segments")}
     try:
         boundary = geo.load_boundary()
     except Exception as e:                                      # noqa: BLE001
@@ -211,23 +211,36 @@ def cmd_update(args) -> None:
                 except StravaError as e:
                     print(f"! failed page {sid}: {e}")
                     continue
-                in_town = (geo.segment_in_shutesbury(seg, boundary)
-                           if boundary is not None else True)
+                if boundary is not None:
+                    cls = geo.classify_segment(
+                        [seg.get("start_lat"), seg.get("start_lng")],
+                        [seg.get("end_lat"), seg.get("end_lng")],
+                        (seg.get("streams") or {}).get("location") or [], boundary)
+                else:
+                    cls = {"starts_in": True, "ends_in": True,
+                           "passes_through": True, "in_shutesbury": True}
+                in_town = cls["in_shutesbury"]
                 is_ride = (seg["activity_type"] or "").lower() == "ride"
                 seg["in_shutesbury"] = 1 if in_town else 0
                 seg["fetched_at"] = now()
                 db.upsert_segment(conn, seg)
-                db.set_in_shutesbury(conn, sid, seg["in_shutesbury"])
+                db.set_geo_class(conn, sid, cls)
                 conn.commit()
                 if in_town and is_ride:
                     seeded_overall = seg.get("leaders") or []
-                where = "in Shutesbury" if in_town else "OUTSIDE Shutesbury"
+                if in_town:
+                    where = "in Shutesbury"
+                elif cls["passes_through"]:
+                    where = "passes through (no start/finish in town)"
+                else:
+                    where = "OUTSIDE Shutesbury"
                 if not is_ride:
                     where += f" ({seg['activity_type']})"
                 print(f"  {seg['name']} ({seg['display_location']}) — {where}")
 
             # --- Phase 2: leaderboard. Overall comes from the page (free). ---
-            need_lb = (in_town and is_ride) and (
+            # Never spend leaderboard requests on manually-excluded segments.
+            need_lb = (in_town and is_ride and row["excluded"] != 1) and (
                 args.force or seeded_overall is not None
                 or row["efforts_fetched_at"] is None
                 or not _is_fresh(row["efforts_fetched_at"], LB_FRESH_HOURS))
@@ -309,9 +322,16 @@ def export_data_json(conn) -> None:
     if boundary is not None:
         newly = 0
         for seg in segments:
-            if seg["in_shutesbury"] is None:
-                seg["in_shutesbury"] = 1 if geo.segment_in_shutesbury(seg, boundary) else 0
-                db.set_in_shutesbury(conn, seg["id"], seg["in_shutesbury"])
+            if seg["starts_in_shutesbury"] is None or seg["in_shutesbury"] is None:
+                track = json.loads(seg.get("streams_json") or "{}").get("location") or []
+                cls = geo.classify_segment(
+                    [seg["start_lat"], seg["start_lng"]],
+                    [seg["end_lat"], seg["end_lng"]], track, boundary)
+                seg["starts_in_shutesbury"] = int(cls["starts_in"])
+                seg["ends_in_shutesbury"] = int(cls["ends_in"])
+                seg["passes_through"] = int(cls["passes_through"])
+                seg["in_shutesbury"] = int(cls["in_shutesbury"])
+                db.set_geo_class(conn, seg["id"], cls)
                 newly += 1
         conn.commit()
         if newly:
@@ -323,8 +343,11 @@ def export_data_json(conn) -> None:
         db.set_difficulty(conn, seg["id"], seg["difficulty"])
     conn.commit()
 
-    # A segment only counts toward standings if it's a Ride that's in Shutesbury.
+    # A segment counts toward standings only if it's a Ride that starts or
+    # finishes in Shutesbury and hasn't been manually excluded.
     def is_included(seg) -> bool:
+        if seg["excluded"] == 1:
+            return False
         ride = (seg["activity_type"] or "").lower() == "ride"
         in_town = seg["in_shutesbury"] == 1 if boundary is not None else True
         return ride and in_town
@@ -339,10 +362,13 @@ def export_data_json(conn) -> None:
         if is_included(s):
             continue
         reasons = []
+        if s["excluded"] == 1:
+            reasons.append("manually excluded")
         if (s["activity_type"] or "").lower() != "ride":
             reasons.append((s["activity_type"] or "non-ride").lower())
         if boundary is not None and s["in_shutesbury"] != 1:
-            reasons.append("outside Shutesbury")
+            reasons.append("passes through" if s["passes_through"] == 1
+                           else "outside Shutesbury")
         filtered.append({"id": s["id"], "name": s["name"],
                          "location": s["display_location"],
                          "reason": ", ".join(reasons) or "excluded",

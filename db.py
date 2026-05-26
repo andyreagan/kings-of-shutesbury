@@ -40,6 +40,10 @@ CREATE TABLE IF NOT EXISTS segments (
     streams_json        TEXT,                        -- {distance, elevation, location}
     difficulty          REAL,                        -- computed by scoring.py
     in_shutesbury       INTEGER,                     -- 1 if start or end is in town
+    starts_in_shutesbury INTEGER,                    -- 1 if the START point is in town
+    ends_in_shutesbury  INTEGER,                     -- 1 if the END point is in town
+    passes_through      INTEGER,                     -- 1 if the track crosses town at all
+    excluded            INTEGER DEFAULT 0,           -- 1 = manually excluded from scoring/display
     discipline          TEXT,                        -- road | gravel | mtb (manual; NULL=unset)
     fetched_at          TEXT,                        -- when the PAGE was fetched (NULL=never)
     efforts_fetched_at  TEXT                         -- when the LEADERBOARD was fetched
@@ -99,6 +103,24 @@ def set_in_shutesbury(conn: sqlite3.Connection, segment_id: int,
                       value: int | None) -> None:
     conn.execute("UPDATE segments SET in_shutesbury = ? WHERE id = ?",
                  (value, segment_id))
+
+
+def set_geo_class(conn: sqlite3.Connection, segment_id: int, cls: dict) -> None:
+    """Persist the full geo classification (start/end/pass-through) plus the
+    derived `in_shutesbury` (start OR finish in town)."""
+    conn.execute(
+        "UPDATE segments SET starts_in_shutesbury = ?, ends_in_shutesbury = ?, "
+        "passes_through = ?, in_shutesbury = ? WHERE id = ?",
+        (int(cls["starts_in"]), int(cls["ends_in"]), int(cls["passes_through"]),
+         int(cls["in_shutesbury"]), segment_id))
+    conn.commit()
+
+
+def set_excluded(conn: sqlite3.Connection, segment_id: int, value: int) -> None:
+    """Manually exclude (1) or re-include (0) a segment from scoring/display."""
+    conn.execute("UPDATE segments SET excluded = ? WHERE id = ?",
+                 (value, segment_id))
+    conn.commit()
 
 
 def set_efforts_fetched_at(conn: sqlite3.Connection, segment_id: int,
