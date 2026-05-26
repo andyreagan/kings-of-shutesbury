@@ -2,7 +2,7 @@
 
 let DATA = null;
 let kingExpanded = false;
-const KING_CAP = 20;
+const KING_CAP = 10;
 const KING_MAX = 100;   // hard cap: only the top 100 are shown / get a popup
 let disciplineFilter = "all";
 let standings = [];
@@ -50,16 +50,6 @@ function applyDisciplineFilter() {
     noteEl.textContent = (disciplineFilter !== "all" && unclassifiedCount > 0)
       ? `(${unclassifiedCount} unclassified)`
       : "";
-  }
-
-  const h2 = document.querySelector("#king-section h2");
-  if (h2) {
-    if (disciplineFilter === "all") {
-      h2.textContent = "King of Shutesbury";
-    } else {
-      const cap = disciplineFilter.charAt(0).toUpperCase() + disciplineFilter.slice(1);
-      h2.textContent = "King of " + cap;
-    }
   }
 
   renderKing();
