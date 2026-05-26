@@ -175,6 +175,7 @@ function renderKing() {
 // ---- Segments table ---------------------------------------------------------
 const SEG_COLS = [
   { key: "name", label: "Segment", type: "str" },
+  { key: "category", label: "Category", type: "str" },
   { key: "terrain", label: "Terrain", type: "str" },
   { key: "distance_m", label: "Dist (mi)", type: "num", fmt: fmtMiles },
   { key: "avg_grade", label: "Grade", type: "num", fmt: fmtGrade },
@@ -207,6 +208,8 @@ function renderSegments() {
     const cells = SEG_COLS.map((c) => {
       if (c.key === "name")
         return `<td><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.location || "")}</span></td>`;
+      if (c.key === "category")
+        return `<td><span class="pill cat-${(s.category || "").replace(/\s+/g, "").toLowerCase()}">${esc(s.category || "—")}</span></td>`;
       if (c.key === "terrain")
         return `<td><span class="pill ${s.terrain}">${s.terrain}</span></td>`;
       if (c.key === "_leader")

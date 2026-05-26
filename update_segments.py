@@ -350,9 +350,14 @@ def export_data_json(conn) -> None:
                          "avg_grade": s["avg_grade"], "difficulty": s["difficulty"],
                          "track": track_of(s)})
 
+    # The single hardest in-town ride is the "Cima Coppi".
+    cima_id = max(included, key=lambda s: s["difficulty"])["id"] if included else None
+
     out_segments = []
     for seg in included:
         streams = json.loads(seg.get("streams_json") or "{}")
+        depth = scoring.effort_depth(seg["total_efforts"])
+        category = scoring.segment_category(seg["difficulty"], seg["id"] == cima_id)
         leader = seg["efforts"][0] if seg["efforts"] else None
         out_segments.append({
             "id": seg["id"],
@@ -360,6 +365,7 @@ def export_data_json(conn) -> None:
             "location": seg["display_location"],
             "activity_type": seg["activity_type"],
             "discipline": seg["discipline"],
+            "category": category,
             "terrain": seg["terrain"],
             "distance_m": seg["distance_m"],
             "avg_grade": seg["avg_grade"],
@@ -384,7 +390,7 @@ def export_data_json(conn) -> None:
                 "name": e["athlete_name"], "elapsed_time": e["elapsed_time"],
                 "avg_watts": e["avg_watts"], "avatar_url": e["avatar_url"],
                 "badge": e["badge"],
-                "points": scoring.points_for_rank(e["rank"], seg["difficulty"]),
+                "points": scoring.points_for_rank(e["rank"], category, depth),
                 "effort_id": e["effort_id"], "activity_id": e["activity_id"],
             } for e in _capped_efforts(seg["efforts"])],
         })
