@@ -22,9 +22,11 @@ header {
   background: linear-gradient(160deg, #1d2129, #12141a);
   border-bottom: 1px solid var(--line); padding: 26px 0 20px;
 }
-h1 { margin: 0; font-size: 28px; letter-spacing: -0.5px; }
-.crown { color: var(--gold); }
-.sub { margin: 4px 0 16px; color: var(--muted); }
+header .wrap { text-align: center; }
+h1 { margin: 0; font-size: 38px; letter-spacing: -0.5px; }
+.crown { color: var(--gold); letter-spacing: 2px; margin: 0 6px; }
+.sub { margin: 6px 0 18px; color: var(--muted); }
+.discipline-switch { justify-content: center; }
 .controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .generated { color: var(--muted); font-size: 13px; }
 main { padding: 28px 0 60px; }

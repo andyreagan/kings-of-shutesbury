@@ -182,23 +182,6 @@ function renderKing() {
   if (btn) btn.addEventListener("click", () => { kingExpanded = !kingExpanded; renderKing(); });
 }
 
-// ---- Filtered-out segments --------------------------------------------------
-function renderFiltered() {
-  const list = DATA.filtered || [];
-  if (!list.length) { $("#filtered-section").innerHTML = ""; return; }
-  const rows = list.map((f) => `
-    <tr><td><strong>${esc(f.name || "(unfetched)")}</strong></td>
-      <td class="muted">${esc(f.location || "")}</td>
-      <td><span class="pill out">${esc(f.reason)}</span></td>
-      <td><a class="muted" href="https://www.strava.com/segments/${f.id}" target="_blank" rel="noopener">${f.id} ↗</a></td></tr>`).join("");
-  $("#filtered-section").innerHTML = `
-    <h2>Filtered out <span class="muted">(${list.length})</span></h2>
-    <p class="hint">Tracked but excluded from the standings — not a ride, or doesn't start/finish in Shutesbury. Still kept in the database.</p>
-    <div class="seg-card"><table>
-      <thead><tr><th>Segment</th><th>Strava location</th><th>Reason</th><th>ID</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
-}
-
 // ---- Segments table ---------------------------------------------------------
 const SEG_COLS = [
   { key: "name", label: "Segment", type: "str" },
@@ -350,7 +333,6 @@ function init() {
     });
   }
 
-  renderFiltered();
   applyDisciplineFilter();
   if (typeof initMap === "function" && DATA.boundary !== undefined) initMap(DATA);
   $("#detail-close").addEventListener("click", closeDetail);

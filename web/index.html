@@ -11,12 +11,8 @@
 <body>
   <header>
     <div class="wrap">
-      <h1>Kings of Shutesbury <span class="crown">♛</span></h1>
+      <h1><span class="crown">♛♛♛</span> Kings of Shutesbury <span class="crown">♛♛♛</span></h1>
       <p class="sub">Strava segment standings in &amp; around Shutesbury, MA</p>
-      <div class="controls">
-        <a class="nav-link" href="#map-section">🗺 Segment map</a>
-        <span id="generated" class="generated"></span>
-      </div>
       <div class="discipline-switch" id="discipline-switch">
         <span class="muted">discipline:</span>
         <button data-discipline="all" class="active">All</button>
@@ -57,8 +53,6 @@
       <p class="hint">Click a segment for its leaderboard, elevation profile, and map. Sort by any column.</p>
       <div id="segments"></div>
     </section>
-
-    <section id="filtered-section"></section>
   </main>
 
   <div id="detail-overlay" class="hidden">
@@ -69,7 +63,14 @@
   </div>
 
   <footer class="wrap">
-    <p class="muted">Data pulled from Strava's web session • points model is tunable in <code>scoring.py</code></p>
+    <p class="muted">
+      <strong>Scoring.</strong> Each segment is worth a points pool =
+      <code>(gain<sub>m</sub> + ½·loss<sub>m</sub> + 8·km + 20·log₁₀ efforts) × terrain</code>,
+      where terrain = climb 1.0 / flat 0.85 / descent 0.65. The fastest rider takes
+      the full pool; ranks 2–10 earn 80, 66, 56, 48, 40, 32, 24, 16, 8% of it —
+      and nothing below 10th. An athlete's total is the sum across all segments.
+    </p>
+    <p class="muted generated" id="generated"></p>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
