@@ -145,7 +145,7 @@ tr.todo td { opacity: 0.6; }
 #methodology h2, #methodology p { max-width: 66ch; margin-left: auto; margin-right: auto; }
 #methodology p { margin-bottom: 12px; }
 .formula code { font-size: 14px; padding: 8px 12px; display: inline-block; }
-.method-table { width: auto; margin: 4px 0 16px; border: 1px solid var(--line);
+.method-table { width: auto; margin: 4px auto 16px; border: 1px solid var(--line);
   border-radius: 8px; overflow: hidden; }
 .method-table th, .method-table td { padding: 7px 18px; text-align: left;
   border-bottom: 1px solid #21262f; }
