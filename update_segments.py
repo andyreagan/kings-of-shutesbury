@@ -22,6 +22,7 @@ from pathlib import Path
 import db
 import geo
 import scoring
+import strava
 from strava import AuthError, RateLimitError, StravaClient, StravaError
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
@@ -378,6 +379,7 @@ def export_data_json(conn) -> None:
                 "avg_watts": e["avg_watts"], "avatar_url": e["avatar_url"],
                 "badge": e["badge"],
                 "points": scoring.points_for_rank(e["rank"], seg["difficulty"]),
+                "effort_id": e["effort_id"], "activity_id": e["activity_id"],
             } for e in seg["efforts"]],
         })
     out_segments.sort(key=lambda s: s["difficulty"], reverse=True)
@@ -394,6 +396,80 @@ def export_data_json(conn) -> None:
     DATA_JSON.write_text(json.dumps(payload, indent=2))
     print(f"\nWrote {DATA_JSON} — {len(out_segments)} in-Shutesbury ride "
           f"segments, {len(king)} ranked athletes, {len(filtered)} filtered out.")
+
+
+def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
+    for eff in efforts:
+        if eff["athlete_id"] is None:
+            continue
+        db.upsert_athlete(conn, {
+            "id": eff["athlete_id"], "name": eff["athlete_name"],
+            "avatar_url": eff["avatar_url"], "badge": eff["badge"]})
+    db.replace_efforts(conn, sid, [
+        {k: eff[k] for k in (
+            "athlete_id", "rank", "elapsed_time", "avg_speed", "avg_watts",
+            "avg_hr", "effort_id", "activity_id", "start_date_local")}
+        for eff in efforts if eff["athlete_id"] is not None])
+    db.set_efforts_fetched_at(conn, sid, when)
+    conn.commit()
+
+
+def cmd_deepen(args) -> None:
+    """Pull deeper overall leaderboards (args.lb_pages * 25 athletes) for a
+    bounded set of in-town segments. Hits the rate-limited endpoint, so it's
+    targeted on purpose; stops + saves on the first 429."""
+    conn = db.connect()
+    db.init(conn)
+    strava.MAX_LEADERBOARD_PAGES = args.lb_pages
+    featured_ids = set(db.featured_athlete_ids(conn))
+
+    rows = conn.execute(
+        "SELECT id, name FROM segments WHERE in_shutesbury = 1 "
+        "AND lower(activity_type) = 'ride' AND fetched_at IS NOT NULL "
+        "ORDER BY difficulty DESC NULLS LAST").fetchall()
+    targets = [r["id"] for r in rows]
+    if args.only:
+        keep = set(args.only)
+        targets = [i for i in targets if i in keep]
+    elif args.top:
+        targets = targets[:args.top]
+    if not targets:
+        print("No matching in-town ride segments to deepen.")
+        return
+
+    per = args.lb_pages + (1 if featured_ids else 0)
+    print(f"Deepening {len(targets)} segment(s) to top {args.lb_pages * 25} "
+          f"(~{len(targets) * per} leaderboard requests). Stops + saves on any 429.\n")
+    names = {r["id"]: r["name"] for r in rows}
+    stopped = False
+    with StravaClient(request_logger=_make_request_logger(conn)) as client:
+        for sid in targets:
+            print(f"> {sid} {names.get(sid, '')} ...", flush=True)
+            try:
+                efforts = client.fetch_leaderboard(sid, "overall")
+                if featured_ids:
+                    have = {e["athlete_id"] for e in efforts}
+                    for e in client.fetch_leaderboard(sid, "following"):
+                        if e["athlete_id"] in featured_ids and e["athlete_id"] not in have:
+                            efforts.append({**e, "rank": None})
+            except AuthError as e:
+                print(f"\nAUTH ERROR: {e}")
+                return
+            except RateLimitError as e:
+                print(f"\nRATE LIMITED: {e}")
+                stopped = True
+                break
+            except StravaError as e:
+                print(f"! failed {sid}: {e}")
+                continue
+            _store_efforts(conn, sid, efforts,
+                           datetime.now(timezone.utc).isoformat(timespec="seconds"))
+            print(f"  {len(efforts)} efforts")
+    export_data_json(conn)
+    if stopped:
+        print("\nStopped on a rate limit — progress saved. The deepened segments "
+              "are stored; rerun with --only on the remaining ones later.")
+    conn.close()
 
 
 def cmd_list(args) -> None:
@@ -472,6 +548,13 @@ def main() -> None:
                         help="summarize the API request log (rate-limit analysis)")
     parser.add_argument("--limit", type=int, default=25,
                         help="rows to show with --log (default 25)")
+    parser.add_argument("--lb-pages", type=int, metavar="N",
+                        help="deepen overall leaderboards to N pages (N*25 athletes) "
+                             "for in-town segments; targeted + stops on 429")
+    parser.add_argument("--top", type=int, metavar="K",
+                        help="with --lb-pages: only the K most important segments")
+    parser.add_argument("--only", type=int, nargs="+", metavar="ID",
+                        help="with --lb-pages: only these segment ids")
     sub = parser.add_subparsers(dest="command")
     p_add = sub.add_parser("add", help="track new segment id(s) or URL(s)")
     p_add.add_argument("refs", nargs="+")
@@ -483,6 +566,8 @@ def main() -> None:
         cmd_add(args)
     elif args.command == "add-athlete":
         cmd_add_athlete(args)
+    elif args.lb_pages:
+        cmd_deepen(args)
     elif args.log:
         cmd_log(args)
     elif args.list:

@@ -86,9 +86,11 @@ function drawTrack(seg, included) {
 
 function init() {
   MAP = L.map("map", { scrollWheelZoom: true });
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: "&copy; OpenStreetMap contributors",
+  // Clean dark basemap so the bright segment colors pop (vs. busy OSM standard).
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    subdomains: "abcd",
+    maxZoom: 20,
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
   }).addTo(MAP);
 
   // Town boundary.

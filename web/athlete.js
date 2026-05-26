@@ -81,7 +81,7 @@ function render() {
       <td><span class="pill ${seg.terrain}">${seg.terrain}</span></td>
       <td class="num diff">${seg.difficulty}</td>
       <td class="num">${eff ? (eff.rank ? "#" + eff.rank : "—") : "—"}</td>
-      <td class="num">${eff ? fmtTime(eff.elapsed_time) : '<span class="muted">not attempted</span>'}</td>
+      <td class="num">${eff ? effortLink(eff, fmtTime(eff.elapsed_time)) : '<span class="muted">not attempted</span>'}</td>
       <td class="num">${eff && eff.rank !== 1 ? fmtGap(gap) : (eff ? '<span class="kom">KOM</span>' : "—")}</td>
       <td class="num pts">${eff && eff.points ? eff.points : ""}</td>
     </tr>`;

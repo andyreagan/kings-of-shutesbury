@@ -143,9 +143,10 @@ function elevationSVG(profile) {
   if (ev.length < 2) return "";
   const W = 700, H = 130, pad = 6;
   const lo = Math.min(...ev), hi = Math.max(...ev), span = hi - lo || 1;
-  const maxD = di[di.length - 1] || 1;
+  // distance is cumulative and may not start at 0, so normalize to the segment start
+  const d0 = di[0], dspan = (di[di.length - 1] - d0) || 1;
   const pts = ev.map((e, i) => {
-    const x = pad + (di[i] / maxD) * (W - 2 * pad);
+    const x = pad + ((di[i] - d0) / dspan) * (W - 2 * pad);
     const y = pad + (1 - (e - lo) / span) * (H - 2 * pad);
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   });
@@ -164,7 +165,7 @@ function openDetail(id) {
     <tr class="${matchesHighlight(e.name) ? "hl" : ""}">
       <td class="num">${e.rank ?? "—"}</td>
       <td><div class="name-cell">${avatar(e.avatar_url, e.name)}${esc(e.name)}</div></td>
-      <td class="num">${fmtTime(e.elapsed_time)}</td>
+      <td class="num">${effortLink(e, fmtTime(e.elapsed_time))}</td>
       <td class="num">${e.avg_watts ? Math.round(e.avg_watts) + " W" : "—"}</td>
       <td class="num pts">${e.points || ""}</td>
     </tr>`).join("");

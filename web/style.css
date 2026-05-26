@@ -47,6 +47,8 @@ thead th {
 thead th.sorted::after { content: " ▾"; color: var(--accent); }
 thead th.sorted.asc::after { content: " ▴"; }
 tbody td { padding: 9px 10px; border-bottom: 1px solid #21262f; }
+tbody td a { color: var(--accent); text-decoration: none; }
+tbody td a:hover { text-decoration: underline; }
 tbody tr { transition: background 0.1s; }
 .clickable tbody tr { cursor: pointer; }
 .clickable tbody tr:hover { background: var(--panel-2); }

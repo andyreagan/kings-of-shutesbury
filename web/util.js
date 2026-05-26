@@ -24,6 +24,17 @@ const avatar = (url) => url
   ? `<img class="avatar" src="${esc(url)}" alt="" loading="lazy">`
   : `<span class="avatar"></span>`;
 
+// Direct link to a specific segment effort (the exact ride, segment highlighted).
+function effortUrl(e) {
+  return (e && e.activity_id && e.effort_id)
+    ? `https://www.strava.com/activities/${e.activity_id}/segments/${e.effort_id}`
+    : null;
+}
+function effortLink(e, label) {
+  const u = effortUrl(e);
+  return u ? `<a href="${u}" target="_blank" rel="noopener">${label}</a>` : label;
+}
+
 async function loadData() {
   const r = await fetch("data.json");
   if (!r.ok) throw new Error(r.status);
