@@ -357,6 +357,23 @@ def export_data_json(conn) -> None:
         return _downsample(loc, MAP_TRACK_POINTS)
 
     included = [s for s in segments if is_included(s)]
+
+    # Sub-segment tagging (label only — does NOT affect scoring): mark each
+    # included segment that is a contiguous, same-direction slice of a longer
+    # included one. Computed from the full location streams and persisted.
+    sub_inputs = [{
+        "id": s["id"], "length_m": s["distance_m"],
+        "track": json.loads(s.get("streams_json") or "{}").get("location") or [],
+    } for s in included]
+    parent_of = {}
+    for ci in sub_inputs:
+        parent_of[ci["id"]] = geo.find_sub_segment_parent(ci, sub_inputs)
+        db.set_parent_segment(conn, ci["id"], parent_of[ci["id"]])
+    conn.commit()
+    n_sub = sum(1 for v in parent_of.values() if v)
+    if n_sub:
+        print(f"  tagged {n_sub} sub-segment(s) (same-direction slices of a longer segment)")
+
     filtered = []
     for s in segments:
         if is_included(s):
@@ -401,6 +418,8 @@ def export_data_json(conn) -> None:
             "total_efforts": seg["total_efforts"],
             "total_athletes": seg["total_athletes"],
             "difficulty": seg["difficulty"],
+            "parent_segment_id": parent_of.get(seg["id"]),
+            "is_sub_segment": parent_of.get(seg["id"]) is not None,
             "map_image_url": seg["map_image_url"],
             "start_latlng": [seg["start_lat"], seg["start_lng"]],
             "end_latlng": [seg["end_lat"], seg["end_lng"]],

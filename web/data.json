@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T20:33:33+00:00",
+  "generated_at": "2026-05-27T20:51:42+00:00",
   "segments": [
     {
       "id": 1151557,
@@ -17,6 +17,8 @@
       "total_efforts": 3732,
       "total_athletes": 720,
       "difficulty": 432.4,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/RUHHUOU33BFVCZG4FUCRYUKMAH6HXBVL7YQGDGVU4CKWIYZORWEG7EHBYPP6RSJXKKGA5TYGXVCILCZF",
       "start_latlng": [
         42.380687,
@@ -1753,6 +1755,8 @@
       "total_efforts": 4436,
       "total_athletes": 703,
       "difficulty": 396.2,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/4P2LGIYC6DS5CJX4B6TPCUUP5LBEFYREZ6RGVK62MCFFV6SU7J2CZZMOSYUAATWKMLJUD47C3ZIOU7CB",
       "start_latlng": [
         42.438283,
@@ -3489,6 +3493,8 @@
       "total_efforts": 4659,
       "total_athletes": 775,
       "difficulty": 314.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/Q6JKPRZITH2N5HWI4PGFWQF7MHPE5GR6JEPWG2KOUNZBJMARYAXRHH4XV5V2ECEPGGDFSO5T6WL3GBI=",
       "start_latlng": [
         42.501593,
@@ -4337,6 +4343,8 @@
       "total_efforts": 4728,
       "total_athletes": 1012,
       "difficulty": 240.4,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/G7GSRLMO7K6E5D7L5PKBJUKPUODQ7OY4PK35T6KBC4IDZNBW5Q3Z7S4JGCDVUDOGJOYHNJDCHJXHGAEW",
       "start_latlng": [
         42.502325,
@@ -5185,6 +5193,8 @@
       "total_efforts": 1056,
       "total_athletes": 389,
       "difficulty": 230.4,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/2TCONGY7TUTBAPSRVUMJ2QJSKSSTN5JH4MWKN7TLFB45BG4KS4CA4OIOBPGXUW5F2ENXP6LLOYRPETA=",
       "start_latlng": [
         42.44928,
@@ -6873,6 +6883,8 @@
       "total_efforts": 565,
       "total_athletes": 124,
       "difficulty": 220.1,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/Z64V22BCN5AR64ICRG6LWUP7O4UXQ2RLNE724SVKNN3JHATKGWZ7TRGTDNXULFJIQVSTILM6TKJN4RHV",
       "start_latlng": [
         42.386771,
@@ -8609,6 +8621,8 @@
       "total_efforts": 5794,
       "total_athletes": 782,
       "difficulty": 219.8,
+      "parent_segment_id": 700762,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/UWF6MG5ND2VAVVIRG4LPTSOAMAYII5P4LLSGOPR2C5AZDGTVPYMBOPC6WYG3IJL4LP4HTHCUJJLIRTZ3",
       "start_latlng": [
         42.501702,
@@ -9457,6 +9471,8 @@
       "total_efforts": 692,
       "total_athletes": 264,
       "difficulty": 215.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/UGIRNMXUE2VWVT4JFCN5DAMAFTTX4DQPFDKZFF3TY225CHAXIXLGHRYRHTFYDVA6X6W5KNKMSLWFJVTM",
       "start_latlng": [
         42.526442,
@@ -11205,6 +11221,8 @@
       "total_efforts": 79,
       "total_athletes": 53,
       "difficulty": 209.7,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/K24ADUGPU7AIXMUOFUEQFKZAF64SLMPCNRJXT35UKNQZAKXLRCEIKR6LTONIBGPMC3R6SFVWLGLXWOCA",
       "start_latlng": [
         42.452126,
@@ -12377,6 +12395,8 @@
       "total_efforts": 2100,
       "total_athletes": 477,
       "difficulty": 205.4,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/AGPCER7SENM7DV2XRF63FML5UTVAKZ7GHFBDRPKQVCR257CYA54M4T5SIVKTKWSRPMYAANR55KLHQ7Q=",
       "start_latlng": [
         42.420217,
@@ -14125,6 +14145,8 @@
       "total_efforts": 2386,
       "total_athletes": 363,
       "difficulty": 201.8,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/QBIQW564HM7DWEB4OOBBDLKHHLIXUFUOMLTENEZCXPVSKATOT7P4BFCV3ZLKKDLGKB5WACFQHINJHFA=",
       "start_latlng": [
         42.449593,
@@ -15861,6 +15883,8 @@
       "total_efforts": 3243,
       "total_athletes": 623,
       "difficulty": 201.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/6R4DBJFF7AC5BXL5SYKHRS3CIUOIJ57WQIYUBXBRYFYJRZFC72CKS3WBIKTRR3WZJGQAXZTE7XRMQKJP",
       "start_latlng": [
         42.396532,
@@ -17597,6 +17621,8 @@
       "total_efforts": 5844,
       "total_athletes": 799,
       "difficulty": 188.4,
+      "parent_segment_id": 700762,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/RNHBZG7PRFSMN4HRXEBSRQGEM4VT45UMCNEZFHCN4ZYXQRAYBYVYVXA223AUMO2GAZRDZXDDIDJT7G2Y",
       "start_latlng": [
         42.493197,
@@ -18457,6 +18483,8 @@
       "total_efforts": 2586,
       "total_athletes": 554,
       "difficulty": 177.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/DQF4LPGTBE7ONCMTUP3JATOYWSMMS3BXDCUJKW7YUIEX2FIDJXYXCOQ2AA4P6E6KVZSHWGVQTW7I4EK4",
       "start_latlng": [
         42.451264,
@@ -20193,6 +20221,8 @@
       "total_efforts": 1110,
       "total_athletes": 344,
       "difficulty": 169.1,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/6Z3WLWQBMSPIPDA2GEXJXPIR4ZO2A6GCHO7SHZIRRJLFC46EGV33W32A3UGBIHFW5SELK2VKSDHB6IQ=",
       "start_latlng": [
         42.491267,
@@ -21929,6 +21959,8 @@
       "total_efforts": 124,
       "total_athletes": 77,
       "difficulty": 167.2,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/2KVSY5TR63TGVDVSTMZVER3AOWCPITRVS4YH7CT2XRYNJDI64NCKHAWOB5DEIIXA2VQCZIZOM5B7IQWB",
       "start_latlng": [
         42.397851,
@@ -23389,6 +23421,8 @@
       "total_efforts": 7199,
       "total_athletes": 1083,
       "difficulty": 164.9,
+      "parent_segment_id": 29443366,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/4BLJ3K7NFXU5CZKLN2P3O5I2JMINBJN3TOJL3NOSUN2CDRZ25AVTYPZFBOKKX2QUGYUBOXUOU4KYW3A=",
       "start_latlng": [
         42.455261,
@@ -25125,6 +25159,8 @@
       "total_efforts": 3221,
       "total_athletes": 630,
       "difficulty": 159.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/IDY3X2QCVGP2FKXMZHAL7TRKIHORQJRBBRFXCFDDQRQDGTYHAPXAFDOTCTE2Y6QOHEGVWVO3X3RVCWXQ",
       "start_latlng": [
         42.452154,
@@ -25961,6 +25997,8 @@
       "total_efforts": 7407,
       "total_athletes": 1004,
       "difficulty": 156.8,
+      "parent_segment_id": 1215581,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/H2CA2OHVSSRJB2DLED5FMEXF534IJGLBF47P6ISAEFVZ7GRITC7JWJUEPS6FR3FCWJBFNS2LXHKYQLZL",
       "start_latlng": [
         42.450321,
@@ -27709,6 +27747,8 @@
       "total_efforts": 1111,
       "total_athletes": 95,
       "difficulty": 150.9,
+      "parent_segment_id": 40047711,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/2CSIVPOWKOBBTT2KH4D26XAVNGDVSAWJAUELH3WBX6LRDZXMPRIU733WPT5JQJAYAFVDVJ7OU5MV62LH",
       "start_latlng": [
         42.415794,
@@ -29385,6 +29425,8 @@
       "total_efforts": 536,
       "total_athletes": 29,
       "difficulty": 148.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/PDGQQZOMIPBB56PQSINQVIUMF2TDC2OSL2CBM3VIIW7HSUADPV4KEHSSDLNSM3EGW2K7DCSMK2IODSHM",
       "start_latlng": [
         42.416417,
@@ -30269,6 +30311,8 @@
       "total_efforts": 200,
       "total_athletes": 77,
       "difficulty": 146.4,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/VSR3HR5VTULFDW4BUCMA7Z2MLXOFKS5WDNLRQQLPZNRIG2LUIW3JAECPNLJXFM23SHCO6FV56A2UOKRO",
       "start_latlng": [
         42.469001,
@@ -31105,6 +31149,8 @@
       "total_efforts": 457,
       "total_athletes": 98,
       "difficulty": 142.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/TDRLUXUUJFXDTIVBN5J6UTXMNCFUMNTXQPC7VYUWJGZHMCKCMHXOQWMYMDQ264U25ZISNUBMX4BWLAWE",
       "start_latlng": [
         42.406695,
@@ -32817,6 +32863,8 @@
       "total_efforts": 1582,
       "total_athletes": 131,
       "difficulty": 141.0,
+      "parent_segment_id": 40047711,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/QX625DUJNMILB47SES6X42PPZUF6SMAC4UAZE2FJVTSE7Z6PSA4CBFSOTRZHWUTMVPROHN3PLC27TTAU",
       "start_latlng": [
         42.40535,
@@ -34553,6 +34601,8 @@
       "total_efforts": 208,
       "total_athletes": 41,
       "difficulty": 132.4,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/QEFLGYL3F7NIZSGTTUCXT4PBBVANGXVLSSP4TG32JLYBDZ52CKCT7NVFTS2TPHEPL7DNOGQMK555TLJM",
       "start_latlng": [
         42.422041,
@@ -35581,6 +35631,8 @@
       "total_efforts": 2377,
       "total_athletes": 549,
       "difficulty": 124.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/FLVHEOBESHD5VTQNPTBA3CA2V665NGCL3PLPE442ZNGSZLTS3READO2C5L65S7KJSAZZUIDSS7C3M7MY",
       "start_latlng": [
         42.481867,
@@ -36429,6 +36481,8 @@
       "total_efforts": 681,
       "total_athletes": 331,
       "difficulty": 121.2,
+      "parent_segment_id": 39674721,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/TJY6EI5UHNYZYQJ767APGRLKOCPFRFVRVWVZDG35R7BNBARI7HGGI44QRK6PLRDASRWINULPZ3SFMHZ3",
       "start_latlng": [
         42.467166,
@@ -37277,6 +37331,8 @@
       "total_efforts": 954,
       "total_athletes": 82,
       "difficulty": 114.3,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/QIZ66Q6YAWMGIRN3ARZJTFN3QZ3IWV3DFO3HFUFR6PRQUJSOTANXR322EXS65OBXQHQJ5YMYUGFZKJU6",
       "start_latlng": [
         42.407456,
@@ -38125,6 +38181,8 @@
       "total_efforts": 7593,
       "total_athletes": 1093,
       "difficulty": 112.2,
+      "parent_segment_id": 29443366,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/UDUM2IVJJAJBNRBBTBCPE4JTBHCTNKPW6E3PG54CBSDMZFOMUIPDCSHJX2JTMES6SE3JLPKWCZI6C42T",
       "start_latlng": [
         42.479392,
@@ -38879,6 +38937,8 @@
       "total_efforts": 2393,
       "total_athletes": 484,
       "difficulty": 109.5,
+      "parent_segment_id": 696812,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/Q3DYNW6OIFHBFYR43O46OL7HSVAG2SOGB26XSM3X6N4CBGCOJTP3VNXG22OCGHNPZTIBGYZCCLCO6O7G",
       "start_latlng": [
         42.420204,
@@ -39739,6 +39799,8 @@
       "total_efforts": 7322,
       "total_athletes": 925,
       "difficulty": 108.0,
+      "parent_segment_id": 700762,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/YGTVDGDTXFC7O6YVLV2GTPUWPOOMJGH2E3MAA3HLZMIT7HGFFW755DOB4TVQVXTF7B3HBQNCDMKFMLAA",
       "start_latlng": [
         42.47202,
@@ -40575,6 +40637,8 @@
       "total_efforts": 655,
       "total_athletes": 70,
       "difficulty": 108.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/3DFJIPRJSKLIQXDLZXMNPVRWZJOWCOUTXFGZA2NN4AGI3HNML6PHXJ77QJWNQXMTUEDRXPUPPN7SPILC",
       "start_latlng": [
         42.415772,
@@ -41423,6 +41487,8 @@
       "total_efforts": 3112,
       "total_athletes": 642,
       "difficulty": 107.9,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/TNZN5M3KURNMK3BTMHOIGKFAKIQP3IIWBQN4YJVKQL6COFED6CKAZG4JLY24TJGEQNWCHZBG4YNJGA4A",
       "start_latlng": [
         42.448703,
@@ -42205,6 +42271,8 @@
       "total_efforts": 2011,
       "total_athletes": 505,
       "difficulty": 107.8,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/SCJTY3SCG6GYJX24MMW5WLMZJLKO2KCQNFX6CJU7XHTAGMAYOPTGXIZ36RPL77BIMMPPQ6C54U7UEH4N",
       "start_latlng": [
         42.446194,
@@ -43053,6 +43121,8 @@
       "total_efforts": 11241,
       "total_athletes": 1268,
       "difficulty": 107.6,
+      "parent_segment_id": 29443366,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/SFBAXFP5ZU3D77YAHYCFSW62J5J2POGO4LSDL7PI7GU4LFB3L64FS7XU6OMGJ3CHJJ4TO57ZLNKFP4BM",
       "start_latlng": [
         42.474151,
@@ -43843,6 +43913,8 @@
       "total_efforts": 5504,
       "total_athletes": 787,
       "difficulty": 107.4,
+      "parent_segment_id": 700762,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/MYCG2DMCQYZ4733KPQC2D37Y72OS5RX7M2LZKSTXPD6YHDY57ULPVUPYRSMAI4LA3TM6237JMDGB2XO5",
       "start_latlng": [
         42.502116,
@@ -44703,6 +44775,8 @@
       "total_efforts": 1044,
       "total_athletes": 65,
       "difficulty": 107.2,
+      "parent_segment_id": 16201241,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/CRYPUH6WHUX2CIBJSQX27BLZ3A7M7MZBTKZJ3VKE4ILM3S6VFEDUAX5RF3TTJIRCBSVZBX2ZZSXDS5WV",
       "start_latlng": [
         42.415762,
@@ -45483,6 +45557,8 @@
       "total_efforts": 4896,
       "total_athletes": 825,
       "difficulty": 104.1,
+      "parent_segment_id": 1151557,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/ZFNTEHYDNYP5LIX5YIF4SKDNCFIGKHDRUBR5UZWC7RFANTKH6PHLAG6FY2UOHPERLB6Z4JZY4G36OOA=",
       "start_latlng": [
         42.429496,
@@ -46243,6 +46319,8 @@
       "total_efforts": 352,
       "total_athletes": 62,
       "difficulty": 101.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/53JAVSWFURUTQEMWMQ33KRR3PHK37RNKWW442GOYKN2WPLJ7NNGY7EG7BM66P2LPQWHGNZRSYK2SPPOM",
       "start_latlng": [
         42.416729,
@@ -47079,6 +47157,8 @@
       "total_efforts": 8146,
       "total_athletes": 1341,
       "difficulty": 101.5,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/JXE7EX336AMAJ5NB7QRSXWXH64XLSU3ZP64LBMIMYNUYNXCI32VGHGEV2O5AR7RQVTMPQMEZZQ2FUESA",
       "start_latlng": [
         42.448518,
@@ -47927,6 +48007,8 @@
       "total_efforts": 1660,
       "total_athletes": 371,
       "difficulty": 96.2,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/AOC5J5QDIO4WJDGPJVPZHOCFE2XIEPISUW5V74WTB4CLJJWSEWTZ732CRQAPMZDPRWUXG7N2SR5OPSQ=",
       "start_latlng": [
         42.423007,
@@ -48763,6 +48845,8 @@
       "total_efforts": 273,
       "total_athletes": 44,
       "difficulty": 93.7,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/IZ3KXMFQJAMC7IEHL4ZBMHNVJG3NGQTGF4DRKLOKLSNZCQM2XWZB4JGIVEAOATFO3RV6CBJNBFCGWJFS",
       "start_latlng": [
         42.405155,
@@ -49599,6 +49683,8 @@
       "total_efforts": 7018,
       "total_athletes": 1114,
       "difficulty": 93.1,
+      "parent_segment_id": 29443366,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/BRFTEO6IS5FKBDFWNU7VZVWYTNKIN3KPSOCF5YOSTYOC2IFOI6TR5BEY4HTQNMDWW3SQVG5W63ERVAZU",
       "start_latlng": [
         42.480336,
@@ -50447,6 +50533,8 @@
       "total_efforts": 11,
       "total_athletes": 3,
       "difficulty": 91.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/KBFV7HBQESYBNH57MSUM55HV6CSLQUS7Q7GQFTOZYG2BCH5U5JLY7TR247HFTTQEHKTRL3GNHE647QC2",
       "start_latlng": [
         42.417276,
@@ -51019,6 +51107,8 @@
       "total_efforts": 5599,
       "total_athletes": 2354,
       "difficulty": 83.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/WJWELGQN5PVUW5FCPYM67WTGCMAEAJA74W6MCWKNIIMMVBGWIQ3ZEMOKLQGAVZIYQ2QBJ5LZ347533XD",
       "start_latlng": [
         42.414154,
@@ -51807,6 +51897,8 @@
       "total_efforts": 721,
       "total_athletes": 337,
       "difficulty": 79.1,
+      "parent_segment_id": 39674721,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/NGAPOHGY5OKYT65JJKSJSYHQNSE2RU2UWDU7NSVYEG6QGTGTLM3KIWPEGONROY26NNXZCULATWBUTMBZ",
       "start_latlng": [
         42.495955,
@@ -52655,6 +52747,8 @@
       "total_efforts": 6187,
       "total_athletes": 1132,
       "difficulty": 76.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/SOQ43WJXKEEVDVFT3CSKYFZYBJSCULPNVUQD6ABBKXPP6DPUXXLNZPZQQR4EGIYBWYEXNPLOPMDYOICW",
       "start_latlng": [
         42.508124,
@@ -53487,6 +53581,8 @@
       "total_efforts": 1717,
       "total_athletes": 122,
       "difficulty": 73.1,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/BGAWEAYJ5DHFB5FAVSNFNJLRPINE3ZZ22RZ24PM4ZUHKGR4IXYYJWUHSDOT2INPHE2NQY64CJK7KG2G6",
       "start_latlng": [
         42.41302,
@@ -54323,6 +54419,8 @@
       "total_efforts": 1684,
       "total_athletes": 107,
       "difficulty": 71.2,
+      "parent_segment_id": 16201241,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/2S6NBSHE65EYJZNAN2IL5AFHAWQAHUZIXJDPK7AWW7UZW2PZKBKARJTJFCODGVLEHG6TIKBOOI2ISBJ5",
       "start_latlng": [
         42.416721,
@@ -55131,6 +55229,8 @@
       "total_efforts": 622,
       "total_athletes": 201,
       "difficulty": 69.5,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/G35STJIZUV2BSX3ZAUG4FSH6B2F3TOCS5WQJFLHIL3WGGK63KA2FF3VD4RTCDLWSV6OHQRHO3DEB4R6R",
       "start_latlng": [
         42.421811,
@@ -55967,6 +56067,8 @@
       "total_efforts": 92,
       "total_athletes": 23,
       "difficulty": 64.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/ACPWKE4OPDGKXJFMCRN7TP6N4MT6636GJRJ3CU5CWNUBC77QRNZ73EM2WZ7UUGX4USZJ3C4ULD2QRFXD",
       "start_latlng": [
         42.411451,
@@ -56779,6 +56881,8 @@
       "total_efforts": 7944,
       "total_athletes": 1121,
       "difficulty": 64.4,
+      "parent_segment_id": 29443366,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/4B36HYQ3ZMJ3ESSBTF564WOJ5NHNYJJNRSZPD2F2JXK5JO7S7K52PW2KTW6XGJLGCJUQLQGYE6DUYNVJ",
       "start_latlng": [
         42.496042,
@@ -57521,6 +57625,8 @@
       "total_efforts": 612,
       "total_athletes": 32,
       "difficulty": 61.8,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/UJGH2N4FNVXEIEKFZ3FRBWOORL3E6OCGKWKPOHP5KNNGUWDRA4FGR226GMTO4NMT4WJ4PUGQK2DU7XMY",
       "start_latlng": [
         42.431135,
@@ -58357,6 +58463,8 @@
       "total_efforts": 493,
       "total_athletes": 48,
       "difficulty": 55.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/R7CKVC5U5QAUYMFIUP3JF7CXXLVRWE5DBAEFK6QL6IESMOJBEHOJTLM4TTLRLA6ZSPXJYDMTXM32SDKL",
       "start_latlng": [
         42.417543,
@@ -59193,6 +59301,8 @@
       "total_efforts": 99,
       "total_athletes": 29,
       "difficulty": 46.2,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/SM6GZSBF6AIUMECPU25CVVRHH6SW4SKXFEHVS3OBFDVFV2FWODRBZLAHS2N4XD37HJ3CZPWG2ZIJENMD",
       "start_latlng": [
         42.414824,
@@ -60029,6 +60139,8 @@
       "total_efforts": 164,
       "total_athletes": 35,
       "difficulty": 37.6,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/QNP2LSHE64GBDCRTUG5PP2UVNJMMHXIDZDNZ7SNUVQALLZUAI3VIPQWWQYWHVVZUT7RV5G324G6WHL26",
       "start_latlng": [
         42.407919,
@@ -60835,6 +60947,8 @@
       "total_efforts": 49,
       "total_athletes": 17,
       "difficulty": 35.7,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/KCSJZQNUYOKU5DJYBCFM6WBH2DYL7GJTO5CB33OVPZZ5C3IU72RCGKJ26QCFQWXBOQULTDF46EBXNJYX",
       "start_latlng": [
         42.416448,
@@ -61575,6 +61689,8 @@
       "total_efforts": 112,
       "total_athletes": 58,
       "difficulty": 29.5,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/UPJZGDJ6VOYZY6BITVIIK7U5O2RKWUQDKAKPWIQMYOFBRTTJAAYGQA7UBHMBPP3PN7QQL5YM5GQQHZWR",
       "start_latlng": [
         42.499076,
@@ -62411,6 +62527,8 @@
       "total_efforts": 7,
       "total_athletes": 6,
       "difficulty": 9.0,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/YZOXXYPQA42TWE3LUZA3N4CVMOAXCQ4HK4WLAKW7FK65TGUSHGWDVDYN7EYVHJP72PBIEDMMTS4POFJA",
       "start_latlng": [
         42.414916,

@@ -7,6 +7,9 @@ let MAP = null;
 let metric = "difficulty";
 let tracks = [];            // {seg, included, layer}
 let ranges = {};            // {difficulty:{min,max}, length:{min,max}}
+let disciplineF = "all";    // visibility state, combined in trackVisible()
+let showFiltered = true;
+let hideSub = false;
 
 // ---- color scales -----------------------------------------------------------
 function sequentialColor(t) {            // 0..1  -> green .. red
@@ -142,22 +145,33 @@ function init() {
     recolor();
   });
   document.getElementById("show-filtered").addEventListener("change", (e) => {
-    tracks.forEach((t) => {
-      if (t.included || !t.layer) return;
-      if (e.target.checked) t.layer.addTo(MAP); else t.layer.remove();
-    });
+    showFiltered = e.target.checked;
+    updateVisibility();
+  });
+  updateVisibility();
+}
+
+// A track is shown when it passes every active view filter.
+function trackVisible(t) {
+  if (!t.included) return showFiltered;
+  if (disciplineF !== "all" && t.seg.discipline !== disciplineF) return false;
+  if (hideSub && t.seg.is_sub_segment) return false;
+  return true;
+}
+function updateVisibility() {
+  tracks.forEach((t) => {
+    if (!t.layer) return;
+    if (trackVisible(t)) t.layer.addTo(MAP); else t.layer.remove();
   });
 }
 
 function setMapDiscipline(filter) {
-  tracks.forEach((t) => {
-    if (!t.included || !t.layer) return;
-    if (filter === "all" || t.seg.discipline === filter) {
-      t.layer.addTo(MAP);
-    } else {
-      t.layer.remove();
-    }
-  });
+  disciplineF = filter;
+  updateVisibility();
+}
+function setMapHideSub(hide) {
+  hideSub = hide;
+  updateVisibility();
 }
 
 function initMap(data) {
@@ -167,4 +181,5 @@ function initMap(data) {
 }
 window.initMap = initMap;
 window.setMapDiscipline = setMapDiscipline;
+window.setMapHideSub = setMapHideSub;
 })();

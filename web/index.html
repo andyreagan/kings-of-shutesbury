@@ -56,6 +56,8 @@
         </div>
         <label class="toggle"><input type="checkbox" id="show-filtered" checked>
           show filtered-out</label>
+        <label class="toggle"><input type="checkbox" id="hide-subsegments">
+          hide sub-segments</label>
       </div>
       <div id="map"></div>
       <div id="legend" class="legend"></div>
@@ -109,6 +111,14 @@
         anti-gaming: you could craft a segment to farm points (a private-ish commute that
         happens to end in town, say), so the segment list is <strong>hand-curated</strong> —
         only real, shared local segments are tracked.</p>
+
+      <p><strong>Sub-segments.</strong> Many roads here have a shorter Strava segment nested
+        inside a longer one — same road, same direction (e.g. <em>Cancer</em> is the middle of
+        <em>Lake Wyola to Shutesbury</em>). We detect these by comparing GPS tracks (a contiguous,
+        same-direction overlap; a climb vs. its reverse descent is <em>not</em> a sub-segment) and
+        mark them <em>↳ section of …</em>. They still score on their own — Strava treats them as
+        separate KOMs — but the badge, and the <em>hide sub-segments</em> toggle on the map, let
+        you see the overlap.</p>
 
       <p>An athlete's overall standing is the sum across every segment; the discipline filter
         rescores for road, gravel, or MTB alone.</p>

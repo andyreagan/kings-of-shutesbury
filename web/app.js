@@ -5,6 +5,7 @@ let kingExpanded = false;
 const KING_CAP = 10;
 const KING_MAX = 100;   // hard cap: only the top 100 are shown / get a popup
 let disciplineFilter = "all";
+let hideSubSegments = false;
 let standings = [];
 
 // ---- discipline filter helpers ----------------------------------------------
@@ -12,6 +13,12 @@ function segmentsForFilter() {
   return disciplineFilter === "all"
     ? DATA.segments
     : DATA.segments.filter((s) => s.discipline === disciplineFilter);
+}
+
+// Name of a segment by id (used to label a sub-segment with its parent).
+function segName(id) {
+  const s = DATA.segments.find((x) => x.id === id);
+  return s ? s.name : `#${id}`;
 }
 
 function computeStandings(segments) {
@@ -191,7 +198,11 @@ function segValue(s, key) {
   return s[key];
 }
 function renderSegments() {
-  const segs = [...segmentsForFilter()].sort((a, b) => {
+  // The table view can hide sub-segments; standings (computeStandings) always
+  // use the full set, so scoring is unaffected.
+  let pool = segmentsForFilter();
+  if (hideSubSegments) pool = pool.filter((s) => !s.is_sub_segment);
+  const segs = [...pool].sort((a, b) => {
     const col = SEG_COLS.find((c) => c.key === sortKey);
     let va = segValue(a, sortKey), vb = segValue(b, sortKey);
     if (col.type === "num") { va = va ?? -Infinity; vb = vb ?? -Infinity; return sortAsc ? va - vb : vb - va; }
@@ -206,8 +217,12 @@ function renderSegments() {
 
   const body = segs.map((s) => {
     const cells = SEG_COLS.map((c) => {
-      if (c.key === "name")
-        return `<td><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.location || "")}</span></td>`;
+      if (c.key === "name") {
+        const badge = s.is_sub_segment
+          ? `<span class="subseg-badge" title="a same-direction slice of a longer segment">↳ section of ${esc(segName(s.parent_segment_id))}</span><br>`
+          : "";
+        return `<td><strong>${esc(s.name)}</strong><br>${badge}<span class="muted">${esc(s.location || "")}</span></td>`;
+      }
       if (c.key === "category")
         return `<td><span class="pill cat-${(s.category || "").replace(/\s+/g, "").toLowerCase()}">${esc(s.category || "—")}</span></td>`;
       if (c.key === "terrain")
@@ -276,6 +291,7 @@ function openDetail(id) {
       <h3>${esc(s.name)}</h3>
       <span class="pill ${s.terrain}">${s.terrain}</span>
       <span class="muted">${esc(s.location || "")}</span>
+      ${s.is_sub_segment ? `<a class="pill sub" href="#segment/${s.parent_segment_id}">↳ section of ${esc(segName(s.parent_segment_id))}</a>` : ""}
       <a href="https://www.strava.com/segments/${s.id}" target="_blank" rel="noopener" class="muted">view on Strava ↗</a>
     </div>
     <div class="stat-grid">
@@ -323,6 +339,16 @@ function init() {
         x.classList.toggle("active", x === b));
       kingExpanded = false;
       applyDisciplineFilter();
+    });
+  }
+
+  // Hide sub-segments toggle (table view + map; standings stay unchanged).
+  const hideSub = document.getElementById("hide-subsegments");
+  if (hideSub) {
+    hideSub.addEventListener("change", (e) => {
+      hideSubSegments = e.target.checked;
+      renderSegments();
+      if (window.setMapHideSub) window.setMapHideSub(hideSubSegments);
     });
   }
 

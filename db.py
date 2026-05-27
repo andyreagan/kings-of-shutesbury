@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS segments (
     starts_in_shutesbury INTEGER,                    -- 1 if the START point is in town
     ends_in_shutesbury  INTEGER,                     -- 1 if the END point is in town
     passes_through      INTEGER,                     -- 1 if the track crosses town at all
+    parent_segment_id   INTEGER,                     -- longer same-direction segment this is a slice of (sub-segment); NULL = standalone
     excluded            INTEGER DEFAULT 0,           -- 1 = manually excluded from scoring/display
     discipline          TEXT,                        -- road | gravel | mtb (manual; NULL=unset)
     fetched_at          TEXT,                        -- when the PAGE was fetched (NULL=never)
@@ -114,6 +115,14 @@ def set_geo_class(conn: sqlite3.Connection, segment_id: int, cls: dict) -> None:
         (int(cls["starts_in"]), int(cls["ends_in"]), int(cls["passes_through"]),
          int(cls["in_shutesbury"]), segment_id))
     conn.commit()
+
+
+def set_parent_segment(conn: sqlite3.Connection, segment_id: int,
+                       parent_id: int | None) -> None:
+    """Persist the sub-segment parent (the longer same-direction segment this is
+    a slice of), or NULL to clear it. Label only — does not affect scoring."""
+    conn.execute("UPDATE segments SET parent_segment_id = ? WHERE id = ?",
+                 (parent_id, segment_id))
 
 
 def set_excluded(conn: sqlite3.Connection, segment_id: int, value: int) -> None:

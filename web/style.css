@@ -78,6 +78,8 @@ tbody tr { transition: background 0.1s; }
 .pill.cat-cat2 { background: rgba(232,98,58,0.16); color: var(--climb); }
 .pill.cat-cat3 { background: rgba(91,155,213,0.16); color: var(--flat); }
 .pill.cat-cat4 { background: rgba(139,147,167,0.16); color: var(--muted); }
+.pill.sub { background: rgba(244,197,66,0.16); color: var(--gold); text-decoration: none; }
+.subseg-badge { color: var(--muted); font-size: 11.5px; font-weight: 600; }
 .diff { font-weight: 700; }
 
 #detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6);
