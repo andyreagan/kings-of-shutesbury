@@ -8,11 +8,16 @@ let disciplineFilter = "all";
 let hideSubSegments = false;
 let standings = [];
 
-// ---- discipline filter helpers ----------------------------------------------
+// ---- view filter helpers -----------------------------------------------------
+// The single segment set every view derives from: standings/points, the table,
+// the athlete popup, and (via setMapHideSub) the map. Sub-segment hiding folds
+// in here so the filter applies everywhere consistently.
 function segmentsForFilter() {
-  return disciplineFilter === "all"
+  let segs = disciplineFilter === "all"
     ? DATA.segments
     : DATA.segments.filter((s) => s.discipline === disciplineFilter);
+  if (hideSubSegments) segs = segs.filter((s) => !s.is_sub_segment);
+  return segs;
 }
 
 // Name of a segment by id (used to label a sub-segment with its parent).
@@ -198,11 +203,7 @@ function segValue(s, key) {
   return s[key];
 }
 function renderSegments() {
-  // The table view can hide sub-segments; standings (computeStandings) always
-  // use the full set, so scoring is unaffected.
-  let pool = segmentsForFilter();
-  if (hideSubSegments) pool = pool.filter((s) => !s.is_sub_segment);
-  const segs = [...pool].sort((a, b) => {
+  const segs = [...segmentsForFilter()].sort((a, b) => {
     const col = SEG_COLS.find((c) => c.key === sortKey);
     let va = segValue(a, sortKey), vb = segValue(b, sortKey);
     if (col.type === "num") { va = va ?? -Infinity; vb = vb ?? -Infinity; return sortAsc ? va - vb : vb - va; }
@@ -342,12 +343,14 @@ function init() {
     });
   }
 
-  // Hide sub-segments toggle (table view + map; standings stay unchanged).
+  // Hide sub-segments: one global filter — rescores standings and re-renders
+  // the table/athlete view (via applyDisciplineFilter) and the map.
   const hideSub = document.getElementById("hide-subsegments");
   if (hideSub) {
     hideSub.addEventListener("change", (e) => {
       hideSubSegments = e.target.checked;
-      renderSegments();
+      kingExpanded = false;
+      applyDisciplineFilter();
       if (window.setMapHideSub) window.setMapHideSub(hideSubSegments);
     });
   }
