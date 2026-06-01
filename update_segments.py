@@ -273,20 +273,7 @@ def cmd_update(args) -> None:
             except StravaError as e:
                 print(f"! failed leaderboard {sid}: {e}")
                 continue
-            for eff in efforts:
-                if eff["athlete_id"] is None:
-                    continue
-                db.upsert_athlete(conn, {
-                    "id": eff["athlete_id"], "name": eff["athlete_name"],
-                    "avatar_url": eff["avatar_url"], "badge": eff["badge"]})
-            db.replace_efforts(conn, sid, [
-                {k: eff[k] for k in (
-                    "athlete_id", "rank", "elapsed_time", "avg_speed",
-                    "avg_watts", "avg_hr", "effort_id", "activity_id",
-                    "start_date_local")}
-                for eff in efforts if eff["athlete_id"] is not None])
-            db.set_efforts_fetched_at(conn, sid, now())
-            conn.commit()
+            _store_efforts(conn, sid, efforts, now())
             print(f"  {len(efforts)} efforts"
                   f"{' (from page)' if seeded_overall is not None else ''}")
     conn.commit()
@@ -454,17 +441,17 @@ def export_data_json(conn) -> None:
 
 
 def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
+    """Upsert the fetched athletes and union their leaderboard into the store
+    (keeping anyone bumped past the fetched depth). `when` is the observation
+    time — the rewind key for effort_observations."""
     for eff in efforts:
         if eff["athlete_id"] is None:
             continue
         db.upsert_athlete(conn, {
             "id": eff["athlete_id"], "name": eff["athlete_name"],
             "avatar_url": eff["avatar_url"], "badge": eff["badge"]})
-    db.replace_efforts(conn, sid, [
-        {k: eff[k] for k in (
-            "athlete_id", "rank", "elapsed_time", "avg_speed", "avg_watts",
-            "avg_hr", "effort_id", "activity_id", "start_date_local")}
-        for eff in efforts if eff["athlete_id"] is not None])
+    db.record_efforts(conn, sid,
+                      [e for e in efforts if e["athlete_id"] is not None], when)
     db.set_efforts_fetched_at(conn, sid, when)
     conn.commit()
 

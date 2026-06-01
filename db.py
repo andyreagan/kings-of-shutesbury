@@ -70,21 +70,45 @@ CREATE TABLE IF NOT EXISTS api_log (
 );
 CREATE INDEX IF NOT EXISTS idx_api_log_ts ON api_log(ts);
 
+-- Canonical best-known effort per (segment, athlete). Rows are never deleted on
+-- sync (union, not replace), so an athlete bumped out of the latest top-N keeps
+-- their time. `rank` is DERIVED — recomputed from elapsed_time over the union by
+-- _rerank_segment(), not the rank Strava happened to show.
 CREATE TABLE IF NOT EXISTS efforts (
     segment_id          INTEGER NOT NULL,
     athlete_id          INTEGER NOT NULL,
-    rank                INTEGER,
-    elapsed_time        INTEGER,                     -- seconds
+    rank                INTEGER,                     -- derived: 1 = fastest known time
+    elapsed_time        INTEGER,                     -- seconds (the athlete's best known)
     avg_speed           REAL,
     avg_watts           REAL,
     avg_hr              REAL,
     effort_id           TEXT,
     activity_id         TEXT,
-    start_date_local    TEXT,
+    start_date_local    TEXT,                        -- when the PR ride happened (Strava)
+    first_seen          TEXT,                        -- when WE first observed this athlete here
+    last_seen           TEXT,                        -- when WE last saw them in a fetch
     PRIMARY KEY (segment_id, athlete_id),
     FOREIGN KEY (segment_id) REFERENCES segments(id),
     FOREIGN KEY (athlete_id) REFERENCES athletes(id)
 );
+
+-- Append-only log of each athlete's PR progression on a segment, for time-rewind:
+-- a row is added whenever an athlete is newly seen or their time changes. Rewind
+-- "as of date D" = each athlete's latest observation with observed_at <= D.
+CREATE TABLE IF NOT EXISTS effort_observations (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    segment_id          INTEGER NOT NULL,
+    athlete_id          INTEGER NOT NULL,
+    elapsed_time        INTEGER,                     -- the PR time as observed
+    effort_id           TEXT,
+    activity_id         TEXT,
+    start_date_local    TEXT,                        -- when the PR ride happened (Strava)
+    observed_at         TEXT NOT NULL,               -- when WE fetched it (the rewind key)
+    FOREIGN KEY (segment_id) REFERENCES segments(id),
+    FOREIGN KEY (athlete_id) REFERENCES athletes(id)
+);
+CREATE INDEX IF NOT EXISTS idx_effort_obs_seg ON effort_observations(segment_id, observed_at);
+CREATE INDEX IF NOT EXISTS idx_effort_obs_athlete ON effort_observations(segment_id, athlete_id);
 """
 
 
@@ -185,18 +209,69 @@ def upsert_athlete(conn: sqlite3.Connection, athlete: dict) -> None:
     )
 
 
-def replace_efforts(conn: sqlite3.Connection, segment_id: int,
-                    efforts: list[dict]) -> None:
-    """Replace all stored efforts for a segment with a fresh leaderboard."""
-    conn.execute("DELETE FROM efforts WHERE segment_id = ?", (segment_id,))
-    conn.executemany(
-        "INSERT OR REPLACE INTO efforts (segment_id, athlete_id, rank, "
-        "elapsed_time, avg_speed, avg_watts, avg_hr, effort_id, activity_id, "
-        "start_date_local) VALUES (:segment_id, :athlete_id, :rank, "
-        ":elapsed_time, :avg_speed, :avg_watts, :avg_hr, :effort_id, "
-        ":activity_id, :start_date_local)",
-        [{"segment_id": segment_id, **e} for e in efforts],
-    )
+def _rerank_segment(conn: sqlite3.Connection, segment_id: int) -> None:
+    """Recompute the derived rank (1 = fastest) for a segment from elapsed_time
+    over ALL known efforts. Because it ranks the full union, a newly-seen faster
+    rider pushes everyone else down automatically — no manual re-numbering."""
+    rows = conn.execute(
+        "SELECT athlete_id FROM efforts WHERE segment_id = ? AND elapsed_time IS NOT NULL "
+        "ORDER BY elapsed_time ASC, start_date_local ASC", (segment_id,)).fetchall()
+    for i, r in enumerate(rows, 1):
+        conn.execute("UPDATE efforts SET rank = ? WHERE segment_id = ? AND athlete_id = ?",
+                     (i, segment_id, r["athlete_id"]))
+    conn.execute("UPDATE efforts SET rank = NULL "
+                 "WHERE segment_id = ? AND elapsed_time IS NULL", (segment_id,))
+
+
+def record_efforts(conn: sqlite3.Connection, segment_id: int,
+                   efforts: list[dict], observed_at: str) -> None:
+    """Union a freshly-fetched leaderboard into the store without losing anyone.
+
+    For each effort (a dict with athlete_id, elapsed_time, and the usual
+    metadata) we:
+      - append to effort_observations when the athlete is new or their time
+        changed (the append-only PR-progression log, keyed by observed_at);
+      - upsert the canonical best-known effort, keeping the faster time and
+        bumping last_seen;
+      - never delete — an athlete missing from this fetch keeps their row;
+    then re-derive rank over the whole union. Replaces the old delete-then-insert
+    so a rider bumped past the fetched depth isn't dropped, just out-ranked."""
+    for e in efforts:
+        aid = e.get("athlete_id")
+        if aid is None:
+            continue
+        et = e.get("elapsed_time")
+        prev = conn.execute(
+            "SELECT elapsed_time FROM efforts WHERE segment_id = ? AND athlete_id = ?",
+            (segment_id, aid)).fetchone()
+        if prev is None or prev["elapsed_time"] != et:
+            conn.execute(
+                "INSERT INTO effort_observations (segment_id, athlete_id, elapsed_time, "
+                "effort_id, activity_id, start_date_local, observed_at) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (segment_id, aid, et, e.get("effort_id"), e.get("activity_id"),
+                 e.get("start_date_local"), observed_at))
+        if prev is None:
+            conn.execute(
+                "INSERT INTO efforts (segment_id, athlete_id, elapsed_time, avg_speed, "
+                "avg_watts, avg_hr, effort_id, activity_id, start_date_local, "
+                "first_seen, last_seen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (segment_id, aid, et, e.get("avg_speed"), e.get("avg_watts"),
+                 e.get("avg_hr"), e.get("effort_id"), e.get("activity_id"),
+                 e.get("start_date_local"), observed_at, observed_at))
+        elif et is not None and (prev["elapsed_time"] is None or et < prev["elapsed_time"]):
+            conn.execute(
+                "UPDATE efforts SET elapsed_time = ?, avg_speed = ?, avg_watts = ?, "
+                "avg_hr = ?, effort_id = ?, activity_id = ?, start_date_local = ?, "
+                "last_seen = ? WHERE segment_id = ? AND athlete_id = ?",
+                (et, e.get("avg_speed"), e.get("avg_watts"), e.get("avg_hr"),
+                 e.get("effort_id"), e.get("activity_id"), e.get("start_date_local"),
+                 observed_at, segment_id, aid))
+        else:
+            conn.execute(
+                "UPDATE efforts SET last_seen = ? WHERE segment_id = ? AND athlete_id = ?",
+                (observed_at, segment_id, aid))
+    _rerank_segment(conn, segment_id)
     conn.commit()
 
 

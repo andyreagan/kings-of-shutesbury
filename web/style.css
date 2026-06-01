@@ -119,6 +119,8 @@ tbody tr { transition: background 0.1s; }
   color: var(--text); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; }
 .discipline-switch button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .toggle { color: var(--muted); font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.footnote-ref { color: var(--accent); text-decoration: none; }
+.footnote-ref:hover { text-decoration: underline; }
 .view-toggles { display: flex; justify-content: center; margin-top: 10px; }
 #map { height: 70vh; width: 100%; background: #0a0c10; }
 .leaflet-popup-content { font: 13px -apple-system, system-ui, sans-serif; }

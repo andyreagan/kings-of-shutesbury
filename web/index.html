@@ -38,8 +38,11 @@
         <span id="unclassified-note" class="muted"></span>
       </div>
       <div class="view-toggles">
-        <label class="toggle"><input type="checkbox" id="hide-subsegments">
-          hide sub-segments <span class="muted">(collapse to canonical climbs everywhere — table, map &amp; points)</span></label>
+        <div class="discipline-switch" id="subsegment-switch">
+          <span class="muted">sub segments<a class="footnote-ref" href="#sub-segments-note"><sup>[1]</sup></a>:</span>
+          <button data-subseg="on" class="active">on</button>
+          <button data-subseg="off">off</button>
+        </div>
       </div>
     </div>
   </header>
@@ -114,13 +117,14 @@
         happens to end in town, say), so the segment list is <strong>hand-curated</strong> —
         only real, shared local segments are tracked.</p>
 
-      <p><strong>Sub-segments.</strong> Many roads here have a shorter Strava segment nested
-        inside a longer one — same road, same direction (e.g. <em>Cancer</em> is the middle of
-        <em>Lake Wyola to Shutesbury</em>). We detect these by comparing GPS tracks (a contiguous,
-        same-direction overlap; a climb vs. its reverse descent is <em>not</em> a sub-segment) and
-        mark them <em>↳ section of …</em>. By default they score on their own — Strava treats each
-        as a separate KOM — but the <em>hide sub-segments</em> toggle up top removes them
-        everywhere at once (table, map, <em>and</em> the points) for a de-duplicated view.</p>
+      <p id="sub-segments-note"><strong><sup>[1]</sup> Sub-segments.</strong> Many roads here have
+        a shorter Strava segment nested inside a longer one — same road, same direction (e.g.
+        <em>Cancer</em> is the middle of <em>Lake Wyola to Shutesbury</em>). We detect these by
+        comparing GPS tracks (a contiguous, same-direction overlap; a climb vs. its reverse descent
+        is <em>not</em> a sub-segment) and mark them <em>↳ section of …</em>. By default they score
+        on their own — Strava treats each as a separate KOM — but switching the <em>sub segments</em>
+        toggle up top to <em>off</em> removes them everywhere at once (table, map, <em>and</em> the
+        points) for a de-duplicated view.</p>
 
       <p>An athlete's overall standing is the sum across every segment; the discipline filter
         rescores for road, gravel, or MTB alone.</p>

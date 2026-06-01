@@ -343,12 +343,16 @@ function init() {
     });
   }
 
-  // Hide sub-segments: one global filter — rescores standings and re-renders
+  // Sub-segments on/off: one global filter — rescores standings and re-renders
   // the table/athlete view (via applyDisciplineFilter) and the map.
-  const hideSub = document.getElementById("hide-subsegments");
-  if (hideSub) {
-    hideSub.addEventListener("change", (e) => {
-      hideSubSegments = e.target.checked;
+  const ssw = document.getElementById("subsegment-switch");
+  if (ssw) {
+    ssw.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-subseg]");
+      if (!b) return;
+      hideSubSegments = b.dataset.subseg === "off";
+      ssw.querySelectorAll("button").forEach((x) =>
+        x.classList.toggle("active", x === b));
       kingExpanded = false;
       applyDisciplineFilter();
       if (window.setMapHideSub) window.setMapHideSub(hideSubSegments);
