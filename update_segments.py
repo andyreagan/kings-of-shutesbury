@@ -173,6 +173,16 @@ def cmd_update(args) -> None:
         print("No segments tracked yet. Add some:\n"
               "  uv run update_segments.py add 38206226")
         return
+    if args.only:
+        keep = set(args.only)
+        ids = [i for i in ids if i in keep]
+        if not ids:
+            print(f"--only matched no tracked segments: {sorted(keep)}")
+            return
+
+    # Captured BEFORE any fetch so the post-run changelog reads every observation
+    # this run wrote (effort_observations.observed_at >= run_started_at).
+    run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     rows = {r["id"]: r for r in conn.execute(
         "SELECT id, fetched_at, efforts_fetched_at, in_shutesbury, activity_type, "
@@ -278,6 +288,7 @@ def cmd_update(args) -> None:
                   f"{' (from page)' if seeded_overall is not None else ''}")
     conn.commit()
     export_data_json(conn)
+    print_changelog(conn, run_started_at)
     if stopped:
         print("\nStopped early on a rate limit. Rerun `uv run update_segments.py` "
               "to continue from where we left off.")
@@ -440,6 +451,180 @@ def export_data_json(conn) -> None:
           f"segments, {len(filtered)} filtered out.")
 
 
+def print_changelog(conn, since: str) -> None:
+    """Print a per-run changelog of effort changes since `since` (ISO UTC).
+
+    Sourced from `effort_observations`: every PR-or-new observation logged with
+    observed_at >= `since` is a change to surface. For each affected segment we
+    reconstruct the prior state (each athlete's latest observation strictly
+    before `since`), derive prior vs current ranks, score both, and report:
+
+      - PR  — a faster time from someone we already knew
+      - NEW — first observation we have of this athlete on this segment
+      - —   — "bumped": no new time, but their rank shifted because someone
+              else's new effort restructured the board
+
+    Two views: by segment (what happened where) and by athlete (the King-points
+    ledger). The athlete totals are net change in King points across this run."""
+    affected = [r[0] for r in conn.execute(
+        "SELECT DISTINCT segment_id FROM effort_observations "
+        "WHERE observed_at >= ?", (since,)).fetchall()]
+    if not affected:
+        print("\nNo effort changes this run — nothing to changelog.")
+        return
+
+    in_clause = ",".join("?" * len(affected))
+    seg_rows = {r["id"]: dict(r) for r in conn.execute(
+        f"SELECT id, name, difficulty, total_efforts, terrain, in_shutesbury, "
+        f"activity_type, excluded FROM segments WHERE id IN ({in_clause})",
+        affected).fetchall()}
+    cima_row = conn.execute(
+        "SELECT id FROM segments WHERE in_shutesbury = 1 "
+        "AND lower(activity_type) = 'ride' AND excluded = 0 "
+        "AND difficulty IS NOT NULL ORDER BY difficulty DESC LIMIT 1").fetchone()
+    cima_id = cima_row["id"] if cima_row else None
+
+    name_map = {r["id"]: r["name"] for r in conn.execute(
+        "SELECT id, name FROM athletes").fetchall()}
+
+    def aname(aid: int) -> str:
+        return name_map.get(aid) or f"Athlete {aid}"
+
+    def fmt_t(t):
+        if t is None:
+            return "—"
+        m, s = divmod(int(t), 60)
+        return f"{m}:{s:02d}"
+
+    def derived_ranks(state: dict) -> dict:
+        items = sorted((t, aid) for aid, t in state.items() if t is not None)
+        return {aid: i + 1 for i, (_, aid) in enumerate(items)}
+
+    def points_of(seg: dict, rank: int | None) -> int:
+        if not rank:
+            return 0
+        cat = scoring.segment_category(seg.get("difficulty") or 0,
+                                       seg["id"] == cima_id)
+        depth = scoring.effort_depth(seg.get("total_efforts"))
+        return scoring.points_for_rank(rank, cat, depth)
+
+    by_segment, per_athlete, new_segments = [], {}, []
+
+    for sid in affected:
+        seg = seg_rows.get(sid)
+        if not seg:
+            continue
+        scores = (seg["in_shutesbury"] == 1
+                  and (seg["activity_type"] or "").lower() == "ride"
+                  and seg["excluded"] != 1)
+
+        prior_rows = conn.execute(
+            "SELECT eo.athlete_id, eo.elapsed_time FROM effort_observations eo "
+            "JOIN (SELECT athlete_id, MAX(id) AS mid FROM effort_observations "
+            "      WHERE segment_id = ? AND observed_at < ? GROUP BY athlete_id) j "
+            "  ON j.athlete_id = eo.athlete_id AND j.mid = eo.id",
+            (sid, since)).fetchall()
+        prior = {r["athlete_id"]: r["elapsed_time"] for r in prior_rows}
+        current = {r["athlete_id"]: r["elapsed_time"] for r in conn.execute(
+            "SELECT athlete_id, elapsed_time FROM efforts WHERE segment_id = ?",
+            (sid,)).fetchall()}
+
+        is_new = not prior
+        if is_new and scores:
+            new_segments.append(seg)
+
+        prior_ranks = derived_ranks(prior)
+        cur_ranks = derived_ranks(current)
+
+        changes = []
+        for aid in set(prior) | set(current):
+            old_t, new_t = prior.get(aid), current.get(aid)
+            old_r, new_r = prior_ranks.get(aid), cur_ranks.get(aid)
+            old_p = points_of(seg, old_r) if scores else 0
+            new_p = points_of(seg, new_r) if scores else 0
+            # New: first observation we have of this athlete on this segment.
+            # PR : we knew them and the new time is faster.
+            # Bump: rank shifted because someone ELSE PR'd, AND the points moved.
+            # (Pure rank shifts that don't change points are deliberately dropped
+            #  from the per-segment view — they fall out in the athlete summary
+            #  only if they actually cost someone points, which by definition
+            #  they don't here.)
+            if old_t is None and new_t is not None:
+                kind = "new"
+            elif (old_t is not None and new_t is not None and new_t < old_t):
+                kind = "pr"
+            elif old_p != new_p:
+                kind = "bump"
+            else:
+                continue
+            entry = {"aid": aid, "kind": kind,
+                     "old_t": old_t, "new_t": new_t,
+                     "old_r": old_r, "new_r": new_r,
+                     "old_p": old_p, "new_p": new_p}
+            changes.append(entry)
+            if scores and old_p != new_p:
+                per_athlete.setdefault(aid, []).append({"name": seg["name"], **entry})
+        if changes:
+            by_segment.append((seg, is_new, scores, changes))
+
+    print(f"\n=== CHANGELOG (since {since}) ===")
+    if new_segments:
+        print(f"\n{len(new_segments)} new segment(s) tracked this run:")
+        for s in new_segments:
+            print(f"  + {s['name']}  (id {s['id']})")
+
+    print(f"\nBy segment ({len(by_segment)} affected):")
+    for seg, is_new, scores, changes in sorted(
+            by_segment, key=lambda x: -(x[0].get("difficulty") or 0)):
+        cat = scoring.segment_category(seg.get("difficulty") or 0,
+                                       seg["id"] == cima_id)
+        tag = (" · NEW SEGMENT" if is_new
+               else ("" if scores else " · filtered (doesn't score)"))
+        print(f"\n  {seg['name']}  ({cat}{tag})")
+        for c in sorted(changes, key=lambda x: x["new_r"] or 9999):
+            mark = {"new": "NEW ", "pr": "PR  ", "bump": "↕   "}[c["kind"]]
+            d = c["new_p"] - c["old_p"]
+            pts_str = f"  pts {c['old_p']} → {c['new_p']} ({d:+})" if d else ""
+            print(f"    {mark}{aname(c['aid'])[:26]:<26}  "
+                  f"{fmt_t(c['old_t']):>5} → {fmt_t(c['new_t']):<5}  "
+                  f"rank {str(c['old_r'] or '-'):>3} → {str(c['new_r'] or '-'):<3}"
+                  f"{pts_str}")
+
+    # By-athlete: only athletes whose King points actually changed. The format
+    # follows Andy's framing — "X lost/gained N points: lost Y places on Z".
+    def describe(c) -> str:
+        if c["kind"] == "new":
+            return f"NEW effort on {c['name']} at rank {c['new_r']}"
+        if c["kind"] == "pr":
+            return (f"PR on {c['name']}: {fmt_t(c['old_t'])} → "
+                    f"{fmt_t(c['new_t'])}, rank {c['old_r']} → {c['new_r']}")
+        # bump: someone else PR'd; this athlete shifted in rank
+        places = (c["old_r"] or 0) - (c["new_r"] or 0)
+        if places > 0:
+            verb = f"gained {places} place{'s' if places != 1 else ''}"
+        elif places < 0:
+            verb = f"lost {-places} place{'s' if -places != 1 else ''}"
+        else:
+            verb = f"rank {c['old_r']} → {c['new_r']}"
+        return f"{verb} on {c['name']} (rank {c['old_r']} → {c['new_r']})"
+
+    if per_athlete:
+        ranked = sorted(((a, cs) for a, cs in per_athlete.items()
+                         if sum(c["new_p"] - c["old_p"] for c in cs) != 0),
+                        key=lambda kv: -abs(sum(c["new_p"] - c["old_p"]
+                                                for c in kv[1])))
+        print(f"\nBy athlete ({len(ranked)} with point changes):")
+        for aid, contribs in ranked:
+            tot = sum(c["new_p"] - c["old_p"] for c in contribs)
+            verb = "gained" if tot > 0 else "lost"
+            label = f"{verb} {abs(tot)} pt{'s' if abs(tot) != 1 else ''}"
+            print(f"\n  {aname(aid)} ({aid}) — {label}")
+            for c in sorted(contribs, key=lambda x: -abs(x["new_p"] - x["old_p"])):
+                d = c["new_p"] - c["old_p"]
+                print(f"    · {describe(c)}  ({d:+})")
+    print()
+
+
 def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
     """Upsert the fetched athletes and union their leaderboard into the store
     (keeping anyone bumped past the fetched depth). `when` is the observation
@@ -463,6 +648,7 @@ def cmd_deepen(args) -> None:
     conn = db.connect()
     db.init(conn)
     strava.MAX_LEADERBOARD_PAGES = args.lb_pages
+    run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     rows = conn.execute(
         "SELECT id, name FROM segments WHERE in_shutesbury = 1 "
@@ -503,6 +689,7 @@ def cmd_deepen(args) -> None:
                            datetime.now(timezone.utc).isoformat(timespec="seconds"))
             print(f"  {len(efforts)} efforts")
     export_data_json(conn)
+    print_changelog(conn, run_started_at)
     if stopped:
         print("\nStopped on a rate limit — progress saved. The deepened segments "
               "are stored; rerun with --only on the remaining ones later.")
@@ -593,7 +780,8 @@ def main() -> None:
     parser.add_argument("--top", type=int, metavar="K",
                         help="with --lb-pages: only the K most important segments")
     parser.add_argument("--only", type=int, nargs="+", metavar="ID",
-                        help="with --lb-pages: only these segment ids")
+                        help="limit the run to these segment id(s); works with "
+                             "both the main update and --lb-pages")
     sub = parser.add_subparsers(dest="command")
     p_add = sub.add_parser("add", help="track new segment id(s) or URL(s)")
     p_add.add_argument("refs", nargs="+")
