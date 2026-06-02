@@ -124,12 +124,6 @@ def init(conn: sqlite3.Connection) -> None:
     conn.commit()
 
 
-def set_in_shutesbury(conn: sqlite3.Connection, segment_id: int,
-                      value: int | None) -> None:
-    conn.execute("UPDATE segments SET in_shutesbury = ? WHERE id = ?",
-                 (value, segment_id))
-
-
 def set_geo_class(conn: sqlite3.Connection, segment_id: int, cls: dict) -> None:
     """Persist the full geo classification (start/end/pass-through) plus the
     derived `in_shutesbury` (start OR finish in town)."""
@@ -147,13 +141,6 @@ def set_parent_segment(conn: sqlite3.Connection, segment_id: int,
     a slice of), or NULL to clear it. Label only — does not affect scoring."""
     conn.execute("UPDATE segments SET parent_segment_id = ? WHERE id = ?",
                  (parent_id, segment_id))
-
-
-def set_excluded(conn: sqlite3.Connection, segment_id: int, value: int) -> None:
-    """Manually exclude (1) or re-include (0) a segment from scoring/display."""
-    conn.execute("UPDATE segments SET excluded = ? WHERE id = ?",
-                 (value, segment_id))
-    conn.commit()
 
 
 def set_efforts_fetched_at(conn: sqlite3.Connection, segment_id: int,

@@ -433,7 +433,8 @@ def export_data_json(conn) -> None:
                 "name": e["athlete_name"], "elapsed_time": e["elapsed_time"],
                 "avg_watts": e["avg_watts"], "avatar_url": e["avatar_url"],
                 "badge": e["badge"],
-                "points": scoring.points_for_rank(e["rank"], category, depth),
+                "points": scoring.points_for_rank(e["rank"], category, depth,
+                                                  seg["difficulty"]),
                 "effort_id": e["effort_id"], "activity_id": e["activity_id"],
             } for e in _capped_efforts(seg["efforts"])],
         })
@@ -506,7 +507,8 @@ def print_changelog(conn, since: str) -> None:
         cat = scoring.segment_category(seg.get("difficulty") or 0,
                                        seg["id"] == cima_id)
         depth = scoring.effort_depth(seg.get("total_efforts"))
-        return scoring.points_for_rank(rank, cat, depth)
+        return scoring.points_for_rank(rank, cat, depth,
+                                       seg.get("difficulty") or 0)
 
     by_segment, per_athlete, new_segments = [], {}, []
 

@@ -2,13 +2,23 @@
 
 Two stages, both Tour-de-France inspired:
 
-1. Each segment gets a DIFFICULTY (a point pool) from its length, elevation
-   gain/loss, and popularity, scaled by terrain (climbs > flats > descents).
+1. Each segment gets a DIFFICULTY score from its length, elevation gain/loss,
+   and popularity, scaled by terrain (climbs > flats > descents) and discounted
+   if rarely ridden.
 
-2. That pool is awarded to the fastest athletes, shares decaying linearly to
-   zero (3 places -> 100/66/33%). How many places score scales with the
-   segment's popularity (the depth tiers). Summing across all segments gives the
-   overall King standings.
+2. The fastest athletes on each segment score points; how many places pay is
+   capped by the segment's popularity (the depth tiers). Two payout methods are
+   available, selected by PAYOUT_METHOD:
+
+     "tour" (default) — difficulty sorts the segment into a Tour KOM CATEGORY
+       (Cat 4 -> Cat 1, with the single hardest crowned Cima Coppi), and each
+       category pays a fixed, front-loaded KOM point table.
+     "pool" — the difficulty score IS a point pool, handed to the top finishers
+       with shares decaying linearly to zero (3 places -> 100/66/33% of the
+       winner's cut).
+
+   Summing each athlete's payouts across all segments gives the overall King
+   standings.
 
 All knobs live at the top — tweak freely.
 """
@@ -16,7 +26,6 @@ All knobs live at the top — tweak freely.
 from __future__ import annotations
 
 import math
-from collections import defaultdict
 
 # -- segment difficulty weights ------------------------------------------------
 W_GAIN = 1.0      # points per meter climbed (gross)
@@ -75,6 +84,12 @@ def segment_difficulty(seg: dict) -> float:
     return round(pool, 1)
 
 
+# -- stage 2: turning ranks into points ----------------------------------------
+# "tour" maps difficulty to a Tour KOM category and pays a fixed point table.
+# "pool" treats the difficulty score as a point pool, shared out with linearly
+# decaying shares. Both cap how many places pay by the popularity depth tier.
+PAYOUT_METHOD = "tour"  # "tour" | "pool"
+
 # Tour-de-France KOM point scale by category (INRNG) — more dramatic / front-
 # loaded as climbs get bigger. Cima Coppi is reserved for the single hardest segment.
 TOUR_POINTS = {
@@ -97,57 +112,34 @@ def segment_category(difficulty: float, is_cima: bool = False) -> str:
     return "Cat 4"
 
 
-def points_for_rank(rank: int | None, category: str, places_cap: int = 99) -> float:
-    """Tour KOM points for finishing `rank`-th on a segment of this category.
-    `places_cap` (the popularity depth) limits how many places actually pay, so a
-    hard-but-obscure segment still only rewards its KOM or two."""
+def pool_shares(pool: float, places: int) -> list[float]:
+    """Hand a difficulty `pool` to the top `places` finishers with shares
+    decaying linearly to zero: rank r of N gets weight N+1-r, normalized so the
+    payouts sum to the pool (3 places -> 100/66/33% of the winner's cut)."""
+    if places < 1 or (pool or 0) <= 0:
+        return []
+    weights = [places - i for i in range(places)]  # N, N-1, ..., 1
+    total = sum(weights)
+    return [round(pool * w / total, 1) for w in weights]
+
+
+def points_for_rank(rank: int | None, category: str, places_cap: int = 99,
+                    difficulty: float | None = None) -> float:
+    """Points for finishing `rank`-th on a segment, under the active
+    PAYOUT_METHOD. `places_cap` (the popularity depth) limits how many places
+    actually pay, so a hard-but-obscure segment still only rewards its KOM or two.
+
+    - "tour": fixed front-loaded KOM table for the segment's `category`.
+    - "pool": the segment's `difficulty` score is a pool shared out with linearly
+      decaying shares — pass `difficulty` for this method.
+    """
+    if PAYOUT_METHOD == "pool":
+        shares = pool_shares(difficulty or 0.0, places_cap)
+        if not rank or rank < 1 or rank > len(shares):
+            return 0
+        return shares[rank - 1]
     pts = TOUR_POINTS.get(category, [])
     n = min(len(pts), places_cap)
     if not rank or rank < 1 or rank > n:
         return 0
     return pts[rank - 1]
-
-
-def king_standings(segments: list[dict]) -> list[dict]:
-    """Aggregate per-segment rank payouts into overall athlete standings.
-
-    Each segment dict needs: id, name, difficulty, and efforts =
-    [{athlete_id, athlete_name, rank, elapsed_time}, ...].
-    Returns athletes sorted by total points (desc), with a breakdown.
-    """
-    points: dict[int, float] = defaultdict(float)
-    names: dict[int, str] = {}
-    wins: dict[int, int] = defaultdict(int)
-    scored_segments: dict[int, int] = defaultdict(int)
-
-    for seg in segments:
-        cat = segment_category(seg.get("difficulty") or 0.0)
-        depth = effort_depth(seg.get("total_efforts"))
-        for eff in seg.get("efforts", []):
-            aid = eff.get("athlete_id")
-            if aid is None:
-                continue
-            pts = points_for_rank(eff.get("rank"), cat, depth)
-            if pts <= 0:
-                continue
-            points[aid] += pts
-            scored_segments[aid] += 1
-            if eff.get("rank") == 1:
-                wins[aid] += 1
-            if eff.get("athlete_name"):
-                names[aid] = eff["athlete_name"]
-
-    standings = [
-        {
-            "athlete_id": aid,
-            "name": names.get(aid, f"Athlete {aid}"),
-            "points": round(pts, 1),
-            "segments_won": wins[aid],
-            "segments_scored": scored_segments[aid],
-        }
-        for aid, pts in points.items()
-    ]
-    standings.sort(key=lambda s: s["points"], reverse=True)
-    for i, s in enumerate(standings, 1):
-        s["overall_rank"] = i
-    return standings

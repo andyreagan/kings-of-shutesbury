@@ -70,15 +70,6 @@ def point_in_shutesbury(lat: float, lng: float, geo: dict | None = None) -> bool
     return False
 
 
-def segment_in_shutesbury(seg: dict, geo: dict | None = None) -> bool:
-    geo = geo or load_boundary()
-    for lat, lng in ((seg.get("start_lat"), seg.get("start_lng")),
-                     (seg.get("end_lat"), seg.get("end_lng"))):
-        if lat is not None and lng is not None and point_in_shutesbury(lat, lng, geo):
-            return True
-    return False
-
-
 def classify_segment(start_latlng, end_latlng, track, geo: dict | None = None) -> dict:
     """Classify a segment's relationship to Shutesbury from its endpoints and
     full track (a list of [lat, lng] points). Returns starts_in / ends_in /
