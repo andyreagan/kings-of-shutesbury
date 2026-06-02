@@ -73,9 +73,9 @@ def point_in_shutesbury(lat: float, lng: float, geo: dict | None = None) -> bool
 def classify_segment(start_latlng, end_latlng, track, geo: dict | None = None) -> dict:
     """Classify a segment's relationship to Shutesbury from its endpoints and
     full track (a list of [lat, lng] points). Returns starts_in / ends_in /
-    passes_through, plus in_shutesbury = starts_in OR ends_in (the inclusion
+    passes_through, plus in_town = starts_in OR ends_in (the inclusion
     rule). A segment that only crosses town without starting or finishing there
-    is `passes_through` but NOT `in_shutesbury`."""
+    is `passes_through` but NOT `in_town`."""
     geo = geo or load_boundary()
 
     def pin(p) -> bool:
@@ -88,7 +88,7 @@ def classify_segment(start_latlng, end_latlng, track, geo: dict | None = None) -
         pt and pt[0] is not None and pt[1] is not None
         and point_in_shutesbury(pt[0], pt[1], geo) for pt in (track or []))
     return {"starts_in": starts, "ends_in": ends,
-            "passes_through": passes, "in_shutesbury": starts or ends}
+            "passes_through": passes, "in_town": starts or ends}
 
 
 # --- sub-segment detection ----------------------------------------------------

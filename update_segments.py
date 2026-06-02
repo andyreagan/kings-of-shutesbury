@@ -185,7 +185,7 @@ def cmd_update(args) -> None:
     run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     rows = {r["id"]: r for r in conn.execute(
-        "SELECT id, fetched_at, efforts_fetched_at, in_shutesbury, activity_type, "
+        "SELECT id, fetched_at, efforts_fetched_at, in_town, activity_type, "
         "excluded FROM segments")}
     try:
         boundary = geo.load_boundary()
@@ -200,7 +200,7 @@ def cmd_update(args) -> None:
     with StravaClient(request_logger=_make_request_logger(conn)) as client:
         for sid in ids:
             row = rows[sid]
-            in_town = row["in_shutesbury"] == 1
+            in_town = row["in_town"] == 1
             is_ride = (row["activity_type"] or "").lower() == "ride"
 
             # --- Phase 1: segment page (cheap; also embeds the top-25 board) ---
@@ -228,10 +228,10 @@ def cmd_update(args) -> None:
                         (seg.get("streams") or {}).get("location") or [], boundary)
                 else:
                     cls = {"starts_in": True, "ends_in": True,
-                           "passes_through": True, "in_shutesbury": True}
-                in_town = cls["in_shutesbury"]
+                           "passes_through": True, "in_town": True}
+                in_town = cls["in_town"]
                 is_ride = (seg["activity_type"] or "").lower() == "ride"
-                seg["in_shutesbury"] = 1 if in_town else 0
+                seg["in_town"] = 1 if in_town else 0
                 seg["fetched_at"] = now()
                 db.upsert_segment(conn, seg)
                 db.set_geo_class(conn, sid, cls)
@@ -311,7 +311,7 @@ def export_data_json(conn) -> None:
     segments = [_segment_with_efforts(conn, r) for r in seg_rows]
 
     # Geo-classify: a segment counts only if it STARTS or FINISHES in Shutesbury.
-    # Computed once and persisted to `in_shutesbury` so later builds don't refilter.
+    # Computed once and persisted to `in_town` so later builds don't refilter.
     try:
         boundary = geo.load_boundary()
     except Exception as e:                                      # noqa: BLE001
@@ -320,15 +320,15 @@ def export_data_json(conn) -> None:
     if boundary is not None:
         newly = 0
         for seg in segments:
-            if seg["starts_in_shutesbury"] is None or seg["in_shutesbury"] is None:
+            if seg["starts_in_town"] is None or seg["in_town"] is None:
                 track = json.loads(seg.get("streams_json") or "{}").get("location") or []
                 cls = geo.classify_segment(
                     [seg["start_lat"], seg["start_lng"]],
                     [seg["end_lat"], seg["end_lng"]], track, boundary)
-                seg["starts_in_shutesbury"] = int(cls["starts_in"])
-                seg["ends_in_shutesbury"] = int(cls["ends_in"])
+                seg["starts_in_town"] = int(cls["starts_in"])
+                seg["ends_in_town"] = int(cls["ends_in"])
                 seg["passes_through"] = int(cls["passes_through"])
-                seg["in_shutesbury"] = int(cls["in_shutesbury"])
+                seg["in_town"] = int(cls["in_town"])
                 db.set_geo_class(conn, seg["id"], cls)
                 newly += 1
         conn.commit()
@@ -347,7 +347,7 @@ def export_data_json(conn) -> None:
         if seg["excluded"] == 1:
             return False
         ride = (seg["activity_type"] or "").lower() == "ride"
-        in_town = seg["in_shutesbury"] == 1 if boundary is not None else True
+        in_town = seg["in_town"] == 1 if boundary is not None else True
         return ride and in_town
 
     def track_of(seg) -> list:
@@ -381,7 +381,7 @@ def export_data_json(conn) -> None:
             reasons.append("manually excluded")
         if (s["activity_type"] or "").lower() != "ride":
             reasons.append((s["activity_type"] or "non-ride").lower())
-        if boundary is not None and s["in_shutesbury"] != 1:
+        if boundary is not None and s["in_town"] != 1:
             reasons.append("passes through" if s["passes_through"] == 1
                            else "outside Shutesbury")
         filtered.append({"id": s["id"], "name": s["name"],
@@ -476,11 +476,11 @@ def print_changelog(conn, since: str) -> None:
 
     in_clause = ",".join("?" * len(affected))
     seg_rows = {r["id"]: dict(r) for r in conn.execute(
-        f"SELECT id, name, difficulty, total_efforts, terrain, in_shutesbury, "
+        f"SELECT id, name, difficulty, total_efforts, terrain, in_town, "
         f"activity_type, excluded FROM segments WHERE id IN ({in_clause})",
         affected).fetchall()}
     cima_row = conn.execute(
-        "SELECT id FROM segments WHERE in_shutesbury = 1 "
+        "SELECT id FROM segments WHERE in_town = 1 "
         "AND lower(activity_type) = 'ride' AND excluded = 0 "
         "AND difficulty IS NOT NULL ORDER BY difficulty DESC LIMIT 1").fetchone()
     cima_id = cima_row["id"] if cima_row else None
@@ -516,7 +516,7 @@ def print_changelog(conn, since: str) -> None:
         seg = seg_rows.get(sid)
         if not seg:
             continue
-        scores = (seg["in_shutesbury"] == 1
+        scores = (seg["in_town"] == 1
                   and (seg["activity_type"] or "").lower() == "ride"
                   and seg["excluded"] != 1)
 
@@ -653,7 +653,7 @@ def cmd_deepen(args) -> None:
     run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     rows = conn.execute(
-        "SELECT id, name FROM segments WHERE in_shutesbury = 1 "
+        "SELECT id, name FROM segments WHERE in_town = 1 "
         "AND lower(activity_type) = 'ride' AND fetched_at IS NOT NULL "
         "ORDER BY difficulty DESC NULLS LAST").fetchall()
     targets = [r["id"] for r in rows]

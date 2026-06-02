@@ -16,7 +16,7 @@ def main() -> None:
     rows = conn.execute(
         "SELECT id, name, display_location, distance_m, avg_grade "
         "FROM segments "
-        "WHERE in_shutesbury=1 AND lower(activity_type)='ride' AND discipline IS NULL "
+        "WHERE in_town=1 AND lower(activity_type)='ride' AND discipline IS NULL "
         "ORDER BY name"
     ).fetchall()
 
