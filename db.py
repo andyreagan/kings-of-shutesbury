@@ -170,17 +170,35 @@ def set_efforts_fetched_at(conn: sqlite3.Connection, segment_id: int,
                  (when, segment_id))
 
 
-def add_segment_id(conn: sqlite3.Connection, segment_id: int) -> bool:
-    """Register a segment id to track. Returns True if newly added."""
-    cur = conn.execute(
-        "INSERT OR IGNORE INTO segments (id) VALUES (?)", (segment_id,)
-    )
-    conn.commit()
-    return cur.rowcount > 0
+def add_segment(conn: sqlite3.Connection, segment_id: int,
+                discipline: str) -> str:
+    """Register a segment id with its discipline. Inserts new rows; for an
+    already-tracked id, updates the discipline only if it differs. Returns one
+    of "added" / "updated" / "unchanged" so the caller can report what happened."""
+    row = conn.execute(
+        "SELECT discipline FROM segments WHERE id = ?", (segment_id,)).fetchone()
+    if row is None:
+        conn.execute(
+            "INSERT INTO segments (id, discipline) VALUES (?, ?)",
+            (segment_id, discipline))
+        conn.commit()
+        return "added"
+    if row["discipline"] != discipline:
+        conn.execute("UPDATE segments SET discipline = ? WHERE id = ?",
+                     (discipline, segment_id))
+        conn.commit()
+        return "updated"
+    return "unchanged"
 
 
 def segment_ids(conn: sqlite3.Connection) -> list[int]:
     return [r["id"] for r in conn.execute("SELECT id FROM segments ORDER BY id")]
+
+
+def unimported_segment_ids(conn: sqlite3.Connection) -> list[int]:
+    """Segments registered but never page-imported (fetched_at IS NULL)."""
+    return [r["id"] for r in conn.execute(
+        "SELECT id FROM segments WHERE fetched_at IS NULL ORDER BY id")]
 
 
 def upsert_segment(conn: sqlite3.Connection, seg: dict) -> None:

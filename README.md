@@ -8,90 +8,127 @@ and ranks athletes into an overall **King of Shutesbury** standing.
 ## How it works
 
 ```
-segments table (IDs)  ──update_segments.py──▶  strava.db  ──▶  web/data.json  ──▶  static site
-        ▲                  (httpx + cookie)      (committed)      (committed)        (web/index.html)
-   add IDs by hand
+add ──▶  import (page) ──▶  update (leaderboard) ──▶  export ──▶  web/data.json
+ │           │                      │                                  │
+ ▼           ▼                      ▼                                  ▼
+ segments    +metadata               +effort_log rows                  static site
+ row         +geo class              +efforts_fetched_at                opens locally
+             +seeded top-25          (recurring; stalest first)
+             +difficulty
+             +sub-segment parents
 ```
 
-- **`strava.db`** is the source of truth and is committed/shipped with the build.
-  The list of segment IDs to track lives in the `segments` table.
+- **`strava.db`** is the source of truth and is committed with the build. The
+  list of segment IDs lives in the `segments` table.
 - **`web/`** is a dependency-free static site — open `web/index.html` (or host it
   anywhere). It reads `web/data.json`.
 
 ## Setup
 
 ```sh
-uv sync                      # install deps (httpx)
-cp .env.example .env         # then paste your _strava4_session cookie value
+uv sync                       # install deps (httpx)
+cp .env.example .env          # then paste your _strava4_session cookie value
 ```
 
-## Usage
+## The pipeline (six commands)
+
+Each command does one stage and nothing else. Pages are pulled once per segment;
+the recurring command is `update`.
+
+### 1. `add <id> <discipline> [<id> <discipline>...]`
+Register `(id, discipline)` pairs in the DB. No network. `<id>` is a numeric
+Strava segment id or a `strava.com/segments/<id>` URL; `<discipline>` is
+`road`, `gravel`, or `mtb`. Adding an id that already exists updates the
+discipline only if it differs.
 
 ```sh
-# Add segment IDs to track (accepts numeric IDs or strava.com/strava.app.link URLs):
-uv run update_segments.py add 38206226
-uv run update_segments.py add https://www.strava.com/segments/8429503
+uv run update_segments.py add 38206226 gravel 8429503 road
+```
 
-# Refresh all tracked segments + rebuild web/data.json (skips ones fetched < 24h ago):
-uv run update_segments.py
+### 2. `import (<id> | --all) [--force]`
+Pull each target's overview page — metadata, streams, geo classification — and
+seed its top-25 efforts from the embedded leaderboard. Sets `fetched_at`.
 
-# Force a full refresh:
-uv run update_segments.py --force
+`--all` only touches segments where `fetched_at IS NULL`, so a clean second
+`import --all` is a no-op. `--force` re-pulls.
 
-# List what's tracked:
-uv run update_segments.py --list
+After any import that actually fetched something, sub-segment parents and
+difficulty are recomputed across the imported set (both idempotent, fast).
+
+```sh
+uv run update_segments.py import --all          # bring new segments up to date
+uv run update_segments.py import 38206226       # one specific segment
+uv run update_segments.py import 38206226 --force
+```
+
+### 3. `update (<id> | --all) [--depth N]`
+Refresh efforts from the leaderboard endpoint. Hits
+`/frontend/segments/<id>/leaderboard?filter_type=overall` (depth `N` ⇒ N × 25
+athletes; default 1 ⇒ top 25), then supplements with the following board so
+Andy/Owen's times outside the top 25 still get logged.
+
+`--all` walks every in-town, non-excluded ride segment, **stalest first** by
+`efforts_fetched_at` (NULLs first — freshly-imported segments sort to the head
+because their page-seeded top-25 doesn't yet include the following supplement).
+
+Stores everything in `effort_log`, sets `efforts_fetched_at`, and prints a
+changelog of what changed during this run.
+
+```sh
+uv run update_segments.py update --all
+uv run update_segments.py update 38206226 --depth 4   # pull top 100
+```
+
+### 4. `export`
+Rebuild `web/data.json` from the current DB. Pure read. No options.
+
+```sh
+uv run update_segments.py export
+```
+
+### 5. `list`
+One line per tracked segment — id, name, discipline, terrain, difficulty, the
+date the page was last imported, and the date efforts were last refreshed.
+
+```sh
+uv run update_segments.py list
+```
+
+### 6. `log [--since DATE] [--until DATE]`
+Effort changelog over a date range. `--since`/`--until` accept ISO dates or
+datetimes; with neither, `log` shows the most recent batch of observations
+(handy after a manual `update` to re-read its summary).
+
+```sh
+uv run update_segments.py log                          # last run
+uv run update_segments.py log --since 2026-05-01       # everything since
+uv run update_segments.py log --since 2026-05-01 --until 2026-05-15
 ```
 
 ## Filtering
 
-- **Shutesbury only:** a segment counts toward the standings only if it **starts or
-  finishes** inside the Shutesbury town boundary (OSM polygon, cached in
-  `shutesbury_boundary.json`). The result is saved to `segments.in_shutesbury` so it
-  isn't recomputed. Out-of-town segments stay in the DB but are listed under
-  "Filtered out" on the dashboard.
-- **Rides only:** `Run` segments are excluded (Strava only exposes Ride/Run, not
-  MTB/Road/Gravel — finer discipline tags would need to be set by hand in the
-  `segments.discipline` column).
-
-## Classifying discipline (road/gravel/mtb)
-
-Strava doesn't expose road/gravel/MTB at the segment level, so discipline is
-hand-classified and stored in `segments.discipline` (`road`, `gravel`, or `mtb`;
-`NULL` = unclassified). The dashboard uses this field to filter/group segments.
-
-**Interactive (resumable):**
-
-```sh
-uv run classify.py
-```
-
-Walks you through every unclassified in-town ride segment one at a time. Press
-`r`, `g`, `m`, `s` (skip), or `q` (quit). Each classification is committed
-immediately, so you can quit and resume any time.
-
-**One-off edits in a Python shell:**
-
-```python
-import sqlite3
-db = sqlite3.connect("strava.db"); db.row_factory = sqlite3.Row
-for r in db.execute("SELECT id,name,display_location FROM segments "
-                    "WHERE in_shutesbury=1 AND discipline IS NULL ORDER BY name"):
-    print(r["id"], r["name"], "—", r["display_location"])
-db.execute("UPDATE segments SET discipline=? WHERE id=?", ("gravel", 648901)); db.commit()
-```
-
-After classifying, run `uv run update_segments.py --export` (or quit `classify.py`)
-to refresh `web/data.json` with the updated discipline tags.
+- **Shutesbury only:** a segment counts toward the standings only if it
+  **starts or finishes** inside the Shutesbury town boundary (OSM polygon,
+  cached in `shutesbury_boundary.json`). The result is saved to
+  `segments.in_town` at `import` time. Out-of-town segments stay in the DB but
+  appear under "Filtered out" on the dashboard.
+- **Rides only:** `Run` segments are excluded automatically (Strava only
+  exposes Ride/Run at the segment level; the finer road/gravel/mtb
+  classification you provided at `add` time is shown in the dashboard).
 
 ## Being gentle on the API
 
-Per in-town ride segment the overall **top 25** leaderboard is seeded straight from
-the segment page's embedded `initialLeaderboard` — so a normal refresh costs **one
-request per segment** (the page) and no separate leaderboard calls. Top 25 is all
-that scores (points only reach the top 10). Use `--lb-pages N` to pull deeper boards
-(N*25 athletes) for a bounded set of segments when you want them. Out-of-town/run
-segments are classified from the page and excluded.
+Each pass through the rate-limited Strava endpoints costs:
 
-Requests are paced (~4s + jitter), recently-fetched segments are skipped, and on the
-first HTTP 429 (a header-less CloudFront limit, ~100 req/window) the client **stops
-the whole run** with all progress saved — just rerun to resume from where it left off.
+| Command | Requests per segment |
+|---|---|
+| `import` | 1 (the page) |
+| `update` | 2 (overall leaderboard + following board) |
+
+Requests are paced (~4s + jitter). On the first CloudFront 429 (a header-less
+~100 req/window limit) the client **stops the whole run** with all progress
+saved — just rerun to resume from where it left off.
+
+If you only want the cheap setup, `import --all` is the safe one-time cost.
+The recurring command is `update --all`, which spends two requests per in-town
+ride segment per refresh.

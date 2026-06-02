@@ -1,13 +1,36 @@
 #!/usr/bin/env python3
-"""Refresh tracked Strava segments and rebuild the dashboard data.
+"""Kings of Shutesbury — segment pipeline.
 
-Usage:
-    uv run update_segments.py add <id|url> [<id|url> ...]   # track new segments
-    uv run update_segments.py                               # refresh stale + export
-    uv run update_segments.py --force                       # refresh everything
-    uv run update_segments.py --list                        # show tracked segments
+Six self-contained commands, one per stage:
 
-The list of segment IDs lives in the SQLite `segments` table; the DB is committed.
+    add <id> <discipline> [<id> <discipline>...]
+                                  register (id, discipline) pairs in the DB.
+                                  No network. discipline = road|gravel|mtb.
+
+    import (<id> | --all) [--force]
+                                  pull each segment's overview page (metadata,
+                                  streams, geo) and seed its top-25 efforts
+                                  from the embedded leaderboard. Sets
+                                  fetched_at. --all skips already-imported
+                                  segments unless --force is given, so a clean
+                                  second `import --all` is a no-op.
+
+    update (<id> | --all) [--depth N]
+                                  refresh efforts from the leaderboard
+                                  endpoint (depth = N pages of 25, default 1).
+                                  --all walks stalest first by
+                                  efforts_fetched_at. Prints a changelog of
+                                  what changed in this run.
+
+    export                        rebuild web/data.json from the DB. No
+                                  network, no options.
+
+    list                          show every tracked segment.
+
+    log [--since DATE] [--until DATE]
+                                  effort changelog over a date range. Default
+                                  --since picks up the most recent batch of
+                                  observations (i.e. the last run).
 """
 
 from __future__ import annotations
@@ -22,43 +45,38 @@ from pathlib import Path
 import db
 import geo
 import scoring
-import strava
 from strava import AuthError, RateLimitError, StravaClient, StravaError
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
 DATA_JSON = WEB_DIR / "data.json"
-# Segment pages are essentially immutable (geometry/metadata never change; only
-# popularity counts + the embedded leaderboard drift slowly), so refetch rarely.
-PAGE_FRESH_HOURS = 24 * 30      # ~30 days; --force to refresh sooner
-LB_FRESH_HOURS = 24 * 30        # leaderboards come from the page; refresh together
 PROFILE_POINTS = 120            # downsample elevation profile to this many points
 MAP_TRACK_POINTS = 64           # downsample GPS track for the map to this many points
 EFFORTS_PER_SEGMENT = 100       # cap efforts shipped per segment (keeps page small)
+VALID_DISCIPLINES = ("road", "gravel", "mtb")
 # Athletes whose times we always try to refresh via the "following" board, even
 # when they're outside a segment's top 25 (the logged-in session must follow them).
 # Andy Reagan = 136573, Owen Skorupski = 129008249.
 TRACKED_ATHLETES = {136573, 129008249}
 
 
-def resolve_segment_id(client: StravaClient, raw: str) -> int | None:
-    """Accept a numeric id, a /segments/<id> URL, or a strava.app.link short URL."""
-    raw = raw.strip()
-    if raw.isdigit():
-        return int(raw)
-    m = re.search(r"/segments/(\d+)", raw)
-    if m:
-        return int(m.group(1))
-    if raw.startswith("http"):
-        # Short links (strava.app.link/...) redirect to the canonical segment URL.
-        try:
-            resp = client._get(raw)
-            m = re.search(r"/segments/(\d+)", str(resp.url)) or re.search(
-                r"/segments/(\d+)", resp.text)
-            if m:
-                return int(m.group(1))
-        except StravaError as e:
-            print(f"  could not resolve {raw}: {e}", file=sys.stderr)
-    return None
+# === shared helpers ==========================================================
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _parse_ref(ref: str) -> int | None:
+    """Numeric id or /segments/<id> URL → int. No network (shortlinks unsupported)."""
+    ref = ref.strip()
+    if ref.isdigit():
+        return int(ref)
+    m = re.search(r"/segments/(\d+)", ref)
+    return int(m.group(1)) if m else None
+
+
+_NEXT_DATA_RE = re.compile(
+    r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', re.S)
 
 
 def _classify_endpoint(url: str) -> tuple[str, int | None]:
@@ -71,10 +89,6 @@ def _classify_endpoint(url: str) -> tuple[str, int | None]:
     if m and "/frontend/" not in url:
         return "segment_page", int(m.group(1))
     return "other", None
-
-
-_NEXT_DATA_RE = re.compile(
-    r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', re.S)
 
 
 def _payload_for_log(body: str | None) -> str | None:
@@ -97,17 +111,30 @@ def _make_request_logger(conn):
     def log(method: str, url: str, status: int, elapsed_ms: float,
             body: str | None = None) -> None:
         endpoint, seg_id = _classify_endpoint(url)
-        db.log_api_request(conn, datetime.now(timezone.utc).isoformat(),
-                           method, endpoint, url, seg_id, status, elapsed_ms,
-                           _payload_for_log(body))
+        db.log_api_request(conn, now(), method, endpoint, url, seg_id, status,
+                           elapsed_ms, _payload_for_log(body))
     return log
+
+
+def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
+    """Upsert the fetched athletes and append their efforts into the log.
+    `when` is the observation time — the rewind key for effort_log."""
+    for eff in efforts:
+        if eff["athlete_id"] is None:
+            continue
+        db.upsert_athlete(conn, {
+            "id": eff["athlete_id"], "name": eff["athlete_name"],
+            "avatar_url": eff["avatar_url"], "badge": eff["badge"]})
+    db.record_efforts(conn, sid,
+                      [e for e in efforts if e["athlete_id"] is not None], when)
+    conn.commit()
 
 
 def _supplement_following(client, sid: int, efforts: list) -> list:
     """Append TRACKED_ATHLETES' (Andy/Owen) times from the following board when
-    they're not already in the overall efforts. Following ranks are relative to
-    who you follow, so store rank=None (shown, worth 0 points). Network call —
-    must be inside the caller's try/except for rate limits."""
+    they're not already in `efforts`. Following ranks are relative to who you
+    follow, so store rank=None (shown, worth 0 points). Network call — must
+    sit inside the caller's try/except for rate limits."""
     if not TRACKED_ATHLETES:
         return efforts
     have = {e["athlete_id"] for e in efforts}
@@ -117,20 +144,6 @@ def _supplement_following(client, sid: int, efforts: list) -> list:
     return efforts
 
 
-def _capped_efforts(efforts: list) -> list:
-    """Ship at most EFFORTS_PER_SEGMENT ranked efforts per segment to keep
-    data.json small, but always keep the tracked athletes' (Andy/Owen) efforts
-    and the rank-NULL following supplements regardless of rank."""
-    kept, n = [], 0
-    for e in efforts:
-        if (n < EFFORTS_PER_SEGMENT or e["rank"] is None
-                or e["athlete_id"] in TRACKED_ATHLETES):
-            kept.append(e)
-            if e["rank"] is not None:
-                n += 1
-    return kept
-
-
 def _downsample(xs: list, n: int) -> list:
     if not xs or len(xs) <= n:
         return xs
@@ -138,76 +151,72 @@ def _downsample(xs: list, n: int) -> list:
     return [xs[round(i * step)] for i in range(n)]
 
 
-def cmd_add(args) -> None:
+def _parse_ts(ts: str) -> datetime:
+    d = datetime.fromisoformat(ts)
+    return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+
+
+def _require_id_xor_all(args: argparse.Namespace, cmd: str) -> None:
+    """import/update both take exactly one of <id> or --all. argparse's
+    mutually_exclusive_group misbehaves with `nargs="?"` positionals, so check
+    here instead."""
+    have_id = args.id is not None
+    if have_id and args.all_:
+        sys.exit(f"{cmd}: pass <id> OR --all, not both.")
+    if not have_id and not args.all_:
+        sys.exit(f"{cmd}: pass a segment <id> or --all.")
+
+
+# === add =====================================================================
+
+
+def cmd_add(args: argparse.Namespace) -> None:
+    if len(args.pairs) % 2 != 0:
+        sys.exit("add takes (id, discipline) pairs — got an odd number of args.")
+    pairs: list[tuple[int, str]] = []
+    for ref, disc in zip(args.pairs[0::2], args.pairs[1::2]):
+        disc = disc.lower()
+        if disc not in VALID_DISCIPLINES:
+            sys.exit(f"discipline must be one of {VALID_DISCIPLINES}, got {disc!r}")
+        sid = _parse_ref(ref)
+        if sid is None:
+            sys.exit(f"couldn't parse a segment id from {ref!r} "
+                     "(use a numeric id or a strava.com/segments/<id> URL)")
+        pairs.append((sid, disc))
+
     conn = db.connect()
     db.init(conn)
-    with StravaClient(request_logger=_make_request_logger(conn)) as client:
-        for raw in args.refs:
-            sid = resolve_segment_id(client, raw)
-            if sid is None:
-                print(f"! skipped (couldn't parse a segment id): {raw}")
-                continue
-            added = db.add_segment_id(conn, sid)
-            print(f"{'+ added' if added else '= already tracked'}: {sid}")
-    conn.close()
-    print("\nRun `uv run update_segments.py` to fetch their data.")
-
-
-def _is_fresh(fetched_at: str | None, hours: float) -> bool:
-    if not fetched_at:
-        return False
     try:
-        ts = datetime.fromisoformat(fetched_at)
-    except ValueError:
-        return False
-    if ts.tzinfo is None:
-        ts = ts.replace(tzinfo=timezone.utc)
-    return datetime.now(timezone.utc) - ts < timedelta(hours=hours)
+        for sid, disc in pairs:
+            outcome = db.add_segment(conn, sid, disc)
+            mark = {"added": "+ added", "updated": "~ discipline updated",
+                    "unchanged": "= already tracked"}[outcome]
+            print(f"{mark}: {sid} ({disc})")
+    finally:
+        conn.close()
+    print("\nRun `uv run update_segments.py import --all` to pull page data.")
 
 
-def cmd_update(args) -> None:
+# === import ==================================================================
+
+
+def cmd_import(args: argparse.Namespace) -> None:
+    _require_id_xor_all(args, "import")
     conn = db.connect()
     db.init(conn)
-    ids = db.segment_ids(conn)
-    if not ids:
-        print("No segments tracked yet. Add some:\n"
-              "  uv run update_segments.py add 38206226")
-        return
-    if args.only:
-        keep = set(args.only)
-        ids = [i for i in ids if i in keep]
-        if not ids:
-            print(f"--only matched no tracked segments: {sorted(keep)}")
+    try:
+        targets = _import_targets(conn, args)
+        if not targets:
             return
+        try:
+            boundary = geo.load_boundary()
+        except Exception as e:                                      # noqa: BLE001
+            boundary = None
+            print(f"! Shutesbury boundary unavailable ({e}); treating all as in-town")
 
-    # Captured BEFORE any fetch so the post-run changelog reads every observation
-    # this run wrote (effort_log.observed_at >= run_started_at).
-    run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
-
-    rows = {r["id"]: r for r in conn.execute(
-        "SELECT id, fetched_at, efforts_fetched_at, in_town, activity_type, "
-        "excluded FROM segments")}
-    try:
-        boundary = geo.load_boundary()
-    except Exception as e:                                      # noqa: BLE001
-        boundary = None
-        print(f"! Shutesbury boundary unavailable ({e}); treating all as in-town")
-
-    def now() -> str:
-        return datetime.now(timezone.utc).isoformat(timespec="seconds")
-
-    stopped = False
-    with StravaClient(request_logger=_make_request_logger(conn)) as client:
-        for sid in ids:
-            row = rows[sid]
-            in_town = row["in_town"] == 1
-            is_ride = (row["activity_type"] or "").lower() == "ride"
-
-            # --- Phase 1: segment page (cheap; also embeds the top-25 board) ---
-            seeded_overall = None    # overall efforts taken from the page, if fetched
-            need_page = (args.force or row["fetched_at"] is None
-                         or not _is_fresh(row["fetched_at"], PAGE_FRESH_HOURS))
-            if need_page:
+        imported: list[int] = []
+        with StravaClient(request_logger=_make_request_logger(conn)) as client:
+            for sid in targets:
                 print(f"> page {sid} ...", flush=True)
                 try:
                     seg = client.fetch_segment(sid)
@@ -215,12 +224,12 @@ def cmd_update(args) -> None:
                     print(f"\nAUTH ERROR: {e}")
                     return
                 except RateLimitError as e:
-                    print(f"\nRATE LIMITED (segment page): {e}")
-                    stopped = True
+                    print(f"\nRATE LIMITED: {e}")
                     break
                 except StravaError as e:
-                    print(f"! failed page {sid}: {e}")
+                    print(f"! failed {sid}: {e}")
                     continue
+
                 if boundary is not None:
                     cls = geo.classify_segment(
                         [seg.get("start_lat"), seg.get("start_lng")],
@@ -229,70 +238,172 @@ def cmd_update(args) -> None:
                 else:
                     cls = {"starts_in": True, "ends_in": True,
                            "passes_through": True, "in_town": True}
-                in_town = cls["in_town"]
-                is_ride = (seg["activity_type"] or "").lower() == "ride"
-                seg["in_town"] = 1 if in_town else 0
+                seg["in_town"] = 1 if cls["in_town"] else 0
                 seg["fetched_at"] = now()
                 db.upsert_segment(conn, seg)
                 db.set_geo_class(conn, sid, cls)
-                conn.commit()
-                if in_town and is_ride:
-                    seeded_overall = seg.get("leaders") or []
-                if in_town:
-                    where = "in Shutesbury"
-                elif cls["passes_through"]:
-                    where = "passes through (no start/finish in town)"
-                else:
-                    where = "OUTSIDE Shutesbury"
-                if not is_ride:
+
+                # Seed top-25 from the embedded initialLeaderboard. The "following"
+                # board (Andy/Owen below top 25) is left for `update` — keeping
+                # import strictly one request per segment.
+                seeded = seg.get("leaders") or []
+                if cls["in_town"] and (seg["activity_type"] or "").lower() == "ride":
+                    _store_efforts(conn, sid, seeded, now())
+
+                imported.append(sid)
+                where = ("in Shutesbury" if cls["in_town"]
+                         else ("passes through (no start/finish in town)"
+                               if cls["passes_through"] else "OUTSIDE Shutesbury"))
+                if (seg["activity_type"] or "").lower() != "ride":
                     where += f" ({seg['activity_type']})"
                 print(f"  {seg['name']} ({seg['display_location']}) — {where}")
 
-            # --- Phase 2: leaderboard. Overall comes from the page (free). ---
-            # Never spend leaderboard requests on manually-excluded segments.
-            need_lb = (in_town and is_ride and row["excluded"] != 1) and (
-                args.force or seeded_overall is not None
-                or row["efforts_fetched_at"] is None
-                or not _is_fresh(row["efforts_fetched_at"], LB_FRESH_HOURS))
-            if not need_lb:
-                continue
-            # --pages-only must never hit the leaderboard endpoint: only persist
-            # what the page already gave us (seeded top-25).
-            if args.pages_only and seeded_overall is None:
-                continue
-            try:
-                # Prefer the leaders seeded from the page; otherwise (page wasn't
-                # refetched this run) fall back to the overall leaderboard call.
-                if seeded_overall is not None:
-                    efforts = list(seeded_overall)
-                else:
-                    print(f"> leaderboard {sid} ...", flush=True)
-                    efforts = client.fetch_leaderboard(sid, "overall")
-                # Always refresh the tracked athletes' (Andy/Owen) times, even
-                # below top 25. Skipped in --pages-only (separate request).
-                if not args.pages_only:
-                    efforts = _supplement_following(client, sid, efforts)
-            except AuthError as e:
-                print(f"\nAUTH ERROR: {e}")
-                return
-            except RateLimitError as e:
-                print(f"\nRATE LIMITED (leaderboard): {e}\n"
-                      "Progress saved — rerun later to resume the leaderboards.")
-                stopped = True
-                break
-            except StravaError as e:
-                print(f"! failed leaderboard {sid}: {e}")
-                continue
-            _store_efforts(conn, sid, efforts, now())
-            print(f"  {len(efforts)} efforts"
-                  f"{' (from page)' if seeded_overall is not None else ''}")
+        if imported:
+            _recompute_derived(conn)
+            print(f"\nImported {len(imported)} segment(s). "
+                  "Run `uv run update_segments.py update --all` to refresh leaderboards.")
+    finally:
+        conn.close()
+
+
+def _import_targets(conn, args) -> list[int]:
+    """Resolve the segments `import` should fetch, printing the no-op reason
+    when there's nothing to do."""
+    if args.id is not None:
+        row = conn.execute(
+            "SELECT id, fetched_at FROM segments WHERE id = ?", (args.id,)).fetchone()
+        if row is None:
+            sys.exit(f"segment {args.id} is not tracked — `add` it first.")
+        if row["fetched_at"] and not args.force:
+            print(f"Segment {args.id} already imported "
+                  f"(at {row['fetched_at']}). Use --force to re-import.")
+            return []
+        return [args.id]
+    # --all
+    if args.force:
+        targets = db.segment_ids(conn)
+        if not targets:
+            print("No segments tracked yet. `add` some first.")
+        return targets
+    targets = db.unimported_segment_ids(conn)
+    if not targets:
+        total = len(db.segment_ids(conn))
+        print(f"All {total} tracked segment(s) already imported. "
+              "Use --force to re-import.")
+    return targets
+
+
+def _recompute_derived(conn) -> None:
+    """Sub-segment parents + difficulty across the current segment set. Run
+    after an import that changed pages; both are idempotent and cheap."""
+    seg_rows = conn.execute(
+        "SELECT * FROM segments WHERE fetched_at IS NOT NULL").fetchall()
+    segments = [dict(r) for r in seg_rows]
+
+    # Sub-segment parents: same-direction slice of a longer included segment.
+    # Only considered for included segments (ride + in_town + not excluded).
+    def is_included(s) -> bool:
+        return (s["excluded"] != 1
+                and (s["activity_type"] or "").lower() == "ride"
+                and s["in_town"] == 1)
+    included = [s for s in segments if is_included(s)]
+    sub_inputs = [{
+        "id": s["id"], "length_m": s["distance_m"],
+        "track": json.loads(s.get("streams_json") or "{}").get("location") or [],
+    } for s in included]
+    n_sub = 0
+    for ci in sub_inputs:
+        parent = geo.find_sub_segment_parent(ci, sub_inputs)
+        db.set_parent_segment(conn, ci["id"], parent)
+        n_sub += bool(parent)
+
+    # Difficulty for every page-imported segment.
+    for seg in segments:
+        db.set_difficulty(conn, seg["id"], scoring.segment_difficulty(seg))
     conn.commit()
-    export_data_json(conn)
-    print_changelog(conn, run_started_at)
-    if stopped:
-        print("\nStopped early on a rate limit. Rerun `uv run update_segments.py` "
-              "to continue from where we left off.")
-    conn.close()
+    print(f"  recomputed difficulty for {len(segments)} segment(s); "
+          f"tagged {n_sub} sub-segment(s)")
+
+
+# === update ==================================================================
+
+
+def cmd_update(args: argparse.Namespace) -> None:
+    _require_id_xor_all(args, "update")
+    conn = db.connect()
+    db.init(conn)
+    try:
+        targets = _update_targets(conn, args)
+        if not targets:
+            return
+        # Captured BEFORE any fetch so the changelog reads every observation
+        # this run wrote.
+        run_started_at = now()
+        with StravaClient(request_logger=_make_request_logger(conn)) as client:
+            for sid in targets:
+                print(f"> leaderboard {sid} (depth {args.depth}) ...", flush=True)
+                try:
+                    efforts = client.fetch_leaderboard(sid, "overall",
+                                                       pages=args.depth)
+                    efforts = _supplement_following(client, sid, efforts)
+                except AuthError as e:
+                    print(f"\nAUTH ERROR: {e}")
+                    return
+                except RateLimitError as e:
+                    print(f"\nRATE LIMITED: {e}\n"
+                          "Progress saved — rerun later to resume.")
+                    break
+                except StravaError as e:
+                    print(f"! failed {sid}: {e}")
+                    continue
+                stamp = now()
+                _store_efforts(conn, sid, efforts, stamp)
+                db.set_efforts_fetched_at(conn, sid, stamp)
+                print(f"  {len(efforts)} efforts")
+        print_changelog(conn, run_started_at)
+    finally:
+        conn.close()
+
+
+def _update_targets(conn, args) -> list[int]:
+    """In-town ride, not excluded, page already imported. With --all, stalest
+    efforts_fetched_at first (NULLs first — freshly imported segments still
+    only have page-seeded top-25 without the following supplement)."""
+    if args.id is not None:
+        row = conn.execute(
+            "SELECT id, fetched_at, in_town, activity_type, excluded "
+            "FROM segments WHERE id = ?", (args.id,)).fetchone()
+        if row is None:
+            sys.exit(f"segment {args.id} is not tracked.")
+        if row["fetched_at"] is None:
+            sys.exit(f"segment {args.id} hasn't been imported yet — "
+                     f"run `import {args.id}` first.")
+        if (row["in_town"] != 1 or (row["activity_type"] or "").lower() != "ride"
+                or row["excluded"] == 1):
+            sys.exit(f"segment {args.id} doesn't score "
+                     "(not in-town, not a ride, or excluded) — nothing to update.")
+        return [args.id]
+    rows = conn.execute(
+        "SELECT id FROM segments WHERE fetched_at IS NOT NULL "
+        "AND in_town = 1 AND lower(activity_type) = 'ride' AND excluded = 0 "
+        "ORDER BY efforts_fetched_at IS NULL DESC, efforts_fetched_at ASC").fetchall()
+    targets = [r["id"] for r in rows]
+    if not targets:
+        print("No in-town ride segments to update. "
+              "Have you run `import --all` yet?")
+    return targets
+
+
+# === export ==================================================================
+
+
+def cmd_export(args: argparse.Namespace) -> None:
+    conn = db.connect()
+    db.init(conn)
+    try:
+        export_data_json(conn)
+    finally:
+        conn.close()
 
 
 def _segment_with_efforts(conn, seg_row) -> dict:
@@ -305,44 +416,43 @@ def _segment_with_efforts(conn, seg_row) -> dict:
     return seg
 
 
+def _capped_efforts(efforts: list) -> list:
+    """Ship at most EFFORTS_PER_SEGMENT ranked efforts per segment to keep
+    data.json small, but always keep tracked athletes (Andy/Owen) and the
+    rank-NULL following supplements regardless of rank."""
+    kept, n = [], 0
+    for e in efforts:
+        if (n < EFFORTS_PER_SEGMENT or e["rank"] is None
+                or e["athlete_id"] in TRACKED_ATHLETES):
+            kept.append(e)
+            if e["rank"] is not None:
+                n += 1
+    return kept
+
+
 def export_data_json(conn) -> None:
+    """Serialize the current DB into web/data.json. Pure read — assumes import
+    has already set geo/difficulty/sub-seg. Defensive: any segment with NULL
+    difficulty gets it computed on the fly so a stale DB still exports."""
     seg_rows = conn.execute(
         "SELECT * FROM segments WHERE fetched_at IS NOT NULL").fetchall()
     segments = [_segment_with_efforts(conn, r) for r in seg_rows]
 
-    # Geo-classify: a segment counts only if it STARTS or FINISHES in Shutesbury.
-    # Computed once and persisted to `in_town` so later builds don't refilter.
     try:
         boundary = geo.load_boundary()
-    except Exception as e:                                      # noqa: BLE001
+    except Exception as e:                                          # noqa: BLE001
         boundary = None
-        print(f"! Shutesbury boundary unavailable ({e}); not applying geo filter")
-    if boundary is not None:
-        newly = 0
-        for seg in segments:
-            if seg["starts_in_town"] is None or seg["in_town"] is None:
-                track = json.loads(seg.get("streams_json") or "{}").get("location") or []
-                cls = geo.classify_segment(
-                    [seg["start_lat"], seg["start_lng"]],
-                    [seg["end_lat"], seg["end_lng"]], track, boundary)
-                seg["starts_in_town"] = int(cls["starts_in"])
-                seg["ends_in_town"] = int(cls["ends_in"])
-                seg["passes_through"] = int(cls["passes_through"])
-                seg["in_town"] = int(cls["in_town"])
-                db.set_geo_class(conn, seg["id"], cls)
-                newly += 1
-        conn.commit()
-        if newly:
-            print(f"  classified {newly} segment(s) against the Shutesbury boundary")
+        print(f"! Shutesbury boundary unavailable ({e}); skipping geo in payload")
 
-    # Compute + persist difficulty for every fetched segment (so --list is useful).
+    # Fallback fill for difficulty in case `import` was never run for these
+    # rows (e.g. a hand-edited DB). Cheap; keeps export side-effect-free
+    # otherwise.
     for seg in segments:
-        seg["difficulty"] = scoring.segment_difficulty(seg)
-        db.set_difficulty(conn, seg["id"], seg["difficulty"])
+        if seg["difficulty"] is None:
+            seg["difficulty"] = scoring.segment_difficulty(seg)
+            db.set_difficulty(conn, seg["id"], seg["difficulty"])
     conn.commit()
 
-    # A segment counts toward standings only if it's a Ride that starts or
-    # finishes in Shutesbury and hasn't been manually excluded.
     def is_included(seg) -> bool:
         if seg["excluded"] == 1:
             return False
@@ -355,23 +465,6 @@ def export_data_json(conn) -> None:
         return _downsample(loc, MAP_TRACK_POINTS)
 
     included = [s for s in segments if is_included(s)]
-
-    # Sub-segment tagging (label only — does NOT affect scoring): mark each
-    # included segment that is a contiguous, same-direction slice of a longer
-    # included one. Computed from the full location streams and persisted.
-    sub_inputs = [{
-        "id": s["id"], "length_m": s["distance_m"],
-        "track": json.loads(s.get("streams_json") or "{}").get("location") or [],
-    } for s in included]
-    parent_of = {}
-    for ci in sub_inputs:
-        parent_of[ci["id"]] = geo.find_sub_segment_parent(ci, sub_inputs)
-        db.set_parent_segment(conn, ci["id"], parent_of[ci["id"]])
-    conn.commit()
-    n_sub = sum(1 for v in parent_of.values() if v)
-    if n_sub:
-        print(f"  tagged {n_sub} sub-segment(s) (same-direction slices of a longer segment)")
-
     filtered = []
     for s in segments:
         if is_included(s):
@@ -416,8 +509,8 @@ def export_data_json(conn) -> None:
             "total_efforts": seg["total_efforts"],
             "total_athletes": seg["total_athletes"],
             "difficulty": seg["difficulty"],
-            "parent_segment_id": parent_of.get(seg["id"]),
-            "is_sub_segment": parent_of.get(seg["id"]) is not None,
+            "parent_segment_id": seg["parent_segment_id"],
+            "is_sub_segment": seg["parent_segment_id"] is not None,
             "map_image_url": seg["map_image_url"],
             "start_latlng": [seg["start_lat"], seg["start_lng"]],
             "end_latlng": [seg["end_lat"], seg["end_lng"]],
@@ -441,37 +534,91 @@ def export_data_json(conn) -> None:
     out_segments.sort(key=lambda s: s["difficulty"], reverse=True)
 
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": now(),
         "segments": out_segments,
         "filtered": filtered,
         "boundary": boundary,
     }
     WEB_DIR.mkdir(exist_ok=True)
     DATA_JSON.write_text(json.dumps(payload, indent=2))
-    print(f"\nWrote {DATA_JSON} — {len(out_segments)} in-Shutesbury ride "
+    print(f"Wrote {DATA_JSON} — {len(out_segments)} in-Shutesbury ride "
           f"segments, {len(filtered)} filtered out.")
 
 
-def print_changelog(conn, since: str) -> None:
-    """Print a per-run changelog of effort changes since `since` (ISO UTC).
+# === list ====================================================================
 
-    Sourced from `effort_log`: every effort first logged with observed_at >=
-    `since` is a change to surface. For each affected segment we
-    reconstruct the prior state (each athlete's latest observation strictly
-    before `since`), derive prior vs current ranks, score both, and report:
+
+def cmd_list(args: argparse.Namespace) -> None:
+    conn = db.connect()
+    db.init(conn)
+    try:
+        rows = conn.execute(
+            "SELECT id, name, discipline, terrain, difficulty, fetched_at, "
+            "efforts_fetched_at FROM segments "
+            "ORDER BY difficulty DESC NULLS LAST, id").fetchall()
+        if not rows:
+            print("No segments tracked yet.")
+            return
+        for r in rows:
+            page = r["fetched_at"][:10] if r["fetched_at"] else "—"
+            lb = r["efforts_fetched_at"][:10] if r["efforts_fetched_at"] else "—"
+            print(f"{r['id']:>12}  {r['name'] or '(unimported)':30} "
+                  f"{r['discipline'] or '?':6} {r['terrain'] or '':8} "
+                  f"diff={r['difficulty'] or '-':>6}  "
+                  f"page={page}  lb={lb}")
+    finally:
+        conn.close()
+
+
+# === log =====================================================================
+
+
+def cmd_log(args: argparse.Namespace) -> None:
+    conn = db.connect()
+    db.init(conn)
+    try:
+        since = _resolve_log_since(conn, args.since)
+        print_changelog(conn, since, args.until)
+    finally:
+        conn.close()
+
+
+def _resolve_log_since(conn, raw: str | None) -> str:
+    """Default: a minute before the most recent observation, so `log` with no
+    args shows the last run's changes."""
+    if raw:
+        return raw
+    row = conn.execute(
+        "SELECT MAX(observed_at) AS m FROM effort_log").fetchone()
+    if row and row["m"]:
+        return (_parse_ts(row["m"]) - timedelta(minutes=1)).isoformat()
+    return (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+
+
+def print_changelog(conn, since: str, until: str | None = None) -> None:
+    """Print a changelog of effort changes whose observed_at falls in (since, until].
+
+    Sourced from `effort_log`: every effort first logged within the window is a
+    change to surface. For each affected segment we reconstruct the prior state
+    (each athlete's latest observation strictly before `since`), derive prior vs
+    current ranks, score both, and report:
 
       - PR  — a faster time from someone we already knew
       - NEW — first observation we have of this athlete on this segment
-      - —   — "bumped": no new time, but their rank shifted because someone
+      - ↕   — "bumped": no new time, but their rank shifted because someone
               else's new effort restructured the board
 
     Two views: by segment (what happened where) and by athlete (the King-points
-    ledger). The athlete totals are net change in King points across this run."""
+    ledger). The athlete totals are net change in King points across the window."""
+    upper_clause = "AND observed_at <= ?" if until else ""
+    upper_args: tuple = (until,) if until else ()
     affected = [r[0] for r in conn.execute(
-        "SELECT DISTINCT segment_id FROM effort_log "
-        "WHERE observed_at >= ?", (since,)).fetchall()]
+        f"SELECT DISTINCT segment_id FROM effort_log "
+        f"WHERE observed_at >= ? {upper_clause}",
+        (since, *upper_args)).fetchall()]
+    range_str = f"since {since}" + (f" until {until}" if until else "")
     if not affected:
-        print("\nNo effort changes this run — nothing to changelog.")
+        print(f"\nNo effort changes {range_str} — nothing to changelog.")
         return
 
     in_clause = ",".join("?" * len(affected))
@@ -527,9 +674,20 @@ def print_changelog(conn, since: str) -> None:
             "  ON j.athlete_id = eo.athlete_id AND j.mid = eo.id",
             (sid, since)).fetchall()
         prior = {r["athlete_id"]: r["elapsed_time"] for r in prior_rows}
-        current = {r["athlete_id"]: r["elapsed_time"] for r in conn.execute(
-            "SELECT athlete_id, elapsed_time FROM efforts WHERE segment_id = ?",
-            (sid,)).fetchall()}
+        # "Current" = best-known state at the end of the window. When `until` is
+        # None this is just the materialized `efforts` view; otherwise we
+        # recompute the best time per athlete bounded by `until`.
+        if until is None:
+            cur_rows = conn.execute(
+                "SELECT athlete_id, elapsed_time FROM efforts WHERE segment_id = ?",
+                (sid,)).fetchall()
+        else:
+            cur_rows = conn.execute(
+                "SELECT athlete_id, MIN(elapsed_time) AS elapsed_time "
+                "FROM effort_log WHERE segment_id = ? AND observed_at <= ? "
+                "GROUP BY athlete_id",
+                (sid, until)).fetchall()
+        current = {r["athlete_id"]: r["elapsed_time"] for r in cur_rows}
 
         is_new = not prior
         if is_new and scores:
@@ -544,13 +702,6 @@ def print_changelog(conn, since: str) -> None:
             old_r, new_r = prior_ranks.get(aid), cur_ranks.get(aid)
             old_p = points_of(seg, old_r) if scores else 0
             new_p = points_of(seg, new_r) if scores else 0
-            # New: first observation we have of this athlete on this segment.
-            # PR : we knew them and the new time is faster.
-            # Bump: rank shifted because someone ELSE PR'd, AND the points moved.
-            # (Pure rank shifts that don't change points are deliberately dropped
-            #  from the per-segment view — they fall out in the athlete summary
-            #  only if they actually cost someone points, which by definition
-            #  they don't here.)
             if old_t is None and new_t is not None:
                 kind = "new"
             elif (old_t is not None and new_t is not None and new_t < old_t):
@@ -569,9 +720,9 @@ def print_changelog(conn, since: str) -> None:
         if changes:
             by_segment.append((seg, is_new, scores, changes))
 
-    print(f"\n=== CHANGELOG (since {since}) ===")
+    print(f"\n=== CHANGELOG ({range_str}) ===")
     if new_segments:
-        print(f"\n{len(new_segments)} new segment(s) tracked this run:")
+        print(f"\n{len(new_segments)} new segment(s) tracked this window:")
         for s in new_segments:
             print(f"  + {s['name']}  (id {s['id']})")
 
@@ -592,15 +743,12 @@ def print_changelog(conn, since: str) -> None:
                   f"rank {str(c['old_r'] or '-'):>3} → {str(c['new_r'] or '-'):<3}"
                   f"{pts_str}")
 
-    # By-athlete: only athletes whose King points actually changed. The format
-    # follows Andy's framing — "X lost/gained N points: lost Y places on Z".
     def describe(c) -> str:
         if c["kind"] == "new":
             return f"NEW effort on {c['name']} at rank {c['new_r']}"
         if c["kind"] == "pr":
             return (f"PR on {c['name']}: {fmt_t(c['old_t'])} → "
                     f"{fmt_t(c['new_t'])}, rank {c['old_r']} → {c['new_r']}")
-        # bump: someone else PR'd; this athlete shifted in rank
         places = (c["old_r"] or 0) - (c["new_r"] or 0)
         if places > 0:
             verb = f"gained {places} place{'s' if places != 1 else ''}"
@@ -627,183 +775,53 @@ def print_changelog(conn, since: str) -> None:
     print()
 
 
-def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
-    """Upsert the fetched athletes and union their leaderboard into the store
-    (keeping anyone bumped past the fetched depth). `when` is the observation
-    time — the rewind key for effort_log."""
-    for eff in efforts:
-        if eff["athlete_id"] is None:
-            continue
-        db.upsert_athlete(conn, {
-            "id": eff["athlete_id"], "name": eff["athlete_name"],
-            "avatar_url": eff["avatar_url"], "badge": eff["badge"]})
-    db.record_efforts(conn, sid,
-                      [e for e in efforts if e["athlete_id"] is not None], when)
-    db.set_efforts_fetched_at(conn, sid, when)
-    conn.commit()
-
-
-def cmd_deepen(args) -> None:
-    """Pull deeper overall leaderboards (args.lb_pages * 25 athletes) for a
-    bounded set of in-town segments. Hits the rate-limited endpoint, so it's
-    targeted on purpose; stops + saves on the first 429."""
-    conn = db.connect()
-    db.init(conn)
-    strava.MAX_LEADERBOARD_PAGES = args.lb_pages
-    run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
-
-    rows = conn.execute(
-        "SELECT id, name FROM segments WHERE in_town = 1 "
-        "AND lower(activity_type) = 'ride' AND fetched_at IS NOT NULL "
-        "ORDER BY difficulty DESC NULLS LAST").fetchall()
-    targets = [r["id"] for r in rows]
-    if args.only:
-        keep = set(args.only)
-        targets = [i for i in targets if i in keep]
-    elif args.top:
-        targets = targets[:args.top]
-    if not targets:
-        print("No matching in-town ride segments to deepen.")
-        return
-
-    per = args.lb_pages + (1 if TRACKED_ATHLETES else 0)
-    print(f"Deepening {len(targets)} segment(s) to top {args.lb_pages * 25} "
-          f"(~{len(targets) * per} leaderboard requests). Stops + saves on any 429.\n")
-    names = {r["id"]: r["name"] for r in rows}
-    stopped = False
-    with StravaClient(request_logger=_make_request_logger(conn)) as client:
-        for sid in targets:
-            print(f"> {sid} {names.get(sid, '')} ...", flush=True)
-            try:
-                efforts = client.fetch_leaderboard(sid, "overall")
-                efforts = _supplement_following(client, sid, efforts)
-            except AuthError as e:
-                print(f"\nAUTH ERROR: {e}")
-                return
-            except RateLimitError as e:
-                print(f"\nRATE LIMITED: {e}")
-                stopped = True
-                break
-            except StravaError as e:
-                print(f"! failed {sid}: {e}")
-                continue
-            _store_efforts(conn, sid, efforts,
-                           datetime.now(timezone.utc).isoformat(timespec="seconds"))
-            print(f"  {len(efforts)} efforts")
-    export_data_json(conn)
-    print_changelog(conn, run_started_at)
-    if stopped:
-        print("\nStopped on a rate limit — progress saved. The deepened segments "
-              "are stored; rerun with --only on the remaining ones later.")
-    conn.close()
-
-
-def cmd_list(args) -> None:
-    conn = db.connect()
-    db.init(conn)
-    rows = conn.execute(
-        "SELECT id, name, terrain, difficulty, fetched_at FROM segments "
-        "ORDER BY difficulty DESC NULLS LAST, id").fetchall()
-    if not rows:
-        print("No segments tracked yet.")
-        return
-    for r in rows:
-        print(f"{r['id']:>12}  {r['name'] or '(unfetched)':30} "
-              f"{r['terrain'] or '':8} diff={r['difficulty'] or '-':>6}  "
-              f"{'fetched ' + r['fetched_at'] if r['fetched_at'] else 'never fetched'}")
-    conn.close()
-
-
-def _parse_ts(ts: str):
-    d = datetime.fromisoformat(ts)
-    return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
-
-
-def cmd_log(args) -> None:
-    """Summarize the API request log to characterize the rate limit."""
-    from collections import Counter
-    conn = db.connect()
-    db.init(conn)
-    rows = conn.execute("SELECT * FROM api_log ORDER BY id").fetchall()
-    if not rows:
-        print("No API requests logged yet — run a fetch first.")
-        return
-    now = datetime.now(timezone.utc)
-    by_status = Counter(r["status"] for r in rows)
-    by_endpoint = Counter(r["endpoint"] for r in rows)
-    last24 = [r for r in rows if now - _parse_ts(r["ts"]) < timedelta(hours=24)]
-    n429_24 = sum(1 for r in last24 if r["status"] == 429)
-
-    print(f"{len(rows)} requests logged")
-    print(f"  span:        {rows[0]['ts']}  ->  {rows[-1]['ts']}")
-    print(f"  by status:   {dict(sorted(by_status.items()))}")
-    print(f"  by endpoint: {dict(by_endpoint)}")
-    print(f"  last 24h:    {len(last24)} requests, {n429_24} of them 429")
-
-    # The headline number: how many requests went through before the first 429.
-    first_429 = next((i for i, r in enumerate(rows) if r["status"] == 429), None)
-    if first_429 is not None:
-        ok_before = [r for r in rows[:first_429] if r["status"] != 429]
-        if ok_before:
-            span = (_parse_ts(rows[first_429]["ts"])
-                    - _parse_ts(ok_before[0]["ts"])).total_seconds()
-            print(f"\n  >> first 429 came after {len(ok_before)} OK requests "
-                  f"over {span/60:.1f} min")
-            print(f"     (first 429 at {rows[first_429]['ts']})")
-    else:
-        print("\n  no 429s yet 🎉")
-
-    print("\nrecent:")
-    for r in rows[-args.limit:]:
-        flag = "  <-- 429" if r["status"] == 429 else ""
-        print(f"  {r['ts']}  {r['status']}  {r['endpoint'] or '':>20}  "
-              f"seg={r['segment_id'] or '-'}  {r['elapsed_ms']}ms{flag}")
-    conn.close()
+# === entry ===================================================================
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--force", action="store_true",
-                        help="refetch even recently-updated segments")
-    parser.add_argument("--pages-only", action="store_true",
-                        help="fetch + classify segment pages, skip leaderboards "
-                             "(the rate-limited endpoint) for later")
-    parser.add_argument("--export", action="store_true",
-                        help="rebuild web/data.json from the DB (no network)")
-    parser.add_argument("--list", action="store_true",
-                        help="list tracked segments and exit")
-    parser.add_argument("--log", action="store_true",
-                        help="summarize the API request log (rate-limit analysis)")
-    parser.add_argument("--limit", type=int, default=25,
-                        help="rows to show with --log (default 25)")
-    parser.add_argument("--lb-pages", type=int, metavar="N",
-                        help="deepen overall leaderboards to N pages (N*25 athletes) "
-                             "for in-town segments; targeted + stops on 429")
-    parser.add_argument("--top", type=int, metavar="K",
-                        help="with --lb-pages: only the K most important segments")
-    parser.add_argument("--only", type=int, nargs="+", metavar="ID",
-                        help="limit the run to these segment id(s); works with "
-                             "both the main update and --lb-pages")
-    sub = parser.add_subparsers(dest="command")
-    p_add = sub.add_parser("add", help="track new segment id(s) or URL(s)")
-    p_add.add_argument("refs", nargs="+")
-    args = parser.parse_args()
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub = parser.add_subparsers(dest="command", required=True)
 
-    if args.command == "add":
-        cmd_add(args)
-    elif args.lb_pages:
-        cmd_deepen(args)
-    elif args.export:
-        conn = db.connect()
-        db.init(conn)
-        export_data_json(conn)
-        conn.close()
-    elif args.log:
-        cmd_log(args)
-    elif args.list:
-        cmd_list(args)
-    else:
-        cmd_update(args)
+    p_add = sub.add_parser("add", help="register (id, discipline) pairs")
+    p_add.add_argument("pairs", nargs="+", metavar="id|url discipline",
+                       help="alternating id-or-URL and "
+                            f"discipline ({'/'.join(VALID_DISCIPLINES)})")
+    p_add.set_defaults(func=cmd_add)
+
+    p_imp = sub.add_parser("import", help="pull the segment page (geo + seed efforts)")
+    p_imp.add_argument("id", nargs="?", type=int, help="a single segment id")
+    p_imp.add_argument("--all", dest="all_", action="store_true",
+                       help="import every unimported segment (no-op if none)")
+    p_imp.add_argument("--force", action="store_true",
+                       help="re-import even if already imported")
+    p_imp.set_defaults(func=cmd_import)
+
+    p_upd = sub.add_parser("update", help="refresh efforts from the leaderboard")
+    p_upd.add_argument("id", nargs="?", type=int, help="a single segment id")
+    p_upd.add_argument("--all", dest="all_", action="store_true",
+                       help="refresh every in-town ride, stalest first")
+    p_upd.add_argument("--depth", type=int, default=1, metavar="N",
+                       help="pages of 25 to pull (default 1 = top 25)")
+    p_upd.set_defaults(func=cmd_update)
+
+    p_exp = sub.add_parser("export", help="rebuild web/data.json from the DB")
+    p_exp.set_defaults(func=cmd_export)
+
+    p_list = sub.add_parser("list", help="list every tracked segment")
+    p_list.set_defaults(func=cmd_list)
+
+    p_log = sub.add_parser("log", help="effort changelog over a date range")
+    p_log.add_argument("--since", metavar="DATE",
+                       help="ISO date or datetime (default: last run)")
+    p_log.add_argument("--until", metavar="DATE",
+                       help="ISO date or datetime (default: now)")
+    p_log.set_defaults(func=cmd_log)
+
+    args = parser.parse_args()
+    args.func(args)
 
 
 if __name__ == "__main__":

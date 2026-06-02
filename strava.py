@@ -29,7 +29,6 @@ USER_AGENT = (
 # Politeness knobs.
 MIN_INTERVAL = 4.0          # minimum seconds between requests
 JITTER = (1.0, 2.5)         # extra random seconds added to each gap
-MAX_LEADERBOARD_PAGES = 1   # 25 athletes/page; top-10 (all that scores) fits easily
 # Strava's www endpoints sit behind CloudFront and return a header-less 429
 # (no Retry-After, no X-RateLimit). Re-poking just keeps the rolling window hot,
 # so we STOP the whole run on the first 429 and resume after a real cooldown.
@@ -235,11 +234,13 @@ class StravaClient:
     # -- leaderboard ----------------------------------------------------------
 
     def fetch_leaderboard(self, segment_id: int,
-                          filter_type: str = "overall") -> list[dict]:
-        """Full overall leaderboard as effort dicts (one per athlete)."""
+                          filter_type: str = "overall",
+                          pages: int = 1) -> list[dict]:
+        """Full overall leaderboard as effort dicts (one per athlete). `pages`
+        controls depth: 1 = top 25, 2 = top 50, etc. (25 per page)."""
         efforts: list[dict] = []
         total = None
-        for page in range(1, MAX_LEADERBOARD_PAGES + 1):
+        for page in range(1, pages + 1):
             resp = self._get(
                 f"/frontend/segments/{segment_id}/leaderboard",
                 params={"filter_type": filter_type, "gender": "overall",

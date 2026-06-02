@@ -1,7 +1,7 @@
-"""Is a segment in Shutesbury? Start OR finish must fall inside the town.
+"""Is a segment in town? Start OR finish must fall inside the town.
 
 Uses the OSM/Nominatim town boundary polygon (fetched once and cached to
-shutesbury_boundary.json, which is committed) and a ray-casting point-in-polygon
+boundary.json, which is committed) and a ray-casting point-in-polygon
 test. GeoJSON coordinates are [lon, lat].
 """
 
@@ -13,7 +13,7 @@ from pathlib import Path
 
 import httpx
 
-BOUNDARY_PATH = Path(__file__).resolve().parent / "shutesbury_boundary.json"
+BOUNDARY_PATH = Path(__file__).resolve().parent / "boundary.json"
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
 QUERY = "Shutesbury, Franklin County, Massachusetts, USA"
 
@@ -22,13 +22,13 @@ def fetch_boundary() -> dict:
     resp = httpx.get(
         NOMINATIM,
         params={"q": QUERY, "format": "json", "polygon_geojson": 1, "limit": 1},
-        headers={"User-Agent": "kings-of-shutesbury/0.1 (personal project)"},
+        headers={"User-Agent": "kings-of-strava/0.1 (personal project)"},
         timeout=30.0,
     )
     resp.raise_for_status()
     data = resp.json()
     if not data or "geojson" not in data[0]:
-        raise RuntimeError("Could not fetch a Shutesbury boundary polygon")
+        raise RuntimeError("Could not fetch boundary polygon")
     payload = {"display_name": data[0]["display_name"], "geojson": data[0]["geojson"]}
     BOUNDARY_PATH.write_text(json.dumps(payload))
     return data[0]["geojson"]
@@ -60,7 +60,7 @@ def _in_polygon(x: float, y: float, polygon: list) -> bool:
     return not any(_in_ring(x, y, hole) for hole in polygon[1:])
 
 
-def point_in_shutesbury(lat: float, lng: float, geo: dict | None = None) -> bool:
+def point_in_town(lat: float, lng: float, geo: dict | None = None) -> bool:
     geo = geo or load_boundary()
     x, y = lng, lat
     if geo["type"] == "Polygon":
@@ -71,7 +71,7 @@ def point_in_shutesbury(lat: float, lng: float, geo: dict | None = None) -> bool
 
 
 def classify_segment(start_latlng, end_latlng, track, geo: dict | None = None) -> dict:
-    """Classify a segment's relationship to Shutesbury from its endpoints and
+    """Classify a segment's relationship to the town from its endpoints and
     full track (a list of [lat, lng] points). Returns starts_in / ends_in /
     passes_through, plus in_town = starts_in OR ends_in (the inclusion
     rule). A segment that only crosses town without starting or finishing there
@@ -80,20 +80,20 @@ def classify_segment(start_latlng, end_latlng, track, geo: dict | None = None) -
 
     def pin(p) -> bool:
         return (p is not None and p[0] is not None and p[1] is not None
-                and point_in_shutesbury(p[0], p[1], geo))
+                and point_in_town(p[0], p[1], geo))
 
     starts = pin(start_latlng)
     ends = pin(end_latlng)
     passes = starts or ends or any(
         pt and pt[0] is not None and pt[1] is not None
-        and point_in_shutesbury(pt[0], pt[1], geo) for pt in (track or []))
+        and point_in_town(pt[0], pt[1], geo) for pt in (track or []))
     return {"starts_in": starts, "ends_in": ends,
             "passes_through": passes, "in_town": starts or ends}
 
 
 # --- sub-segment detection ----------------------------------------------------
 # A "sub-segment" is a shorter segment that is a contiguous, SAME-DIRECTION slice
-# of a longer one (e.g. "Cancer" is the middle of "Lake Wyola to Shutesbury").
+# of a longer one (e.g., in Shutesbury, "Cancer" is the middle of "Lake Wyola to Shutesbury").
 # Direction matters: a segment running the OPPOSITE way along the same road (a
 # climb vs its descent) is a distinct effort, not a nested slice.
 

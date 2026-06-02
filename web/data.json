@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T22:49:54+00:00",
+  "generated_at": "2026-06-02T04:25:27+00:00",
   "segments": [
     {
       "id": 1151557,
@@ -21048,7 +21048,7 @@
       "name": "M+M Powerlines Climb",
       "location": "Shutesbury, Massachusetts",
       "activity_type": "Ride",
-      "discipline": null,
+      "discipline": "mtb",
       "category": "Cat 2",
       "terrain": "climb",
       "distance_m": 1937.300048828125,
@@ -52198,7 +52198,7 @@
       "name": "Carver Westbound",
       "location": "Shutesbury, Massachusetts",
       "activity_type": "Ride",
-      "discipline": null,
+      "discipline": "gravel",
       "category": "Cat 3",
       "terrain": "flat",
       "distance_m": 1714.0,
@@ -67534,7 +67534,7 @@
       "name": "Arachnophobia- southbound",
       "location": "Shutesbury, Massachusetts",
       "activity_type": "Ride",
-      "discipline": null,
+      "discipline": "mtb",
       "category": "Cat 4",
       "terrain": "descent",
       "distance_m": 920.0,

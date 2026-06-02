@@ -12,6 +12,9 @@ __pycache__/
 # Working scratch (HAR extractions, live test dumps)
 .work/
 
+# Claude Code harness state (scheduled-task lock, local settings)
+.claude/
+
 # Local browser captures — huge (~250MB, one file >GitHub's 100MB limit) and
 # contain captured page/session context. Keep local only.
 page-captures/
