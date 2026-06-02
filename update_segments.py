@@ -181,7 +181,7 @@ def cmd_update(args) -> None:
             return
 
     # Captured BEFORE any fetch so the post-run changelog reads every observation
-    # this run wrote (effort_observations.observed_at >= run_started_at).
+    # this run wrote (effort_log.observed_at >= run_started_at).
     run_started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     rows = {r["id"]: r for r in conn.execute(
@@ -455,8 +455,8 @@ def export_data_json(conn) -> None:
 def print_changelog(conn, since: str) -> None:
     """Print a per-run changelog of effort changes since `since` (ISO UTC).
 
-    Sourced from `effort_observations`: every PR-or-new observation logged with
-    observed_at >= `since` is a change to surface. For each affected segment we
+    Sourced from `effort_log`: every effort first logged with observed_at >=
+    `since` is a change to surface. For each affected segment we
     reconstruct the prior state (each athlete's latest observation strictly
     before `since`), derive prior vs current ranks, score both, and report:
 
@@ -468,7 +468,7 @@ def print_changelog(conn, since: str) -> None:
     Two views: by segment (what happened where) and by athlete (the King-points
     ledger). The athlete totals are net change in King points across this run."""
     affected = [r[0] for r in conn.execute(
-        "SELECT DISTINCT segment_id FROM effort_observations "
+        "SELECT DISTINCT segment_id FROM effort_log "
         "WHERE observed_at >= ?", (since,)).fetchall()]
     if not affected:
         print("\nNo effort changes this run — nothing to changelog.")
@@ -521,8 +521,8 @@ def print_changelog(conn, since: str) -> None:
                   and seg["excluded"] != 1)
 
         prior_rows = conn.execute(
-            "SELECT eo.athlete_id, eo.elapsed_time FROM effort_observations eo "
-            "JOIN (SELECT athlete_id, MAX(id) AS mid FROM effort_observations "
+            "SELECT eo.athlete_id, eo.elapsed_time FROM effort_log eo "
+            "JOIN (SELECT athlete_id, MAX(id) AS mid FROM effort_log "
             "      WHERE segment_id = ? AND observed_at < ? GROUP BY athlete_id) j "
             "  ON j.athlete_id = eo.athlete_id AND j.mid = eo.id",
             (sid, since)).fetchall()
@@ -630,7 +630,7 @@ def print_changelog(conn, since: str) -> None:
 def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
     """Upsert the fetched athletes and union their leaderboard into the store
     (keeping anyone bumped past the fetched depth). `when` is the observation
-    time — the rewind key for effort_observations."""
+    time — the rewind key for effort_log."""
     for eff in efforts:
         if eff["athlete_id"] is None:
             continue

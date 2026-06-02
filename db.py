@@ -70,45 +70,66 @@ CREATE TABLE IF NOT EXISTS api_log (
 );
 CREATE INDEX IF NOT EXISTS idx_api_log_ts ON api_log(ts);
 
--- Canonical best-known effort per (segment, athlete). Rows are never deleted on
--- sync (union, not replace), so an athlete bumped out of the latest top-N keeps
--- their time. `rank` is DERIVED — recomputed from elapsed_time over the union by
--- _rerank_segment(), not the rank Strava happened to show.
-CREATE TABLE IF NOT EXISTS efforts (
-    segment_id          INTEGER NOT NULL,
-    athlete_id          INTEGER NOT NULL,
-    rank                INTEGER,                     -- derived: 1 = fastest known time
-    elapsed_time        INTEGER,                     -- seconds (the athlete's best known)
-    avg_speed           REAL,
-    avg_watts           REAL,
-    avg_hr              REAL,
-    effort_id           TEXT,
-    activity_id         TEXT,
-    start_date_local    TEXT,                        -- when the PR ride happened (Strava)
-    first_seen          TEXT,                        -- when WE first observed this athlete here
-    last_seen           TEXT,                        -- when WE last saw them in a fetch
-    PRIMARY KEY (segment_id, athlete_id),
-    FOREIGN KEY (segment_id) REFERENCES segments(id),
-    FOREIGN KEY (athlete_id) REFERENCES athletes(id)
-);
-
--- Append-only log of each athlete's PR progression on a segment, for time-rewind:
--- a row is added whenever an athlete is newly seen or their time changes. Rewind
--- "as of date D" = each athlete's latest observation with observed_at <= D.
-CREATE TABLE IF NOT EXISTS effort_observations (
+-- Single source of truth for efforts: an append-only log with ONE row per
+-- distinct observed effort, identified by (segment, athlete, effort_id). A
+-- leaderboard shows each athlete's PR effort; when they PR again the effort_id
+-- changes, so a new row is logged. `observed_at` is when WE first saw that
+-- effort (the rewind key). We never delete and never mutate the identity, so an
+-- athlete bumped past the fetched depth — or whose PR is superseded — keeps
+-- their history. The canonical "best per athlete" + derived rank are NOT stored;
+-- they're computed on demand by the `efforts` view below.
+CREATE TABLE IF NOT EXISTS effort_log (
     id                  INTEGER PRIMARY KEY AUTOINCREMENT,
     segment_id          INTEGER NOT NULL,
     athlete_id          INTEGER NOT NULL,
-    elapsed_time        INTEGER,                     -- the PR time as observed
-    effort_id           TEXT,
+    elapsed_time        INTEGER,                     -- seconds, as observed
+    avg_speed           REAL,
+    avg_watts           REAL,
+    avg_hr              REAL,
+    effort_id           TEXT,                        -- the attempt's unique id (dedup key)
     activity_id         TEXT,
-    start_date_local    TEXT,                        -- when the PR ride happened (Strava)
-    observed_at         TEXT NOT NULL,               -- when WE fetched it (the rewind key)
+    start_date_local    TEXT,                        -- when the ride happened (Strava)
+    observed_at         TEXT NOT NULL,               -- when WE first logged it (rewind key)
+    UNIQUE (segment_id, athlete_id, effort_id),
     FOREIGN KEY (segment_id) REFERENCES segments(id),
     FOREIGN KEY (athlete_id) REFERENCES athletes(id)
 );
-CREATE INDEX IF NOT EXISTS idx_effort_obs_seg ON effort_observations(segment_id, observed_at);
-CREATE INDEX IF NOT EXISTS idx_effort_obs_athlete ON effort_observations(segment_id, athlete_id);
+CREATE INDEX IF NOT EXISTS idx_effort_log_seg ON effort_log(segment_id, observed_at);
+CREATE INDEX IF NOT EXISTS idx_effort_log_athlete ON effort_log(segment_id, athlete_id);
+
+-- Canonical best-known effort per (segment, athlete), derived from the log: each
+-- athlete's fastest logged time, with `rank` (1 = fastest) derived over the whole
+-- segment so a newly-seen faster rider pushes everyone down automatically.
+-- `first_seen`/`last_seen` are the min/max observed_at across that athlete's
+-- logged efforts. This view replaces the old physical `efforts` table; reads are
+-- unchanged (`SELECT ... FROM efforts`).
+CREATE VIEW IF NOT EXISTS efforts AS
+WITH best AS (
+    SELECT segment_id, athlete_id, elapsed_time, avg_speed, avg_watts, avg_hr,
+           effort_id, activity_id, start_date_local,
+           ROW_NUMBER() OVER (
+               PARTITION BY segment_id, athlete_id
+               ORDER BY (elapsed_time IS NULL), elapsed_time ASC,
+                        start_date_local ASC, id ASC) AS _rn
+    FROM effort_log
+),
+seen AS (
+    SELECT segment_id, athlete_id,
+           MIN(observed_at) AS first_seen,
+           MAX(observed_at) AS last_seen
+    FROM effort_log GROUP BY segment_id, athlete_id
+)
+SELECT
+    b.segment_id, b.athlete_id,
+    CASE WHEN b.elapsed_time IS NULL THEN NULL ELSE ROW_NUMBER() OVER (
+        PARTITION BY b.segment_id, (b.elapsed_time IS NULL)
+        ORDER BY b.elapsed_time ASC, b.start_date_local ASC) END AS rank,
+    b.elapsed_time, b.avg_speed, b.avg_watts, b.avg_hr,
+    b.effort_id, b.activity_id, b.start_date_local,
+    s.first_seen, s.last_seen
+FROM best b
+JOIN seen s ON s.segment_id = b.segment_id AND s.athlete_id = b.athlete_id
+WHERE b._rn = 1;
 """
 
 
@@ -196,69 +217,33 @@ def upsert_athlete(conn: sqlite3.Connection, athlete: dict) -> None:
     )
 
 
-def _rerank_segment(conn: sqlite3.Connection, segment_id: int) -> None:
-    """Recompute the derived rank (1 = fastest) for a segment from elapsed_time
-    over ALL known efforts. Because it ranks the full union, a newly-seen faster
-    rider pushes everyone else down automatically — no manual re-numbering."""
-    rows = conn.execute(
-        "SELECT athlete_id FROM efforts WHERE segment_id = ? AND elapsed_time IS NOT NULL "
-        "ORDER BY elapsed_time ASC, start_date_local ASC", (segment_id,)).fetchall()
-    for i, r in enumerate(rows, 1):
-        conn.execute("UPDATE efforts SET rank = ? WHERE segment_id = ? AND athlete_id = ?",
-                     (i, segment_id, r["athlete_id"]))
-    conn.execute("UPDATE efforts SET rank = NULL "
-                 "WHERE segment_id = ? AND elapsed_time IS NULL", (segment_id,))
-
-
 def record_efforts(conn: sqlite3.Connection, segment_id: int,
                    efforts: list[dict], observed_at: str) -> None:
-    """Union a freshly-fetched leaderboard into the store without losing anyone.
+    """Log a freshly-fetched leaderboard into effort_log.
 
-    For each effort (a dict with athlete_id, elapsed_time, and the usual
-    metadata) we:
-      - append to effort_observations when the athlete is new or their time
-        changed (the append-only PR-progression log, keyed by observed_at);
-      - upsert the canonical best-known effort, keeping the faster time and
-        bumping last_seen;
-      - never delete — an athlete missing from this fetch keeps their row;
-    then re-derive rank over the whole union. Replaces the old delete-then-insert
-    so a rider bumped past the fetched depth isn't dropped, just out-ranked."""
+    One row per distinct observed effort, identified by (segment, athlete,
+    effort_id). Already-seen efforts are ignored (their original observed_at —
+    the rewind key — is preserved); only their mutable metrics are refreshed.
+    Because the log is append-only and never replaced, an athlete missing from
+    this fetch (bumped past the fetched depth) simply keeps their logged rows.
+    The canonical best-per-athlete and rank are derived by the `efforts` view, so
+    there's nothing to re-rank here."""
     for e in efforts:
         aid = e.get("athlete_id")
         if aid is None:
             continue
-        et = e.get("elapsed_time")
-        prev = conn.execute(
-            "SELECT elapsed_time FROM efforts WHERE segment_id = ? AND athlete_id = ?",
-            (segment_id, aid)).fetchone()
-        if prev is None or prev["elapsed_time"] != et:
-            conn.execute(
-                "INSERT INTO effort_observations (segment_id, athlete_id, elapsed_time, "
-                "effort_id, activity_id, start_date_local, observed_at) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (segment_id, aid, et, e.get("effort_id"), e.get("activity_id"),
-                 e.get("start_date_local"), observed_at))
-        if prev is None:
-            conn.execute(
-                "INSERT INTO efforts (segment_id, athlete_id, elapsed_time, avg_speed, "
-                "avg_watts, avg_hr, effort_id, activity_id, start_date_local, "
-                "first_seen, last_seen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (segment_id, aid, et, e.get("avg_speed"), e.get("avg_watts"),
-                 e.get("avg_hr"), e.get("effort_id"), e.get("activity_id"),
-                 e.get("start_date_local"), observed_at, observed_at))
-        elif et is not None and (prev["elapsed_time"] is None or et < prev["elapsed_time"]):
-            conn.execute(
-                "UPDATE efforts SET elapsed_time = ?, avg_speed = ?, avg_watts = ?, "
-                "avg_hr = ?, effort_id = ?, activity_id = ?, start_date_local = ?, "
-                "last_seen = ? WHERE segment_id = ? AND athlete_id = ?",
-                (et, e.get("avg_speed"), e.get("avg_watts"), e.get("avg_hr"),
-                 e.get("effort_id"), e.get("activity_id"), e.get("start_date_local"),
-                 observed_at, segment_id, aid))
-        else:
-            conn.execute(
-                "UPDATE efforts SET last_seen = ? WHERE segment_id = ? AND athlete_id = ?",
-                (observed_at, segment_id, aid))
-    _rerank_segment(conn, segment_id)
+        conn.execute(
+            "INSERT INTO effort_log (segment_id, athlete_id, elapsed_time, avg_speed, "
+            "avg_watts, avg_hr, effort_id, activity_id, start_date_local, observed_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+            "ON CONFLICT(segment_id, athlete_id, effort_id) DO UPDATE SET "
+            "elapsed_time = excluded.elapsed_time, avg_speed = excluded.avg_speed, "
+            "avg_watts = excluded.avg_watts, avg_hr = excluded.avg_hr, "
+            "activity_id = excluded.activity_id, "
+            "start_date_local = excluded.start_date_local",
+            (segment_id, aid, e.get("elapsed_time"), e.get("avg_speed"),
+             e.get("avg_watts"), e.get("avg_hr"), e.get("effort_id"),
+             e.get("activity_id"), e.get("start_date_local"), observed_at))
     conn.commit()
 
 
