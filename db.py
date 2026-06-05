@@ -100,10 +100,8 @@ CREATE INDEX IF NOT EXISTS idx_effort_log_athlete ON effort_log(segment_id, athl
 -- hold the KOM) and the next distinct time skips the tied-out places (1, 1, 3).
 -- `first_seen`/`last_seen` are the min/max observed_at across that athlete's
 -- logged efforts. This view replaces the old physical `efforts` table; reads are
--- unchanged (`SELECT ... FROM efforts`). NB: IF NOT EXISTS means an existing DB
--- keeps whatever definition it was created with — if you change this SQL, drop
--- the view by hand (or delete the .db; it's all refetchable).
-CREATE VIEW IF NOT EXISTS efforts AS
+-- unchanged (`SELECT ... FROM efforts`).
+CREATE VIEW efforts AS
 WITH best AS (
     SELECT segment_id, athlete_id, elapsed_time, avg_speed, avg_watts, avg_hr,
            effort_id, activity_id, start_date_local,
@@ -141,9 +139,15 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 
 
 def init(conn: sqlite3.Connection) -> None:
-    conn.executescript(SCHEMA)
-    # Forward-only column migrations. CREATE TABLE IF NOT EXISTS doesn't
-    # alter existing tables, so add new columns here when the schema grows.
+    # SCHEMA is, in effect, the initial migration: it describes a fresh DB and
+    # is applied once (detected by the `efforts` view); an existing DB is
+    # assumed current. Schema changes go below as forward migrations — or just
+    # delete the .db, it's all refetchable.
+    if not conn.execute("SELECT 1 FROM sqlite_master "
+                        "WHERE type = 'view' AND name = 'efforts'").fetchone():
+        conn.executescript(SCHEMA)
+    # Forward-only column migrations. The initial migration doesn't alter
+    # existing tables, so add new columns here when the schema grows.
     cols = {r["name"] for r in conn.execute("PRAGMA table_info(segments)")}
     if "last_depth_pages" not in cols:
         conn.execute("ALTER TABLE segments ADD COLUMN last_depth_pages INTEGER")
