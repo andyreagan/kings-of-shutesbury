@@ -595,7 +595,9 @@ def _segment_with_efforts(conn, seg_row) -> dict:
     efforts = [dict(r) for r in conn.execute(
         "SELECT e.*, a.name AS athlete_name, a.avatar_url, a.badge "
         "FROM efforts e JOIN athletes a ON a.id = e.athlete_id "
-        "WHERE e.segment_id = ? ORDER BY e.rank IS NULL, e.rank", (seg["id"],))]
+        "WHERE e.segment_id = ? "
+        # rank ties (shared places) display earliest ride first
+        "ORDER BY e.rank IS NULL, e.rank, e.start_date_local", (seg["id"],))]
     seg["efforts"] = efforts
     return seg
 
@@ -779,6 +781,20 @@ def _resolve_log_since(conn, raw: str | None) -> str:
     return (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
 
 
+def competition_ranks(state: dict) -> dict:
+    """Strava-style competition ranking over {athlete_id: elapsed_time}: tied
+    times share a rank and the next distinct time skips the tied-out places
+    (1, 1, 3). Must agree with the RANK() in the `efforts` view (db.py).
+    Timeless (None) entries are unranked."""
+    items = sorted((t, aid) for aid, t in state.items() if t is not None)
+    ranks, prev_t, rank = {}, None, 0
+    for i, (t, aid) in enumerate(items):
+        if t != prev_t:
+            rank, prev_t = i + 1, t
+        ranks[aid] = rank
+    return ranks
+
+
 def print_changelog(conn, since: str, until: str | None = None) -> None:
     """Print a changelog of effort changes whose observed_at falls in (since, until].
 
@@ -828,10 +844,6 @@ def print_changelog(conn, since: str, until: str | None = None) -> None:
         m, s = divmod(int(t), 60)
         return f"{m}:{s:02d}"
 
-    def derived_ranks(state: dict) -> dict:
-        items = sorted((t, aid) for aid, t in state.items() if t is not None)
-        return {aid: i + 1 for i, (_, aid) in enumerate(items)}
-
     def points_of(seg: dict, rank: int | None) -> int:
         if not rank:
             return 0
@@ -877,8 +889,8 @@ def print_changelog(conn, since: str, until: str | None = None) -> None:
         if is_new and scores:
             new_segments.append(seg)
 
-        prior_ranks = derived_ranks(prior)
-        cur_ranks = derived_ranks(current)
+        prior_ranks = competition_ranks(prior)
+        cur_ranks = competition_ranks(current)
 
         changes = []
         for aid in set(prior) | set(current):

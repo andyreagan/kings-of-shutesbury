@@ -96,10 +96,14 @@ CREATE INDEX IF NOT EXISTS idx_effort_log_athlete ON effort_log(segment_id, athl
 -- Canonical best-known effort per (segment, athlete), derived from the log: each
 -- athlete's fastest logged time, with `rank` (1 = fastest) derived over the whole
 -- segment so a newly-seen faster rider pushes everyone down automatically.
+-- Ranking is Strava-style competition ranking: tied times SHARE a rank (both
+-- hold the KOM) and the next distinct time skips the tied-out places (1, 1, 3).
 -- `first_seen`/`last_seen` are the min/max observed_at across that athlete's
 -- logged efforts. This view replaces the old physical `efforts` table; reads are
--- unchanged (`SELECT ... FROM efforts`).
-CREATE VIEW IF NOT EXISTS efforts AS
+-- unchanged (`SELECT ... FROM efforts`). Dropped + recreated on every init so
+-- definition changes reach existing DBs (it's a view — no data to migrate).
+DROP VIEW IF EXISTS efforts;
+CREATE VIEW efforts AS
 WITH best AS (
     SELECT segment_id, athlete_id, elapsed_time, avg_speed, avg_watts, avg_hr,
            effort_id, activity_id, start_date_local,
@@ -117,9 +121,9 @@ seen AS (
 )
 SELECT
     b.segment_id, b.athlete_id,
-    CASE WHEN b.elapsed_time IS NULL THEN NULL ELSE ROW_NUMBER() OVER (
+    CASE WHEN b.elapsed_time IS NULL THEN NULL ELSE RANK() OVER (
         PARTITION BY b.segment_id, (b.elapsed_time IS NULL)
-        ORDER BY b.elapsed_time ASC, b.start_date_local ASC) END AS rank,
+        ORDER BY b.elapsed_time ASC) END AS rank,
     b.elapsed_time, b.avg_speed, b.avg_watts, b.avg_hr,
     b.effort_id, b.activity_id, b.start_date_local,
     s.first_seen, s.last_seen
