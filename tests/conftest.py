@@ -1,41 +1,22 @@
-"""Shared fixtures: a fresh test DB and a fake StravaClient."""
+"""Shared fixtures: pytest-django DB and a fake StravaClient."""
 
 from __future__ import annotations
 
-import sqlite3
 from datetime import datetime, timezone
-from pathlib import Path
 
 import pytest
 
-import db
-from strava import RateLimitError, StravaError    # noqa: F401  (re-exported for tests)
-
-
-# === DB fixtures =============================================================
-
-
-@pytest.fixture
-def db_path(tmp_path: Path) -> Path:
-    return tmp_path / "test.db"
-
-
-@pytest.fixture
-def conn(db_path: Path) -> sqlite3.Connection:
-    """A fresh SQLite DB with the live schema (incl. migrations) applied."""
-    c = db.connect(db_path)
-    db.init(c)
-    yield c
-    c.close()
+from segments.strava import RateLimitError, StravaError  # noqa: F401  (re-exported for tests)
+from segments.models import Segment
 
 
 # === seed helpers ============================================================
 
 
-def insert_segment(conn: sqlite3.Connection, seg_id: int, **overrides) -> None:
-    """Insert a fully-imported in-town ride segment. Tests override specific
-    columns; everything else gets a plausible default so the in-town/ride/
-    not-excluded filter passes."""
+def insert_segment(seg_id: int, **overrides) -> None:
+    """Create a fully-imported in-town ride segment via the ORM. Tests override
+    specific columns; everything else gets a plausible default so the
+    in-town/ride/not-excluded filter passes."""
     defaults = {
         "name": f"Segment {seg_id}",
         "activity_type": "Ride",
@@ -55,18 +36,14 @@ def insert_segment(conn: sqlite3.Connection, seg_id: int, **overrides) -> None:
         "discipline": "road",
     }
     cols = {**defaults, **overrides}
-    placeholders = ", ".join("?" * (len(cols) + 1))
-    names = "id, " + ", ".join(cols)
-    conn.execute(f"INSERT INTO segments ({names}) VALUES ({placeholders})",
-                 (seg_id, *cols.values()))
-    conn.commit()
+    Segment.objects.create(id=seg_id, **cols)
 
 
 @pytest.fixture
-def seed_segment(conn: sqlite3.Connection):
-    """Returns a callable to insert a test segment row."""
+def seed_segment(db):
+    """Returns a callable to insert a test segment row via the ORM."""
     def _seed(seg_id: int, **kw):
-        insert_segment(conn, seg_id, **kw)
+        insert_segment(seg_id, **kw)
     return _seed
 
 

@@ -13,7 +13,7 @@ from pathlib import Path
 
 import httpx
 
-BOUNDARY_PATH = Path(__file__).resolve().parent / "boundary.json"
+BOUNDARY_PATH = Path(__file__).resolve().parent.parent / "boundary.json"
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
 QUERY = "Shutesbury, Franklin County, Massachusetts, USA"
 
