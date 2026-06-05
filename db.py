@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS segments (
     excluded            INTEGER DEFAULT 0,           -- 1 = manually excluded from scoring/display
     discipline          TEXT,                        -- road | gravel | mtb (manual; NULL=unset)
     fetched_at          TEXT,                        -- when the PAGE was fetched (NULL=never)
-    efforts_fetched_at  TEXT                         -- when the LEADERBOARD was fetched
+    efforts_fetched_at  TEXT,                        -- when the LEADERBOARD was fetched
+    last_depth_pages    INTEGER                      -- deepest leaderboard depth ever fetched (1=top 25); drives background depth-building
 );
 
 CREATE TABLE IF NOT EXISTS athletes (
@@ -69,6 +70,14 @@ CREATE TABLE IF NOT EXISTS api_log (
     response_body       TEXT                         -- pageProps (pages) / raw JSON (leaderboard)
 );
 CREATE INDEX IF NOT EXISTS idx_api_log_ts ON api_log(ts);
+
+-- Small key/value store for cross-run state that doesn't deserve its own table.
+-- Current keys: backoff_level / backoff_until / backoff_last_429 (the dynamic
+-- 429 backoff ladder driven from update_segments.py).
+CREATE TABLE IF NOT EXISTS kv (
+    key   TEXT PRIMARY KEY,
+    value TEXT
+);
 
 -- Single source of truth for efforts: an append-only log with ONE row per
 -- distinct observed effort, identified by (segment, athlete, effort_id). A
@@ -142,6 +151,11 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 
 def init(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA)
+    # Forward-only column migrations. CREATE TABLE IF NOT EXISTS doesn't
+    # alter existing tables, so add new columns here when the schema grows.
+    cols = {r["name"] for r in conn.execute("PRAGMA table_info(segments)")}
+    if "last_depth_pages" not in cols:
+        conn.execute("ALTER TABLE segments ADD COLUMN last_depth_pages INTEGER")
     conn.commit()
 
 
@@ -168,6 +182,17 @@ def set_efforts_fetched_at(conn: sqlite3.Connection, segment_id: int,
                            when: str) -> None:
     conn.execute("UPDATE segments SET efforts_fetched_at = ? WHERE id = ?",
                  (when, segment_id))
+
+
+def bump_depth_pages(conn: sqlite3.Connection, segment_id: int,
+                     pages: int) -> None:
+    """Record that we've fetched `pages` pages on this segment. Only writes
+    if it deepens the existing high-water mark (so a depth=1 refresh after a
+    depth=8 dive doesn't reset progress)."""
+    conn.execute(
+        "UPDATE segments SET last_depth_pages = ? WHERE id = ? "
+        "AND COALESCE(last_depth_pages, 0) < ?",
+        (pages, segment_id, pages))
 
 
 def add_segment(conn: sqlite3.Connection, segment_id: int,
@@ -282,4 +307,22 @@ def set_difficulty(conn: sqlite3.Connection, segment_id: int,
                    difficulty: float) -> None:
     conn.execute("UPDATE segments SET difficulty = ? WHERE id = ?",
                  (difficulty, segment_id))
+    conn.commit()
+
+
+def kv_get(conn: sqlite3.Connection, key: str) -> str | None:
+    row = conn.execute("SELECT value FROM kv WHERE key = ?", (key,)).fetchone()
+    return row["value"] if row else None
+
+
+def kv_set(conn: sqlite3.Connection, key: str, value: str | None) -> None:
+    """Set (or, with value=None, clear) a kv entry. Committed immediately so
+    it survives a crash."""
+    if value is None:
+        conn.execute("DELETE FROM kv WHERE key = ?", (key,))
+    else:
+        conn.execute(
+            "INSERT INTO kv (key, value) VALUES (?, ?) "
+            "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+            (key, value))
     conn.commit()

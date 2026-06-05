@@ -15,12 +15,15 @@ Six self-contained commands, one per stage:
                                   segments unless --force is given, so a clean
                                   second `import --all` is a no-op.
 
-    update (<id> | --all) [--depth N]
+    update (<id> | --all | --background) [--depth N] [--no-jitter]
                                   refresh efforts from the leaderboard
                                   endpoint (depth = N pages of 25, default 1).
                                   --all walks stalest first by
-                                  efforts_fetched_at. Prints a changelog of
-                                  what changed in this run.
+                                  efforts_fetched_at. --background does ONE
+                                  jittered tick (sleep 0..5m, auto-pick the
+                                  single most important segment, fetch, exit)
+                                  for use under a 5-min scheduler. Prints a
+                                  changelog of what changed in this run.
 
     export                        rebuild web/data.json from the DB. No
                                   network, no options.
@@ -37,8 +40,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import re
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -53,6 +58,17 @@ PROFILE_POINTS = 120            # downsample elevation profile to this many poin
 MAP_TRACK_POINTS = 64           # downsample GPS track for the map to this many points
 EFFORTS_PER_SEGMENT = 100       # cap efforts shipped per segment (keeps page small)
 VALID_DISCIPLINES = ("road", "gravel", "mtb")
+# --background tunables. The picker keeps every segment's top-25 fresh on at
+# least a weekly cadence (phase A), then spends remaining ticks deepening the
+# shallowest leaderboards one page at a time (phase B). Per-tick jitter
+# desynchronizes a 5-min cron from anything else hitting strava.com.
+BACKGROUND_JITTER_S = 300       # random 0..N seconds at the start of every tick
+TOP25_FRESHNESS_DAYS = 7        # phase A threshold: top-25 older than this gets refreshed
+# Dynamic 429 backoff. Each consecutive 429 escalates one step; a successful
+# fetch in any mode resets the ladder. Past the last step we abort the tick.
+# Foreground (id / --all) ignores the gate (the user is right there) but still
+# updates the ladder, so background and foreground share one rate-limit memory.
+BACKOFF_LADDER_HOURS = [1, 4, 12, 24, 48]
 # Athletes whose times we always try to refresh via the "following" board, even
 # when they're outside a segment's top 25 (the logged-in session must follow them).
 # Andy Reagan = 136573, Owen Skorupski = 129008249.
@@ -156,6 +172,66 @@ def _parse_ts(ts: str) -> datetime:
     return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
 
 
+# === backoff ladder ==========================================================
+# State lives in the kv table: backoff_level (int as str), backoff_until (ISO).
+# Both modes write the ladder; only --background gates on backoff_until.
+
+
+def _backoff_state(conn) -> tuple[int, datetime | None]:
+    level = int(db.kv_get(conn, "backoff_level") or "0")
+    until_raw = db.kv_get(conn, "backoff_until")
+    until = _parse_ts(until_raw) if until_raw else None
+    return level, until
+
+
+def _backoff_gate(conn, mode: str) -> bool:
+    """Return True if we should proceed. --background refuses to fetch while
+    backoff_until is in the future; foreground always proceeds but prints a
+    warning so the user knows they're racing the ladder."""
+    level, until = _backoff_state(conn)
+    if until is None or until <= datetime.now(timezone.utc):
+        return True
+    wait_left = until - datetime.now(timezone.utc)
+    hours = wait_left.total_seconds() / 3600
+    if mode == "background":
+        print(f"[background] backed off (level {level}/{len(BACKOFF_LADDER_HOURS)}); "
+              f"~{hours:.1f}h to go (until {until.isoformat(timespec='seconds')}). "
+              "Skipping this tick.")
+        return False
+    print(f"! note: still in 429 backoff (level {level}, "
+          f"~{hours:.1f}h left until {until.isoformat(timespec='seconds')}). "
+          "Proceeding anyway since you asked.")
+    return True
+
+
+def _backoff_escalate(conn) -> bool:
+    """Bump the ladder one step after a 429. Returns False if we've blown
+    past the last step (caller should abort with non-zero exit)."""
+    level, _ = _backoff_state(conn)
+    new_level = level + 1
+    if new_level > len(BACKOFF_LADDER_HOURS):
+        print(f"\n!!! backoff exhausted (already waited "
+              f"{BACKOFF_LADDER_HOURS[-1]}h and got 429 again). Aborting.")
+        return False
+    hours = BACKOFF_LADDER_HOURS[new_level - 1]
+    until = datetime.now(timezone.utc) + timedelta(hours=hours)
+    db.kv_set(conn, "backoff_level", str(new_level))
+    db.kv_set(conn, "backoff_until", until.isoformat(timespec="seconds"))
+    db.kv_set(conn, "backoff_last_429", now())
+    print(f"  → escalated backoff to level {new_level}: pause {hours}h "
+          f"(until {until.isoformat(timespec='seconds')}).")
+    return True
+
+
+def _backoff_reset(conn) -> None:
+    """Clear the ladder after any successful fetch."""
+    level, _ = _backoff_state(conn)
+    if level > 0:
+        print(f"  → cleared backoff (was level {level}).")
+    db.kv_set(conn, "backoff_level", None)
+    db.kv_set(conn, "backoff_until", None)
+
+
 def _require_id_xor_all(args: argparse.Namespace, cmd: str) -> None:
     """import/update both take exactly one of <id> or --all. argparse's
     mutually_exclusive_group misbehaves with `nargs="?"` positionals, so check
@@ -165,6 +241,17 @@ def _require_id_xor_all(args: argparse.Namespace, cmd: str) -> None:
         sys.exit(f"{cmd}: pass <id> OR --all, not both.")
     if not have_id and not args.all_:
         sys.exit(f"{cmd}: pass a segment <id> or --all.")
+
+
+def _require_update_mode(args: argparse.Namespace) -> None:
+    """update takes exactly one of <id>, --all, or --background. Same argparse
+    caveat as above — check by hand."""
+    modes = [args.id is not None, args.all_, args.background]
+    if sum(modes) != 1:
+        sys.exit("update: pass exactly one of <id>, --all, or --background.")
+    if args.background and args.depth != 1:
+        sys.exit("update --background chooses depth itself; "
+                 "don't combine with --depth.")
 
 
 # === add =====================================================================
@@ -329,10 +416,14 @@ def _recompute_derived(conn) -> None:
 
 
 def cmd_update(args: argparse.Namespace) -> None:
-    _require_id_xor_all(args, "update")
+    _require_update_mode(args)
+    if args.background:
+        cmd_update_background(args)
+        return
     conn = db.connect()
     db.init(conn)
     try:
+        _backoff_gate(conn, "foreground")     # informational only
         targets = _update_targets(conn, args)
         if not targets:
             return
@@ -341,28 +432,137 @@ def cmd_update(args: argparse.Namespace) -> None:
         run_started_at = now()
         with StravaClient(request_logger=_make_request_logger(conn)) as client:
             for sid in targets:
-                print(f"> leaderboard {sid} (depth {args.depth}) ...", flush=True)
-                try:
-                    efforts = client.fetch_leaderboard(sid, "overall",
-                                                       pages=args.depth)
-                    efforts = _supplement_following(client, sid, efforts)
-                except AuthError as e:
-                    print(f"\nAUTH ERROR: {e}")
-                    return
-                except RateLimitError as e:
-                    print(f"\nRATE LIMITED: {e}\n"
-                          "Progress saved — rerun later to resume.")
+                _refresh_one(conn, client, sid, args.depth)
+                if _last_stop:
                     break
-                except StravaError as e:
-                    print(f"! failed {sid}: {e}")
-                    continue
-                stamp = now()
-                _store_efforts(conn, sid, efforts, stamp)
-                db.set_efforts_fetched_at(conn, sid, stamp)
-                print(f"  {len(efforts)} efforts")
         print_changelog(conn, run_started_at)
+        if _last_stop == "ratelimit-exhausted":
+            sys.exit(2)
     finally:
         conn.close()
+
+
+# Sentinel set by `_refresh_one` when a stop-the-run condition fires (auth /
+# rate-limit). Used by the loop in cmd_update to break out cleanly.
+_last_stop: str | None = None
+
+
+def _refresh_one(conn, client, sid: int, depth: int) -> bool:
+    """Fetch the leaderboard for one segment at `depth` and persist. Returns
+    True on success. Updates the 429 backoff ladder: success resets it; a
+    rate-limit escalates it (and sets `_last_stop` to either 'ratelimit' or
+    'ratelimit-exhausted' so the caller can decide whether to abort the whole
+    process or just stop the loop)."""
+    global _last_stop
+    _last_stop = None
+    print(f"> leaderboard {sid} (depth {depth}) ...", flush=True)
+    try:
+        efforts = client.fetch_leaderboard(sid, "overall", pages=depth)
+        efforts = _supplement_following(client, sid, efforts)
+    except AuthError as e:
+        print(f"\nAUTH ERROR: {e}")
+        _last_stop = "auth"
+        return False
+    except RateLimitError as e:
+        print(f"\nRATE LIMITED: {e}")
+        if not _backoff_escalate(conn):
+            _last_stop = "ratelimit-exhausted"
+        else:
+            _last_stop = "ratelimit"
+        return False
+    except StravaError as e:
+        print(f"! failed {sid}: {e}")
+        return False
+    stamp = now()
+    _store_efforts(conn, sid, efforts, stamp)
+    db.set_efforts_fetched_at(conn, sid, stamp)
+    if depth > 1:
+        db.bump_depth_pages(conn, sid, depth)
+    # Single commit per segment: set_efforts_fetched_at and bump_depth_pages
+    # don't self-commit, so without this the final segment's metadata UPDATE
+    # gets rolled back at conn.close(). (The earlier code masked this for
+    # --all because the NEXT iteration's _store_efforts.commit() happened to
+    # flush the previous UPDATE — but the last segment always lost it.)
+    conn.commit()
+    _backoff_reset(conn)
+    print(f"  {len(efforts)} efforts")
+    return True
+
+
+def cmd_update_background(args: argparse.Namespace) -> None:
+    """One background tick: sleep a jittered amount, pick the single most
+    important segment to refresh, fetch it, exit. Designed to be fired every
+    5 minutes by an external scheduler (launchd / cron)."""
+    if not args.no_jitter:
+        sleep_s = random.uniform(0, BACKGROUND_JITTER_S)
+        print(f"[background] jitter sleep {sleep_s:.0f}s ...", flush=True)
+        time.sleep(sleep_s)
+
+    conn = db.connect()
+    db.init(conn)
+    try:
+        if not _backoff_gate(conn, "background"):
+            return
+        pick = _background_pick(conn)
+        if pick is None:
+            print("[background] no tracked in-town ride segments — nothing to do.")
+            return
+        sid, depth, phase = pick
+        print(f"[background] phase {phase} — segment {sid}, depth {depth}")
+        run_started_at = now()
+        with StravaClient(request_logger=_make_request_logger(conn)) as client:
+            _refresh_one(conn, client, sid, depth)
+        print_changelog(conn, run_started_at)
+        if _last_stop == "ratelimit-exhausted":
+            sys.exit(2)
+    finally:
+        conn.close()
+
+
+def _background_pick(conn) -> tuple[int, int, str] | None:
+    """Return (segment_id, depth_pages, phase_label) for this tick — or None
+    if there are no candidates at all. Priority:
+      A. stalest top-25 if older than TOP25_FRESHNESS_DAYS (or never refreshed)
+      B. shallowest segment that hasn't reached its full leaderboard yet —
+         go one page deeper than last time
+      C. fallback maintenance refresh of the stalest top-25
+    """
+    week_ago = (datetime.now(timezone.utc)
+                - timedelta(days=TOP25_FRESHNESS_DAYS)
+                ).isoformat(timespec="seconds")
+    base_where = (
+        "in_town = 1 AND lower(activity_type) = 'ride' "
+        "AND excluded = 0 AND fetched_at IS NOT NULL")
+
+    row = conn.execute(
+        f"SELECT id FROM segments WHERE {base_where} "
+        "AND (efforts_fetched_at IS NULL OR efforts_fetched_at < ?) "
+        "ORDER BY efforts_fetched_at IS NULL DESC, efforts_fetched_at ASC "
+        "LIMIT 1", (week_ago,)).fetchone()
+    if row:
+        return row["id"], 1, "A (stale top-25)"
+
+    # Phase B: build depth on the shallowest segment that still has more
+    # leaderboard pages to fetch. last_depth_pages is the high-water mark;
+    # NULL means we've never gone past the depth-1 import seed.
+    row = conn.execute(
+        f"SELECT id, COALESCE(last_depth_pages, 1) AS depth "
+        f"FROM segments WHERE {base_where} "
+        "AND COALESCE(last_depth_pages, 1) * 25 < COALESCE(total_athletes, 0) "
+        "ORDER BY COALESCE(last_depth_pages, 1) ASC, "
+        "         efforts_fetched_at ASC NULLS FIRST "
+        "LIMIT 1").fetchone()
+    if row:
+        return row["id"], row["depth"] + 1, "B (build depth)"
+
+    # Phase C: everything's fresh AND everyone's at max depth. Refresh the
+    # stalest top-25 anyway so the cron never silently no-ops.
+    row = conn.execute(
+        f"SELECT id FROM segments WHERE {base_where} "
+        "ORDER BY efforts_fetched_at ASC NULLS FIRST LIMIT 1").fetchone()
+    if row:
+        return row["id"], 1, "C (idle maintenance)"
+    return None
 
 
 def _update_targets(conn, args) -> list[int]:
@@ -803,8 +1003,17 @@ def main() -> None:
     p_upd.add_argument("id", nargs="?", type=int, help="a single segment id")
     p_upd.add_argument("--all", dest="all_", action="store_true",
                        help="refresh every in-town ride, stalest first")
+    p_upd.add_argument("--background", action="store_true",
+                       help="one background tick — jittered sleep, then "
+                            "auto-pick + refresh ONE segment (top-25 weekly, "
+                            "depth-build with leftover ticks). Wire to a "
+                            "5-minute cron / launchd job.")
+    p_upd.add_argument("--no-jitter", action="store_true",
+                       help="with --background: skip the random sleep "
+                            "(testing, or if the scheduler already jitters)")
     p_upd.add_argument("--depth", type=int, default=1, metavar="N",
-                       help="pages of 25 to pull (default 1 = top 25)")
+                       help="pages of 25 to pull (default 1 = top 25); "
+                            "ignored with --background")
     p_upd.set_defaults(func=cmd_update)
 
     p_exp = sub.add_parser("export", help="rebuild web/data.json from the DB")

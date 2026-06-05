@@ -61,7 +61,7 @@ uv run update_segments.py import 38206226       # one specific segment
 uv run update_segments.py import 38206226 --force
 ```
 
-### 3. `update (<id> | --all) [--depth N]`
+### 3. `update (<id> | --all | --background) [--depth N] [--no-jitter]`
 Refresh efforts from the leaderboard endpoint. Hits
 `/frontend/segments/<id>/leaderboard?filter_type=overall` (depth `N` ⇒ N × 25
 athletes; default 1 ⇒ top 25), then supplements with the following board so
@@ -71,13 +71,29 @@ Andy/Owen's times outside the top 25 still get logged.
 `efforts_fetched_at` (NULLs first — freshly-imported segments sort to the head
 because their page-seeded top-25 doesn't yet include the following supplement).
 
+`--background` does ONE jittered tick (sleep 0–5 min, auto-pick the single
+most-important segment, fetch, exit) for use under an external 5-min
+scheduler. See "Running in the background" below.
+
 Stores everything in `effort_log`, sets `efforts_fetched_at`, and prints a
 changelog of what changed during this run.
 
 ```sh
 uv run update_segments.py update --all
 uv run update_segments.py update 38206226 --depth 4   # pull top 100
+uv run update_segments.py update --background         # one cron tick
 ```
+
+#### Dynamic 429 backoff
+Every successful fetch resets the ladder. A 429 escalates one step on this
+ladder of pauses: **1h → 4h → 12h → 24h → 48h**. While `backoff_until` is in
+the future, `--background` ticks log "backed off" and skip; foreground modes
+(`<id>` / `--all`) only print a warning and proceed (your call). One more 429
+after the 48h step exhausts the ladder and aborts with exit code 2 — wire
+your scheduler to surface that.
+
+State lives in the `kv` table (`backoff_level`, `backoff_until`,
+`backoff_last_429`).
 
 ### 4. `export`
 Rebuild `web/data.json` from the current DB. Pure read. No options.
@@ -115,6 +131,62 @@ uv run update_segments.py log --since 2026-05-01 --until 2026-05-15
 - **Rides only:** `Run` segments are excluded automatically (Strava only
   exposes Ride/Run at the segment level; the finer road/gravel/mtb
   classification you provided at `add` time is shown in the dashboard).
+
+## Running in the background
+
+`update --background` is a single-shot tick designed to be fired every 5
+minutes by an external scheduler. Each tick:
+
+1. Sleeps a random 0–5 minutes (`--no-jitter` to skip).
+2. Picks ONE segment by priority:
+   - **Phase A** — stalest top-25 if older than 7 days (or never): refresh at
+     depth 1 (~2 requests).
+   - **Phase B** — shallowest segment that still has more leaderboard pages:
+     fetch one page deeper than last time.
+   - **Phase C** — fallback maintenance refresh of the stalest top-25.
+3. Fetches, persists, prints any changelog, exits.
+
+At 5-minute cadence with default depth 1 (~2 requests/tick) the worst-case
+window holds 4 requests vs the ~100-request CloudFront limit — comfortable
+4× headroom even if the cron and the prior tick's jitter happen to collide.
+Phase A alone keeps every in-town ride segment refreshed weekly (24 ticks/day
+out of 288); the remaining ~264 ticks/day go to Phase B and fill depth fast.
+
+### launchd (macOS native)
+
+Drop a `.plist` into `~/Library/LaunchAgents/`, then `launchctl load` it. It
+survives reboot and writes stdout to a log file you can `tail -f`:
+
+```xml
+<!-- ~/Library/LaunchAgents/com.andyreagan.kings-of-shutesbury.plist -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.andyreagan.kings-of-shutesbury</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/env</string><string>sh</string><string>-c</string>
+    <string>cd /Users/andyreagan/projects/2026/kings-of-shutesbury &amp;&amp; uv run update_segments.py update --background</string>
+  </array>
+  <key>StartInterval</key><integer>300</integer>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>/Users/andyreagan/projects/2026/kings-of-shutesbury/.background.log</string>
+  <key>StandardErrorPath</key><string>/Users/andyreagan/projects/2026/kings-of-shutesbury/.background.log</string>
+</dict></plist>
+```
+
+```sh
+launchctl load   ~/Library/LaunchAgents/com.andyreagan.kings-of-shutesbury.plist
+launchctl unload ~/Library/LaunchAgents/com.andyreagan.kings-of-shutesbury.plist  # to stop
+tail -f .background.log
+```
+
+### cron (cross-platform alternative)
+
+```cron
+*/5 * * * * cd /path/to/kings-of-shutesbury && uv run update_segments.py update --background >> .background.log 2>&1
+```
 
 ## Being gentle on the API
 
