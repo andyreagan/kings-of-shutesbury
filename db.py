@@ -14,7 +14,7 @@ from pathlib import Path
 DB_PATH = Path(__file__).resolve().parent / "strava.db"
 
 SCHEMA = """
-CREATE TABLE IF NOT EXISTS segments (
+CREATE TABLE segments (
     id                  INTEGER PRIMARY KEY,        -- Strava segment id
     name                TEXT,
     activity_type       TEXT,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS segments (
     last_depth_pages    INTEGER                      -- deepest leaderboard depth ever fetched (1=top 25); drives background depth-building
 );
 
-CREATE TABLE IF NOT EXISTS athletes (
+CREATE TABLE athletes (
     id                  INTEGER PRIMARY KEY,
     name                TEXT,
     avatar_url          TEXT,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS athletes (
 -- Small key/value store for cross-run state that doesn't deserve its own table.
 -- Current keys: backoff_level / backoff_until / backoff_last_429 (the dynamic
 -- 429 backoff ladder driven from update_segments.py).
-CREATE TABLE IF NOT EXISTS kv (
+CREATE TABLE kv (
     key   TEXT PRIMARY KEY,
     value TEXT
 );
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS kv (
 -- athlete bumped past the fetched depth — or whose PR is superseded — keeps
 -- their history. The canonical "best per athlete" + derived rank are NOT stored;
 -- they're computed on demand by the `efforts` view below.
-CREATE TABLE IF NOT EXISTS effort_log (
+CREATE TABLE effort_log (
     id                  INTEGER PRIMARY KEY AUTOINCREMENT,
     segment_id          INTEGER NOT NULL,
     athlete_id          INTEGER NOT NULL,
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS effort_log (
     FOREIGN KEY (segment_id) REFERENCES segments(id),
     FOREIGN KEY (athlete_id) REFERENCES athletes(id)
 );
-CREATE INDEX IF NOT EXISTS idx_effort_log_seg ON effort_log(segment_id, observed_at);
-CREATE INDEX IF NOT EXISTS idx_effort_log_athlete ON effort_log(segment_id, athlete_id);
+CREATE INDEX idx_effort_log_seg ON effort_log(segment_id, observed_at);
+CREATE INDEX idx_effort_log_athlete ON effort_log(segment_id, athlete_id);
 
 -- Canonical best-known effort per (segment, athlete), derived from the log: each
 -- athlete's fastest logged time, with `rank` (1 = fastest) derived over the whole
@@ -139,18 +139,10 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 
 
 def init(conn: sqlite3.Connection) -> None:
-    # SCHEMA is, in effect, the initial migration: it describes a fresh DB and
-    # is applied once (detected by the `efforts` view); an existing DB is
-    # assumed current. Schema changes go below as forward migrations — or just
-    # delete the .db, it's all refetchable.
-    if not conn.execute("SELECT 1 FROM sqlite_master "
-                        "WHERE type = 'view' AND name = 'efforts'").fetchone():
-        conn.executescript(SCHEMA)
-    # Forward-only column migrations. The initial migration doesn't alter
-    # existing tables, so add new columns here when the schema grows.
-    cols = {r["name"] for r in conn.execute("PRAGMA table_info(segments)")}
-    if "last_depth_pages" not in cols:
-        conn.execute("ALTER TABLE segments ADD COLUMN last_depth_pages INTEGER")
+    """Create the schema in a FRESH database (tests / starting over). The
+    committed strava.db is assumed current and correct — commands just
+    connect; nothing checks or migrates at runtime."""
+    conn.executescript(SCHEMA)
     conn.commit()
 
 

@@ -1,35 +1,8 @@
-"""Small DB helpers + schema migration."""
+"""Small DB helpers."""
 
 from __future__ import annotations
 
 import db
-
-
-def test_init_adds_last_depth_pages_column(tmp_path):
-    """Migrate a legacy DB (segments table without last_depth_pages) and
-    confirm the column lands without losing rows."""
-    p = tmp_path / "legacy.db"
-    c = db.connect(p)
-    # Create a minimal old-shape segments table.
-    c.executescript("""
-        CREATE TABLE segments (
-            id INTEGER PRIMARY KEY,
-            name TEXT,
-            fetched_at TEXT,
-            efforts_fetched_at TEXT
-        );
-        INSERT INTO segments (id, name) VALUES (42, 'legacy');
-    """)
-    c.commit()
-
-    db.init(c)
-
-    cols = {r["name"] for r in c.execute("PRAGMA table_info(segments)")}
-    assert "last_depth_pages" in cols
-    row = c.execute("SELECT id, name, last_depth_pages FROM segments").fetchone()
-    assert row["id"] == 42
-    assert row["last_depth_pages"] is None
-    c.close()
 
 
 def test_kv_set_then_get_roundtrip(conn):

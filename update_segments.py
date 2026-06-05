@@ -234,7 +234,6 @@ def cmd_add(args: argparse.Namespace) -> None:
         pairs.append((sid, disc))
 
     conn = db.connect()
-    db.init(conn)
     try:
         for sid, disc in pairs:
             outcome = db.add_segment(conn, sid, disc)
@@ -252,7 +251,6 @@ def cmd_add(args: argparse.Namespace) -> None:
 def cmd_import(args: argparse.Namespace) -> None:
     _require_id_xor_all(args, "import")
     conn = db.connect()
-    db.init(conn)
     try:
         targets = _import_targets(conn, args)
         if not targets:
@@ -383,7 +381,6 @@ def cmd_update(args: argparse.Namespace) -> None:
         cmd_update_background(args)
         return
     conn = db.connect()
-    db.init(conn)
     try:
         _backoff_gate(conn, "foreground")     # informational only
         targets = _update_targets(conn, args)
@@ -485,7 +482,6 @@ def _background_tick(args: argparse.Namespace) -> None:
         time.sleep(sleep_s)
 
     conn = db.connect()
-    db.init(conn)
     try:
         if not _backoff_gate(conn, "background"):
             return
@@ -583,7 +579,6 @@ def _update_targets(conn, args) -> list[int]:
 
 def cmd_export(args: argparse.Namespace) -> None:
     conn = db.connect()
-    db.init(conn)
     try:
         export_data_json(conn)
     finally:
@@ -736,7 +731,6 @@ def export_data_json(conn) -> None:
 
 def cmd_list(args: argparse.Namespace) -> None:
     conn = db.connect()
-    db.init(conn)
     try:
         rows = conn.execute(
             "SELECT id, name, discipline, terrain, difficulty, fetched_at, "
@@ -761,7 +755,6 @@ def cmd_list(args: argparse.Namespace) -> None:
 
 def cmd_log(args: argparse.Namespace) -> None:
     conn = db.connect()
-    db.init(conn)
     try:
         since = _resolve_log_since(conn, args.since)
         print_changelog(conn, since, args.until)
