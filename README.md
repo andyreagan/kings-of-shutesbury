@@ -30,6 +30,12 @@ uv sync                       # install deps (httpx)
 cp .env.example .env          # then paste your _strava4_session cookie value
 ```
 
+Run the test suite (mocked Strava API, no network):
+
+```sh
+uv run --group dev pytest
+```
+
 ## The pipeline (six commands)
 
 Each command does one stage and nothing else. Pages are pulled once per segment;

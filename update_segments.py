@@ -91,47 +91,6 @@ def _parse_ref(ref: str) -> int | None:
     return int(m.group(1)) if m else None
 
 
-_NEXT_DATA_RE = re.compile(
-    r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', re.S)
-
-
-def _classify_endpoint(url: str) -> tuple[str, int | None]:
-    """Label a Strava URL for the request log: (endpoint, segment_id)."""
-    m = re.search(r"/frontend/segments/(\d+)/leaderboard", url)
-    if m:
-        ft = re.search(r"filter_type=(\w+)", url)
-        return f"leaderboard_{ft.group(1) if ft else 'overall'}", int(m.group(1))
-    m = re.search(r"/segments/(\d+)", url)
-    if m and "/frontend/" not in url:
-        return "segment_page", int(m.group(1))
-    return "other", None
-
-
-def _payload_for_log(body: str | None) -> str | None:
-    """Store the useful payload, not 800KB of HTML. For a segment page, keep
-    just pageProps (~33KB: metadata, measurements, streams, initialLeaderboard);
-    JSON responses are kept as-is."""
-    if not body:
-        return body
-    m = _NEXT_DATA_RE.search(body)
-    if m:
-        try:
-            return json.dumps(json.loads(m.group(1))["props"]["pageProps"])
-        except (ValueError, KeyError):
-            return m.group(1)
-    return body
-
-
-def _make_request_logger(conn):
-    """Build a logger that records every Strava request (with payload) into api_log."""
-    def log(method: str, url: str, status: int, elapsed_ms: float,
-            body: str | None = None) -> None:
-        endpoint, seg_id = _classify_endpoint(url)
-        db.log_api_request(conn, now(), method, endpoint, url, seg_id, status,
-                           elapsed_ms, _payload_for_log(body))
-    return log
-
-
 def _store_efforts(conn, sid: int, efforts: list, when: str) -> None:
     """Upsert the fetched athletes and append their efforts into the log.
     `when` is the observation time — the rewind key for effort_log."""
@@ -302,7 +261,7 @@ def cmd_import(args: argparse.Namespace) -> None:
             print(f"! Shutesbury boundary unavailable ({e}); treating all as in-town")
 
         imported: list[int] = []
-        with StravaClient(request_logger=_make_request_logger(conn)) as client:
+        with StravaClient() as client:
             for sid in targets:
                 print(f"> page {sid} ...", flush=True)
                 try:
@@ -430,7 +389,7 @@ def cmd_update(args: argparse.Namespace) -> None:
         # Captured BEFORE any fetch so the changelog reads every observation
         # this run wrote.
         run_started_at = now()
-        with StravaClient(request_logger=_make_request_logger(conn)) as client:
+        with StravaClient() as client:
             for sid in targets:
                 _refresh_one(conn, client, sid, args.depth)
                 if _last_stop:
@@ -510,7 +469,7 @@ def cmd_update_background(args: argparse.Namespace) -> None:
         sid, depth, phase = pick
         print(f"[background] phase {phase} — segment {sid}, depth {depth}")
         run_started_at = now()
-        with StravaClient(request_logger=_make_request_logger(conn)) as client:
+        with StravaClient() as client:
             _refresh_one(conn, client, sid, depth)
         print_changelog(conn, run_started_at)
         if _last_stop == "ratelimit-exhausted":

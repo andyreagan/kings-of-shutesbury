@@ -51,7 +51,8 @@ class AuthError(StravaError):
 
 
 class RateLimitError(StravaError):
-    """Raised when Strava keeps returning 429 after we back off and retry."""
+    """Raised on the FIRST 429 — we never retry within a run (see the
+    politeness note above); the caller stops and resumes after a cooldown."""
     pass
 
 
@@ -115,10 +116,7 @@ def _gross_gain_loss(elevation: list[float]) -> tuple[float, float]:
 
 
 class StravaClient:
-    def __init__(self, session_cookie: str | None = None, request_logger=None):
-        # request_logger(method, url, status, elapsed_ms) is called for EVERY
-        # response (including 429/401), before any error handling.
-        self._request_logger = request_logger
+    def __init__(self, session_cookie: str | None = None):
         cookie = session_cookie or load_session_cookie()
         self._client = httpx.Client(
             base_url=BASE,
@@ -150,15 +148,7 @@ class StravaClient:
 
     def _get(self, url: str, **kwargs) -> httpx.Response:
         self._throttle()
-        t0 = time.monotonic()
         resp = self._client.get(url, **kwargs)
-        elapsed_ms = round((time.monotonic() - t0) * 1000, 1)
-        if self._request_logger:
-            try:
-                self._request_logger("GET", str(resp.request.url),
-                                     resp.status_code, elapsed_ms, resp.text)
-            except Exception:                                   # noqa: BLE001
-                pass  # logging must never break a fetch
         if resp.status_code in (401, 403):
             raise AuthError(
                 f"{resp.status_code} for {url} — session cookie is likely "

@@ -70,7 +70,7 @@ function applyDisciplineFilter() {
   if (window.setMapDiscipline) window.setMapDiscipline(disciplineFilter);
 }
 
-// ---- athlete helpers (ported from athlete.js) --------------------------------
+// ---- athlete helpers ----------------------------------------------------------
 function findEffort(seg, id) {
   return seg.efforts.find((e) => e.athlete_id === id);
 }
@@ -280,7 +280,7 @@ function openDetail(id) {
   const effortRows = s.efforts.map((e) => `
     <tr>
       <td class="num">${e.rank ?? "—"}</td>
-      <td><div class="name-cell">${avatar(e.avatar_url, e.name)}<a href="#athlete/${e.athlete_id}">${esc(e.name)}</a></div></td>
+      <td><div class="name-cell">${avatar(e.avatar_url)}<a href="#athlete/${e.athlete_id}">${esc(e.name)}</a></div></td>
       <td class="num">${effortLink(e, fmtTime(e.elapsed_time))}</td>
       <td class="num">${e.avg_watts ? Math.round(e.avg_watts) + " W" : "—"}</td>
       <td class="num pts">${e.points || ""}</td>
