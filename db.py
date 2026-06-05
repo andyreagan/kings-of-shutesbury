@@ -100,10 +100,10 @@ CREATE INDEX IF NOT EXISTS idx_effort_log_athlete ON effort_log(segment_id, athl
 -- hold the KOM) and the next distinct time skips the tied-out places (1, 1, 3).
 -- `first_seen`/`last_seen` are the min/max observed_at across that athlete's
 -- logged efforts. This view replaces the old physical `efforts` table; reads are
--- unchanged (`SELECT ... FROM efforts`). Dropped + recreated on every init so
--- definition changes reach existing DBs (it's a view — no data to migrate).
-DROP VIEW IF EXISTS efforts;
-CREATE VIEW efforts AS
+-- unchanged (`SELECT ... FROM efforts`). NB: IF NOT EXISTS means an existing DB
+-- keeps whatever definition it was created with — if you change this SQL, drop
+-- the view by hand (or delete the .db; it's all refetchable).
+CREATE VIEW IF NOT EXISTS efforts AS
 WITH best AS (
     SELECT segment_id, athlete_id, elapsed_time, avg_speed, avg_watts, avg_hr,
            effort_id, activity_id, start_date_local,
