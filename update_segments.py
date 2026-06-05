@@ -63,6 +63,7 @@ VALID_DISCIPLINES = ("road", "gravel", "mtb")
 # shallowest leaderboards one page at a time (phase B). Per-tick jitter
 # desynchronizes a 5-min cron from anything else hitting strava.com.
 BACKGROUND_JITTER_S = 300       # random 0..N seconds at the start of every tick
+BACKGROUND_TICK_INTERVAL_S = 300  # --loop: gap between ticks (script is the scheduler)
 TOP25_FRESHNESS_DAYS = 7        # phase A threshold: top-25 older than this gets refreshed
 # Dynamic 429 backoff. Each consecutive 429 escalates one step; a successful
 # fetch in any mode resets the ladder. Past the last step we abort the tick.
@@ -211,6 +212,8 @@ def _require_update_mode(args: argparse.Namespace) -> None:
     if args.background and args.depth != 1:
         sys.exit("update --background chooses depth itself; "
                  "don't combine with --depth.")
+    if args.loop and not args.background:
+        sys.exit("update --loop only makes sense with --background.")
 
 
 # === add =====================================================================
@@ -449,9 +452,33 @@ def _refresh_one(conn, client, sid: int, depth: int) -> bool:
 
 
 def cmd_update_background(args: argparse.Namespace) -> None:
-    """One background tick: sleep a jittered amount, pick the single most
-    important segment to refresh, fetch it, exit. Designed to be fired every
-    5 minutes by an external scheduler (launchd / cron)."""
+    """Background mode — picks ONE segment per tick by the phase-A/B/C
+    priority. Without --loop, runs exactly one tick (cron / launchd style).
+    With --loop, keeps ticking every BACKGROUND_TICK_INTERVAL_S seconds until
+    Ctrl+C — the script is its own scheduler, so we skip the per-tick jitter
+    (jitter exists to desynchronize cron firings, not to space loops)."""
+    if args.loop:
+        args.no_jitter = True
+        try:
+            while True:
+                _background_tick(args)
+                if _last_stop == "ratelimit-exhausted":
+                    print("[background] giving up the loop — rerun once the "
+                          "rate limit has actually cleared.")
+                    return
+                print(f"[background] sleeping {BACKGROUND_TICK_INTERVAL_S}s "
+                      "until next tick — Ctrl+C to stop", flush=True)
+                time.sleep(BACKGROUND_TICK_INTERVAL_S)
+        except KeyboardInterrupt:
+            print("\n[background] stopped.")
+        return
+    _background_tick(args)
+    if _last_stop == "ratelimit-exhausted":
+        sys.exit(2)
+
+
+def _background_tick(args: argparse.Namespace) -> None:
+    """One unit of background work: jitter (if enabled), pick, fetch, report."""
     if not args.no_jitter:
         sleep_s = random.uniform(0, BACKGROUND_JITTER_S)
         print(f"[background] jitter sleep {sleep_s:.0f}s ...", flush=True)
@@ -472,8 +499,6 @@ def cmd_update_background(args: argparse.Namespace) -> None:
         with StravaClient() as client:
             _refresh_one(conn, client, sid, depth)
         print_changelog(conn, run_started_at)
-        if _last_stop == "ratelimit-exhausted":
-            sys.exit(2)
     finally:
         conn.close()
 
@@ -970,6 +995,10 @@ def main() -> None:
     p_upd.add_argument("--no-jitter", action="store_true",
                        help="with --background: skip the random sleep "
                             "(testing, or if the scheduler already jitters)")
+    p_upd.add_argument("--loop", action="store_true",
+                       help="with --background: keep ticking every 5 min "
+                            "(implies --no-jitter; Ctrl+C to stop). For "
+                            "running in a shell when you want to watch.")
     p_upd.add_argument("--depth", type=int, default=1, metavar="N",
                        help="pages of 25 to pull (default 1 = top 25); "
                             "ignored with --background")

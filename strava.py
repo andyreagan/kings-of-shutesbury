@@ -191,7 +191,6 @@ class StravaClient:
 
         return {
             "leaders": leaders,
-            "athlete_pr_rank": il.get("athletePrRank"),
             "id": int(segment_id),
             "name": meta.get("name"),
             "activity_type": meta.get("activityType"),

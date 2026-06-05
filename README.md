@@ -140,8 +140,20 @@ uv run update_segments.py log --since 2026-05-01 --until 2026-05-15
 
 ## Running in the background
 
+Two equivalent ways to run it: an open shell (you watch progress; Ctrl+C to
+stop) or launchd (set-and-forget; survives reboot).
+
+```sh
+# Open-shell loop — same picker, prints each tick to stdout.
+uv run update_segments.py update --background --loop
+
+# launchd plist (see below) — same thing, headless, logs to .background.log.
+```
+
 `update --background` is a single-shot tick designed to be fired every 5
-minutes by an external scheduler. Each tick:
+minutes by an external scheduler. `--loop` adds an internal 5-minute sleep
+between ticks (and skips the per-tick jitter, since we're not racing any
+external schedule) so you can run it directly in a shell. Each tick:
 
 1. Sleeps a random 0–5 minutes (`--no-jitter` to skip).
 2. Picks ONE segment by priority:
