@@ -136,6 +136,13 @@ tbody tr { transition: background 0.1s; }
 .nav-link { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600; }
 .nav-link:hover { text-decoration: underline; }
 
+.site-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; }
+.site-nav-item { display: inline-block; padding: 5px 14px; border-radius: 8px; font-size: 13px;
+  font-weight: 600; border: 1px solid var(--line); background: var(--panel-2); color: var(--muted);
+  text-decoration: none; }
+.site-nav-item.active { background: var(--accent); border-color: var(--accent); color: #fff; cursor: default; }
+.site-nav-item:not(.active):hover { border-color: var(--accent); color: var(--text); }
+
 /* athlete page */
 .back-link { color: var(--muted); text-decoration: none; font-size: 14px; }
 .back-link:hover { color: var(--text); }

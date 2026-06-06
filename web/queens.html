@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kings of Shutesbury</title>
-  <meta name="description" content="Tour-de-France-style King of the Mountains standings for Strava cycling segments in &amp; around Shutesbury, MA.">
+  <title>Queens of Shutesbury</title>
+  <meta name="description" content="Tour-de-France-style Queen of the Mountains standings for Strava cycling segments in &amp; around Shutesbury, MA.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
 
   <!-- Open Graph / link-share preview -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://andyreagan.github.io/kings-of-shutesbury/">
-  <meta property="og:title" content="Kings of Shutesbury">
-  <meta property="og:description" content="Tour-de-France-style King of the Mountains standings for Strava cycling segments in &amp; around Shutesbury, MA.">
+  <meta property="og:url" content="https://andyreagan.github.io/kings-of-shutesbury/queens.html">
+  <meta property="og:title" content="Queens of Shutesbury">
+  <meta property="og:description" content="Tour-de-France-style Queen of the Mountains standings for Strava cycling segments in &amp; around Shutesbury, MA.">
   <meta property="og:image" content="https://andyreagan.github.io/kings-of-shutesbury/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kings of Shutesbury">
-  <meta name="twitter:description" content="Tour-de-France-style King of the Mountains standings for Strava cycling segments in &amp; around Shutesbury, MA.">
+  <meta name="twitter:title" content="Queens of Shutesbury">
+  <meta name="twitter:description" content="Tour-de-France-style Queen of the Mountains standings for Strava cycling segments in &amp; around Shutesbury, MA.">
   <meta name="twitter:image" content="https://andyreagan.github.io/kings-of-shutesbury/og-image.png">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
@@ -28,10 +28,10 @@
   <header>
     <div class="wrap">
       <nav class="site-nav">
-        <span class="site-nav-item active">♛ Kings</span>
-        <a class="site-nav-item" href="queens.html">♛ Queens</a>
+        <a class="site-nav-item" href="index.html">♛ Kings</a>
+        <span class="site-nav-item active">♛ Queens</span>
       </nav>
-      <h1><span class="crown">♛♛♛</span> Kings of Shutesbury <span class="crown">♛♛♛</span></h1>
+      <h1><span class="crown">♛♛♛</span> Queens of Shutesbury <span class="crown">♛♛♛</span></h1>
       <p class="sub">Strava segment standings in &amp; around Shutesbury, MA</p>
       <div class="discipline-switch" id="discipline-switch">
         <span class="muted">discipline:</span>
@@ -81,7 +81,7 @@
     <section id="methodology">
       <h2>Methodology</h2>
       <p>Each segment earns a <strong>difficulty score</strong>, which sorts it into a
-        <strong>category</strong>; the category awards Tour-de-France-style KOM points by
+        <strong>category</strong>; the category awards Tour-de-France-style QOM points by
         finishing place, and how popular the segment is sets how many places score.</p>
 
       <p><strong>1 · Difficulty.</strong></p>
@@ -126,7 +126,7 @@
         <em>Cancer</em> is the middle of <em>Lake Wyola to Shutesbury</em>). We detect these by
         comparing GPS tracks (a contiguous, same-direction overlap; a climb vs. its reverse descent
         is <em>not</em> a sub-segment) and mark them <em>↳ section of …</em>. By default they score
-        on their own — Strava treats each as a separate KOM — but switching the <em>sub segments</em>
+        on their own — Strava treats each as a separate QOM — but switching the <em>sub segments</em>
         toggle up top to <em>off</em> removes them everywhere at once (table, map, <em>and</em> the
         points) for a de-duplicated view.</p>
 
@@ -146,7 +146,7 @@
     <p class="muted generated" id="generated"></p>
   </footer>
 
-  <script>window.SITE = { data: "data.json", royal: "King", royalPlural: "Kings", kom: "KOM", crown: "♛" };</script>
+  <script>window.SITE = { data: "data-queens.json", royal: "Queen", royalPlural: "Queens", kom: "QOM", crown: "♛" };</script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="util.js"></script>

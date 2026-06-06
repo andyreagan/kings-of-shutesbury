@@ -79,6 +79,10 @@ class Athlete(models.Model):
     name = models.TextField(null=True, blank=True)
     avatar_url = models.TextField(null=True, blank=True)
     badge = models.TextField(null=True, blank=True)
+    # Canonical gender for the athlete — bubbled up from women's board fetches.
+    # "F" once seen on any women's leaderboard; STICKY (F never downgrades to M
+    # even though everyone appears on the overall board). NULL = unset.
+    gender = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"Athlete({self.id}, {self.name!r})"
@@ -128,6 +132,11 @@ class EffortLog(models.Model):
     activity_id = models.TextField(null=True, blank=True)
     start_date_local = models.TextField(null=True, blank=True)  # when the ride happened (Strava)
     observed_at = models.TextField()                            # when WE first logged it (NOT NULL)
+    # Which board this effort was sourced from. "M" = overall board (default);
+    # "F" = women's board. An existing row is flipped to "F" when the effort
+    # also appears on the women's board (the overall-board INSERT usually wins
+    # the dedup race first). NULL = legacy rows before gender tracking.
+    gender = models.TextField(null=True, blank=True)
 
     class Meta:
         constraints = [

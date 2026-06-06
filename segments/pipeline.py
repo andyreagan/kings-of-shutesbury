@@ -185,9 +185,14 @@ def upsert_segment(seg: dict) -> None:
     Segment.objects.update_or_create(id=seg["id"], defaults=defaults)
 
 
-def upsert_athlete(athlete: dict) -> None:
+def upsert_athlete(athlete: dict, gender: str = "M") -> None:
     """Upsert an athlete row; avatar/badge are COALESCE-safe (only overwrite
-    if new value is non-null, matching the db.py behaviour)."""
+    if new value is non-null, matching the db.py behaviour).
+
+    gender applies only to NEW athletes created here — sets their initial
+    gender to "M" when sourced from the overall board. For women's board
+    rows the gender flip on existing Athlete rows is done in record_efforts
+    (after bulk_create) not here, to avoid a per-row UPDATE overhead."""
     aid = athlete["id"]
     try:
         obj = Athlete.objects.get(pk=aid)
@@ -201,27 +206,42 @@ def upsert_athlete(athlete: dict) -> None:
             update_fields.append("badge")
         obj.save(update_fields=update_fields)
     except Athlete.DoesNotExist:
+        # New athletes created during an overall-board fetch get gender="M";
+        # during a women's-board fetch get gender="F". The sticky rule means
+        # once "F" is set it is never overwritten back to "M".
         Athlete.objects.create(
             id=aid,
             name=athlete.get("name"),
             avatar_url=athlete.get("avatar_url"),
             badge=athlete.get("badge"),
+            gender=gender,
         )
 
 
-def record_efforts(segment_id: int, efforts: list[dict], observed_at: str) -> None:
+def record_efforts(segment_id: int, efforts: list[dict], observed_at: str,
+                   gender: str = "M") -> None:
     """Log a freshly-fetched leaderboard into segments_effortlog.
 
     One row per distinct observed effort, identified by (segment, athlete,
     effort_id). Already-seen efforts are ignored — INSERT OR IGNORE semantics via
     bulk_create(ignore_conflicts=True).  The original observed_at is preserved
     for the rewind key.  An athlete missing from this fetch keeps their logged rows.
+
+    gender="M"  (overall board, default): new rows stamped "M"; existing rows
+                 left unchanged — never overwrite an "F" (sticky rule).
+    gender="F"  (women's board): new rows stamped "F"; ALSO updates matching
+                 EXISTING rows to "F" (overall INSERT usually beats the dedup race)
+                 and flips involved Athlete rows to gender="F".
     """
     objs = []
+    athlete_ids = []
+    effort_keys: list[tuple[int, int, str | None]] = []  # (segment_id, athlete_id, effort_id)
     for e in efforts:
         aid = e.get("athlete_id")
         if aid is None:
             continue
+        athlete_ids.append(aid)
+        effort_keys.append((segment_id, aid, e.get("effort_id")))
         objs.append(EffortLog(
             segment_id=segment_id,
             athlete_id=aid,
@@ -233,9 +253,25 @@ def record_efforts(segment_id: int, efforts: list[dict], observed_at: str) -> No
             activity_id=e.get("activity_id"),
             start_date_local=e.get("start_date_local"),
             observed_at=observed_at,
+            gender=gender,
         ))
-    if objs:
-        EffortLog.objects.bulk_create(objs, ignore_conflicts=True)
+    if not objs:
+        return
+    EffortLog.objects.bulk_create(objs, ignore_conflicts=True)
+
+    if gender == "F" and effort_keys:
+        # The overall-board INSERT often wins the dedup race for the same
+        # (segment, athlete, effort_id) triple, leaving those rows stamped "M".
+        # Flip every matching existing row to "F" now (effort_id is unique
+        # within a segment, so this hits exactly the fetched rows).
+        EffortLog.objects.filter(
+            segment_id=segment_id,
+            effort_id__in=[eid for _, _, eid in effort_keys if eid is not None],
+        ).update(gender="F")
+        # Bubble gender="F" up to Athlete rows (sticky — never reverts to M).
+        Athlete.objects.filter(
+            id__in=set(athlete_ids)
+        ).update(gender="F")
 
 
 def set_geo_class(segment_id: int, cls: dict) -> None:
@@ -289,17 +325,20 @@ def unimported_segment_ids() -> list[int]:
 # === effort helpers ===========================================================
 
 
-def _store_efforts(sid: int, efforts: list, when: str) -> None:
+def _store_efforts(sid: int, efforts: list, when: str, gender: str = "M") -> None:
     """Upsert the fetched athletes and append their efforts into the log.
-    `when` is the observation time — the rewind key for effort_log."""
+    `when` is the observation time — the rewind key for effort_log.
+    `gender` is passed through to record_efforts and upsert_athlete."""
     for eff in efforts:
         if eff["athlete_id"] is None:
             continue
         upsert_athlete({
             "id": eff["athlete_id"], "name": eff["athlete_name"],
-            "avatar_url": eff["avatar_url"], "badge": eff["badge"]})
+            "avatar_url": eff["avatar_url"], "badge": eff["badge"]},
+            gender=gender)
     record_efforts(sid,
-                   [e for e in efforts if e["athlete_id"] is not None], when)
+                   [e for e in efforts if e["athlete_id"] is not None], when,
+                   gender=gender)
 
 
 def _supplement_following(client, sid: int, efforts: list) -> list:
@@ -328,13 +367,18 @@ def _refresh_one(client, sid: int, depth: int) -> bool:
     True on success. Updates the 429 backoff ladder: success resets it; a
     rate-limit escalates it (and sets `_last_stop` to either 'ratelimit' or
     'ratelimit-exhausted' so the caller can decide whether to abort the whole
-    process or just stop the loop)."""
+    process or just stop the loop).
+
+    Each refresh is now 3 requests: overall (depth pages) + following + women's.
+    All three share the same try/except — a 429 on the women's fetch escalates
+    the ladder exactly like the others."""
     global _last_stop
     _last_stop = None
     print(f"> leaderboard {sid} (depth {depth}) ...", flush=True)
     try:
         efforts = client.fetch_leaderboard(sid, "overall", pages=depth)
         efforts = _supplement_following(client, sid, efforts)
+        women = client.fetch_leaderboard(sid, "overall", pages=1, gender="female")
     except AuthError as e:
         print(f"\nAUTH ERROR: {e}")
         _last_stop = "auth"
@@ -350,7 +394,8 @@ def _refresh_one(client, sid: int, depth: int) -> bool:
         print(f"! failed {sid}: {e}")
         return False
     stamp = now()
-    _store_efforts(sid, efforts, stamp)
+    _store_efforts(sid, efforts, stamp, gender="M")
+    _store_efforts(sid, women, stamp, gender="F")
     set_efforts_fetched_at(sid, stamp)
     if depth > 1:
         bump_depth_pages(sid, depth)
@@ -358,7 +403,7 @@ def _refresh_one(client, sid: int, depth: int) -> bool:
     # don't self-commit in the ORM, but their .update() calls auto-commit
     # in Django's default autocommit mode, so nothing extra is needed.
     _backoff_reset()
-    print(f"  {len(efforts)} efforts")
+    print(f"  {len(efforts)} efforts (+{len(women)} women's board)")
     return True
 
 

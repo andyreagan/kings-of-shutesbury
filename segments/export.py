@@ -1,7 +1,11 @@
-"""Export the current DB as web/data.json (ORM port of update_segments.py's export).
+"""Export the current DB as web/data.json (kings) and web/data-queens.json.
 
-The output JSON is byte-identical to the legacy export — same dict key order,
+The kings output is byte-identical to the legacy export — same dict key order,
 same rounding, same athlete_name key mapping.
+
+The queens output shares the same top-level shape and segment structure, but
+efforts are filtered to athletes with Athlete.gender == "F" and re-ranked among
+women only (competition_ranks by elapsed_time; NULL elapsed_times unranked).
 """
 
 from __future__ import annotations
@@ -13,11 +17,12 @@ from django.db.models import F
 
 from . import geo
 from . import scoring
-from .models import Effort, Segment
-from .pipeline import now, TRACKED_ATHLETES
+from .models import Athlete, Effort, Segment
+from .pipeline import competition_ranks, now, TRACKED_ATHLETES
 
 WEB_DIR = Path(__file__).resolve().parent.parent / "web"
 DATA_JSON = WEB_DIR / "data.json"
+DATA_QUEENS_JSON = WEB_DIR / "data-queens.json"
 PROFILE_POINTS = 120        # downsample elevation profile to this many points
 MAP_TRACK_POINTS = 64       # downsample GPS track for the map to this many points
 EFFORTS_PER_SEGMENT = 100   # cap efforts shipped per segment (keeps page small)
@@ -80,15 +85,112 @@ def _segment_with_efforts(seg_obj: Segment) -> dict:
             "athlete_name": e.athlete.name,
             "avatar_url": e.athlete.avatar_url,
             "badge": e.athlete.badge,
+            "athlete_gender": e.athlete.gender,
         })
     seg["efforts"] = efforts
     return seg
 
 
+def _build_payload(segments: list[dict], filtered: list[dict],
+                   boundary, cima_id: int | None,
+                   queens: bool = False) -> dict:
+    """Build the full export payload.
+
+    queens=False → kings board (all efforts, rank from the `efforts` view).
+    queens=True  → women's board (efforts filtered to Athlete.gender=="F",
+                   re-ranked among women by elapsed_time using competition_ranks,
+                   re-scored using the same category/depth).
+    """
+    out_segments = []
+    for seg in segments:
+        streams = json.loads(seg.get("streams_json") or "{}")
+        depth = scoring.effort_depth(seg["total_efforts"])
+        category = scoring.segment_category(seg["difficulty"], seg["id"] == cima_id)
+
+        if queens:
+            # Filter to women only and re-rank among them.
+            women_efforts = [e for e in seg["efforts"]
+                             if e.get("athlete_gender") == "F"]
+            # Re-rank by elapsed_time (NULL = unranked, same as the view).
+            time_map = {e["athlete_id"]: e["elapsed_time"]
+                        for e in women_efforts if e["elapsed_time"] is not None}
+            women_ranks = competition_ranks(time_map)
+            ranked_efforts = []
+            for e in women_efforts:
+                new_rank = women_ranks.get(e["athlete_id"])  # None if timeless
+                ranked_efforts.append({**e, "rank": new_rank})
+            # Sort: ranked first (ascending rank), then NULL-rank, tie-break by date.
+            ranked_efforts.sort(key=lambda e: (
+                e["rank"] is None, e["rank"] or 0, e["start_date_local"] or ""))
+            display_efforts = ranked_efforts
+        else:
+            display_efforts = seg["efforts"]
+
+        leader_raw = display_efforts[0] if display_efforts else None
+        # For queens: only use a ranked row as leader (skip timeless supplements).
+        if queens and leader_raw and leader_raw["rank"] is None:
+            leader_raw = next(
+                (e for e in display_efforts if e["rank"] is not None), None)
+        leader = ({"name": leader_raw["athlete_name"],
+                   "elapsed_time": leader_raw["elapsed_time"]}
+                  if leader_raw else None)
+
+        def track_of(seg) -> list:
+            loc = json.loads(seg.get("streams_json") or "{}").get("location") or []
+            return _downsample(loc, MAP_TRACK_POINTS)
+
+        out_segments.append({
+            "id": seg["id"],
+            "name": seg["name"],
+            "location": seg["display_location"],
+            "activity_type": seg["activity_type"],
+            "discipline": seg["discipline"],
+            "category": category,
+            "terrain": seg["terrain"],
+            "distance_m": seg["distance_m"],
+            "avg_grade": seg["avg_grade"],
+            "elev_gain": seg["elev_gain"],
+            "gross_gain": seg["gross_gain"],
+            "gross_loss": seg["gross_loss"],
+            "total_efforts": seg["total_efforts"],
+            "total_athletes": seg["total_athletes"],
+            "difficulty": seg["difficulty"],
+            "parent_segment_id": seg["parent_segment_id"],
+            "is_sub_segment": seg["parent_segment_id"] is not None,
+            "map_image_url": seg["map_image_url"],
+            "start_latlng": [seg["start_lat"], seg["start_lng"]],
+            "end_latlng": [seg["end_lat"], seg["end_lng"]],
+            "track": track_of(seg),
+            "leader": leader,
+            "profile": {
+                "distance": _downsample(streams.get("distance") or [], PROFILE_POINTS),
+                "elevation": _downsample(streams.get("elevation") or [], PROFILE_POINTS),
+            },
+            "efforts": [{
+                "rank": e["rank"], "athlete_id": e["athlete_id"],
+                "name": e["athlete_name"], "elapsed_time": e["elapsed_time"],
+                "avg_watts": e["avg_watts"], "avatar_url": e["avatar_url"],
+                "badge": e["badge"],
+                "points": scoring.points_for_rank(e["rank"], category, depth,
+                                                  seg["difficulty"]),
+                "effort_id": e["effort_id"], "activity_id": e["activity_id"],
+            } for e in _capped_efforts(display_efforts)],
+        })
+    out_segments.sort(key=lambda s: s["difficulty"], reverse=True)
+
+    return {
+        "generated_at": now(),
+        "segments": out_segments,
+        "filtered": filtered,
+        "boundary": boundary,
+    }
+
+
 def export_data_json() -> None:
-    """Serialize the current DB into web/data.json. Pure read — assumes import
-    has already set geo/difficulty/sub-seg. Defensive: any segment with NULL
-    difficulty gets it computed on the fly so a stale DB still exports."""
+    """Serialize the current DB into web/data.json (kings) and
+    web/data-queens.json (queens). Pure read — assumes import has already set
+    geo/difficulty/sub-seg. Defensive: any segment with NULL difficulty gets it
+    computed on the fly so a stale DB still exports."""
     seg_objs = list(Segment.objects.filter(fetched_at__isnull=False))
     segments = [_segment_with_efforts(s) for s in seg_objs]
 
@@ -140,59 +242,19 @@ def export_data_json() -> None:
     # The single hardest in-town ride is the "Cima Coppi".
     cima_id = max(included, key=lambda s: s["difficulty"])["id"] if included else None
 
-    out_segments = []
-    for seg in included:
-        streams = json.loads(seg.get("streams_json") or "{}")
-        depth = scoring.effort_depth(seg["total_efforts"])
-        category = scoring.segment_category(seg["difficulty"], seg["id"] == cima_id)
-        leader = seg["efforts"][0] if seg["efforts"] else None
-        out_segments.append({
-            "id": seg["id"],
-            "name": seg["name"],
-            "location": seg["display_location"],
-            "activity_type": seg["activity_type"],
-            "discipline": seg["discipline"],
-            "category": category,
-            "terrain": seg["terrain"],
-            "distance_m": seg["distance_m"],
-            "avg_grade": seg["avg_grade"],
-            "elev_gain": seg["elev_gain"],
-            "gross_gain": seg["gross_gain"],
-            "gross_loss": seg["gross_loss"],
-            "total_efforts": seg["total_efforts"],
-            "total_athletes": seg["total_athletes"],
-            "difficulty": seg["difficulty"],
-            "parent_segment_id": seg["parent_segment_id"],
-            "is_sub_segment": seg["parent_segment_id"] is not None,
-            "map_image_url": seg["map_image_url"],
-            "start_latlng": [seg["start_lat"], seg["start_lng"]],
-            "end_latlng": [seg["end_lat"], seg["end_lng"]],
-            "track": track_of(seg),
-            "leader": {"name": leader["athlete_name"],
-                       "elapsed_time": leader["elapsed_time"]} if leader else None,
-            "profile": {
-                "distance": _downsample(streams.get("distance") or [], PROFILE_POINTS),
-                "elevation": _downsample(streams.get("elevation") or [], PROFILE_POINTS),
-            },
-            "efforts": [{
-                "rank": e["rank"], "athlete_id": e["athlete_id"],
-                "name": e["athlete_name"], "elapsed_time": e["elapsed_time"],
-                "avg_watts": e["avg_watts"], "avatar_url": e["avatar_url"],
-                "badge": e["badge"],
-                "points": scoring.points_for_rank(e["rank"], category, depth,
-                                                  seg["difficulty"]),
-                "effort_id": e["effort_id"], "activity_id": e["activity_id"],
-            } for e in _capped_efforts(seg["efforts"])],
-        })
-    out_segments.sort(key=lambda s: s["difficulty"], reverse=True)
-
-    payload = {
-        "generated_at": now(),
-        "segments": out_segments,
-        "filtered": filtered,
-        "boundary": boundary,
-    }
     WEB_DIR.mkdir(exist_ok=True)
-    DATA_JSON.write_text(json.dumps(payload, indent=2))
-    print(f"Wrote {DATA_JSON} — {len(out_segments)} in-Shutesbury ride "
+
+    # Kings payload — all efforts, overall-board ranks (unchanged from before).
+    kings_payload = _build_payload(included, filtered, boundary, cima_id, queens=False)
+    DATA_JSON.write_text(json.dumps(kings_payload, indent=2))
+
+    # Queens payload — same shape; efforts filtered to Athlete.gender=="F",
+    # re-ranked and re-scored among women only.
+    queens_payload = _build_payload(included, filtered, boundary, cima_id, queens=True)
+    DATA_QUEENS_JSON.write_text(json.dumps(queens_payload, indent=2))
+
+    n_kings = len(kings_payload["segments"])
+    n_queens = len(queens_payload["segments"])
+    print(f"Wrote {DATA_JSON} — {n_kings} in-Shutesbury ride "
           f"segments, {len(filtered)} filtered out.")
+    print(f"Wrote {DATA_QUEENS_JSON} — {n_queens} segments (women's board).")

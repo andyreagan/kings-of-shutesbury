@@ -36,7 +36,8 @@ function effortLink(e, label) {
 }
 
 async function loadData() {
-  const r = await fetch("data.json");
+  const url = (window.SITE && window.SITE.data) ? window.SITE.data : "data.json";
+  const r = await fetch(url);
   if (!r.ok) throw new Error(r.status);
   return r.json();
 }

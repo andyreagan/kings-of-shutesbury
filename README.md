@@ -26,7 +26,13 @@ add ──────────────────────▶  updat
   creates the `efforts` SQL view — Strava-style competition ranking where tied
   times share a rank and the next distinct time skips tied-out places (1, 1, 3).
 - **`web/`** is a dependency-free static site — open `web/index.html` (or host it
-  anywhere). It reads `web/data.json`.
+  anywhere). It reads `web/data.json`. `web/queens.html` is the same app pointed
+  at `web/data-queens.json` — the women's boards (`gender=female` on the same
+  leaderboard endpoint), re-ranked and re-scored among women under the same
+  rules. Gender is evidence-based: efforts seen on a women's board are stamped
+  `F`, which bubbles up to the athlete (sticky — never reverts), so a tagged
+  athlete's efforts count on every segment whether or not its women's board has
+  been fetched yet. Exports filter at the athlete level.
 - **Django** is used for ORM, migrations, and management commands only — there
   is no HTTP server or views. Scoring formula knobs live in `segments/scoring.py`.
 
@@ -236,7 +242,7 @@ Each pass through the rate-limited Strava endpoints costs:
 | Command | Requests per segment |
 |---|---|
 | `add` (import stage) | 1 (the page) |
-| `update` | 2 (overall leaderboard + following board) |
+| `update` | 3 (overall leaderboard + following board + women's board) |
 
 Requests are paced (~4s + jitter). On the first CloudFront 429 (a header-less
 ~100 req/window limit) the client **stops the whole run** with all progress

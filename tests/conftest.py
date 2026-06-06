@@ -73,28 +73,36 @@ def effort(athlete_id: int, elapsed_time: int, *,
 class FakeStravaClient:
     """Drop-in for StravaClient — implements only what _refresh_one uses.
 
-    Configure with `.overall` / `.following` dicts keyed by segment id. Optional
-    `raises` is a list of exceptions consumed in order on each fetch_leaderboard
-    call; pass `None` in a slot to let that call succeed normally.
+    Configure with `.overall` / `.following` / `.women` dicts keyed by segment
+    id. Optional `raises` is a list of exceptions consumed in order on each
+    fetch_leaderboard call; pass `None` in a slot to let that call succeed normally.
     """
 
     def __init__(self,
                  overall: dict[int, list[dict]] | None = None,
                  following: dict[int, list[dict]] | None = None,
+                 women: dict[int, list[dict]] | None = None,
                  raises: list[Exception | None] | None = None):
         self.overall = overall or {}
         self.following = following or {}
+        self.women = women or {}    # women's board rows; returned when gender="female"
         self._raises = list(raises or [])
         self.calls: list[tuple[int, str, int]] = []
 
     def fetch_leaderboard(self, sid: int, filter_type: str = "overall",
-                          pages: int = 1) -> list[dict]:
+                          pages: int = 1,
+                          gender: str = "overall") -> list[dict]:
         self.calls.append((sid, filter_type, pages))
         if self._raises:
             err = self._raises.pop(0)
             if err is not None:
                 raise err
-        bucket = self.following if filter_type == "following" else self.overall
+        if filter_type == "following":
+            bucket = self.following
+        elif gender == "female":
+            bucket = self.women
+        else:
+            bucket = self.overall
         return list(bucket.get(sid, []))
 
     def __enter__(self):

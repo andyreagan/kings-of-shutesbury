@@ -1,5 +1,12 @@
 "use strict";
 
+// Per-page configuration — set via window.SITE before this script loads.
+// Defaults keep the Kings page working without any config block.
+const SITE = Object.assign(
+  { data: "data.json", royal: "King", royalPlural: "Kings", kom: "KOM", crown: "♛" },
+  window.SITE || {}
+);
+
 let DATA = null;
 let kingExpanded = false;
 const KING_CAP = 10;
@@ -72,7 +79,7 @@ function applyDisciplineFilter() {
 
 // ---- athlete helpers ----------------------------------------------------------
 function findEffort(seg, id) {
-  return seg.efforts.find((e) => e.athlete_id === id);
+  return (seg.efforts || []).find((e) => e.athlete_id === id);
 }
 
 function resolveAthlete(id) {
@@ -95,7 +102,7 @@ function openAthlete(id) {
 
   const rows = filteredSegs.map((seg) => {
     const eff = findEffort(seg, id);
-    const leader = seg.efforts[0];
+    const leader = (seg.efforts || [])[0];
     const gap = eff && leader ? eff.elapsed_time - leader.elapsed_time : null;
     return { seg, eff, gap };
   });
@@ -116,7 +123,7 @@ function openAthlete(id) {
       <td class="num diff">${seg.difficulty}</td>
       <td class="num">${eff ? (eff.rank ? "#" + eff.rank : "—") : "—"}</td>
       <td class="num">${eff ? effortLink(eff, fmtTime(eff.elapsed_time)) : '<span class="muted">not attempted</span>'}</td>
-      <td class="num">${eff && eff.rank !== 1 ? fmtGap(gap) : (eff ? '<span class="kom">KOM</span>' : "—")}</td>
+      <td class="num">${eff && eff.rank !== 1 ? fmtGap(gap) : (eff ? `<span class="kom">${SITE.kom}</span>` : "—")}</td>
       <td class="num pts">${eff && eff.points ? eff.points : ""}</td>
     </tr>`;
 
@@ -127,14 +134,14 @@ function openAthlete(id) {
       <div>
         <h3>${esc(ath.name)}</h3>
         <p class="sub">${ath.standing
-          ? `King rank #${ath.standing.overall_rank} of ${standings.length} · ${ath.standing.points} pts`
+          ? `${SITE.royal} rank #${ath.standing.overall_rank} of ${standings.length} · ${ath.standing.points} pts`
           : "Not yet on the board"}</p>
       </div>
     </div>
     <div class="stat-grid">
-      ${stat("King rank", ath.standing ? "#" + ath.standing.overall_rank : "—")}
+      ${stat(SITE.royal + " rank", ath.standing ? "#" + ath.standing.overall_rank : "—")}
       ${stat("Points", Math.round(earnedPts * 10) / 10)}
-      ${stat("KOMs", koms)}
+      ${stat(SITE.kom + "s", koms)}
       ${stat("Scoring (top 10)", scored)}
       ${stat("Attempted", `${attempted.length} / ${filteredSegs.length}`)}
       ${stat("To do", remaining.length)}
@@ -143,7 +150,7 @@ function openAthlete(id) {
     <p class="hint">Every tracked segment with this athlete's standing. Rows with no time are not-yet-attempted — the to-do list. Click a segment name for the full leaderboard.</p>
     <div class="seg-card"><table>
       <thead><tr><th>Segment</th><th>Terrain</th><th class="num">Difficulty</th>
-        <th class="num">Rank</th><th class="num">Time</th><th class="num">Gap to KOM</th>
+        <th class="num">Rank</th><th class="num">Time</th><th class="num">Gap to ${SITE.kom}</th>
         <th class="num">Points</th></tr></thead>
       <tbody>${attempted.map(rowHtml).join("")}${remaining.map(rowHtml).join("")}</tbody>
     </table></div>
@@ -277,7 +284,7 @@ function openDetail(id) {
   const s = DATA.segments.find((x) => x.id === id);
   if (!s) return;
   const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
-  const effortRows = s.efforts.map((e) => `
+  const effortRows = (s.efforts || []).map((e) => `
     <tr>
       <td class="num">${e.rank ?? "—"}</td>
       <td><div class="name-cell">${avatar(e.avatar_url)}<a href="#athlete/${e.athlete_id}">${esc(e.name)}</a></div></td>
@@ -306,7 +313,7 @@ function openDetail(id) {
     </div>
     ${elevationSVG(s.profile)}
     ${s.map_image_url ? `<img class="seg-map" src="${esc(s.map_image_url)}" alt="map of ${esc(s.name)}">` : ""}
-    <h4>Leaderboard <span class="muted">(top ${s.efforts.length}; points by rank)</span></h4>
+    <h4>Leaderboard <span class="muted">(top ${(s.efforts || []).length}; points by rank)</span></h4>
     <table><thead><tr><th class="num">#</th><th>Athlete</th><th class="num">Time</th>
       <th class="num">Power</th><th class="num">Points</th></tr></thead>
       <tbody>${effortRows}</tbody></table>`;
@@ -373,7 +380,7 @@ function init() {
 loadData()
   .then((d) => { DATA = d; init(); })
   .catch((err) => {
-    $("#king").innerHTML = `<div class="err">Couldn't load <code>data.json</code> (${err}).<br>
+    $("#king").innerHTML = `<div class="err">Couldn't load <code>${SITE.data}</code> (${err}).<br>
       If you opened this file directly, serve it instead:<br>
       <code>cd web &amp;&amp; python3 -m http.server</code> then open
       <code>http://localhost:8000</code>.</div>`;

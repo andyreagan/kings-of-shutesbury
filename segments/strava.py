@@ -224,15 +224,18 @@ class StravaClient:
 
     def fetch_leaderboard(self, segment_id: int,
                           filter_type: str = "overall",
-                          pages: int = 1) -> list[dict]:
-        """Full overall leaderboard as effort dicts (one per athlete). `pages`
-        controls depth: 1 = top 25, 2 = top 50, etc. (25 per page)."""
+                          pages: int = 1,
+                          gender: str = "overall") -> list[dict]:
+        """Full leaderboard as effort dicts (one per athlete). `pages` controls
+        depth: 1 = top 25, 2 = top 50, etc. (25 per page). `gender` is passed
+        directly to the Strava API: "overall" (default) or "female" for the
+        women's board. Note: "women" is silently ignored by Strava — use "female"."""
         efforts: list[dict] = []
         total = None
         for page in range(1, pages + 1):
             resp = self._get(
                 f"/frontend/segments/{segment_id}/leaderboard",
-                params={"filter_type": filter_type, "gender": "overall",
+                params={"filter_type": filter_type, "gender": gender,
                         "page": page},
             )
             data = resp.json()
