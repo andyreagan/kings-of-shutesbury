@@ -428,7 +428,7 @@ def _background_pick() -> tuple[int, int, str] | None:
             "SELECT id FROM segments_segment WHERE "
             "in_town = 1 AND lower(activity_type) = 'ride' "
             "AND excluded = 0 AND fetched_at IS NOT NULL "
-            "AND (efforts_fetched_at IS NULL OR efforts_fetched_at < ?) "
+            "AND (efforts_fetched_at IS NULL OR efforts_fetched_at < %s) "
             "ORDER BY efforts_fetched_at IS NULL DESC, efforts_fetched_at ASC "
             "LIMIT 1", [week_ago])
         row = cur.fetchone()
