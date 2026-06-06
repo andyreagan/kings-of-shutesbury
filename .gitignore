@@ -23,3 +23,6 @@ __pycache__/
 page-captures/
 
 # NOTE: strava.db and web/data.json are intentionally committed/shipped.
+
+# Background loop output (see README: Running in the background)
+.background.log
