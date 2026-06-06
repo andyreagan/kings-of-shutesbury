@@ -33,7 +33,10 @@ class Segment(models.Model):
     name = models.TextField(null=True, blank=True)
     activity_type = models.TextField(null=True, blank=True)
     display_location = models.TextField(null=True, blank=True)
-    climb_category = models.IntegerField(null=True, blank=True)
+    # Strava's own climb category, verbatim from the page payload (e.g.
+    # "Category3"). Display-only provenance — our Tour categories come from
+    # difficulty (scoring.py), so this is never parsed or compared.
+    climb_category = models.TextField(null=True, blank=True)
     is_verified = models.IntegerField(null=True, blank=True)
     distance_m = models.FloatField(null=True, blank=True)
     avg_grade = models.FloatField(null=True, blank=True)

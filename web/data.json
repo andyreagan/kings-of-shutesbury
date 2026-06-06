@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-06T17:32:51+00:00",
+  "generated_at": "2026-06-06T17:43:03+00:00",
   "segments": [
     {
       "id": 1151557,
@@ -4312,6 +4312,1144 @@
           "points": 0,
           "effort_id": "39849289525",
           "activity_id": "1592787444"
+        }
+      ]
+    },
+    {
+      "id": 31392406,
+      "name": "Shute/W. Pelham",
+      "location": "Leverett, Massachusetts",
+      "activity_type": "Ride",
+      "discipline": "road",
+      "category": "Cat 1",
+      "terrain": "climb",
+      "distance_m": 6005.10009765625,
+      "avg_grade": 4.121500015258789,
+      "elev_gain": 244.3070068359375,
+      "gross_gain": 250.0,
+      "gross_loss": 2.5,
+      "total_efforts": 708,
+      "total_athletes": 190,
+      "difficulty": 320.7,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
+      "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/SGUIIGAOAWIVPMAEQKTFX7GIUWNRJB6WGJ66MYZQVTIXQTHTJTYT7VAUOVD76IFPE46GEGAVO4V6LL26",
+      "start_latlng": [
+        42.440067,
+        -72.48288
+      ],
+      "end_latlng": [
+        42.443583,
+        -72.429477
+      ],
+      "track": [
+        [
+          42.440067,
+          -72.48288
+        ],
+        [
+          42.440065,
+          -72.482423
+        ],
+        [
+          42.439811,
+          -72.481589
+        ],
+        [
+          42.439749,
+          -72.480743
+        ],
+        [
+          42.440186,
+          -72.479722
+        ],
+        [
+          42.440949,
+          -72.479241
+        ],
+        [
+          42.441775,
+          -72.478918
+        ],
+        [
+          42.442417,
+          -72.47803
+        ],
+        [
+          42.442789,
+          -72.477358
+        ],
+        [
+          42.443133,
+          -72.47651
+        ],
+        [
+          42.443552,
+          -72.475481
+        ],
+        [
+          42.444299,
+          -72.474619
+        ],
+        [
+          42.444946,
+          -72.473571
+        ],
+        [
+          42.445511,
+          -72.47216
+        ],
+        [
+          42.446197,
+          -72.47101
+        ],
+        [
+          42.447016,
+          -72.469948
+        ],
+        [
+          42.4479,
+          -72.469034
+        ],
+        [
+          42.448521,
+          -72.467804
+        ],
+        [
+          42.448949,
+          -72.466156
+        ],
+        [
+          42.449395,
+          -72.464691
+        ],
+        [
+          42.449745,
+          -72.463426
+        ],
+        [
+          42.450129,
+          -72.462075
+        ],
+        [
+          42.450301,
+          -72.460888
+        ],
+        [
+          42.450314,
+          -72.45979
+        ],
+        [
+          42.450254,
+          -72.458907
+        ],
+        [
+          42.450312,
+          -72.457786
+        ],
+        [
+          42.450216,
+          -72.456511
+        ],
+        [
+          42.449985,
+          -72.455379
+        ],
+        [
+          42.449821,
+          -72.454276
+        ],
+        [
+          42.449756,
+          -72.453251
+        ],
+        [
+          42.449452,
+          -72.452314
+        ],
+        [
+          42.44968,
+          -72.451072
+        ],
+        [
+          42.449652,
+          -72.450142
+        ],
+        [
+          42.449271,
+          -72.449261
+        ],
+        [
+          42.4492,
+          -72.448326
+        ],
+        [
+          42.449335,
+          -72.447285
+        ],
+        [
+          42.449113,
+          -72.446333
+        ],
+        [
+          42.44905,
+          -72.445386
+        ],
+        [
+          42.449116,
+          -72.444245
+        ],
+        [
+          42.449154,
+          -72.443202
+        ],
+        [
+          42.449284,
+          -72.442273
+        ],
+        [
+          42.449228,
+          -72.441351
+        ],
+        [
+          42.448875,
+          -72.440598
+        ],
+        [
+          42.448592,
+          -72.439659
+        ],
+        [
+          42.448445,
+          -72.438675
+        ],
+        [
+          42.448573,
+          -72.437393
+        ],
+        [
+          42.449046,
+          -72.436419
+        ],
+        [
+          42.449598,
+          -72.435326
+        ],
+        [
+          42.450066,
+          -72.434189
+        ],
+        [
+          42.450153,
+          -72.433277
+        ],
+        [
+          42.450108,
+          -72.432402
+        ],
+        [
+          42.450211,
+          -72.431522
+        ],
+        [
+          42.450282,
+          -72.430443
+        ],
+        [
+          42.450326,
+          -72.42913
+        ],
+        [
+          42.450328,
+          -72.427902
+        ],
+        [
+          42.449886,
+          -72.427494
+        ],
+        [
+          42.448804,
+          -72.427878
+        ],
+        [
+          42.447752,
+          -72.428276
+        ],
+        [
+          42.447041,
+          -72.428526
+        ],
+        [
+          42.446464,
+          -72.428655
+        ],
+        [
+          42.44583,
+          -72.428889
+        ],
+        [
+          42.445221,
+          -72.429047
+        ],
+        [
+          42.444407,
+          -72.429263
+        ],
+        [
+          42.443583,
+          -72.429477
+        ]
+      ],
+      "leader": {
+        "name": "Schuyler Lockwood",
+        "elapsed_time": 896
+      },
+      "profile": {
+        "distance": [
+          94180.9,
+          94205.3,
+          94241.5,
+          94278.9,
+          94320.8,
+          94352.5,
+          94400.3,
+          94451.8,
+          94514.8,
+          94565.8,
+          94622.7,
+          94673.5,
+          94723.8,
+          94780.6,
+          94821,
+          94858.4,
+          94902,
+          94943.9,
+          94994.4,
+          95047.9,
+          95103.1,
+          95157.6,
+          95222.5,
+          95291.2,
+          95365.5,
+          95425.9,
+          95486.4,
+          95552.1,
+          95618.2,
+          95698,
+          95754.6,
+          95813.5,
+          95884.1,
+          95965.3,
+          96037.5,
+          96112.2,
+          96175.7,
+          96235.3,
+          96293.5,
+          96355.5,
+          96410.9,
+          96467.1,
+          96523.4,
+          96573.1,
+          96611.8,
+          96654.2,
+          96692.6,
+          96749.5,
+          96806.5,
+          96859.5,
+          96915.7,
+          96963.4,
+          97009.1,
+          97057,
+          97105.6,
+          97161.6,
+          97205.8,
+          97255.6,
+          97308.9,
+          97355.2,
+          97399.4,
+          97441.4,
+          97490.1,
+          97530.6,
+          97573.1,
+          97616.3,
+          97669.9,
+          97718.3,
+          97755.3,
+          97796.3,
+          97838.2,
+          97887.6,
+          97935.6,
+          97986.9,
+          98035,
+          98076.1,
+          98110.3,
+          98152.5,
+          98191,
+          98237.2,
+          98277.4,
+          98319.3,
+          98366.4,
+          98409.8,
+          98460.5,
+          98522.2,
+          98570.5,
+          98626,
+          98684.3,
+          98740.5,
+          98799.3,
+          98850.2,
+          98893.3,
+          98935.1,
+          98970.3,
+          99003.7,
+          99042,
+          99089.3,
+          99143.5,
+          99198.9,
+          99252,
+          99303.7,
+          99359.6,
+          99408.9,
+          99468,
+          99533.8,
+          99601.9,
+          99662.8,
+          99721.2,
+          99763.7,
+          99808.3,
+          99842.6,
+          99883.1,
+          99920.3,
+          99951.6,
+          99989.9,
+          100040.6,
+          100087.8,
+          100136.9,
+          100186
+        ],
+        "elevation": [
+          124.1,
+          126.1,
+          131,
+          133.5,
+          136.1,
+          138.6,
+          140.8,
+          142.9,
+          145.2,
+          146.6,
+          148.9,
+          150.9,
+          151.9,
+          154.4,
+          157.4,
+          159.9,
+          163.1,
+          165.9,
+          168,
+          169.1,
+          170.3,
+          172.5,
+          173.8,
+          172.9,
+          172.9,
+          174.7,
+          176.7,
+          177.4,
+          177.7,
+          179.1,
+          180.8,
+          181.1,
+          180.4,
+          180,
+          180.4,
+          181.4,
+          182.9,
+          184.4,
+          186.1,
+          187.9,
+          189.9,
+          191.7,
+          194,
+          196.5,
+          198.7,
+          200.6,
+          202.3,
+          205.4,
+          208.6,
+          211.1,
+          213.3,
+          215.4,
+          217.5,
+          219.8,
+          222.6,
+          225.6,
+          227.8,
+          230,
+          231.5,
+          233.3,
+          235.8,
+          238.3,
+          241.2,
+          243.7,
+          246.2,
+          248.4,
+          251.4,
+          254.3,
+          256.3,
+          258.4,
+          260.2,
+          262.4,
+          264.4,
+          266.7,
+          269.6,
+          272.7,
+          275.4,
+          279.1,
+          282.3,
+          285.2,
+          287.5,
+          289.7,
+          292,
+          293.9,
+          295.7,
+          297.9,
+          299.7,
+          300.7,
+          301.4,
+          302.6,
+          304.7,
+          307.3,
+          309.9,
+          312.9,
+          315.7,
+          318.2,
+          320.8,
+          323.2,
+          325.1,
+          326.6,
+          327.9,
+          330.1,
+          332.4,
+          333.3,
+          336.3,
+          336.7,
+          337.9,
+          339,
+          341.1,
+          343.8,
+          347,
+          349.9,
+          353.3,
+          356.4,
+          358.8,
+          361.4,
+          364.8,
+          368.1,
+          370.5,
+          371.6
+        ]
+      },
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 2463230,
+          "name": "Schuyler Lockwood",
+          "elapsed_time": 896,
+          "avg_watts": 342.7690124511719,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2463230/1761093/7/large.jpg",
+          "badge": "",
+          "points": 40,
+          "effort_id": "2984509398941756000",
+          "activity_id": "7494756620"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 41933467,
+          "name": "Nick Gaubinger",
+          "elapsed_time": 914,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/41933467/13192578/1/large.jpg",
+          "badge": "premium",
+          "points": 18,
+          "effort_id": "2945454872838402000",
+          "activity_id": "4404013901"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 4470513,
+          "name": "Steve Scheirer",
+          "elapsed_time": 919,
+          "avg_watts": 296.28399658203125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 12,
+          "effort_id": "2980256113724482000",
+          "activity_id": "7432466261"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 1021841,
+          "name": "Jacob Roy",
+          "elapsed_time": 934,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1021841/420071/1/large.jpg",
+          "badge": "premium",
+          "points": 9,
+          "effort_id": "2945461248971412500",
+          "activity_id": "129149058"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 660262,
+          "name": "teddy brosevelt",
+          "elapsed_time": 934,
+          "avg_watts": 318.1919860839844,
+          "avatar_url": null,
+          "badge": null,
+          "points": 9,
+          "effort_id": "2945455395639881700",
+          "activity_id": "3624222293"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 32642939,
+          "name": "Kim Callicoatte",
+          "elapsed_time": 937,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/32642939/16657088/2/large.jpg",
+          "badge": "premium",
+          "points": 4,
+          "effort_id": "2988215010884559400",
+          "activity_id": "7550220398"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 970619,
+          "name": "C Z",
+          "elapsed_time": 939,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945454427201383400",
+          "activity_id": "5063740760"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 22385284,
+          "name": "Matt Adams",
+          "elapsed_time": 972,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2955550500644598000",
+          "activity_id": "7066476617"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 10958651,
+          "name": "Logan Madden",
+          "elapsed_time": 993,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945455262341267500",
+          "activity_id": "3899527011"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 118732962,
+          "name": "Jacob Ames",
+          "elapsed_time": 999,
+          "avg_watts": 295.77398681640625,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3487969843281169000",
+          "activity_id": "18431090816"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 24603218,
+          "name": "Caleb Smith ",
+          "elapsed_time": 1003,
+          "avg_watts": 294.2090148925781,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945454069219727400",
+          "activity_id": "5273813428"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 642258,
+          "name": "Nathaniel Ryan",
+          "elapsed_time": 1038,
+          "avg_watts": 233.03799438476562,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945455517567958500",
+          "activity_id": "3126358820"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 758098,
+          "name": "Jesse Thompson",
+          "elapsed_time": 1039,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945457749899617300",
+          "activity_id": "1590617501"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 3220419,
+          "name": "Dek Tuttle",
+          "elapsed_time": 1043,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945461864943875000",
+          "activity_id": "89802250"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 4364248,
+          "name": "Matt Caissy",
+          "elapsed_time": 1048,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945460943253735400",
+          "activity_id": "222533395"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 376782,
+          "name": "Scott Yarosh",
+          "elapsed_time": 1051,
+          "avg_watts": 275.322998046875,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/376782/88199/2/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "2945460316017877000",
+          "activity_id": "350920281"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 17602910,
+          "name": "Jackson Malone",
+          "elapsed_time": 1052,
+          "avg_watts": 295.7040100097656,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17602910/7392407/25/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3223412682708538000",
+          "activity_id": "11364563865"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 351656,
+          "name": "roy currie",
+          "elapsed_time": 1053,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945461113718482400",
+          "activity_id": "149929269"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 827275,
+          "name": "Ben Jankowski",
+          "elapsed_time": 1054,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945459872511942000",
+          "activity_id": "436223480"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 27885505,
+          "name": "Ben A",
+          "elapsed_time": 1054,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945455189538688500",
+          "activity_id": "4094217393"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 4512388,
+          "name": "Nathan Roy",
+          "elapsed_time": 1072,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945460356714147300",
+          "activity_id": "329557103"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 2602048,
+          "name": "Christopher Duffy",
+          "elapsed_time": 1076,
+          "avg_watts": 205.2550048828125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3024796694665809000",
+          "activity_id": "8083868482"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 196127,
+          "name": "Grant Van Horn",
+          "elapsed_time": 1079,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3289202803827217000",
+          "activity_id": "12835738896"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 17003343,
+          "name": "Owen Wright",
+          "elapsed_time": 1083,
+          "avg_watts": 267.8940124511719,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17003343/5632065/3/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3235636869344803300",
+          "activity_id": "11627687724"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 399375,
+          "name": "Rick Gerstein",
+          "elapsed_time": 1087,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945465520323564000",
+          "activity_id": "12475970"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 3181736,
+          "name": "J W",
+          "elapsed_time": 1119,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945460327335297386",
+          "activity_id": "359820759"
+        },
+        {
+          "rank": 27,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 1154,
+          "avg_watts": 191.2239990234375,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2973718000508765360",
+          "activity_id": "7336748912"
+        },
+        {
+          "rank": 28,
+          "athlete_id": 136573,
+          "name": "Andy Reagan",
+          "elapsed_time": 1221,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3498385263746723956",
+          "activity_id": "18813079315"
+        },
+        {
+          "rank": 29,
+          "athlete_id": 33411273,
+          "name": "Nicole B",
+          "elapsed_time": 1280,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3370748177240392958",
+          "activity_id": "14848624089"
+        },
+        {
+          "rank": 30,
+          "athlete_id": 138931,
+          "name": "Dana Parrot",
+          "elapsed_time": 1284,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945454986171709240",
+          "activity_id": "4338295012"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 2875359,
+          "name": "Sasha Lansky",
+          "elapsed_time": 1345,
+          "avg_watts": 156.02200317382812,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945454098875994936",
+          "activity_id": "5331841009"
+        },
+        {
+          "rank": 32,
+          "athlete_id": 1902505,
+          "name": "Ashley Krause",
+          "elapsed_time": 1352,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2982706719400324636",
+          "activity_id": "7468600931"
+        },
+        {
+          "rank": 33,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 1379,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3121975243004233784",
+          "activity_id": "9572222420"
+        },
+        {
+          "rank": 34,
+          "athlete_id": 2716839,
+          "name": "Nancy Peck-Cook",
+          "elapsed_time": 1389,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945456472227620202",
+          "activity_id": "2471653722"
+        },
+        {
+          "rank": 35,
+          "athlete_id": 539441,
+          "name": "Dawn Roberts",
+          "elapsed_time": 1391,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945456480045311800",
+          "activity_id": "2471798074"
+        },
+        {
+          "rank": 36,
+          "athlete_id": 154887279,
+          "name": "Lila Roche",
+          "elapsed_time": 1405,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3489239995621430384",
+          "activity_id": "18475402129"
+        },
+        {
+          "rank": 37,
+          "athlete_id": 9536400,
+          "name": "Connie Turner",
+          "elapsed_time": 1423,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945458663374949738",
+          "activity_id": "779168051"
+        },
+        {
+          "rank": 38,
+          "athlete_id": 10837498,
+          "name": "Kate Queeney",
+          "elapsed_time": 1448,
+          "avg_watts": 166.32699584960938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945458593599135544",
+          "activity_id": "839774487"
+        },
+        {
+          "rank": 39,
+          "athlete_id": 34336253,
+          "name": "Janice Weldon",
+          "elapsed_time": 1509,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945453914901166442",
+          "activity_id": "5850419205"
+        },
+        {
+          "rank": 40,
+          "athlete_id": 47066578,
+          "name": "Porter Morgan",
+          "elapsed_time": 1513,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3231999990364336560",
+          "activity_id": "11548353349"
+        },
+        {
+          "rank": 41,
+          "athlete_id": 97324999,
+          "name": "Mash It Baby",
+          "elapsed_time": 1514,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3259924821205506988",
+          "activity_id": "12172277647"
+        },
+        {
+          "rank": 42,
+          "athlete_id": 66062711,
+          "name": "Beth Miller Pittman",
+          "elapsed_time": 1517,
+          "avg_watts": 124.63899993896484,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3204212422735651950",
+          "activity_id": "10974952970"
+        },
+        {
+          "rank": 43,
+          "athlete_id": 15721194,
+          "name": "Katherine Dzulinsky",
+          "elapsed_time": 1520,
+          "avg_watts": 206.3509979248047,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945455262346544952",
+          "activity_id": "3923612988"
+        },
+        {
+          "rank": 44,
+          "athlete_id": 53686516,
+          "name": "carli tesini",
+          "elapsed_time": 1522,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945452347919401784",
+          "activity_id": "6881841794"
+        },
+        {
+          "rank": 45,
+          "athlete_id": 39973409,
+          "name": "Liz Champagne",
+          "elapsed_time": 1523,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945454868809314354",
+          "activity_id": "4403434984"
+        },
+        {
+          "rank": 46,
+          "athlete_id": 65648595,
+          "name": "Aviva Weinbaum",
+          "elapsed_time": 1541,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945454098879886136",
+          "activity_id": "5226130517"
+        },
+        {
+          "rank": 47,
+          "athlete_id": 37960693,
+          "name": "Mary Sheehan",
+          "elapsed_time": 1551,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945453870296981866",
+          "activity_id": "5850583292"
+        },
+        {
+          "rank": 48,
+          "athlete_id": 1135024,
+          "name": "Samantha Page",
+          "elapsed_time": 1577,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945462545599631722",
+          "activity_id": "77902822"
+        },
+        {
+          "rank": 49,
+          "athlete_id": 51863793,
+          "name": "Martha Woodard",
+          "elapsed_time": 1722,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3236709933045635904",
+          "activity_id": "11650970553"
+        },
+        {
+          "rank": 50,
+          "athlete_id": 2041191,
+          "name": "Monica Alexander",
+          "elapsed_time": 1733,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2945458701027331434",
+          "activity_id": "753796176"
         }
       ]
     },
@@ -30594,6 +31732,1132 @@
       ]
     },
     {
+      "id": 39954949,
+      "name": "All the way down",
+      "location": "Shutesbury, Massachusetts",
+      "activity_type": "Ride",
+      "discipline": "road",
+      "category": "Cat 2",
+      "terrain": "descent",
+      "distance_m": 6430.0,
+      "avg_grade": -3.561429977416992,
+      "elev_gain": 0.0,
+      "gross_gain": 1.2,
+      "gross_loss": 230.2,
+      "total_efforts": 4354,
+      "total_athletes": 862,
+      "difficulty": 156.3,
+      "parent_segment_id": null,
+      "is_sub_segment": false,
+      "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/KQJJ4R6ARACUO44CK7VNYZJBY4SI6YMC6L565OSGCFGEEMWBOD4FKEWHNJT2D5HVGVNSFMIS2VG5BPTP",
+      "start_latlng": [
+        42.452107,
+        -72.410491
+      ],
+      "end_latlng": [
+        42.439882,
+        -72.481609
+      ],
+      "track": [
+        [
+          42.452107,
+          -72.410491
+        ],
+        [
+          42.451979,
+          -72.411588
+        ],
+        [
+          42.451822,
+          -72.412832
+        ],
+        [
+          42.451642,
+          -72.414052
+        ],
+        [
+          42.451472,
+          -72.415345
+        ],
+        [
+          42.451334,
+          -72.416389
+        ],
+        [
+          42.451198,
+          -72.417408
+        ],
+        [
+          42.451064,
+          -72.418406
+        ],
+        [
+          42.450942,
+          -72.419387
+        ],
+        [
+          42.450796,
+          -72.420541
+        ],
+        [
+          42.450625,
+          -72.421845
+        ],
+        [
+          42.450453,
+          -72.423198
+        ],
+        [
+          42.45039,
+          -72.424768
+        ],
+        [
+          42.450417,
+          -72.426049
+        ],
+        [
+          42.450444,
+          -72.427172
+        ],
+        [
+          42.45042,
+          -72.428203
+        ],
+        [
+          42.450392,
+          -72.42932
+        ],
+        [
+          42.450354,
+          -72.430521
+        ],
+        [
+          42.450315,
+          -72.431773
+        ],
+        [
+          42.450222,
+          -72.433156
+        ],
+        [
+          42.449945,
+          -72.434807
+        ],
+        [
+          42.449361,
+          -72.436
+        ],
+        [
+          42.448788,
+          -72.437078
+        ],
+        [
+          42.448509,
+          -72.43833
+        ],
+        [
+          42.448684,
+          -72.439608
+        ],
+        [
+          42.449148,
+          -72.440837
+        ],
+        [
+          42.449418,
+          -72.442234
+        ],
+        [
+          42.449283,
+          -72.443771
+        ],
+        [
+          42.449165,
+          -72.445484
+        ],
+        [
+          42.449386,
+          -72.44692
+        ],
+        [
+          42.44932,
+          -72.448376
+        ],
+        [
+          42.449583,
+          -72.449773
+        ],
+        [
+          42.449814,
+          -72.451206
+        ],
+        [
+          42.449728,
+          -72.452608
+        ],
+        [
+          42.449951,
+          -72.45397
+        ],
+        [
+          42.450104,
+          -72.455439
+        ],
+        [
+          42.450406,
+          -72.457041
+        ],
+        [
+          42.450417,
+          -72.458506
+        ],
+        [
+          42.450425,
+          -72.459992
+        ],
+        [
+          42.450381,
+          -72.461431
+        ],
+        [
+          42.450036,
+          -72.462737
+        ],
+        [
+          42.449661,
+          -72.463978
+        ],
+        [
+          42.449309,
+          -72.465197
+        ],
+        [
+          42.448994,
+          -72.466376
+        ],
+        [
+          42.448662,
+          -72.467597
+        ],
+        [
+          42.448341,
+          -72.468485
+        ],
+        [
+          42.447897,
+          -72.469062
+        ],
+        [
+          42.447354,
+          -72.469623
+        ],
+        [
+          42.446851,
+          -72.470252
+        ],
+        [
+          42.446408,
+          -72.470864
+        ],
+        [
+          42.445973,
+          -72.471452
+        ],
+        [
+          42.445575,
+          -72.472162
+        ],
+        [
+          42.445252,
+          -72.473136
+        ],
+        [
+          42.444879,
+          -72.473794
+        ],
+        [
+          42.444514,
+          -72.474366
+        ],
+        [
+          42.444057,
+          -72.474921
+        ],
+        [
+          42.443565,
+          -72.475565
+        ],
+        [
+          42.443205,
+          -72.476378
+        ],
+        [
+          42.442793,
+          -72.477342
+        ],
+        [
+          42.442228,
+          -72.478383
+        ],
+        [
+          42.441287,
+          -72.479194
+        ],
+        [
+          42.440383,
+          -72.479664
+        ],
+        [
+          42.439839,
+          -72.480506
+        ],
+        [
+          42.439882,
+          -72.481609
+        ]
+      ],
+      "leader": {
+        "name": "Charles Mathers",
+        "elapsed_time": 395
+      },
+      "profile": {
+        "distance": [
+          0,
+          48.7,
+          105.6,
+          150.4,
+          210.1,
+          268.3,
+          325.9,
+          367.4,
+          418.2,
+          468.2,
+          517.6,
+          566.3,
+          602.2,
+          649.9,
+          696,
+          743.3,
+          782,
+          839.7,
+          901.3,
+          965.3,
+          1012.8,
+          1077.7,
+          1143.8,
+          1207,
+          1267.1,
+          1310.6,
+          1363.7,
+          1413.1,
+          1461.5,
+          1499.1,
+          1551.7,
+          1607.2,
+          1664.8,
+          1722.5,
+          1767.7,
+          1831.4,
+          1899.3,
+          1969.3,
+          2022.3,
+          2091,
+          2155.3,
+          2219.3,
+          2264.8,
+          2326.9,
+          2388.7,
+          2449.5,
+          2513.4,
+          2562.4,
+          2630.1,
+          2700.6,
+          2773.9,
+          2828.8,
+          2900.6,
+          2970.6,
+          3039.8,
+          3109.6,
+          3161.3,
+          3231.3,
+          3300.1,
+          3369.9,
+          3422.7,
+          3492.9,
+          3560.4,
+          3625.9,
+          3675.8,
+          3744.5,
+          3814.7,
+          3884.2,
+          3951.7,
+          4002,
+          4072.2,
+          4142.6,
+          4211.9,
+          4263.9,
+          4330.5,
+          4396,
+          4459.4,
+          4522.6,
+          4569.2,
+          4630,
+          4690.5,
+          4748.5,
+          4789.5,
+          4842.8,
+          4892.6,
+          4937.3,
+          4967,
+          5006,
+          5048.3,
+          5093.5,
+          5137,
+          5168.8,
+          5209.3,
+          5248.4,
+          5287.1,
+          5317.3,
+          5359.8,
+          5404.2,
+          5448.2,
+          5489.5,
+          5517.9,
+          5554.3,
+          5588.9,
+          5627,
+          5657.5,
+          5701,
+          5744.2,
+          5788.5,
+          5824,
+          5875.2,
+          5932.8,
+          5994,
+          6058.2,
+          6104.5,
+          6166.9,
+          6228.3,
+          6286.8,
+          6325.7,
+          6377.2,
+          6430
+        ],
+        "elevation": [
+          371.2,
+          368.8,
+          366.4,
+          365,
+          363,
+          361,
+          359.2,
+          358.8,
+          358.4,
+          358,
+          357.2,
+          356.4,
+          355.8,
+          355.6,
+          355.6,
+          355,
+          354,
+          351.8,
+          349.4,
+          346.6,
+          344.4,
+          341.8,
+          338.6,
+          336.8,
+          334.8,
+          333.8,
+          333.2,
+          333.2,
+          332.8,
+          332.4,
+          331,
+          329.2,
+          328,
+          326,
+          324.8,
+          322,
+          317.8,
+          314,
+          311,
+          307.6,
+          305.2,
+          303.6,
+          302,
+          299.4,
+          297.2,
+          295.6,
+          292.6,
+          290.8,
+          287,
+          282.6,
+          278.2,
+          274.4,
+          270.4,
+          266.8,
+          263.4,
+          259.6,
+          256.8,
+          253.2,
+          248.8,
+          245,
+          242.2,
+          238.6,
+          234.8,
+          231.6,
+          228.6,
+          224.8,
+          221.4,
+          218.4,
+          215.6,
+          213.4,
+          209.8,
+          204.6,
+          202.2,
+          199.6,
+          196.6,
+          193.8,
+          191.6,
+          189.8,
+          188,
+          187,
+          185.6,
+          184.4,
+          183.8,
+          183,
+          182.6,
+          182.8,
+          183,
+          183,
+          182.2,
+          181.4,
+          180.8,
+          180.4,
+          179.8,
+          179.4,
+          178.8,
+          178.2,
+          177,
+          175.6,
+          175,
+          174.6,
+          174.8,
+          174.8,
+          174.8,
+          174.2,
+          172.8,
+          171.2,
+          171.2,
+          170.6,
+          169.6,
+          168.2,
+          165.2,
+          162.6,
+          159.2,
+          157.4,
+          154.6,
+          152,
+          149.8,
+          147.2,
+          144.8,
+          142.2
+        ]
+      },
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 44360288,
+          "name": "Charles Mathers",
+          "elapsed_time": 395,
+          "avg_watts": 185.9010009765625,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/44360288/19823895/3/large.jpg",
+          "badge": "",
+          "points": 18,
+          "effort_id": "3394336358879857000",
+          "activity_id": "9273648483"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 136573,
+          "name": "Andy Reagan",
+          "elapsed_time": 413,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
+          "badge": "premium",
+          "points": 8,
+          "effort_id": "3498385263748453400",
+          "activity_id": "18813079315"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 419,
+          "avg_watts": 327.9930114746094,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/3/large.jpg",
+          "badge": "premium",
+          "points": 6,
+          "effort_id": "3479617009723454000",
+          "activity_id": "18124416225"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 376782,
+          "name": "Scott Yarosh",
+          "elapsed_time": 419,
+          "avg_watts": 223.8040008544922,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/376782/88199/2/large.jpg",
+          "badge": "",
+          "points": 6,
+          "effort_id": "3498391612277045000",
+          "activity_id": "18813391309"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 406624,
+          "name": "Eddie Martinez",
+          "elapsed_time": 420,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "3394336937830779400",
+          "activity_id": "12228484"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 16884053,
+          "name": "Nick Hight-Huf",
+          "elapsed_time": 421,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16884053/10089059/2/large.jpg",
+          "badge": "premium",
+          "points": 1,
+          "effort_id": "3394336651613151000",
+          "activity_id": "2295439146"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 4497,
+          "name": "Jonathan O'Keeffe",
+          "elapsed_time": 422,
+          "avg_watts": 225.66799926757812,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336718818649600",
+          "activity_id": "948189800"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 32560148,
+          "name": "Parker Brown",
+          "elapsed_time": 423,
+          "avg_watts": 169.32400512695312,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336204414649000",
+          "activity_id": "15359133213"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 1021841,
+          "name": "Jacob Roy",
+          "elapsed_time": 425,
+          "avg_watts": 175.98800659179688,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1021841/420071/1/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3394336620356557000",
+          "activity_id": "2645366440"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 24463261,
+          "name": "Bill Sanders",
+          "elapsed_time": 425,
+          "avg_watts": 183.1719970703125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336204414921000",
+          "activity_id": "15358846127"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 24603218,
+          "name": "Caleb Smith ",
+          "elapsed_time": 427,
+          "avg_watts": 281.8169860839844,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336466355849700",
+          "activity_id": "6025204330"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 614404,
+          "name": "Jay Gump",
+          "elapsed_time": 429,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/614404/3384248/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3394336769606588000",
+          "activity_id": "554315836"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 996720,
+          "name": "Ryan Davis",
+          "elapsed_time": 431,
+          "avg_watts": 144.38499450683594,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336671309614600",
+          "activity_id": "1597160155"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 13579391,
+          "name": "Tom Decker",
+          "elapsed_time": 431,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336381744075000",
+          "activity_id": "9261131709"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 614940,
+          "name": "Sugar Hound",
+          "elapsed_time": 434,
+          "avg_watts": 72.59449768066406,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336366162006000",
+          "activity_id": "9261480907"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 66189,
+          "name": "Mike Davis",
+          "elapsed_time": 435,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336937829568000",
+          "activity_id": "11992380"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 6240,
+          "name": "Cole Archambault",
+          "elapsed_time": 435,
+          "avg_watts": 217.16299438476562,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336775044338000",
+          "activity_id": "377928047"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 5629797,
+          "name": "Will Carlino",
+          "elapsed_time": 435,
+          "avg_watts": 180.40699768066406,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336358921291000",
+          "activity_id": "9261119319"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 15203613,
+          "name": "Jim  Hayssen",
+          "elapsed_time": 435,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336374621174300",
+          "activity_id": "9261226513"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 25289901,
+          "name": "Robert Croke",
+          "elapsed_time": 435,
+          "avg_watts": 121.10099792480469,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336374621062700",
+          "activity_id": "9261287788"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 15018453,
+          "name": "Ethan Cohane-Mann",
+          "elapsed_time": 436,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336327150609000",
+          "activity_id": "9264252914"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 17823188,
+          "name": "Wendy King",
+          "elapsed_time": 438,
+          "avg_watts": 137.88800048828125,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17823188/5037985/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3394336358920203300",
+          "activity_id": "9261247573"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 4889593,
+          "name": "Terry McKeon",
+          "elapsed_time": 438,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336374617761300",
+          "activity_id": "9261534466"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 1089681,
+          "name": "Steve Power",
+          "elapsed_time": 439,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336951716906000",
+          "activity_id": "51637261"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 56866923,
+          "name": "Nic Jansson",
+          "elapsed_time": 439,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3479616268967305700",
+          "activity_id": "18124389616"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 5522204,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 452,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336884309331516",
+          "activity_id": "312539081"
+        },
+        {
+          "rank": 27,
+          "athlete_id": 1997050,
+          "name": "Sharon Benedict",
+          "elapsed_time": 454,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336747918185958",
+          "activity_id": "658965578"
+        },
+        {
+          "rank": 28,
+          "athlete_id": 63836252,
+          "name": "Lauren Cunniffe",
+          "elapsed_time": 471,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3394336358879991260",
+          "activity_id": "9261314945"
+        },
+        {
+          "rank": 29,
+          "athlete_id": 7464071,
+          "name": "salty \ud83d\udeb4\ud83c\udffb\u200d\u2640\ufe0f",
+          "elapsed_time": 472,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336754615966172",
+          "activity_id": "692463872"
+        },
+        {
+          "rank": 30,
+          "athlete_id": 8495305,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 474,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336711964986940",
+          "activity_id": "2963753256"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 2717888,
+          "name": "Maura Adams",
+          "elapsed_time": 492,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336754913602022",
+          "activity_id": "672726548"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 9536400,
+          "name": "Connie Turner",
+          "elapsed_time": 492,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336754614364636",
+          "activity_id": "679889581"
+        },
+        {
+          "rank": 33,
+          "athlete_id": 3048734,
+          "name": "Donna Weeks",
+          "elapsed_time": 493,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336311192819174",
+          "activity_id": "11776889676"
+        },
+        {
+          "rank": 34,
+          "athlete_id": 243885,
+          "name": "K Huff",
+          "elapsed_time": 498,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336754913824230",
+          "activity_id": "636845540"
+        },
+        {
+          "rank": 34,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 498,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336651611269086",
+          "activity_id": "1848708518"
+        },
+        {
+          "rank": 36,
+          "athlete_id": 115162,
+          "name": "Christin Reuter",
+          "elapsed_time": 499,
+          "avg_watts": 155.79800415039062,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336754616203740",
+          "activity_id": "637018271"
+        },
+        {
+          "rank": 37,
+          "athlete_id": 2887997,
+          "name": "Clio Dinan",
+          "elapsed_time": 500,
+          "avg_watts": 89.96600341796875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336627685058108",
+          "activity_id": "2642829871"
+        },
+        {
+          "rank": 38,
+          "athlete_id": 12169389,
+          "name": "Kat  .",
+          "elapsed_time": 501,
+          "avg_watts": 155.9239959716797,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3495917687547144180",
+          "activity_id": "18720763036"
+        },
+        {
+          "rank": 39,
+          "athlete_id": 297944,
+          "name": "Vickie Monahan",
+          "elapsed_time": 506,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336747917777382",
+          "activity_id": "636845701"
+        },
+        {
+          "rank": 40,
+          "athlete_id": 1967083,
+          "name": "Patty Clements",
+          "elapsed_time": 510,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336754913545702",
+          "activity_id": "604390397"
+        },
+        {
+          "rank": 41,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 512,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3498389424212752768",
+          "activity_id": "18813286671"
+        },
+        {
+          "rank": 42,
+          "athlete_id": 10838749,
+          "name": "amy kemper",
+          "elapsed_time": 514,
+          "avg_watts": 37.2140007019043,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336557696325094",
+          "activity_id": "3889467851"
+        },
+        {
+          "rank": 42,
+          "athlete_id": 34336253,
+          "name": "Janice Weldon",
+          "elapsed_time": 514,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336466379425340",
+          "activity_id": "5502997405"
+        },
+        {
+          "rank": 44,
+          "athlete_id": 59431465,
+          "name": "Hannah Varner",
+          "elapsed_time": 515,
+          "avg_watts": 50.500999450683594,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336428189318088",
+          "activity_id": "7414347927"
+        },
+        {
+          "rank": 45,
+          "athlete_id": 3181736,
+          "name": "J W",
+          "elapsed_time": 518,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336775620648904",
+          "activity_id": "359820759"
+        },
+        {
+          "rank": 46,
+          "athlete_id": 89436,
+          "name": "Kathryn Kothe",
+          "elapsed_time": 525,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336925726062054",
+          "activity_id": "62863086"
+        },
+        {
+          "rank": 47,
+          "athlete_id": 66062711,
+          "name": "Beth Miller Pittman",
+          "elapsed_time": 529,
+          "avg_watts": 58.77130126953125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336411809048028",
+          "activity_id": "7390271657"
+        },
+        {
+          "rank": 48,
+          "athlete_id": 34210206,
+          "name": "Neosha N",
+          "elapsed_time": 531,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336557695571430",
+          "activity_id": "3904765751"
+        },
+        {
+          "rank": 49,
+          "athlete_id": 14427,
+          "name": "Megan Bilodeau",
+          "elapsed_time": 532,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336937836562908",
+          "activity_id": "12413339"
+        }
+      ]
+    },
+    {
       "id": 27660250,
       "name": "Beetlemania climb",
       "location": "Shutesbury, Massachusetts",
@@ -40178,6 +42442,1144 @@
       ]
     },
     {
+      "id": 31992302,
+      "name": "2#6",
+      "location": "Shutesbury, Massachusetts",
+      "activity_type": "Ride",
+      "discipline": "road",
+      "category": "Cat 3",
+      "terrain": "descent",
+      "distance_m": 3965.60009765625,
+      "avg_grade": -4.307040214538574,
+      "elev_gain": 0.0,
+      "gross_gain": 1.4,
+      "gross_loss": 172.2,
+      "total_efforts": 5567,
+      "total_athletes": 1101,
+      "difficulty": 126.2,
+      "parent_segment_id": 39954949,
+      "is_sub_segment": true,
+      "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/XDYP2GRFVGORQB75CQW6NMDGQ7VYH6V467D5QHQH7PU6INNI35FLI4DWUB7MRLSNOKCWMTXSTUNGJ3RW",
+      "start_latlng": [
+        42.450663,
+        -72.421548
+      ],
+      "end_latlng": [
+        42.448565,
+        -72.467905
+      ],
+      "track": [
+        [
+          42.450663,
+          -72.421548
+        ],
+        [
+          42.450597,
+          -72.422126
+        ],
+        [
+          42.450521,
+          -72.422713
+        ],
+        [
+          42.450464,
+          -72.423323
+        ],
+        [
+          42.450394,
+          -72.423994
+        ],
+        [
+          42.450375,
+          -72.424658
+        ],
+        [
+          42.450373,
+          -72.425307
+        ],
+        [
+          42.450379,
+          -72.425932
+        ],
+        [
+          42.450401,
+          -72.426507
+        ],
+        [
+          42.450436,
+          -72.427025
+        ],
+        [
+          42.450439,
+          -72.427491
+        ],
+        [
+          42.450451,
+          -72.427962
+        ],
+        [
+          42.450467,
+          -72.428496
+        ],
+        [
+          42.450439,
+          -72.429057
+        ],
+        [
+          42.450388,
+          -72.429646
+        ],
+        [
+          42.450374,
+          -72.430261
+        ],
+        [
+          42.450344,
+          -72.430872
+        ],
+        [
+          42.450324,
+          -72.431487
+        ],
+        [
+          42.450304,
+          -72.432128
+        ],
+        [
+          42.450274,
+          -72.432818
+        ],
+        [
+          42.450211,
+          -72.433574
+        ],
+        [
+          42.450096,
+          -72.434366
+        ],
+        [
+          42.449854,
+          -72.435122
+        ],
+        [
+          42.449474,
+          -72.435803
+        ],
+        [
+          42.44914,
+          -72.436449
+        ],
+        [
+          42.44883,
+          -72.437048
+        ],
+        [
+          42.448563,
+          -72.437724
+        ],
+        [
+          42.448478,
+          -72.438491
+        ],
+        [
+          42.448581,
+          -72.439245
+        ],
+        [
+          42.448745,
+          -72.439984
+        ],
+        [
+          42.449002,
+          -72.440687
+        ],
+        [
+          42.449301,
+          -72.441404
+        ],
+        [
+          42.449355,
+          -72.44248
+        ],
+        [
+          42.449213,
+          -72.443469
+        ],
+        [
+          42.449229,
+          -72.444422
+        ],
+        [
+          42.449158,
+          -72.445302
+        ],
+        [
+          42.449153,
+          -72.446271
+        ],
+        [
+          42.449384,
+          -72.447147
+        ],
+        [
+          42.449423,
+          -72.448048
+        ],
+        [
+          42.449286,
+          -72.448945
+        ],
+        [
+          42.449506,
+          -72.44979
+        ],
+        [
+          42.449805,
+          -72.450637
+        ],
+        [
+          42.44978,
+          -72.451567
+        ],
+        [
+          42.449706,
+          -72.452451
+        ],
+        [
+          42.449924,
+          -72.453251
+        ],
+        [
+          42.449941,
+          -72.454113
+        ],
+        [
+          42.450029,
+          -72.454974
+        ],
+        [
+          42.450159,
+          -72.455812
+        ],
+        [
+          42.450391,
+          -72.456624
+        ],
+        [
+          42.450437,
+          -72.457475
+        ],
+        [
+          42.450405,
+          -72.458335
+        ],
+        [
+          42.4504,
+          -72.459247
+        ],
+        [
+          42.450412,
+          -72.460134
+        ],
+        [
+          42.450426,
+          -72.460985
+        ],
+        [
+          42.450342,
+          -72.461825
+        ],
+        [
+          42.450097,
+          -72.462596
+        ],
+        [
+          42.449871,
+          -72.463388
+        ],
+        [
+          42.449643,
+          -72.464124
+        ],
+        [
+          42.449416,
+          -72.46482
+        ],
+        [
+          42.44919,
+          -72.465516
+        ],
+        [
+          42.448995,
+          -72.466184
+        ],
+        [
+          42.448869,
+          -72.466795
+        ],
+        [
+          42.448708,
+          -72.467382
+        ],
+        [
+          42.448565,
+          -72.467905
+        ]
+      ],
+      "leader": {
+        "name": "Charles Mathers",
+        "elapsed_time": 227
+      },
+      "profile": {
+        "distance": [
+          93805.3,
+          93829.1,
+          93853.4,
+          93877.8,
+          93914.6,
+          93939.9,
+          93966.4,
+          93994.5,
+          94022.5,
+          94049.9,
+          94076.6,
+          94103.3,
+          94142.6,
+          94168,
+          94192.5,
+          94215.3,
+          94236.9,
+          94258,
+          94277.5,
+          94296.2,
+          94324.8,
+          94345.2,
+          94367.4,
+          94390.3,
+          94413.3,
+          94439.6,
+          94461.6,
+          94486.5,
+          94524.4,
+          94549.4,
+          94574.8,
+          94599.9,
+          94625.4,
+          94651.9,
+          94678.3,
+          94706.3,
+          94750.1,
+          94781.5,
+          94814.1,
+          94847.2,
+          94880.9,
+          94914.8,
+          94949.8,
+          94985,
+          95035.1,
+          95067,
+          95098.1,
+          95127.1,
+          95157.7,
+          95190.2,
+          95221.1,
+          95254.5,
+          95302,
+          95333.4,
+          95365,
+          95397,
+          95429.2,
+          95462.1,
+          95495.8,
+          95530.7,
+          95584.5,
+          95623.7,
+          95667,
+          95706.7,
+          95745.9,
+          95784.5,
+          95819,
+          95857.4,
+          95919.2,
+          95957.8,
+          95995.7,
+          96032.9,
+          96070.5,
+          96108.8,
+          96146.1,
+          96182.7,
+          96239.9,
+          96278.6,
+          96317.4,
+          96355.8,
+          96393.9,
+          96430.8,
+          96466.3,
+          96501.1,
+          96554.3,
+          96590,
+          96625.5,
+          96661.5,
+          96696.6,
+          96732.1,
+          96764.6,
+          96803.8,
+          96856.6,
+          96891.4,
+          96926.7,
+          96963.5,
+          97001.8,
+          97038.2,
+          97074.8,
+          97108,
+          97163,
+          97199,
+          97232.9,
+          97267.2,
+          97301.9,
+          97336,
+          97371.7,
+          97406.1,
+          97453.1,
+          97484.9,
+          97515,
+          97547.3,
+          97577.5,
+          97607.1,
+          97634.8,
+          97660.6,
+          97699.6,
+          97725,
+          97748.6,
+          97770.9
+        ],
+        "elevation": [
+          340,
+          338.4,
+          337.2,
+          336,
+          334,
+          332,
+          331,
+          330.6,
+          329,
+          327.4,
+          326,
+          325,
+          322.8,
+          321.6,
+          320.8,
+          320.4,
+          320.2,
+          320.2,
+          320.2,
+          320.2,
+          321,
+          321.6,
+          321.6,
+          321.6,
+          321.6,
+          321.6,
+          321.6,
+          320.8,
+          319.4,
+          318.2,
+          317.2,
+          316.2,
+          315,
+          314,
+          313.4,
+          312.8,
+          311,
+          309.4,
+          307.4,
+          305.4,
+          304.2,
+          301.6,
+          298.8,
+          296,
+          292.6,
+          291.2,
+          289.8,
+          288.4,
+          286.8,
+          286.2,
+          285.8,
+          285.6,
+          284.6,
+          283.4,
+          282.8,
+          281.2,
+          280.4,
+          279.4,
+          277.8,
+          276,
+          273.4,
+          271.4,
+          268.8,
+          266,
+          263.2,
+          260.4,
+          256.6,
+          253.2,
+          250.6,
+          248.4,
+          246.4,
+          244.4,
+          242.8,
+          241.2,
+          239.2,
+          236.6,
+          234.2,
+          232,
+          230.2,
+          227.6,
+          224.8,
+          222.6,
+          220,
+          218.8,
+          216,
+          215,
+          213.6,
+          211.8,
+          210,
+          207.8,
+          205.8,
+          203.8,
+          201.8,
+          200.8,
+          199.6,
+          198.2,
+          196.2,
+          195.2,
+          193,
+          191,
+          188.4,
+          186.4,
+          184.6,
+          182.6,
+          180.8,
+          179.4,
+          178.2,
+          176.4,
+          174.2,
+          173.6,
+          172.4,
+          172,
+          171.2,
+          170.6,
+          170.2,
+          169.8,
+          169.8,
+          169.4,
+          169.2,
+          169.2
+        ]
+      },
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 44360288,
+          "name": "Charles Mathers",
+          "elapsed_time": 227,
+          "avg_watts": 143.69200134277344,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/44360288/19823895/3/large.jpg",
+          "badge": "",
+          "points": 9,
+          "effort_id": "3104580423528739000",
+          "activity_id": "9273648483"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 136573,
+          "name": "Andy Reagan",
+          "elapsed_time": 229,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
+          "badge": "premium",
+          "points": 4,
+          "effort_id": "3498385263747680000",
+          "activity_id": "18813079315"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 376782,
+          "name": "Scott Yarosh",
+          "elapsed_time": 231,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/376782/88199/2/large.jpg",
+          "badge": "",
+          "points": 2,
+          "effort_id": "2970844563008059000",
+          "activity_id": "10010234"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 233,
+          "avg_watts": 369.5450134277344,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/3/large.jpg",
+          "badge": "premium",
+          "points": 1,
+          "effort_id": "3479617009721243000",
+          "activity_id": "18124416225"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 4497,
+          "name": "Jonathan O'Keeffe",
+          "elapsed_time": 236,
+          "avg_watts": 230.11900329589844,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970838377943730000",
+          "activity_id": "948189800"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 614404,
+          "name": "Jay Gump",
+          "elapsed_time": 238,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/614404/3384248/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2970843090690345500",
+          "activity_id": "83702857"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 6724616,
+          "name": "Fintan Duffy \ud83d\udeb2",
+          "elapsed_time": 238,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970832095960639500",
+          "activity_id": "5982618796"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 24603218,
+          "name": "Caleb Smith ",
+          "elapsed_time": 239,
+          "avg_watts": 313.9750061035156,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970832072254636500",
+          "activity_id": "6025204330"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 406624,
+          "name": "Eddie Martinez",
+          "elapsed_time": 240,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970844557742392300",
+          "activity_id": "12228484"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 16884053,
+          "name": "Nick Hight-Huf",
+          "elapsed_time": 240,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16884053/10089059/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2970835839735651000",
+          "activity_id": "2295439146"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 15203613,
+          "name": "Jim  Hayssen",
+          "elapsed_time": 241,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3103865141023573500",
+          "activity_id": "9261226513"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 13579391,
+          "name": "Tom Decker",
+          "elapsed_time": 241,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3103858268185809000",
+          "activity_id": "9261131709"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 24463261,
+          "name": "Bill Sanders",
+          "elapsed_time": 241,
+          "avg_watts": 214.77200317382812,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3387961257923687000",
+          "activity_id": "15358846127"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 32560148,
+          "name": "Parker Brown",
+          "elapsed_time": 241,
+          "avg_watts": 88.79669952392578,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3387970384224880000",
+          "activity_id": "15359133213"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 151302,
+          "name": "Christofer deHahn",
+          "elapsed_time": 242,
+          "avg_watts": 229.02099609375,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970844581275991600",
+          "activity_id": "10024005"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 996720,
+          "name": "Ryan Davis",
+          "elapsed_time": 242,
+          "avg_watts": 138.95899963378906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970837504890056700",
+          "activity_id": "1597160155"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 4889593,
+          "name": "Terry McKeon",
+          "elapsed_time": 242,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3103892218561389000",
+          "activity_id": "9261534466"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 56866923,
+          "name": "Nic Jansson",
+          "elapsed_time": 242,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3479616268966673000",
+          "activity_id": "18124389616"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 193722,
+          "name": "Peter Crowley",
+          "elapsed_time": 243,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970844581276526000",
+          "activity_id": "10011625"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 5629797,
+          "name": "Will Carlino",
+          "elapsed_time": 243,
+          "avg_watts": 196.72000122070312,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3103857432203503600",
+          "activity_id": "9261119319"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 1021841,
+          "name": "Jacob Roy",
+          "elapsed_time": 244,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1021841/420071/1/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2970841838447824000",
+          "activity_id": "144764722"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 4512388,
+          "name": "Nathan Roy",
+          "elapsed_time": 244,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970841828666508000",
+          "activity_id": "144801140"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 2932842,
+          "name": "Mark Wendolowski",
+          "elapsed_time": 244,
+          "avg_watts": 158.02000427246094,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970838400079934000",
+          "activity_id": "948243463"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 9064811,
+          "name": "Joel Malaver",
+          "elapsed_time": 244,
+          "avg_watts": 56.59429931640625,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2971415023192955400",
+          "activity_id": "7293014042"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 1711565,
+          "name": "Tiago \ud83e\uddc2",
+          "elapsed_time": 244,
+          "avg_watts": 101.0,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970829925669430300",
+          "activity_id": "7293135857"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 17823188,
+          "name": "Wendy King",
+          "elapsed_time": 246,
+          "avg_watts": 157.22000122070312,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17823188/5037985/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3103866683651115986",
+          "activity_id": "9261247573"
+        },
+        {
+          "rank": 27,
+          "athlete_id": 1997050,
+          "name": "Sharon Benedict",
+          "elapsed_time": 256,
+          "avg_watts": 107.58999633789062,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970835551420724660",
+          "activity_id": "2452781374"
+        },
+        {
+          "rank": 28,
+          "athlete_id": 14695093,
+          "name": "Julie Bernardi",
+          "elapsed_time": 258,
+          "avg_watts": 88.62020111083984,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970835551421615540",
+          "activity_id": "2453132290"
+        },
+        {
+          "rank": 29,
+          "athlete_id": 5522204,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 259,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970841043867263412",
+          "activity_id": "312539081"
+        },
+        {
+          "rank": 30,
+          "athlete_id": 63836252,
+          "name": "Lauren Cunniffe",
+          "elapsed_time": 265,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3103871855784203218",
+          "activity_id": "9261314945"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 243885,
+          "name": "K Huff",
+          "elapsed_time": 267,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839200736017312",
+          "activity_id": "636845540"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 7464071,
+          "name": "salty \ud83d\udeb4\ud83c\udffb\u200d\u2640\ufe0f",
+          "elapsed_time": 267,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839070987412924",
+          "activity_id": "692463872"
+        },
+        {
+          "rank": 33,
+          "athlete_id": 3048734,
+          "name": "Donna Weeks",
+          "elapsed_time": 268,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3242542522856080666",
+          "activity_id": "11776889676"
+        },
+        {
+          "rank": 34,
+          "athlete_id": 115162,
+          "name": "Christin Reuter",
+          "elapsed_time": 272,
+          "avg_watts": 203.43800354003906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839204039005620",
+          "activity_id": "637018271"
+        },
+        {
+          "rank": 34,
+          "athlete_id": 8495305,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 272,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970838014069110204",
+          "activity_id": "2963753256"
+        },
+        {
+          "rank": 36,
+          "athlete_id": 297944,
+          "name": "Vickie Monahan",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839204038204852",
+          "activity_id": "636845701"
+        },
+        {
+          "rank": 37,
+          "athlete_id": 10838749,
+          "name": "amy kemper",
+          "elapsed_time": 277,
+          "avg_watts": 35.70759963989258,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970833887311482300",
+          "activity_id": "3889467851"
+        },
+        {
+          "rank": 38,
+          "athlete_id": 2717888,
+          "name": "Maura Adams",
+          "elapsed_time": 281,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839070987250108",
+          "activity_id": "672726548"
+        },
+        {
+          "rank": 38,
+          "athlete_id": 9536400,
+          "name": "Connie Turner",
+          "elapsed_time": 281,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839114721481148",
+          "activity_id": "679889581"
+        },
+        {
+          "rank": 40,
+          "athlete_id": 2471077,
+          "name": "Honey Marino",
+          "elapsed_time": 282,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970841006112058812",
+          "activity_id": "320761867"
+        },
+        {
+          "rank": 41,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 283,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970837073756872124",
+          "activity_id": "1848708518"
+        },
+        {
+          "rank": 42,
+          "athlete_id": 2106999,
+          "name": "Kelly Mitchell",
+          "elapsed_time": 284,
+          "avg_watts": 48.316898345947266,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970837497600754100",
+          "activity_id": "1642900046"
+        },
+        {
+          "rank": 42,
+          "athlete_id": 12169389,
+          "name": "Kat  .",
+          "elapsed_time": 284,
+          "avg_watts": 162.97500610351562,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3495917687550414836",
+          "activity_id": "18720763036"
+        },
+        {
+          "rank": 44,
+          "athlete_id": 2887997,
+          "name": "Clio Dinan",
+          "elapsed_time": 285,
+          "avg_watts": 87.4175033569336,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970835494404693436",
+          "activity_id": "2642829871"
+        },
+        {
+          "rank": 45,
+          "athlete_id": 2175053,
+          "name": "Sue Cohen",
+          "elapsed_time": 286,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970843572494912948",
+          "activity_id": "60785624"
+        },
+        {
+          "rank": 45,
+          "athlete_id": 2609360,
+          "name": "Alice McKeon",
+          "elapsed_time": 286,
+          "avg_watts": 53.65729904174805,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970832082954938812",
+          "activity_id": "5981354787"
+        },
+        {
+          "rank": 47,
+          "athlete_id": 34336253,
+          "name": "Janice Weldon",
+          "elapsed_time": 288,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970832343140159924",
+          "activity_id": "5502997405"
+        },
+        {
+          "rank": 48,
+          "athlete_id": 6839828,
+          "name": "Sallie Wheeler",
+          "elapsed_time": 289,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970837517082792380",
+          "activity_id": "1646165875"
+        },
+        {
+          "rank": 48,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 289,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3498389424209999232",
+          "activity_id": "18813286671"
+        },
+        {
+          "rank": 50,
+          "athlete_id": 1967083,
+          "name": "Patty Clements",
+          "elapsed_time": 291,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2970839646639034812",
+          "activity_id": "604390397"
+        }
+      ]
+    },
+    {
       "id": 34137123,
       "name": "The Flume Climb",
       "location": "Shutesbury, Massachusetts",
@@ -46075,8 +49477,8 @@
       "total_efforts": 3118,
       "total_athletes": 643,
       "difficulty": 108.0,
-      "parent_segment_id": null,
-      "is_sub_segment": false,
+      "parent_segment_id": 31392406,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/TNZN5M3KURNMK3BTMHOIGKFAKIQP3IIWBQN4YJVKQL6COFED6CKAZG4JLY24TJGEQNWCHZBG4YNJGA4A",
       "start_latlng": [
         42.448703,
@@ -54897,8 +58299,8 @@
       "total_efforts": 8146,
       "total_athletes": 1341,
       "difficulty": 101.5,
-      "parent_segment_id": null,
-      "is_sub_segment": false,
+      "parent_segment_id": 39954949,
+      "is_sub_segment": true,
       "map_image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/JXE7EX336AMAJ5NB7QRSXWXH64XLSU3ZP64LBMIMYNUYNXCI32VGHGEV2O5AR7RQVTMPQMEZZQ2FUESA",
       "start_latlng": [
         42.448518,
