@@ -33,7 +33,10 @@ VALID_DISCIPLINES = ("road", "gravel", "mtb")
 # shallowest leaderboards one page at a time (phase B). Per-tick jitter
 # desynchronizes a 5-min cron from anything else hitting strava.com.
 BACKGROUND_JITTER_S = 300        # random 0..N seconds at the start of every tick
-BACKGROUND_TICK_INTERVAL_S = 300  # --loop: gap between ticks (script is the scheduler)
+BACKGROUND_TICK_INTERVAL_S = 600  # --loop: gap between ticks (script is the scheduler)
+# At 3 requests/tick this is ~430 req/day; the measured CloudFront ceiling is
+# ~320/day, so the backoff ladder still kicks in occasionally — but far less
+# than the 300s cadence did (was bouncing off the limit every few hours).
 TOP25_FRESHNESS_DAYS = 7         # phase A threshold: top-25 older than this gets refreshed
 
 # Dynamic 429 backoff. Each consecutive 429 escalates one step; a successful
