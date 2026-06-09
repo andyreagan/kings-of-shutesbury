@@ -163,6 +163,8 @@ def test_export_kings_unaffected_queens_f_only(seed_segment, tmp_path, monkeypat
                         tmp_path / "data.json")
     monkeypatch.setattr("segments.export.DATA_QUEENS_JSON",
                         tmp_path / "data-queens.json")
+    monkeypatch.setattr("segments.export.DATA_LEGENDS_JSON",
+                        tmp_path / "data-legends.json")
     monkeypatch.setattr("segments.export.WEB_DIR", tmp_path)
 
     export_data_json()
@@ -212,6 +214,8 @@ def test_export_queens_empty_when_no_women(seed_segment, tmp_path, monkeypatch):
                         tmp_path / "data.json")
     monkeypatch.setattr("segments.export.DATA_QUEENS_JSON",
                         tmp_path / "data-queens.json")
+    monkeypatch.setattr("segments.export.DATA_LEGENDS_JSON",
+                        tmp_path / "data-legends.json")
     monkeypatch.setattr("segments.export.WEB_DIR", tmp_path)
 
     export_data_json()

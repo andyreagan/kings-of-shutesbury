@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Legends of Shutesbury</title>
+  <meta name="description" content="Strava segment completion leaderboard — who has ridden the most of the tracked segments in &amp; around Shutesbury, MA.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Open Graph / link-share preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://andyreagan.github.io/kings-of-shutesbury/legends.html">
+  <meta property="og:title" content="Legends of Shutesbury">
+  <meta property="og:description" content="Strava segment completion leaderboard — who has ridden the most of the tracked segments in &amp; around Shutesbury, MA.">
+  <meta property="og:image" content="https://andyreagan.github.io/kings-of-shutesbury/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Legends of Shutesbury">
+  <meta name="twitter:description" content="Strava segment completion leaderboard — who has ridden the most of the tracked segments in &amp; around Shutesbury, MA.">
+  <meta name="twitter:image" content="https://andyreagan.github.io/kings-of-shutesbury/og-image.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav class="site-nav">
+        <a class="site-nav-item" href="index.html">♛ Kings</a>
+        <a class="site-nav-item" href="queens.html">♛ Queens</a>
+        <span class="site-nav-item active">★ Legends</span>
+      </nav>
+      <h1><span class="crown">★★★</span> Legends of Shutesbury <span class="crown">★★★</span></h1>
+      <p class="sub">Who has ridden the most of the tracked segments — all riders, both boards</p>
+      <div class="discipline-switch" id="discipline-switch">
+        <span class="muted">discipline:</span>
+        <button data-discipline="all" class="active">All</button>
+        <button data-discipline="road">Road</button>
+        <button data-discipline="gravel">Gravel</button>
+        <button data-discipline="mtb">MTB</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="legends-section">
+      <h2>Completion leaderboard <span id="legend-count" class="muted"></span></h2>
+      <p class="hint">Ranked by the share of tracked segments each rider has completed.
+        Click a rider for their done / to-do breakdown. The discipline filter rescores
+        for road, gravel, or MTB alone.</p>
+      <div id="legends"></div>
+    </section>
+
+    <section id="methodology">
+      <h2>How this is scored</h2>
+      <p>A rider's <strong>completion</strong> is the number of tracked segments they've
+        completed, out of the total in the current discipline filter. A segment counts as
+        completed if the rider has any effort on it that we've captured — including timeless
+        efforts pulled from following lists.</p>
+      <p>The board ranks primarily by <strong>% complete</strong>. We'd break ties by the
+        number of <em>attempts</em> on each segment, but Strava's leaderboard gives only one
+        row per rider — their single best effort, with no per-rider attempt count — so there's
+        nothing to break ties on. Riders tied on completion share a rank and are listed by name.</p>
+      <p><strong>A caveat on coverage.</strong> Completion is measured against the slice of each
+        leaderboard we've actually pulled from Strava. On a popular segment with thousands of
+        efforts we only capture the top few hundred, so a rider who finished it but sits below
+        that depth won't be credited — the board therefore <em>undercounts</em> slower riders on
+        deep segments and leans toward the fast. The one exception is the two tracked riders
+        (Andy &amp; Owen), whose efforts are always pulled via the following board regardless of
+        rank, so their completion is exact.</p>
+      <p>Coverage also goes <strong>stale</strong>: a deep sweep isn't "done" — new riders finish
+        a segment every week, so what matters is how <em>recently</em> we swept it. A background
+        job keeps widening and refreshing coverage over time. Open any rider to see, per segment,
+        how much of the field we've captured and when it was last swept — a shallow or stale
+        segment is where a "to do" is least trustworthy.</p>
+    </section>
+  </main>
+
+  <div id="detail-overlay" class="hidden">
+    <div id="detail-card">
+      <button id="detail-close" aria-label="Close">×</button>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <p class="muted generated" id="generated"></p>
+  </footer>
+
+  <script>window.SITE = { data: "data-legends.json" };</script>
+  <script src="util.js"></script>
+  <script src="legends.js"></script>
+</body>
+</html>

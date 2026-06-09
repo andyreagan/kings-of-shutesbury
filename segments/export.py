@@ -23,6 +23,7 @@ from .pipeline import competition_ranks, now, TRACKED_ATHLETES
 WEB_DIR = Path(__file__).resolve().parent.parent / "web"
 DATA_JSON = WEB_DIR / "data.json"
 DATA_QUEENS_JSON = WEB_DIR / "data-queens.json"
+DATA_LEGENDS_JSON = WEB_DIR / "data-legends.json"
 PROFILE_POINTS = 120        # downsample elevation profile to this many points
 MAP_TRACK_POINTS = 64       # downsample GPS track for the map to this many points
 EFFORTS_PER_SEGMENT = 100   # cap efforts shipped per segment (keeps page small)
@@ -89,6 +90,71 @@ def _segment_with_efforts(seg_obj: Segment) -> dict:
         })
     seg["efforts"] = efforts
     return seg
+
+
+def _build_legends_payload(segments: list[dict]) -> dict:
+    """Build the legends board: every athlete (both genders) ranked by how many
+    of the tracked segments they've completed.
+
+    "Completed" = the athlete has any effort in the `efforts` view for that
+    segment, ranked OR timeless (rank-NULL following supplements count — they
+    still rode it). Computed from the FULL effort set, not the 100-cap shipped
+    in data.json, so completion is exact even on segments with 1000s of efforts.
+
+    The frontend applies the discipline filter (all/road/gravel/mtb) client-side
+    using each segment's discipline, so the denominator narrows with the filter.
+    There is deliberately no attempt-count tiebreak: Strava's leaderboard payload
+    gives one row per athlete (their best effort) with no per-athlete attempt
+    count, so we have nothing to break ties on — riders tied on completion stay
+    tied (name-ordered for a stable display).
+    """
+    athletes: dict[int, dict] = {}
+    completion: dict[int, set] = {}
+    for seg in segments:
+        sid = seg["id"]
+        for e in seg["efforts"]:
+            aid = e["athlete_id"]
+            a = athletes.get(aid)
+            if a is None:
+                athletes[aid] = {
+                    "athlete_id": aid, "name": e["athlete_name"],
+                    "avatar_url": e["avatar_url"], "badge": e["badge"],
+                    "gender": e["athlete_gender"],
+                }
+            else:
+                # An athlete spans many segments; fill missing meta and keep a
+                # sticky "F" (matches the Athlete-row gender semantics).
+                a["name"] = a["name"] or e["athlete_name"]
+                a["avatar_url"] = a["avatar_url"] or e["avatar_url"]
+                a["badge"] = a["badge"] or e["badge"]
+                if e["athlete_gender"] == "F":
+                    a["gender"] = "F"
+            completion.setdefault(aid, set()).add(sid)
+
+    legends = [{**athletes[aid], "segs": sorted(completion[aid])}
+               for aid in completion]
+    # Default order: most segments first, then name — the frontend re-sorts per
+    # filter, but a sensible order keeps the raw file readable.
+    legends.sort(key=lambda lg: (-len(lg["segs"]), (lg["name"] or "").lower()))
+
+    # Per-segment coverage so the frontend can show how trustworthy a segment's
+    # completion is. `captured` (distinct athletes we have) vs `total_athletes`
+    # (Strava's count) is the breadth; `efforts_fetched_at` is the recency — a
+    # deep sweep goes stale as new riders complete the segment, so when we last
+    # swept matters as much as how deep. NULL efforts_fetched_at = never swept
+    # (only the page-embedded top-25 seed).
+    seg_meta = [{
+        "id": s["id"], "name": s["name"], "location": s["display_location"],
+        "discipline": s["discipline"], "terrain": s["terrain"],
+        "difficulty": s["difficulty"],
+        "parent_segment_id": s["parent_segment_id"],
+        "is_sub_segment": s["parent_segment_id"] is not None,
+        "captured": len(s["efforts"]),
+        "total_athletes": s["total_athletes"],
+        "efforts_fetched_at": s["efforts_fetched_at"],
+    } for s in segments]
+
+    return {"generated_at": now(), "segments": seg_meta, "legends": legends}
 
 
 def _build_payload(segments: list[dict], filtered: list[dict],
@@ -253,8 +319,14 @@ def export_data_json() -> None:
     queens_payload = _build_payload(included, filtered, boundary, cima_id, queens=True)
     DATA_QUEENS_JSON.write_text(json.dumps(queens_payload, indent=2))
 
+    # Legends payload — every athlete (both genders) ranked by segment completion.
+    legends_payload = _build_legends_payload(included)
+    DATA_LEGENDS_JSON.write_text(json.dumps(legends_payload, indent=2))
+
     n_kings = len(kings_payload["segments"])
     n_queens = len(queens_payload["segments"])
+    n_legends = len(legends_payload["legends"])
     print(f"Wrote {DATA_JSON} — {n_kings} in-Shutesbury ride "
           f"segments, {len(filtered)} filtered out.")
     print(f"Wrote {DATA_QUEENS_JSON} — {n_queens} segments (women's board).")
+    print(f"Wrote {DATA_LEGENDS_JSON} — {n_legends} athletes (legends board).")

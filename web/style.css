@@ -62,6 +62,16 @@ tbody tr { transition: background 0.1s; }
 .king-2 .rankbadge { background: #c8ccd6; color: #1a1d24; }
 .king-3 .rankbadge { background: #cd7f4b; color: #1a1d24; }
 .pts { font-weight: 700; color: var(--gold); }
+
+/* Legends completion bar */
+.clickable-row { cursor: pointer; }
+.clickable-row:hover { background: var(--panel-2); }
+.pct-cell { width: 40%; }
+.pct-bar { position: relative; height: 8px; border-radius: 5px; background: var(--panel-2); overflow: hidden; }
+.pct-bar span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 5px; }
+.king-1 .pct-bar span { background: var(--gold); }
+.cov { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 13px; }
+.cov-weak { color: var(--climb); }
 .expand-btn { display: block; width: 100%; margin-top: 10px; padding: 10px;
   background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
   color: var(--accent); font-size: 14px; font-weight: 600; cursor: pointer; }
@@ -82,9 +92,11 @@ tbody tr { transition: background 0.1s; }
 .subseg-badge { color: var(--muted); font-size: 11.5px; font-weight: 600; }
 .diff { font-weight: 700; }
 
+/* z-index above Leaflet's panes/controls (which go up to ~1000) so the main
+   map never pokes through the modal. */
 #detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6);
   display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px;
-  overflow-y: auto; z-index: 50; }
+  overflow-y: auto; z-index: 1100; }
 #detail-overlay.hidden { display: none; }
 #detail-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
   width: 100%; max-width: 760px; position: relative; padding: 24px; }
@@ -100,6 +112,13 @@ tbody tr { transition: background 0.1s; }
 .stat .v { font-size: 17px; font-weight: 700; margin-top: 2px; }
 .profile { width: 100%; height: 130px; background: var(--panel-2); border-radius: 9px; margin: 6px 0 16px; }
 .seg-map { width: 100%; border-radius: 9px; border: 1px solid var(--line); display: block; margin-bottom: 16px; }
+#detail-map.seg-map { height: 340px; background: #0a0c10; }
+/* start / finish pins on the segment-detail map */
+.seg-pin { display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 700;
+  color: #fff; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+.seg-pin.start { background: var(--descent); }
+.seg-pin.finish { background: var(--accent); }
 /* featured athlete chips */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .athlete-chip { display: inline-flex; align-items: center; gap: 9px;

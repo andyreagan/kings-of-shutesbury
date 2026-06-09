@@ -96,6 +96,7 @@ function resolveAthlete(id) {
 
 // ---- athlete popup ----------------------------------------------------------
 function openAthlete(id) {
+  destroyDetailMap();
   const ath = resolveAthlete(id);
   const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
   const filteredSegs = segmentsForFilter();
@@ -283,15 +284,19 @@ function elevationSVG(profile) {
 function openDetail(id) {
   const s = DATA.segments.find((x) => x.id === id);
   if (!s) return;
+  destroyDetailMap();
   const stat = (k, v) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`;
   const effortRows = (s.efforts || []).map((e) => `
     <tr>
       <td class="num">${e.rank ?? "—"}</td>
       <td><div class="name-cell">${avatar(e.avatar_url)}<a href="#athlete/${e.athlete_id}">${esc(e.name)}</a></div></td>
       <td class="num">${effortLink(e, fmtTime(e.elapsed_time))}</td>
+      <td class="num">${fmtMph(s.distance_m, e.elapsed_time)}</td>
       <td class="num">${e.avg_watts ? Math.round(e.avg_watts) + " W" : "—"}</td>
       <td class="num pts">${e.points || ""}</td>
     </tr>`).join("");
+
+  const hasTrack = s.track && s.track.length >= 2;
 
   if (location.hash !== `#segment/${id}`) location.hash = `segment/${id}`;
   $("#detail-body").innerHTML = `
@@ -312,14 +317,44 @@ function openDetail(id) {
       ${stat("Difficulty", s.difficulty)}
     </div>
     ${elevationSVG(s.profile)}
-    ${s.map_image_url ? `<img class="seg-map" src="${esc(s.map_image_url)}" alt="map of ${esc(s.name)}">` : ""}
+    ${hasTrack
+      ? `<div id="detail-map" class="seg-map"></div>`
+      : (s.map_image_url ? `<img class="seg-map" src="${esc(s.map_image_url)}" alt="map of ${esc(s.name)}">` : "")}
     <h4>Leaderboard <span class="muted">(top ${(s.efforts || []).length}; points by rank)</span></h4>
     <table><thead><tr><th class="num">#</th><th>Athlete</th><th class="num">Time</th>
-      <th class="num">Power</th><th class="num">Points</th></tr></thead>
+      <th class="num">mph</th><th class="num">Power</th><th class="num">Points</th></tr></thead>
       <tbody>${effortRows}</tbody></table>`;
   $("#detail-overlay").classList.remove("hidden");
+  if (hasTrack) renderDetailMap(s);
+}
+
+// Interactive, zoomable map of a single segment's track, with start/finish pins
+// so the direction is unambiguous. Recreated on each open; destroyed on close.
+let detailMap = null;
+function destroyDetailMap() {
+  if (detailMap) { detailMap.remove(); detailMap = null; }
+}
+function renderDetailMap(s) {
+  const el = document.getElementById("detail-map");
+  if (!el || typeof L === "undefined") return;
+  detailMap = L.map(el, { scrollWheelZoom: true });
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    subdomains: "abcd", maxZoom: 20, attribution: "&copy; OpenStreetMap &copy; CARTO",
+  }).addTo(detailMap);
+  const line = L.polyline(s.track, { color: "#fc5200", weight: 4, opacity: 0.95 }).addTo(detailMap);
+  const pin = (latlng, cls, label, title) => L.marker(latlng, {
+    icon: L.divIcon({ className: "", iconSize: [24, 24], iconAnchor: [12, 12],
+      html: `<span class="seg-pin ${cls}">${label}</span>` }),
+    title,
+  }).addTo(detailMap).bindTooltip(title);
+  pin(s.track[0], "start", "S", "Start");
+  pin(s.track[s.track.length - 1], "finish", "F", "Finish");
+  detailMap.fitBounds(line.getBounds().pad(0.15));
+  // The container had no size until the overlay was shown; re-measure once laid out.
+  requestAnimationFrame(() => detailMap && detailMap.invalidateSize());
 }
 function closeDetail() {
+  destroyDetailMap();
   $("#detail-overlay").classList.add("hidden");
   if (/^#(segment|athlete)\//.test(location.hash))
     history.replaceState(null, "", location.pathname + location.search);
