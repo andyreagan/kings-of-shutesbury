@@ -29,6 +29,12 @@ USER_AGENT = (
 # Politeness knobs.
 MIN_INTERVAL = 4.0          # minimum seconds between requests
 JITTER = (1.0, 2.5)         # extra random seconds added to each gap
+# Transient transport hiccups (CloudFront dropping a connection mid-flight,
+# DNS blips, read timeouts) are NOT rate-limits — retry them in-process a few
+# times with a short backoff instead of crashing the whole loop. A 429 is
+# handled separately below and still hard-stops the run.
+TRANSPORT_RETRIES = 4       # attempts on httpx.TransportError before giving up
+TRANSPORT_BACKOFF = 3.0     # seconds, multiplied by attempt number
 # Strava's www endpoints sit behind CloudFront and return a header-less 429
 # (no Retry-After, no X-RateLimit). Re-poking just keeps the rolling window hot,
 # so we STOP the whole run on the first 429 and resume after a real cooldown.
@@ -147,8 +153,25 @@ class StravaClient:
         self._last_request = time.monotonic()
 
     def _get(self, url: str, **kwargs) -> httpx.Response:
-        self._throttle()
-        resp = self._client.get(url, **kwargs)
+        resp = None
+        for attempt in range(1, TRANSPORT_RETRIES + 1):
+            self._throttle()
+            try:
+                resp = self._client.get(url, **kwargs)
+                break
+            except httpx.TransportError as exc:
+                if attempt == TRANSPORT_RETRIES:
+                    raise StravaError(
+                        f"Transport error on {url} after {attempt} attempts: "
+                        f"{type(exc).__name__}: {exc}"
+                    ) from exc
+                wait = TRANSPORT_BACKOFF * attempt
+                print(
+                    f"! transient {type(exc).__name__} on {url} "
+                    f"(attempt {attempt}/{TRANSPORT_RETRIES}); "
+                    f"retrying in {wait:.0f}s"
+                )
+                time.sleep(wait)
         if resp.status_code in (401, 403):
             raise AuthError(
                 f"{resp.status_code} for {url} — session cookie is likely "

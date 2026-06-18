@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T14:15:32+00:00",
+  "generated_at": "2026-06-18T20:16:07+00:00",
   "segments": [
     {
       "id": 1151557,
@@ -723,8 +723,8 @@
           "name": "J W",
           "elapsed_time": 1589,
           "avg_watts": 177.81700134277344,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "2713909124260258476",
           "activity_id": "3705108233"
@@ -783,8 +783,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 1631,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3178776217830227542",
           "activity_id": "3553702165"
@@ -1417,8 +1417,8 @@
           "name": "Madeline McKeever",
           "elapsed_time": 1150,
           "avg_watts": 200.625,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3098706/3292251/15/large.jpg",
+          "badge": "premium",
           "points": 4,
           "effort_id": "4248887941",
           "activity_id": "181680933"
@@ -1453,8 +1453,8 @@
           "name": "J W",
           "elapsed_time": 1185,
           "avg_watts": 229.88600158691406,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "8580291813",
           "activity_id": "359820759"
@@ -1513,8 +1513,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 1270,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3178775783769421346",
           "activity_id": "7659622065"
@@ -2219,8 +2219,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 1457,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 12,
           "effort_id": "3004031631269834130",
           "activity_id": "7790816641"
@@ -3129,8 +3129,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 1267,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3217913212393238880",
           "activity_id": "11248016877"
@@ -3321,8 +3321,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 1454,
           "avg_watts": 111.75700378417969,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "13175456632",
           "activity_id": "546206948"
@@ -4452,7 +4452,10 @@
           -72.404045
         ]
       ],
-      "leader": null,
+      "leader": {
+        "name": "J W",
+        "elapsed_time": 871
+      },
       "profile": {
         "distance": [
           10793.6,
@@ -4699,7 +4702,308 @@
           349.6
         ]
       },
-      "efforts": []
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 3181736,
+          "name": "J W",
+          "elapsed_time": 871,
+          "avg_watts": 225.08399963378906,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
+          "points": 40,
+          "effort_id": "2809883505530754416",
+          "activity_id": "370634798"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 6542616,
+          "name": "Nathalie Nopakun",
+          "elapsed_time": 947,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 18,
+          "effort_id": "2809877144632896880",
+          "activity_id": "1844021574"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 414850,
+          "name": "Kara McCloskey",
+          "elapsed_time": 953,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 12,
+          "effort_id": "2809888485862422008",
+          "activity_id": "12888528"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 43706080,
+          "name": "RGH \ud83d\udeb4\ud83c\udffb\u200d\u2640\ufe0f",
+          "elapsed_time": 973,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 9,
+          "effort_id": "3232084653519009566",
+          "activity_id": "11550656882"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 595248,
+          "name": "Beth Peterson ",
+          "elapsed_time": 998,
+          "avg_watts": 173.30799865722656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 6,
+          "effort_id": "2985993094568373364",
+          "activity_id": "7516893466"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 2019660,
+          "name": "Karen Kurowski",
+          "elapsed_time": 999,
+          "avg_watts": 157.1750030517578,
+          "avatar_url": null,
+          "badge": null,
+          "points": 4,
+          "effort_id": "2809879218028360184",
+          "activity_id": "1120763628"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 40231304,
+          "name": "Kate Daly",
+          "elapsed_time": 1008,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "2968151072429971798",
+          "activity_id": "7253213398"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 6847324,
+          "name": "Laura Polan",
+          "elapsed_time": 1011,
+          "avg_watts": 168.18099975585938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "2809884843280802160",
+          "activity_id": "209880730"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 17823188,
+          "name": "Wendy King",
+          "elapsed_time": 1013,
+          "avg_watts": 136.9510040283203,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17823188/5037985/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2809873880312503664",
+          "activity_id": "4089706659"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 3098706,
+          "name": "Madeline McKeever",
+          "elapsed_time": 1014,
+          "avg_watts": 176.01600646972656,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3098706/3292251/15/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2809884769521242942",
+          "activity_id": "181218846"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 1997050,
+          "name": "Sharon Benedict",
+          "elapsed_time": 1031,
+          "avg_watts": 159.802001953125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809885331270928888",
+          "activity_id": "133880365"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 6608908,
+          "name": "Maria (Hyde) Schutte",
+          "elapsed_time": 1050,
+          "avg_watts": 143.38699340820312,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6608908/7488710/3/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2809880537972592120",
+          "activity_id": "937613270"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 344635,
+          "name": "Zoemma Warshafsky",
+          "elapsed_time": 1080,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809888830674311672",
+          "activity_id": "7556089"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 800369,
+          "name": "Jenn Merredew",
+          "elapsed_time": 1086,
+          "avg_watts": 182.1820068359375,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809884762906520056",
+          "activity_id": "301122529"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 9898460,
+          "name": "Karen Featherstone",
+          "elapsed_time": 1089,
+          "avg_watts": 128.53199768066406,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809883442113902072",
+          "activity_id": "376375065"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 1090,
+          "avg_watts": 150.21600341796875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809874348021031280",
+          "activity_id": "3713850953"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 719375,
+          "name": "Christine Hall",
+          "elapsed_time": 1092,
+          "avg_watts": 161.1439971923828,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809883611322027376",
+          "activity_id": "334186621"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 23398500,
+          "name": "Lindsey Noseworthy (AP Racing)",
+          "elapsed_time": 1098,
+          "avg_watts": 166.7220001220703,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809879161305700856",
+          "activity_id": "1141751291"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 2170772,
+          "name": "Em Bhoo",
+          "elapsed_time": 1109,
+          "avg_watts": 130.3070068359375,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809885061977222512",
+          "activity_id": "156982102"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 14893520,
+          "name": "Becca Jaroszewski",
+          "elapsed_time": 1114,
+          "avg_watts": 120.35800170898438,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809877950252193598",
+          "activity_id": "1537037265"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 1640523,
+          "name": "The Sassy Stoker",
+          "elapsed_time": 1125,
+          "avg_watts": 207.28500366210938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809879214581910008",
+          "activity_id": "1096754170"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 10023715,
+          "name": "Tess Harvey",
+          "elapsed_time": 1125,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3097483998044519194",
+          "activity_id": "9148824980"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 539441,
+          "name": "Dawn Roberts",
+          "elapsed_time": 1145,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809879218029821432",
+          "activity_id": "1093750358"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 100200524,
+          "name": "Betsy Harper",
+          "elapsed_time": 1145,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3151620815618513710",
+          "activity_id": "10092055329"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 33380929,
+          "name": "Sarah-Jo Sinnott",
+          "elapsed_time": 1147,
+          "avg_watts": 122.94100189208984,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2821402998126738158",
+          "activity_id": "5190577309"
+        }
+      ]
     },
     {
       "id": 700796,
@@ -6233,6 +6537,18 @@
         },
         {
           "rank": 14,
+          "athlete_id": 56814949,
+          "name": "Ceil Antes",
+          "elapsed_time": 786,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3500945261647962610",
+          "activity_id": "18907639119"
+        },
+        {
+          "rank": 15,
           "athlete_id": 33411273,
           "name": "Nicole B",
           "elapsed_time": 790,
@@ -6244,7 +6560,7 @@
           "activity_id": "14448190722"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 61007731,
           "name": "Sue LaChance",
           "elapsed_time": 794,
@@ -6256,7 +6572,7 @@
           "activity_id": "16109322019"
         },
         {
-          "rank": 16,
+          "rank": 17,
           "athlete_id": 10023715,
           "name": "Tess Harvey",
           "elapsed_time": 801,
@@ -6268,7 +6584,7 @@
           "activity_id": "9551148920"
         },
         {
-          "rank": 16,
+          "rank": 17,
           "athlete_id": 15721194,
           "name": "Katherine Dzulinsky",
           "elapsed_time": 801,
@@ -6280,7 +6596,7 @@
           "activity_id": "11723996902"
         },
         {
-          "rank": 18,
+          "rank": 19,
           "athlete_id": 16998913,
           "name": "Katie Hudon",
           "elapsed_time": 803,
@@ -6292,7 +6608,7 @@
           "activity_id": "11996383703"
         },
         {
-          "rank": 19,
+          "rank": 20,
           "athlete_id": 265173,
           "name": "lauren chesnutt",
           "elapsed_time": 819,
@@ -6304,7 +6620,7 @@
           "activity_id": "681831959"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 15819084,
           "name": "Leigh Gehringer-Wiar",
           "elapsed_time": 824,
@@ -6316,7 +6632,7 @@
           "activity_id": "3323922086"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 97324999,
           "name": "Mash It Baby",
           "elapsed_time": 824,
@@ -6328,7 +6644,7 @@
           "activity_id": "18162428935"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 10214664,
           "name": "jessica schiffman",
           "elapsed_time": 828,
@@ -6340,7 +6656,19 @@
           "activity_id": "15414008507"
         },
         {
-          "rank": 23,
+          "rank": 24,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 849,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3501300916616141306",
+          "activity_id": "18920943668"
+        },
+        {
+          "rank": 25,
           "athlete_id": 18504326,
           "name": "Lindsey Plummer",
           "elapsed_time": 856,
@@ -6352,7 +6680,7 @@
           "activity_id": "11783067390"
         },
         {
-          "rank": 24,
+          "rank": 26,
           "athlete_id": 48050031,
           "name": "Ally Tudryn ",
           "elapsed_time": 861,
@@ -6364,7 +6692,7 @@
           "activity_id": "18704157166"
         },
         {
-          "rank": 25,
+          "rank": 27,
           "athlete_id": 19471512,
           "name": "Sofia Siestrup",
           "elapsed_time": 886,
@@ -7183,8 +7511,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 895,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3234169555277969718",
           "activity_id": "11596074804"
@@ -7757,8 +8085,8 @@
           "name": "J W",
           "elapsed_time": 548,
           "avg_watts": 227.9669952392578,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 2,
           "effort_id": "8580292119",
           "activity_id": "359820759"
@@ -9265,8 +9593,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 891,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "2765323905637547282",
           "activity_id": "4371238770"
@@ -11731,8 +12059,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 844,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3217913212391560544",
           "activity_id": "11248016877"
@@ -14939,8 +15267,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 1116,
           "avg_watts": 103.37100219726562,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 1,
           "effort_id": "8551623694",
           "activity_id": "358975443"
@@ -15292,7 +15620,10 @@
           -72.463776
         ]
       ],
-      "leader": null,
+      "leader": {
+        "name": "Kelly Anne McKeown",
+        "elapsed_time": 545
+      },
       "profile": {
         "distance": [
           4463.4,
@@ -15539,7 +15870,272 @@
           235.3
         ]
       },
-      "efforts": []
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 26687219,
+          "name": "Kelly Anne McKeown",
+          "elapsed_time": 545,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
+          "points": 18,
+          "effort_id": "3178776171912062498",
+          "activity_id": "7202239513"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 434114,
+          "name": "Jenny Wojewoda",
+          "elapsed_time": 565,
+          "avg_watts": 95.23190307617188,
+          "avatar_url": null,
+          "badge": null,
+          "points": 8,
+          "effort_id": "1960873248",
+          "activity_id": "93068670"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 4183614,
+          "name": "Kim Nedeau",
+          "elapsed_time": 588,
+          "avg_watts": 140.75799560546875,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/4183614/1609860/11/large.jpg",
+          "badge": "premium",
+          "points": 6,
+          "effort_id": "26481231080",
+          "activity_id": "184662387"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 49000938,
+          "name": "Maggie Farrand",
+          "elapsed_time": 672,
+          "avg_watts": 171.51300048828125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 4,
+          "effort_id": "2740043878320684544",
+          "activity_id": "4051244101"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 673,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "3086493824551501090",
+          "activity_id": "8964020696"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 51863793,
+          "name": "Martha Woodard",
+          "elapsed_time": 722,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "2966468193875337464",
+          "activity_id": "7229030817"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 22241438,
+          "name": "Danielle S",
+          "elapsed_time": 722,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "3233185285577337424",
+          "activity_id": "11574909135"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 135253613,
+          "name": "Rosie Lacas",
+          "elapsed_time": 728,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3479630711189730908",
+          "activity_id": "18124934461"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 138931,
+          "name": "Dana Parrot",
+          "elapsed_time": 733,
+          "avg_watts": 144.89100646972656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "44795944069",
+          "activity_id": "1784130768"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 27672065,
+          "name": "Monica Aguilar",
+          "elapsed_time": 749,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3148742840360842030",
+          "activity_id": "10045971444"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 57591166,
+          "name": "Manali Rege-Colt",
+          "elapsed_time": 777,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3429924090485905614",
+          "activity_id": "16603112823"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 85512224,
+          "name": "Taylor Lucey",
+          "elapsed_time": 791,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3414024455332039906",
+          "activity_id": "16164267901"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 102294642,
+          "name": "Kimberly Stelter",
+          "elapsed_time": 799,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3013580030402444008",
+          "activity_id": "7927318364"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 180218,
+          "name": "Lesli Stevens",
+          "elapsed_time": 804,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3146592220199032026",
+          "activity_id": "10009089798"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 4524939,
+          "name": "Sarah Guthridge ",
+          "elapsed_time": 836,
+          "avg_watts": 122.3499984741211,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2814980482443362214",
+          "activity_id": "5087082071"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 84147540,
+          "name": "Aubrey Menard",
+          "elapsed_time": 839,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3233619442931641126",
+          "activity_id": "11584687269"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 73876320,
+          "name": "Amy Coulthard",
+          "elapsed_time": 840,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3418380780791402412",
+          "activity_id": "16286624088"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 25615539,
+          "name": "Anna Plummer",
+          "elapsed_time": 881,
+          "avg_watts": 81.0022964477539,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2809557558444178800",
+          "activity_id": "4998850516"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 39844915,
+          "name": "Tori LaVerdiere",
+          "elapsed_time": 916,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3382146835935512282",
+          "activity_id": "15181643436"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 16131237,
+          "name": "Krystal Oldread",
+          "elapsed_time": 992,
+          "avg_watts": 111.98899841308594,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "66886261702",
+          "activity_id": "2671519363"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 45466486,
+          "name": "Hannah Billian",
+          "elapsed_time": 1042,
+          "avg_watts": 76.3416976928711,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2887418961728792382",
+          "activity_id": "6161598934"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 14134181,
+          "name": "Michele Cooke",
+          "elapsed_time": 1042,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3089686260922509136",
+          "activity_id": "9017480386"
+        }
+      ]
     },
     {
       "id": 696825,
@@ -16235,6 +16831,18 @@
         },
         {
           "rank": 14,
+          "athlete_id": 56814949,
+          "name": "Ceil Antes",
+          "elapsed_time": 444,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3500945261646440946",
+          "activity_id": "18907639119"
+        },
+        {
+          "rank": 15,
           "athlete_id": 90220802,
           "name": "Alyssa Robb",
           "elapsed_time": 448,
@@ -16246,7 +16854,7 @@
           "activity_id": "11669247281"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 14427,
           "name": "Megan Bilodeau",
           "elapsed_time": 450,
@@ -16258,7 +16866,7 @@
           "activity_id": "3756114653"
         },
         {
-          "rank": 16,
+          "rank": 17,
           "athlete_id": 61007731,
           "name": "Sue LaChance",
           "elapsed_time": 451,
@@ -16270,7 +16878,7 @@
           "activity_id": "16045794273"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 21542083,
           "name": "Hilary C",
           "elapsed_time": 458,
@@ -16282,7 +16890,7 @@
           "activity_id": "5270712168"
         },
         {
-          "rank": 18,
+          "rank": 19,
           "athlete_id": 15721194,
           "name": "Katherine Dzulinsky",
           "elapsed_time": 459,
@@ -16294,7 +16902,7 @@
           "activity_id": "11723996902"
         },
         {
-          "rank": 18,
+          "rank": 19,
           "athlete_id": 33411273,
           "name": "Nicole B",
           "elapsed_time": 459,
@@ -16306,7 +16914,7 @@
           "activity_id": "14448190722"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 10214664,
           "name": "jessica schiffman",
           "elapsed_time": 464,
@@ -16318,7 +16926,7 @@
           "activity_id": "12395656931"
         },
         {
-          "rank": 21,
+          "rank": 22,
           "athlete_id": 15819084,
           "name": "Leigh Gehringer-Wiar",
           "elapsed_time": 467,
@@ -16330,7 +16938,7 @@
           "activity_id": "3323922086"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 16998913,
           "name": "Katie Hudon",
           "elapsed_time": 468,
@@ -16342,7 +16950,7 @@
           "activity_id": "11996383703"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 97324999,
           "name": "Mash It Baby",
           "elapsed_time": 469,
@@ -16354,7 +16962,7 @@
           "activity_id": "18162428935"
         },
         {
-          "rank": 24,
+          "rank": 25,
           "athlete_id": 562146,
           "name": "Ashley N",
           "elapsed_time": 471,
@@ -16366,7 +16974,7 @@
           "activity_id": "4152714263"
         },
         {
-          "rank": 25,
+          "rank": 26,
           "athlete_id": 42054711,
           "name": "Dolci Wagner",
           "elapsed_time": 475,
@@ -18525,8 +19133,8 @@
           "name": "J W",
           "elapsed_time": 764,
           "avg_watts": 118.14700317382812,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "2859958969086939568",
           "activity_id": "3705108233"
@@ -18585,8 +19193,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 783,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3178775783767167522",
           "activity_id": "7659622065"
@@ -19231,8 +19839,8 @@
           "name": "Madeline McKeever",
           "elapsed_time": 244,
           "avg_watts": 254.05299377441406,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3098706/3292251/15/large.jpg",
+          "badge": "premium",
           "points": 6,
           "effort_id": "2870074295142942936",
           "activity_id": "312354848"
@@ -19327,8 +19935,8 @@
           "name": "J W",
           "elapsed_time": 268,
           "avg_watts": 250.64599609375,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "2870073732461042904",
           "activity_id": "359820759"
@@ -21032,7 +21640,10 @@
           -72.388115
         ]
       ],
-      "leader": null,
+      "leader": {
+        "name": "Madeline McKeever",
+        "elapsed_time": 363
+      },
       "profile": {
         "distance": [
           69825.3,
@@ -21183,7 +21794,308 @@
           262.5
         ]
       },
-      "efforts": []
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 3098706,
+          "name": "Madeline McKeever",
+          "elapsed_time": 363,
+          "avg_watts": 224.60299682617188,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3098706/3292251/15/large.jpg",
+          "badge": "premium",
+          "points": 9,
+          "effort_id": "4237460905",
+          "activity_id": "181218846"
+        },
+        {
+          "rank": 1,
+          "athlete_id": 3181736,
+          "name": "J W",
+          "elapsed_time": 363,
+          "avg_watts": 236.64500427246094,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
+          "points": 9,
+          "effort_id": "8854942919",
+          "activity_id": "370634798"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 2033888,
+          "name": "Monique Trammell",
+          "elapsed_time": 370,
+          "avg_watts": 204.37600708007812,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "3343337794",
+          "activity_id": "146006733"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 6542616,
+          "name": "Nathalie Nopakun",
+          "elapsed_time": 401,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "46244556592",
+          "activity_id": "1844021574"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 6847324,
+          "name": "Laura Polan",
+          "elapsed_time": 405,
+          "avg_watts": 203.8990020751953,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "4951882029",
+          "activity_id": "209880730"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 43706080,
+          "name": "RGH \ud83d\udeb4\ud83c\udffb\u200d\u2640\ufe0f",
+          "elapsed_time": 407,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3232084653516097310",
+          "activity_id": "11550656882"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 595248,
+          "name": "Beth Peterson ",
+          "elapsed_time": 425,
+          "avg_watts": 179.88499450683594,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2985993094569365620",
+          "activity_id": "7516893466"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 1997050,
+          "name": "Sharon Benedict",
+          "elapsed_time": 434,
+          "avg_watts": 167.24099731445312,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3044657299",
+          "activity_id": "133880365"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 40231304,
+          "name": "Kate Daly",
+          "elapsed_time": 437,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2968151072431044950",
+          "activity_id": "7253213398"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 10023715,
+          "name": "Tess Harvey",
+          "elapsed_time": 450,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3095457370433494692",
+          "activity_id": "9115686430"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 9898460,
+          "name": "Karen Featherstone",
+          "elapsed_time": 451,
+          "avg_watts": 142.4010009765625,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "9000109274",
+          "activity_id": "376375065"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 284774,
+          "name": "Rebecca Gross",
+          "elapsed_time": 451,
+          "avg_watts": 175.01300048828125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "18014067848",
+          "activity_id": "734643449"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 800369,
+          "name": "Jenn Merredew",
+          "elapsed_time": 465,
+          "avg_watts": 195.25399780273438,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "7084027149",
+          "activity_id": "301122529"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 539441,
+          "name": "Dawn Roberts",
+          "elapsed_time": 465,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "26923027820",
+          "activity_id": "1093750358"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 5744650,
+          "name": "Mindy\u2764\ufe0f ( Bolton) TALBOT\u2764\ufe0f",
+          "elapsed_time": 466,
+          "avg_watts": 195.0189971923828,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3138565299969511432",
+          "activity_id": "9869791831"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 23398500,
+          "name": "Lindsey Noseworthy (AP Racing)",
+          "elapsed_time": 467,
+          "avg_watts": 187.73399353027344,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "28127108144",
+          "activity_id": "1141751291"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 475,
+          "avg_watts": 155.91400146484375,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2714576558092200910",
+          "activity_id": "3713850953"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 2243201,
+          "name": "Heather Welch",
+          "elapsed_time": 476,
+          "avg_watts": 134.95799255371094,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2699365450679975755",
+          "activity_id": "3500290174"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 100200524,
+          "name": "Betsy Harper",
+          "elapsed_time": 480,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3151620815615689518",
+          "activity_id": "10092055329"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 2170772,
+          "name": "Em Bhoo",
+          "elapsed_time": 482,
+          "avg_watts": 145.03500366210938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3369137870",
+          "activity_id": "147077158"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 1640523,
+          "name": "The Sassy Stoker",
+          "elapsed_time": 484,
+          "avg_watts": 198.93800354003906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2692152872891374095",
+          "activity_id": "1096754170"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 14893520,
+          "name": "Becca Jaroszewski",
+          "elapsed_time": 484,
+          "avg_watts": 127.36599731445312,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "38386989121",
+          "activity_id": "1537037265"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 6708795,
+          "name": "Stephanie Bartzick",
+          "elapsed_time": 489,
+          "avg_watts": 149.447998046875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "62683127217",
+          "activity_id": "2490634006"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 22345704,
+          "name": "Marcie Clawson",
+          "elapsed_time": 491,
+          "avg_watts": 204.55599975585938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2704533894144694591",
+          "activity_id": "3575129571"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 120353827,
+          "name": "Julia C.",
+          "elapsed_time": 491,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3257865765178114172",
+          "activity_id": "12124202362"
+        }
+      ]
     },
     {
       "id": 1229267,
@@ -22433,8 +23345,8 @@
           "name": "Karin Eichelman",
           "elapsed_time": 917,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/25534372/45474691/1/large.jpg",
+          "badge": "",
           "points": 0,
           "effort_id": "3366900604793347508",
           "activity_id": "14738551000"
@@ -23012,6 +23924,294 @@
           "points": 9,
           "effort_id": "45671269850",
           "activity_id": "1819981516"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 15721194,
+          "name": "Katherine Dzulinsky",
+          "elapsed_time": 455,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 4,
+          "effort_id": "2709474832792811940",
+          "activity_id": "3644774831"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 5522204,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 457,
+          "avg_watts": 233.86000061035156,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "27895180830",
+          "activity_id": "1131882717"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 17294149,
+          "name": "Laura Gordon",
+          "elapsed_time": 459,
+          "avg_watts": 222.13299560546875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "27892123729",
+          "activity_id": "1131760396"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 1967083,
+          "name": "Patty Clements",
+          "elapsed_time": 459,
+          "avg_watts": 235.9040069580078,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "27899647506",
+          "activity_id": "1132071196"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 8495305,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 460,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "73520326030",
+          "activity_id": "2963753257"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 14782078,
+          "name": "Nicole den Ouden",
+          "elapsed_time": 461,
+          "avg_watts": 246.2969970703125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "27892441452",
+          "activity_id": "1131772226"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 9459854,
+          "name": "Lynda  \ud83c\udff3\ufe0f\u200d\ud83c\udf08  ",
+          "elapsed_time": 480,
+          "avg_watts": 208.68299865722656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2860219861257665282",
+          "activity_id": "5770340437"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 481,
+          "avg_watts": 172.85699462890625,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2722518381867857938",
+          "activity_id": "3815840709"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 23057678,
+          "name": "Lily Carlino (Finnigan-Allen)",
+          "elapsed_time": 490,
+          "avg_watts": 178.2899932861328,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2853677513675180588",
+          "activity_id": "5674538581"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 152392,
+          "name": "Shannon Gaffney",
+          "elapsed_time": 492,
+          "avg_watts": 179.72999572753906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "18111073601",
+          "activity_id": "738592970"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 415292,
+          "name": "JUTTA WOLF",
+          "elapsed_time": 495,
+          "avg_watts": 163.2239990234375,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "18304153079",
+          "activity_id": "746569961"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 495,
+          "avg_watts": 179.38400268554688,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "44196074028",
+          "activity_id": "1763567414"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 2885004,
+          "name": "Sarah Wilson",
+          "elapsed_time": 496,
+          "avg_watts": 173.20399475097656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "18116471763",
+          "activity_id": "738741841"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 708679,
+          "name": "Randee Warrior Roucoulet",
+          "elapsed_time": 501,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "344299428",
+          "activity_id": "19052413"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 2175053,
+          "name": "Sue Cohen",
+          "elapsed_time": 505,
+          "avg_watts": 158.1739959716797,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "4328376247",
+          "activity_id": "184876540"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 2848309,
+          "name": "Julie Tracy",
+          "elapsed_time": 509,
+          "avg_watts": 72.20240020751953,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "25664008398",
+          "activity_id": "1043600261"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 5413400,
+          "name": "Karen Johnston",
+          "elapsed_time": 510,
+          "avg_watts": 162.6529998779297,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "27893794563",
+          "activity_id": "1131825945"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 36102534,
+          "name": "Devon Santos",
+          "elapsed_time": 512,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "63113501600",
+          "activity_id": "2509228191"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 11020651,
+          "name": "Lane Marder",
+          "elapsed_time": 513,
+          "avg_watts": 148.66099548339844,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "18110574791",
+          "activity_id": "738579944"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 8946998,
+          "name": "Jess Wang",
+          "elapsed_time": 520,
+          "avg_watts": 126.79399871826172,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "25648161054",
+          "activity_id": "1043051301"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 46073760,
+          "name": "bill powell",
+          "elapsed_time": 522,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2848257939015140844",
+          "activity_id": "5595493114"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 23477213,
+          "name": "bubble zinca",
+          "elapsed_time": 526,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "42669491505",
+          "activity_id": "1702413959"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 39844915,
+          "name": "Tori LaVerdiere",
+          "elapsed_time": 526,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3224938156843481088",
+          "activity_id": "11397702929"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 119949659,
+          "name": "Aanika Quinn",
+          "elapsed_time": 528,
+          "avg_watts": 137.44900512695312,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3379237882481455758",
+          "activity_id": "15093874412"
         }
       ]
     },
@@ -24556,7 +25756,10 @@
           -72.410029
         ]
       ],
-      "leader": null,
+      "leader": {
+        "name": "Clio Dinan",
+        "elapsed_time": 170
+      },
       "profile": {
         "distance": [
           3382.2,
@@ -24711,7 +25914,308 @@
           372
         ]
       },
-      "efforts": []
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 2887997,
+          "name": "Clio Dinan",
+          "elapsed_time": 170,
+          "avg_watts": 287.1820068359375,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2887997/2090558/8/large.jpg",
+          "badge": "",
+          "points": 9,
+          "effort_id": "2859960076344588034",
+          "activity_id": "2642829871"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 185,
+          "avg_watts": 226.0050048828125,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 4,
+          "effort_id": "3199919050111478492",
+          "activity_id": "10892385415"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 59777483,
+          "name": "Charlotte Lellman",
+          "elapsed_time": 190,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "2951647684211238006",
+          "activity_id": "7009794241"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 193,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "3281746769350736078",
+          "activity_id": "12672863479"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 196,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3347363520759575742",
+          "activity_id": "14189116118"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 17823188,
+          "name": "Wendy King",
+          "elapsed_time": 198,
+          "avg_watts": 234.86900329589844,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17823188/5037985/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2859957052982252002",
+          "activity_id": "5226402034"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 3098706,
+          "name": "Madeline McKeever",
+          "elapsed_time": 203,
+          "avg_watts": 221.26600646972656,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3098706/3292251/15/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2859965809938762160",
+          "activity_id": "312354848"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 8946998,
+          "name": "Jess Wang",
+          "elapsed_time": 207,
+          "avg_watts": 214.27499389648438,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859962812634466050",
+          "activity_id": "1043050818"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 63836252,
+          "name": "Lauren Cunniffe",
+          "elapsed_time": 208,
+          "avg_watts": 226.55799865722656,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3362513296949935684",
+          "activity_id": "14613223269"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 89436,
+          "name": "Kathryn Kothe",
+          "elapsed_time": 209,
+          "avg_watts": 226.51699829101562,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859967731344867760",
+          "activity_id": "62853736"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 3181736,
+          "name": "J W",
+          "elapsed_time": 211,
+          "avg_watts": 228.9290008544922,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
+          "points": 0,
+          "effort_id": "2859965783583485698",
+          "activity_id": "359820759"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 2609360,
+          "name": "Alice McKeon",
+          "elapsed_time": 213,
+          "avg_watts": 212.18299865722656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2866852680861131406",
+          "activity_id": "5869144048"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 14427,
+          "name": "Megan Bilodeau",
+          "elapsed_time": 219,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14427/25605/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3128706386258670012",
+          "activity_id": "12413339"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 2795584,
+          "name": "Katherine DeZutter",
+          "elapsed_time": 219,
+          "avg_watts": 196.23699951171875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859967135708799408",
+          "activity_id": "138182900"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 11020651,
+          "name": "Lane Marder",
+          "elapsed_time": 221,
+          "avg_watts": 259.7560119628906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859963739075172834",
+          "activity_id": "738579944"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 21396546,
+          "name": "Donna Wilson",
+          "elapsed_time": 222,
+          "avg_watts": 195.71600341796875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2981965727836638534",
+          "activity_id": "7457187330"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 3714250,
+          "name": "Lisa Hill",
+          "elapsed_time": 225,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859964226915874274",
+          "activity_id": "597314701"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 5522204,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 226,
+          "avg_watts": 171.68099975585938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859962732404348386",
+          "activity_id": "1117978095"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 8495305,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 226,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859962727956404706",
+          "activity_id": "1121152382"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 32497867,
+          "name": "Grace Pold",
+          "elapsed_time": 226,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859960544665437616",
+          "activity_id": "2519087764"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 9979520,
+          "name": "Peg Piwonka",
+          "elapsed_time": 229,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859959378983089584",
+          "activity_id": "3322977203"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 26687219,
+          "name": "Kelly Anne McKeown",
+          "elapsed_time": 229,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3178775783768200738",
+          "activity_id": "7659622065"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 6608908,
+          "name": "Maria (Hyde) Schutte",
+          "elapsed_time": 232,
+          "avg_watts": 173.2030029296875,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6608908/7488710/3/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2859963272235841968",
+          "activity_id": "940403641"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 2885004,
+          "name": "Sarah Wilson",
+          "elapsed_time": 233,
+          "avg_watts": 164.34800720214844,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859963731852572080",
+          "activity_id": "738741841"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 9459854,
+          "name": "Lynda  \ud83c\udff3\ufe0f\u200d\ud83c\udf08  ",
+          "elapsed_time": 233,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859960511137701296",
+          "activity_id": "2548344899"
+        }
+      ]
     },
     {
       "id": 35664632,
@@ -27541,8 +29045,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 227,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3217913212392891744",
           "activity_id": "11248016877"
@@ -27733,8 +29237,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 254,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3081428878763905392",
           "activity_id": "546206948"
@@ -28564,6 +30068,66 @@
           "points": 0,
           "effort_id": "3232520266019387276",
           "activity_id": "11560163422"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 23109885,
+          "name": "Judy Chirico",
+          "elapsed_time": 945,
+          "avg_watts": 116.52799987792969,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3350583602389635136",
+          "activity_id": "14276061648"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 59047730,
+          "name": "Karen LaVerdiere",
+          "elapsed_time": 948,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3497000886232224958",
+          "activity_id": "18761670079"
+        },
+        {
+          "rank": 27,
+          "athlete_id": 6414001,
+          "name": "Caitlin Marcoux",
+          "elapsed_time": 965,
+          "avg_watts": 116.7229995727539,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3229892493630293944",
+          "activity_id": "11504827079"
+        },
+        {
+          "rank": 28,
+          "athlete_id": 10023715,
+          "name": "Tess Harvey",
+          "elapsed_time": 971,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3120770619788364856",
+          "activity_id": "9551148920"
+        },
+        {
+          "rank": 29,
+          "athlete_id": 18877676,
+          "name": "Cate Dollard",
+          "elapsed_time": 987,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3498748392732535348",
+          "activity_id": "18827339190"
         }
       ]
     },
@@ -29793,8 +31357,8 @@
           "name": "J W",
           "elapsed_time": 255,
           "avg_watts": 139.9759979248047,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "2707280983165483013",
           "activity_id": "3614537921"
@@ -30607,8 +32171,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 209,
           "avg_watts": 183.7220001220703,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "28335981603",
           "activity_id": "310308901"
@@ -31893,8 +33457,8 @@
           "name": "J W",
           "elapsed_time": 114,
           "avg_watts": 241.44700622558594,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 2,
           "effort_id": "8580292075",
           "activity_id": "359820759"
@@ -34222,7 +35786,19 @@
           "activity_id": "184783807"
         },
         {
-          "rank": 7,
+          "rank": 6,
+          "athlete_id": 63836252,
+          "name": "Lauren Cunniffe",
+          "elapsed_time": 356,
+          "avg_watts": 89.0645980834961,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3501307105559763450",
+          "activity_id": "18921206248"
+        },
+        {
+          "rank": 8,
           "athlete_id": 371660,
           "name": "Emily R",
           "elapsed_time": 358,
@@ -34234,7 +35810,7 @@
           "activity_id": "184953279"
         },
         {
-          "rank": 8,
+          "rank": 9,
           "athlete_id": 56138852,
           "name": "Susan Soar",
           "elapsed_time": 363,
@@ -34246,7 +35822,7 @@
           "activity_id": "12037663600"
         },
         {
-          "rank": 8,
+          "rank": 9,
           "athlete_id": 23811922,
           "name": "Kathy Sarvary",
           "elapsed_time": 363,
@@ -34258,19 +35834,7 @@
           "activity_id": "14873754980"
         },
         {
-          "rank": 8,
-          "athlete_id": 63836252,
-          "name": "Lauren Cunniffe",
-          "elapsed_time": 363,
-          "avg_watts": 113.28900146484375,
-          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
-          "badge": "premium",
-          "points": 0,
-          "effort_id": "3371576938357592366",
-          "activity_id": "14873345372"
-        },
-        {
-          "rank": 8,
+          "rank": 9,
           "athlete_id": 11166652,
           "name": "Sarah Hills",
           "elapsed_time": 363,
@@ -34306,7 +35870,19 @@
           "activity_id": "3918751367"
         },
         {
-          "rank": 14,
+          "rank": 13,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 367,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3501300916613588474",
+          "activity_id": "18920943668"
+        },
+        {
+          "rank": 15,
           "athlete_id": 33411273,
           "name": "Nicole B",
           "elapsed_time": 376,
@@ -34318,7 +35894,7 @@
           "activity_id": "12332028994"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 59777483,
           "name": "Charlotte Lellman",
           "elapsed_time": 380,
@@ -34330,7 +35906,7 @@
           "activity_id": "5372696004"
         },
         {
-          "rank": 16,
+          "rank": 17,
           "athlete_id": 9979520,
           "name": "Peg Piwonka",
           "elapsed_time": 395,
@@ -34342,7 +35918,7 @@
           "activity_id": "11936292548"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 52184417,
           "name": "Sarah Hurley",
           "elapsed_time": 403,
@@ -34354,7 +35930,7 @@
           "activity_id": "7298893066"
         },
         {
-          "rank": 18,
+          "rank": 19,
           "athlete_id": 47066578,
           "name": "Porter Morgan",
           "elapsed_time": 406,
@@ -34366,7 +35942,7 @@
           "activity_id": "7494434656"
         },
         {
-          "rank": 19,
+          "rank": 20,
           "athlete_id": 17883408,
           "name": "Kaitlyn Agnew",
           "elapsed_time": 409,
@@ -34378,7 +35954,7 @@
           "activity_id": "4238603857"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 17823188,
           "name": "Wendy King",
           "elapsed_time": 411,
@@ -34390,7 +35966,7 @@
           "activity_id": "4403985703"
         },
         {
-          "rank": 21,
+          "rank": 22,
           "athlete_id": 434114,
           "name": "Jenny Wojewoda",
           "elapsed_time": 415,
@@ -34402,7 +35978,7 @@
           "activity_id": "4238558558"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 15819084,
           "name": "Leigh Gehringer-Wiar",
           "elapsed_time": 416,
@@ -34414,7 +35990,7 @@
           "activity_id": "3812055313"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 777098,
           "name": "Meghan Gump",
           "elapsed_time": 416,
@@ -34426,7 +36002,7 @@
           "activity_id": "15967566846"
         },
         {
-          "rank": 24,
+          "rank": 25,
           "athlete_id": 86366,
           "name": "Jenn Minery",
           "elapsed_time": 417,
@@ -34438,7 +36014,7 @@
           "activity_id": "4238602526"
         },
         {
-          "rank": 25,
+          "rank": 26,
           "athlete_id": 294358,
           "name": "Carlee Schmidt",
           "elapsed_time": 418,
@@ -34736,7 +36312,10 @@
           -72.443286
         ]
       ],
-      "leader": null,
+      "leader": {
+        "name": "Melissa Warwick",
+        "elapsed_time": 210
+      },
       "profile": {
         "distance": [
           17396.3,
@@ -34983,7 +36562,308 @@
           309.1
         ]
       },
-      "efforts": []
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 210,
+          "avg_watts": 192.60499572753906,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 9,
+          "effort_id": "2973718000512736432",
+          "activity_id": "7336748912"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 14427,
+          "name": "Megan Bilodeau",
+          "elapsed_time": 212,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14427/25605/1/large.jpg",
+          "badge": "",
+          "points": 4,
+          "effort_id": "3128706337970228836",
+          "activity_id": "15779961"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 97324999,
+          "name": "Mash It Baby",
+          "elapsed_time": 217,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "3259924821205679020",
+          "activity_id": "12172277647"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 17823188,
+          "name": "Wendy King",
+          "elapsed_time": 233,
+          "avg_watts": 153.01300048828125,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17823188/5037985/14/large.jpg",
+          "badge": "premium",
+          "points": 1,
+          "effort_id": "2699753618670940237",
+          "activity_id": "3506557957"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 15721194,
+          "name": "Katherine Dzulinsky",
+          "elapsed_time": 235,
+          "avg_watts": 175.85499572753906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2730179972763831204",
+          "activity_id": "3923612988"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 236,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3132452686187394240",
+          "activity_id": "9758647794"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 33411273,
+          "name": "Nicole B",
+          "elapsed_time": 238,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/33411273/14325436/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3370748177240618238",
+          "activity_id": "14848624089"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 2887997,
+          "name": "Clio Dinan",
+          "elapsed_time": 248,
+          "avg_watts": 167.75799560546875,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2887997/2090558/8/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "63974130259",
+          "activity_id": "2546342495"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 366565,
+          "name": "Alicia Wendolowski",
+          "elapsed_time": 249,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "5263014571",
+          "activity_id": "7175627"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 250,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3357510116157988384",
+          "activity_id": "14472397323"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 39844915,
+          "name": "Tori LaVerdiere",
+          "elapsed_time": 251,
+          "avg_watts": 171.93600463867188,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2720441449144456376",
+          "activity_id": "3792894712"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 27541429,
+          "name": "Lily Hayes",
+          "elapsed_time": 252,
+          "avg_watts": 153.20599365234375,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2859578051295102622",
+          "activity_id": "5761246051"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 25615539,
+          "name": "Anna Plummer",
+          "elapsed_time": 253,
+          "avg_watts": 195.3159942626953,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2727304529200279930",
+          "activity_id": "3884926212"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 6608908,
+          "name": "Maria (Hyde) Schutte",
+          "elapsed_time": 257,
+          "avg_watts": 149.03500366210938,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6608908/7488710/3/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "22992018703",
+          "activity_id": "940403641"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 138931,
+          "name": "Dana Parrot",
+          "elapsed_time": 257,
+          "avg_watts": 140.28399658203125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2732266792808987288",
+          "activity_id": "3949891722"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 2875359,
+          "name": "Sasha Lansky",
+          "elapsed_time": 258,
+          "avg_watts": 165.68600463867188,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2857971848548676442",
+          "activity_id": "5737069327"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 9536400,
+          "name": "Connie Turner",
+          "elapsed_time": 260,
+          "avg_watts": 157.53500366210938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "19055565617",
+          "activity_id": "779168051"
+        },
+        {
+          "rank": 18,
+          "athlete_id": 42054711,
+          "name": "Dolci Wagner",
+          "elapsed_time": 261,
+          "avg_watts": 146.30299377441406,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2885553001778414106",
+          "activity_id": "6136177938"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 47066578,
+          "name": "Porter Morgan",
+          "elapsed_time": 263,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3231999990364341680",
+          "activity_id": "11548353349"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 590503,
+          "name": "Patria Vandermark",
+          "elapsed_time": 264,
+          "avg_watts": 136.63299560546875,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "5262967237",
+          "activity_id": "23589817"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 53686516,
+          "name": "carli tesini",
+          "elapsed_time": 266,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/53686516/14746832/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2948682263107936726",
+          "activity_id": "6966516346"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 7230060,
+          "name": "GN K",
+          "elapsed_time": 270,
+          "avg_watts": 134.22999572753906,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2697208019095061809",
+          "activity_id": "3468963207"
+        },
+        {
+          "rank": 23,
+          "athlete_id": 1193609,
+          "name": "Mary Guertin",
+          "elapsed_time": 271,
+          "avg_watts": 103.68299865722656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "41928840063",
+          "activity_id": "1672523085"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 2716839,
+          "name": "Nancy Peck-Cook",
+          "elapsed_time": 282,
+          "avg_watts": 143.70199584960938,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "62230555619",
+          "activity_id": "2471653722"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 539441,
+          "name": "Dawn Roberts",
+          "elapsed_time": 283,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "62234886279",
+          "activity_id": "2471798074"
+        }
+      ]
     },
     {
       "id": 9830204,
@@ -37704,6 +39584,294 @@
           "points": 9,
           "effort_id": "2977440817216704000",
           "activity_id": "4409782898"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 1933372,
+          "name": "Shaina Kravitz",
+          "elapsed_time": 266,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 4,
+          "effort_id": "2977458836379235900",
+          "activity_id": "686444672"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 1997050,
+          "name": "Sharon Benedict",
+          "elapsed_time": 267,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "2977459759159910142",
+          "activity_id": "668363161"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 103965224,
+          "name": "Cara Brostrom",
+          "elapsed_time": 271,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 1,
+          "effort_id": "3246268838439211726",
+          "activity_id": "11858345645"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 275,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "2977449297665807102",
+          "activity_id": "1178158213"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 14427,
+          "name": "Megan Bilodeau",
+          "elapsed_time": 277,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14427/25605/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "2977435217710689022",
+          "activity_id": "7390634476"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 5838572,
+          "name": "Caitlin McCarthy",
+          "elapsed_time": 287,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977467449594741308",
+          "activity_id": "340055951"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 119430,
+          "name": "Crystal Anthony",
+          "elapsed_time": 290,
+          "avg_watts": 183.28599548339844,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977459759157379838",
+          "activity_id": "668145401"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 23412699,
+          "name": "Daria Atkinson",
+          "elapsed_time": 290,
+          "avg_watts": null,
+          "avatar_url": "https://graph.facebook.com/10155591701225719/picture?height=256&width=256",
+          "badge": "",
+          "points": 0,
+          "effort_id": "2977449843735957078",
+          "activity_id": "1120946235"
+        },
+        {
+          "rank": 8,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 290,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3367522592688534174",
+          "activity_id": "14755202825"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 17531401,
+          "name": "Hannah Yee",
+          "elapsed_time": 294,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3491178549670558622",
+          "activity_id": "18547766571"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 33626097,
+          "name": "Angie Caron",
+          "elapsed_time": 297,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/33626097/39587585/1/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3491158516719371856",
+          "activity_id": "18547056541"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 90220802,
+          "name": "Alyssa Robb",
+          "elapsed_time": 299,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2985035029387413268",
+          "activity_id": "7502667797"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 26687219,
+          "name": "Kelly Anne McKeown",
+          "elapsed_time": 302,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3004031631269013906",
+          "activity_id": "7790816641"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 115162,
+          "name": "Christin Reuter",
+          "elapsed_time": 303,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/115162/16670031/21/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3157525722484093062",
+          "activity_id": "145993183"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 308,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3366812184247384186",
+          "activity_id": "14735441798"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 265173,
+          "name": "lauren chesnutt",
+          "elapsed_time": 311,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977458828461729366",
+          "activity_id": "681831959"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 9979520,
+          "name": "Peg Piwonka",
+          "elapsed_time": 311,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3102616578708322630",
+          "activity_id": "9239141092"
+        },
+        {
+          "rank": 19,
+          "athlete_id": 4183614,
+          "name": "Kim Nedeau",
+          "elapsed_time": 313,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/4183614/1609860/11/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3081304721689328464",
+          "activity_id": "997358773"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 13489777,
+          "name": "T ROW",
+          "elapsed_time": 314,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977439770723715670",
+          "activity_id": "6121865773"
+        },
+        {
+          "rank": 21,
+          "athlete_id": 24912553,
+          "name": "Lauren Monaco Eddings",
+          "elapsed_time": 315,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977440213852515926",
+          "activity_id": "5368550164"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 2566264,
+          "name": "heidi goodson",
+          "elapsed_time": 318,
+          "avg_watts": 136.42799377441406,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977441509985988182",
+          "activity_id": "4055679978"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 117965819,
+          "name": "Lisa Abrams",
+          "elapsed_time": 318,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3394336811695052766",
+          "activity_id": "15558500739"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 42054711,
+          "name": "Dolci Wagner",
+          "elapsed_time": 321,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977439931048961790",
+          "activity_id": "5926747986"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 284774,
+          "name": "Rebecca Gross",
+          "elapsed_time": 326,
+          "avg_watts": 153.56700134277344,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "2977456378972097110",
+          "activity_id": "734643449"
         }
       ]
     },
@@ -38281,8 +40449,8 @@
           "name": "J W",
           "elapsed_time": 82,
           "avg_watts": 262.2560119628906,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "30687546775",
           "activity_id": "1242213995"
@@ -38401,8 +40569,8 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 87,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3178776217829919318",
           "activity_id": "3553702165"
@@ -41461,6 +43629,18 @@
         },
         {
           "rank": 12,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 435,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3500993308010344910",
+          "activity_id": "18909141659"
+        },
+        {
+          "rank": 13,
           "athlete_id": 97324999,
           "name": "Mash It Baby",
           "elapsed_time": 443,
@@ -41470,18 +43650,6 @@
           "points": 0,
           "effort_id": "3480652686301092886",
           "activity_id": "18162428935"
-        },
-        {
-          "rank": 13,
-          "athlete_id": 46483452,
-          "name": "phoebe gelbard",
-          "elapsed_time": 449,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3086493824551011618",
-          "activity_id": "8964020696"
         },
         {
           "rank": 14,
@@ -41509,6 +43677,18 @@
         },
         {
           "rank": 16,
+          "athlete_id": 56814949,
+          "name": "Ceil Antes",
+          "elapsed_time": 480,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3500945261648575986",
+          "activity_id": "18907639119"
+        },
+        {
+          "rank": 17,
           "athlete_id": 1075040,
           "name": "Laura DeVincent",
           "elapsed_time": 493,
@@ -41520,7 +43700,7 @@
           "activity_id": "16337375664"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 15721194,
           "name": "Katherine Dzulinsky",
           "elapsed_time": 503,
@@ -41532,7 +43712,7 @@
           "activity_id": "11723996902"
         },
         {
-          "rank": 18,
+          "rank": 19,
           "athlete_id": 61007731,
           "name": "Sue LaChance",
           "elapsed_time": 524,
@@ -41544,7 +43724,7 @@
           "activity_id": "16109322019"
         },
         {
-          "rank": 19,
+          "rank": 20,
           "athlete_id": 4183614,
           "name": "Kim Nedeau",
           "elapsed_time": 535,
@@ -41556,7 +43736,7 @@
           "activity_id": "171777148"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 663512,
           "name": "AzyeF O'Connell",
           "elapsed_time": 560,
@@ -41568,7 +43748,19 @@
           "activity_id": "11511301519"
         },
         {
-          "rank": 21,
+          "rank": 22,
+          "athlete_id": 188978,
+          "name": "pamela blalock",
+          "elapsed_time": 567,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/188978/34286/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3500948062385935782",
+          "activity_id": "18907749315"
+        },
+        {
+          "rank": 23,
           "athlete_id": 19471512,
           "name": "Sofia Siestrup",
           "elapsed_time": 589,
@@ -41580,7 +43772,7 @@
           "activity_id": "11890183525"
         },
         {
-          "rank": 22,
+          "rank": 24,
           "athlete_id": 103965224,
           "name": "Cara Brostrom",
           "elapsed_time": 626,
@@ -41590,30 +43782,6 @@
           "points": 0,
           "effort_id": "2982738724697594784",
           "activity_id": "7469304752"
-        },
-        {
-          "rank": 23,
-          "athlete_id": 188978,
-          "name": "pamela blalock",
-          "elapsed_time": 627,
-          "avg_watts": 45.86130142211914,
-          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/188978/34286/4/large.jpg",
-          "badge": "premium",
-          "points": 0,
-          "effort_id": "2726226729109942856",
-          "activity_id": "3870581200"
-        },
-        {
-          "rank": 24,
-          "athlete_id": 56814949,
-          "name": "Ceil Antes",
-          "elapsed_time": 628,
-          "avg_watts": 51.60350036621094,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "2726215842621194322",
-          "activity_id": "3870438163"
         },
         {
           "rank": 25,
@@ -41626,6 +43794,78 @@
           "points": 0,
           "effort_id": "3252691845250280920",
           "activity_id": "12004352675"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 16998913,
+          "name": "Katie Hudon",
+          "elapsed_time": 730,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3252350476074019572",
+          "activity_id": "11996383703"
+        },
+        {
+          "rank": 27,
+          "athlete_id": 63836252,
+          "name": "Lauren Cunniffe",
+          "elapsed_time": 741,
+          "avg_watts": 90.34860229492188,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3501307105559572986",
+          "activity_id": "18921206248"
+        },
+        {
+          "rank": 28,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 749,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3501300916616936954",
+          "activity_id": "18920943668"
+        },
+        {
+          "rank": 29,
+          "athlete_id": 10023715,
+          "name": "Tess Harvey",
+          "elapsed_time": 778,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3120770619788779576",
+          "activity_id": "9551148920"
+        },
+        {
+          "rank": 30,
+          "athlete_id": 73876320,
+          "name": "Amy Coulthard",
+          "elapsed_time": 889,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3494171683549138768",
+          "activity_id": "18655676839"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 892,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3269448846522523444",
+          "activity_id": "12395656931"
         }
       ]
     },
@@ -43873,8 +46113,8 @@
           "name": "J W",
           "elapsed_time": 131,
           "avg_watts": 103.65599822998047,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "8580292099",
           "activity_id": "359820759"
@@ -45566,7 +47806,10 @@
           -72.467621
         ]
       ],
-      "leader": null,
+      "leader": {
+        "name": "julie wright",
+        "elapsed_time": 185
+      },
       "profile": {
         "distance": [
           6839.9,
@@ -45813,7 +48056,320 @@
           203.2
         ]
       },
-      "efforts": []
+      "efforts": [
+        {
+          "rank": 1,
+          "athlete_id": 1092447,
+          "name": "julie wright",
+          "elapsed_time": 185,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1092447/3779708/1/large.jpg",
+          "badge": "premium",
+          "points": 9,
+          "effort_id": "3264692569682785260",
+          "activity_id": "1121010779"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 225173,
+          "name": "Erin Faccone",
+          "elapsed_time": 186,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/225173/7221659/2/large.jpg",
+          "badge": "",
+          "points": 4,
+          "effort_id": "3264692573827796088",
+          "activity_id": "1120861880"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 196,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 2,
+          "effort_id": "3264687050302903636",
+          "activity_id": "2685440176"
+        },
+        {
+          "rank": 3,
+          "athlete_id": 14427,
+          "name": "Megan Bilodeau",
+          "elapsed_time": 196,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14427/25605/1/large.jpg",
+          "badge": "",
+          "points": 2,
+          "effort_id": "3264672697431825388",
+          "activity_id": "7390634476"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 1997050,
+          "name": "Sharon Benedict",
+          "elapsed_time": 198,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264697316898787668",
+          "activity_id": "668363161"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 17823188,
+          "name": "Wendy King",
+          "elapsed_time": 200,
+          "avg_watts": 40.07500076293945,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/17823188/5037985/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3264678576626627564",
+          "activity_id": "4409782898"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 119430,
+          "name": "Crystal Anthony",
+          "elapsed_time": 205,
+          "avg_watts": 80.55120086669922,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264697316896541012",
+          "activity_id": "668145401"
+        },
+        {
+          "rank": 7,
+          "athlete_id": 57653,
+          "name": "Maris Mann-Stadt",
+          "elapsed_time": 205,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264692180292999508",
+          "activity_id": "1681354803"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 284774,
+          "name": "Rebecca Gross",
+          "elapsed_time": 209,
+          "avg_watts": 72.48799896240234,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264696343504598136",
+          "activity_id": "734643449"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 102747,
+          "name": "Michele Smith",
+          "elapsed_time": 209,
+          "avg_watts": 0.0,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264695284520473940",
+          "activity_id": "1121180931"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 90220802,
+          "name": "Alyssa Robb",
+          "elapsed_time": 210,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264672558677293384",
+          "activity_id": "7390518229"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 63934419,
+          "name": "Amanda S",
+          "elapsed_time": 210,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63934419/36313979/6/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3366812184250584186",
+          "activity_id": "14735441798"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 46483452,
+          "name": "phoebe gelbard",
+          "elapsed_time": 210,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3367522592689049246",
+          "activity_id": "14755202825"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 23412699,
+          "name": "Daria Atkinson",
+          "elapsed_time": 212,
+          "avg_watts": null,
+          "avatar_url": "https://graph.facebook.com/10155591701225719/picture?height=256&width=256",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3264694783306215544",
+          "activity_id": "1120946235"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 11027315,
+          "name": "Jo Cater",
+          "elapsed_time": 213,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264692573827219576",
+          "activity_id": "1141301690"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 42054711,
+          "name": "Dolci Wagner",
+          "elapsed_time": 214,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264672697433130988",
+          "activity_id": "7356188906"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 115162,
+          "name": "Christin Reuter",
+          "elapsed_time": 215,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/115162/16670031/21/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3264708554086022124",
+          "activity_id": "145993183"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 5838572,
+          "name": "Caitlin McCarthy",
+          "elapsed_time": 215,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264702944665254228",
+          "activity_id": "340055951"
+        },
+        {
+          "rank": 17,
+          "athlete_id": 59047730,
+          "name": "Karen LaVerdiere",
+          "elapsed_time": 215,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3386753102472376132",
+          "activity_id": "15320770780"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 6295094,
+          "name": "Alix Sorrell",
+          "elapsed_time": 217,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6295094/46649532/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3264677524921644012",
+          "activity_id": "6059992459"
+        },
+        {
+          "rank": 20,
+          "athlete_id": 39209325,
+          "name": "K Mama",
+          "elapsed_time": 217,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264668862244330616",
+          "activity_id": "8903109945"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 13489777,
+          "name": "T ROW",
+          "elapsed_time": 221,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264676873757102060",
+          "activity_id": "6121865773"
+        },
+        {
+          "rank": 22,
+          "athlete_id": 33411273,
+          "name": "Nicole B",
+          "elapsed_time": 221,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/33411273/14325436/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3264659940045374936",
+          "activity_id": "11830102866"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 2000487,
+          "name": "Natasja B",
+          "elapsed_time": 225,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264700139772219512",
+          "activity_id": "668386064"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 14134181,
+          "name": "Michele Cooke",
+          "elapsed_time": 226,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3410008954501969956",
+          "activity_id": "16045858385"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 2443083,
+          "name": "Michelle Chase",
+          "elapsed_time": 228,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3264694633626041324",
+          "activity_id": "1121009353"
+        }
+      ]
     },
     {
       "id": 41407026,
@@ -46362,6 +48918,294 @@
           "points": 3,
           "effort_id": "3488814373922636300",
           "activity_id": "1819981516"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 15179953,
+          "name": "Melissa Warwick",
+          "elapsed_time": 249,
+          "avg_watts": 73.65059661865234,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/15179953/11072198/2/large.jpg",
+          "badge": "premium",
+          "points": 2,
+          "effort_id": "3488814169926749320",
+          "activity_id": "5793265168"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 58187711,
+          "name": "Allison B",
+          "elapsed_time": 249,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 2,
+          "effort_id": "3488814163151593920",
+          "activity_id": "5792922055"
+        },
+        {
+          "rank": 4,
+          "athlete_id": 15721194,
+          "name": "Katherine Dzulinsky",
+          "elapsed_time": 250,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814277043563968",
+          "activity_id": "3644774831"
+        },
+        {
+          "rank": 5,
+          "athlete_id": 1967083,
+          "name": "Patty Clements",
+          "elapsed_time": 251,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814414756490376",
+          "activity_id": "1132071196"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 5522204,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 252,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814410817616858",
+          "activity_id": "2963753270"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 8495305,
+          "name": "Michelle Lombardo",
+          "elapsed_time": 252,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814410820519898",
+          "activity_id": "2963753257"
+        },
+        {
+          "rank": 6,
+          "athlete_id": 14782078,
+          "name": "Nicole den Ouden",
+          "elapsed_time": 252,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814419441243098",
+          "activity_id": "1131772226"
+        },
+        {
+          "rank": 9,
+          "athlete_id": 23057678,
+          "name": "Lily Carlino (Finnigan-Allen)",
+          "elapsed_time": 254,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814173494804928",
+          "activity_id": "5674538581"
+        },
+        {
+          "rank": 10,
+          "athlete_id": 17294149,
+          "name": "Laura Gordon",
+          "elapsed_time": 255,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814410879232514",
+          "activity_id": "1131760396"
+        },
+        {
+          "rank": 11,
+          "athlete_id": 188978,
+          "name": "pamela blalock",
+          "elapsed_time": 258,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/188978/34286/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3488814422076556802",
+          "activity_id": "725121437"
+        },
+        {
+          "rank": 12,
+          "athlete_id": 1324350,
+          "name": "Kim Scheub",
+          "elapsed_time": 263,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814057186978778",
+          "activity_id": "7948459279"
+        },
+        {
+          "rank": 13,
+          "athlete_id": 66062711,
+          "name": "Beth Miller Pittman",
+          "elapsed_time": 265,
+          "avg_watts": 89.98870086669922,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814193558326786",
+          "activity_id": "5660427024"
+        },
+        {
+          "rank": 14,
+          "athlete_id": 2885004,
+          "name": "Sarah Wilson",
+          "elapsed_time": 271,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814461836286088",
+          "activity_id": "738741841"
+        },
+        {
+          "rank": 15,
+          "athlete_id": 5413400,
+          "name": "Karen Johnston",
+          "elapsed_time": 272,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814011981490312",
+          "activity_id": "9488343864"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 1993737,
+          "name": "Val Tassinari",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814449525130376",
+          "activity_id": "668088154"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 241681,
+          "name": "Lauren LeClaire",
+          "elapsed_time": 273,
+          "avg_watts": 84.45050048828125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814449524827272",
+          "activity_id": "670157090"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 2887997,
+          "name": "Clio Dinan",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2887997/2090558/8/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3488814461832400008",
+          "activity_id": "668122137"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 11020651,
+          "name": "Lane Marder",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814449523441800",
+          "activity_id": "738579944"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 152392,
+          "name": "Shannon Gaffney",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814422076518914",
+          "activity_id": "738592970"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 415292,
+          "name": "JUTTA WOLF",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814422078473730",
+          "activity_id": "746569961"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 10214664,
+          "name": "jessica schiffman",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814365889955330",
+          "activity_id": "1763567414"
+        },
+        {
+          "rank": 16,
+          "athlete_id": 9459854,
+          "name": "Lynda  \ud83c\udff3\ufe0f\u200d\ud83c\udf08  ",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814193556556290",
+          "activity_id": "5770340437"
+        },
+        {
+          "rank": 24,
+          "athlete_id": 708679,
+          "name": "Randee Warrior Roucoulet",
+          "elapsed_time": 275,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488814578729537984",
+          "activity_id": "19052413"
+        },
+        {
+          "rank": 25,
+          "athlete_id": 39844915,
+          "name": "Tori LaVerdiere",
+          "elapsed_time": 277,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3488813969356166592",
+          "activity_id": "11397702929"
         }
       ]
     },
@@ -46771,8 +49615,8 @@
           "name": "J W",
           "elapsed_time": 58,
           "avg_watts": 267.1029968261719,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 2,
           "effort_id": "2718613968730567834",
           "activity_id": "3768360350"
@@ -49249,14 +52093,26 @@
           "name": "Kelly Anne McKeown",
           "elapsed_time": 168,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/26687219/7773082/5/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3355732319163118906",
           "activity_id": "7244796927"
         },
         {
           "rank": 7,
+          "athlete_id": 77127892,
+          "name": "Lisa Berry Brown",
+          "elapsed_time": 172,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3500932430099779058",
+          "activity_id": "18907094579"
+        },
+        {
+          "rank": 8,
           "athlete_id": 47066578,
           "name": "Porter Morgan",
           "elapsed_time": 173,
@@ -49268,7 +52124,7 @@
           "activity_id": "7494434656"
         },
         {
-          "rank": 7,
+          "rank": 8,
           "athlete_id": 10214664,
           "name": "jessica schiffman",
           "elapsed_time": 173,
@@ -49280,7 +52136,7 @@
           "activity_id": "12351794579"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "athlete_id": 22241438,
           "name": "Danielle S",
           "elapsed_time": 175,
@@ -49292,7 +52148,7 @@
           "activity_id": "9622249530"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "athlete_id": 45960606,
           "name": "Kallie L-L",
           "elapsed_time": 177,
@@ -49304,7 +52160,7 @@
           "activity_id": "5428812256"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "athlete_id": 42054711,
           "name": "Dolci Wagner",
           "elapsed_time": 177,
@@ -49316,7 +52172,7 @@
           "activity_id": "6262523502"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "athlete_id": 51863793,
           "name": "Martha Woodard",
           "elapsed_time": 177,
@@ -49328,7 +52184,7 @@
           "activity_id": "14808474586"
         },
         {
-          "rank": 13,
+          "rank": 14,
           "athlete_id": 13489777,
           "name": "T ROW",
           "elapsed_time": 178,
@@ -49340,7 +52196,7 @@
           "activity_id": "15335217231"
         },
         {
-          "rank": 14,
+          "rank": 15,
           "athlete_id": 14427,
           "name": "Megan Bilodeau",
           "elapsed_time": 179,
@@ -49352,7 +52208,7 @@
           "activity_id": "15061251180"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 1193609,
           "name": "Mary Guertin",
           "elapsed_time": 182,
@@ -49364,7 +52220,7 @@
           "activity_id": "5426384235"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 23547574,
           "name": "Alisha McBeath",
           "elapsed_time": 182,
@@ -49374,18 +52230,6 @@
           "points": 0,
           "effort_id": "3494158918827774800",
           "activity_id": "18655382297"
-        },
-        {
-          "rank": 17,
-          "athlete_id": 77127892,
-          "name": "Lisa Berry Brown",
-          "elapsed_time": 184,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3355732293545541570",
-          "activity_id": "9869493098"
         },
         {
           "rank": 18,
@@ -50320,6 +53164,102 @@
           "points": 0,
           "effort_id": "3350583602389737536",
           "activity_id": "14276061648"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 777098,
+          "name": "Meghan Gump",
+          "elapsed_time": 512,
+          "avg_watts": 55.63710021972656,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "60940591247",
+          "activity_id": "2415846283"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 22241438,
+          "name": "Danielle S",
+          "elapsed_time": 512,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3014654569646838730",
+          "activity_id": "7943245343"
+        },
+        {
+          "rank": 28,
+          "athlete_id": 6798995,
+          "name": "Chanel Zeisel",
+          "elapsed_time": 514,
+          "avg_watts": 152.40899658203125,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3414365108651773144",
+          "activity_id": "16173336105"
+        },
+        {
+          "rank": 29,
+          "athlete_id": 6295094,
+          "name": "Alix Sorrell",
+          "elapsed_time": 519,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6295094/46649532/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3366928891541107026",
+          "activity_id": "14739103409"
+        },
+        {
+          "rank": 30,
+          "athlete_id": 9888523,
+          "name": "Erica  Tibbetts",
+          "elapsed_time": 521,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3372658262042631706",
+          "activity_id": "14903694811"
+        },
+        {
+          "rank": 31,
+          "athlete_id": 11166652,
+          "name": "Sarah Hills",
+          "elapsed_time": 522,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3013980458051277396",
+          "activity_id": "7933237215"
+        },
+        {
+          "rank": 32,
+          "athlete_id": 63836252,
+          "name": "Lauren Cunniffe",
+          "elapsed_time": 538,
+          "avg_watts": 118.30699920654297,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/63836252/16305058/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3369764450497476536",
+          "activity_id": "14819868301"
+        },
+        {
+          "rank": 32,
+          "athlete_id": 59047730,
+          "name": "Karen LaVerdiere",
+          "elapsed_time": 538,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3393729745299435042",
+          "activity_id": "15540706481"
         }
       ]
     },
@@ -53435,8 +56375,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 332,
           "avg_watts": 66.13249969482422,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "16864046592",
           "activity_id": "515342242"
@@ -54932,6 +57872,18 @@
           "points": 0,
           "effort_id": "3273120192840364648",
           "activity_id": "2552358618"
+        },
+        {
+          "rank": 26,
+          "athlete_id": 31265554,
+          "name": "Heidi Moskovitz",
+          "elapsed_time": 357,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3273120014413388392",
+          "activity_id": "2671632844"
         }
       ]
     },
@@ -57453,8 +60405,8 @@
           "name": "J W",
           "elapsed_time": 72,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://graph.facebook.com/141302332/picture?height=256&width=256",
+          "badge": "",
           "points": 0,
           "effort_id": "3357043975945156150",
           "activity_id": "3614537921"
@@ -57537,8 +60489,8 @@
           "name": "Madeline McKeever",
           "elapsed_time": 79,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3098706/3292251/15/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3357044245886856920",
           "activity_id": "312354848"
@@ -59439,8 +62391,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 865,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 2,
           "effort_id": "3399011732375830500",
           "activity_id": "667068053"
@@ -61137,8 +64089,8 @@
           "name": "Karin Eichelman",
           "elapsed_time": 133,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/25534372/45474691/1/large.jpg",
+          "badge": "",
           "points": 0,
           "effort_id": "3493878111703095798",
           "activity_id": "14738551000"
@@ -62011,8 +64963,8 @@
           "name": "Karin Eichelman",
           "elapsed_time": 787,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/25534372/45474691/1/large.jpg",
+          "badge": "",
           "points": 0,
           "effort_id": "3397596334716991992",
           "activity_id": "9159861905"
@@ -63137,8 +66089,8 @@
           "name": "Kait Kehoe",
           "elapsed_time": 281,
           "avg_watts": 118.44300079345703,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
           "points": 3,
           "effort_id": "63848487711",
           "activity_id": "667068053"
@@ -65379,11 +68331,23 @@
           "name": "Karin Eichelman",
           "elapsed_time": 2002,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/25534372/45474691/1/large.jpg",
+          "badge": "",
           "points": 3,
           "effort_id": "3376279735442762000",
           "activity_id": "15007267317"
+        },
+        {
+          "rank": 2,
+          "athlete_id": 62503189,
+          "name": "Emily Causey",
+          "elapsed_time": 2011,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3376278552481600500",
+          "activity_id": "15007225301"
         }
       ]
     },
