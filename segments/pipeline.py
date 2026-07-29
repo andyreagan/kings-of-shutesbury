@@ -365,21 +365,29 @@ def _supplement_following(client, sid: int, efforts: list) -> list:
 _last_stop: str | None = None
 
 
-def _refresh_one(client, sid: int, depth: int) -> bool:
+def _refresh_one(client, sid: int, depth: int, from_page: int = 1) -> bool:
     """Fetch the leaderboard for one segment at `depth` and persist. Returns
     True on success. Updates the 429 backoff ladder: success resets it; a
     rate-limit escalates it (and sets `_last_stop` to either 'ratelimit' or
     'ratelimit-exhausted' so the caller can decide whether to abort the whole
     process or just stop the loop).
 
-    Each refresh is now 3 requests: overall (depth pages) + following + women's.
-    All three share the same try/except — a 429 on the women's fetch escalates
+    `from_page` > 1 fetches only overall pages from_page..depth — the
+    depth-building tick pulls just the page it hasn't seen instead of
+    re-walking the whole board, keeping every tick a flat ~3 requests.
+    Partial fetches don't stamp efforts_fetched_at (the top-25 wasn't
+    touched, so phase-A freshness must stay honest).
+
+    Each refresh is 3 requests: overall pages + following + women's. All
+    three share the same try/except — a 429 on the women's fetch escalates
     the ladder exactly like the others."""
     global _last_stop
     _last_stop = None
-    print(f"> leaderboard {sid} (depth {depth}) ...", flush=True)
+    span = f"page {depth}" if from_page > 1 else f"depth {depth}"
+    print(f"> leaderboard {sid} ({span}) ...", flush=True)
     try:
-        efforts = client.fetch_leaderboard(sid, "overall", pages=depth)
+        efforts = client.fetch_leaderboard(sid, "overall", pages=depth,
+                                           from_page=from_page)
         efforts = _supplement_following(client, sid, efforts)
         women = client.fetch_leaderboard(sid, "overall", pages=1, gender="female")
     except AuthError as e:
@@ -399,7 +407,8 @@ def _refresh_one(client, sid: int, depth: int) -> bool:
     stamp = now()
     _store_efforts(sid, efforts, stamp, gender="M")
     _store_efforts(sid, women, stamp, gender="F")
-    set_efforts_fetched_at(sid, stamp)
+    if from_page == 1:
+        set_efforts_fetched_at(sid, stamp)
     if depth > 1:
         bump_depth_pages(sid, depth)
     # Single commit per segment: set_efforts_fetched_at and bump_depth_pages
@@ -485,8 +494,11 @@ def background_tick(no_jitter: bool = False) -> None:
     sid, depth, phase = pick
     print(f"[background] phase {phase} — segment {sid}, depth {depth}")
     run_started_at = now()
+    # Phase B picks depth = last_depth_pages + 1, so the only unseen page IS
+    # `depth` — start there. Phases A/C use depth 1, where from_page=depth
+    # degenerates to a normal full (page-1) fetch.
     with StravaClient() as client:
-        _refresh_one(client, sid, depth)
+        _refresh_one(client, sid, depth, from_page=depth)
     print_changelog(run_started_at)
 
 

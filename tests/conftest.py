@@ -87,12 +87,13 @@ class FakeStravaClient:
         self.following = following or {}
         self.women = women or {}    # women's board rows; returned when gender="female"
         self._raises = list(raises or [])
-        self.calls: list[tuple[int, str, int]] = []
+        self.calls: list[tuple[int, str, int, int]] = []
 
     def fetch_leaderboard(self, sid: int, filter_type: str = "overall",
                           pages: int = 1,
-                          gender: str = "overall") -> list[dict]:
-        self.calls.append((sid, filter_type, pages))
+                          gender: str = "overall",
+                          from_page: int = 1) -> list[dict]:
+        self.calls.append((sid, filter_type, pages, from_page))
         if self._raises:
             err = self._raises.pop(0)
             if err is not None:

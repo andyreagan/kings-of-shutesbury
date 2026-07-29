@@ -70,6 +70,29 @@ def test_depth_gt_one_bumps_high_water(seed_segment):
     assert seg.last_depth_pages == 4
 
 
+def test_partial_fetch_starts_at_from_page(seed_segment):
+    """Depth-building ticks pull only the unseen page: from_page reaches the
+    client on the overall fetch, while following/women's stay full fetches."""
+    seed_segment(1, last_depth_pages=3)
+    client = FakeStravaClient(overall={1: [effort(100, 60)]}, following={1: []})
+    assert pipeline._refresh_one(client, 1, depth=4, from_page=4) is True
+    assert (1, "overall", 4, 4) in client.calls
+    seg = Segment.objects.get(pk=1)
+    assert seg.last_depth_pages == 4
+
+
+def test_partial_fetch_does_not_stamp_efforts_fetched_at(seed_segment):
+    """A from_page>1 fetch never touched the top-25, so it must not refresh
+    the phase-A staleness stamp — but its efforts still land in the log."""
+    seed_segment(1, efforts_fetched_at="2026-01-01T00:00:00+00:00",
+                 last_depth_pages=3)
+    client = FakeStravaClient(overall={1: [effort(100, 60)]}, following={1: []})
+    assert pipeline._refresh_one(client, 1, depth=4, from_page=4) is True
+    seg = Segment.objects.get(pk=1)
+    assert seg.efforts_fetched_at == "2026-01-01T00:00:00+00:00"
+    assert EffortLog.objects.filter(segment_id=1).count() == 1
+
+
 def test_bump_never_shrinks(seed_segment):
     """`bump_depth_pages` is supposed to be a HIGH-WATER mark — a smaller
     value must not overwrite a larger one."""

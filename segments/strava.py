@@ -248,14 +248,18 @@ class StravaClient:
     def fetch_leaderboard(self, segment_id: int,
                           filter_type: str = "overall",
                           pages: int = 1,
-                          gender: str = "overall") -> list[dict]:
-        """Full leaderboard as effort dicts (one per athlete). `pages` controls
-        depth: 1 = top 25, 2 = top 50, etc. (25 per page). `gender` is passed
-        directly to the Strava API: "overall" (default) or "female" for the
-        women's board. Note: "women" is silently ignored by Strava — use "female"."""
+                          gender: str = "overall",
+                          from_page: int = 1) -> list[dict]:
+        """Leaderboard as effort dicts (one per athlete). `pages` controls
+        depth: 1 = top 25, 2 = top 50, etc. (25 per page). `from_page` skips
+        pages already ingested — fetches pages from_page..pages, so a
+        depth-building tick can pull just the new page instead of re-walking
+        the whole board. `gender` is passed directly to the Strava API:
+        "overall" (default) or "female" for the women's board. Note: "women"
+        is silently ignored by Strava — use "female"."""
         efforts: list[dict] = []
         total = None
-        for page in range(1, pages + 1):
+        for page in range(from_page, pages + 1):
             resp = self._get(
                 f"/frontend/segments/{segment_id}/leaderboard",
                 params={"filter_type": filter_type, "gender": gender,
@@ -266,6 +270,6 @@ class StravaClient:
             if total is None:
                 total = data.get("totalCount")
             efforts.extend(_effort_from_row(r) for r in rows)
-            if not rows or (total is not None and len(efforts) >= total):
+            if not rows or (total is not None and page * 25 >= total):
                 break
         return efforts

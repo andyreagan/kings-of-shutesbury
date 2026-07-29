@@ -107,7 +107,7 @@ Andy/Owen's times outside the top 25 still get logged.
 because their page-seeded top-25 doesn't yet include the following supplement).
 
 `--background` does ONE jittered tick (sleep 0–5 min, auto-pick the single
-most-important segment, fetch, exit) for use under an external 5-min
+most-important segment, fetch, exit) for use under an external 15-min
 scheduler. See "Running in the background" below.
 
 Stores everything in `effort_log`, sets `efforts_fetched_at`, and prints a
@@ -179,25 +179,28 @@ uv run manage.py update --background --loop
 # launchd plist (see below) — same thing, headless, logs to .background.log.
 ```
 
-`update --background` is a single-shot tick designed to be fired every 5
-minutes by an external scheduler. `--loop` adds an internal 5-minute sleep
+`update --background` is a single-shot tick designed to be fired every 15
+minutes by an external scheduler. `--loop` adds an internal 15-minute sleep
 between ticks (and skips the per-tick jitter, since we're not racing any
 external schedule) so you can run it directly in a shell. Each tick:
 
 1. Sleeps a random 0–5 minutes (`--no-jitter` to skip).
 2. Picks ONE segment by priority:
    - **Phase A** — stalest top-25 if older than 7 days (or never): refresh at
-     depth 1 (~2 requests).
+     depth 1 (~3 requests).
    - **Phase B** — shallowest segment that still has more leaderboard pages:
-     fetch one page deeper than last time.
+     fetch ONLY the one new page (pages already ingested on earlier ticks are
+     skipped, so a deep board costs the same as a shallow one).
    - **Phase C** — fallback maintenance refresh of the stalest top-25.
 3. Fetches, persists, prints any changelog, exits.
 
-At 5-minute cadence with default depth 1 (~2 requests/tick) the worst-case
-window holds 4 requests vs the ~100-request CloudFront limit — comfortable
-4× headroom even if the cron and the prior tick's jitter happen to collide.
-Phase A alone keeps every in-town ride segment refreshed weekly (24 ticks/day
-out of 288); the remaining ~264 ticks/day go to Phase B and fill depth fast.
+Every tick is a flat 3 requests (one leaderboard page + following board +
+women's board), so at 15-minute cadence the loop spends ~290 requests/day,
+just under the measured ~320/day CloudFront ceiling — the old 5-minute
+cadence bounced off that limit every few hours, and deep phase-B ticks used
+to re-walk the whole board (a depth-12 tick cost ~14 requests). Phase A alone
+keeps every in-town ride segment refreshed weekly (24 ticks/day out of 96);
+the remaining ~72 ticks/day go to Phase B and fill depth fast.
 
 ### launchd (macOS native)
 
@@ -214,10 +217,11 @@ survives reboot and writes stdout to a log file you can `tail -f`:
   <key>ProgramArguments</key>
   <array>
     <string>/usr/bin/env</string><string>sh</string><string>-c</string>
-    <string>cd /Users/andyreagan/projects/2026/kings-of-shutesbury &amp;&amp; uv run manage.py update --background</string>
+    <!-- launchd's PATH is bare /usr/bin:/bin — spell out where uv lives -->
+    <string>cd /Users/andyreagan/projects/2026/kings-of-shutesbury &amp;&amp; /opt/homebrew/bin/uv run manage.py update --background</string>
   </array>
-  <key>StartInterval</key><integer>300</integer>
-  <key>RunAtLoad</key><false/>
+  <key>StartInterval</key><integer>900</integer>
+  <key>RunAtLoad</key><true/>
   <key>StandardOutPath</key><string>/Users/andyreagan/projects/2026/kings-of-shutesbury/.background.log</string>
   <key>StandardErrorPath</key><string>/Users/andyreagan/projects/2026/kings-of-shutesbury/.background.log</string>
 </dict></plist>
@@ -232,7 +236,7 @@ tail -f .background.log
 ### cron (cross-platform alternative)
 
 ```cron
-*/5 * * * * cd /path/to/kings-of-shutesbury && uv run manage.py update --background >> .background.log 2>&1
+*/15 * * * * cd /path/to/kings-of-shutesbury && uv run manage.py update --background >> .background.log 2>&1
 ```
 
 ## Being gentle on the API
