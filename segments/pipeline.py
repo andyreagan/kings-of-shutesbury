@@ -58,6 +58,12 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def _bg_print(msg: str, **kwargs) -> None:
+    """print() for --background lines, stamped so .background.log (which
+    launchd appends to forever) can be read as a timeline."""
+    print(f"{now()} [background] {msg}", **kwargs)
+
+
 def _parse_ref(ref: str) -> int | None:
     """Numeric id or /segments/<id> URL → int. No network (shortlinks unsupported)."""
     ref = ref.strip()
@@ -114,9 +120,9 @@ def _backoff_gate(mode: str) -> bool:
     wait_left = until - datetime.now(timezone.utc)
     hours = wait_left.total_seconds() / 3600
     if mode == "background":
-        print(f"[background] backed off (level {level}/{len(BACKOFF_LADDER_HOURS)}); "
-              f"~{hours:.1f}h to go (until {until.isoformat(timespec='seconds')}). "
-              "Skipping this tick.")
+        _bg_print(f"backed off (level {level}/{len(BACKOFF_LADDER_HOURS)}); "
+                  f"~{hours:.1f}h to go (until {until.isoformat(timespec='seconds')}). "
+                  "Skipping this tick.")
         return False
     print(f"! note: still in 429 backoff (level {level}, "
           f"~{hours:.1f}h left until {until.isoformat(timespec='seconds')}). "
@@ -482,17 +488,17 @@ def background_tick(no_jitter: bool = False) -> None:
     """One unit of background work: jitter (if enabled), pick, fetch, report."""
     if not no_jitter:
         sleep_s = random.uniform(0, BACKGROUND_JITTER_S)
-        print(f"[background] jitter sleep {sleep_s:.0f}s ...", flush=True)
+        _bg_print(f"jitter sleep {sleep_s:.0f}s ...", flush=True)
         time.sleep(sleep_s)
 
     if not _backoff_gate("background"):
         return
     pick = _background_pick()
     if pick is None:
-        print("[background] no tracked in-town ride segments — nothing to do.")
+        _bg_print("no tracked in-town ride segments — nothing to do.")
         return
     sid, depth, phase = pick
-    print(f"[background] phase {phase} — segment {sid}, depth {depth}")
+    _bg_print(f"phase {phase} — segment {sid}, depth {depth}")
     run_started_at = now()
     # Phase B picks depth = last_depth_pages + 1, so the only unseen page IS
     # `depth` — start there. Phases A/C use depth 1, where from_page=depth
@@ -514,11 +520,11 @@ def run_background(loop: bool = False, no_jitter: bool = False) -> None:
             while True:
                 background_tick(no_jitter=no_jitter)
                 if _last_stop == "ratelimit-exhausted":
-                    print("[background] giving up the loop — rerun once the "
-                          "rate limit has actually cleared.")
+                    _bg_print("giving up the loop — rerun once the "
+                              "rate limit has actually cleared.")
                     return
-                print(f"[background] sleeping {BACKGROUND_TICK_INTERVAL_S}s "
-                      "until next tick — Ctrl+C to stop", flush=True)
+                _bg_print(f"sleeping {BACKGROUND_TICK_INTERVAL_S}s "
+                          "until next tick — Ctrl+C to stop", flush=True)
                 time.sleep(BACKGROUND_TICK_INTERVAL_S)
         except KeyboardInterrupt:
             print("\n[background] stopped.")
