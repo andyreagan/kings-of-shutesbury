@@ -66,6 +66,13 @@ class Segment(models.Model):
     fetched_at = models.TextField(null=True, blank=True)      # ISO string; when page was fetched
     efforts_fetched_at = models.TextField(null=True, blank=True)  # ISO string; when leaderboard was fetched
     last_depth_pages = models.IntegerField(null=True, blank=True)  # deepest leaderboard depth ever fetched
+    # Background scheduler state (pipeline.py "background scheduler"). Cursors
+    # are small JSON blobs so a multi-page job survives across ticks.
+    delta_fetched_at = models.TextField(null=True, blank=True)   # ISO string; start of the last COMPLETE date-window pull
+    delta_year_fetched_at = models.TextField(null=True, blank=True)  # ISO string; start of the last complete this_year pull
+    delta_cursor = models.TextField(null=True, blank=True)       # JSON; in-progress window pull, NULL = none
+    walk_completed_at = models.TextField(null=True, blank=True)  # ISO string; when the last full all-time re-walk finished
+    walk_cursor = models.TextField(null=True, blank=True)        # JSON; in-progress re-walk, NULL = none
 
     def __str__(self):
         return f"Segment({self.id}, {self.name!r})"

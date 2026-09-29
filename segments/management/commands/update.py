@@ -33,8 +33,8 @@ class Command(BaseCommand):
             "--background", action="store_true",
             help=(
                 "One background tick — jittered sleep, then auto-pick + refresh "
-                "ONE segment (top-25 weekly, depth-build with leftover ticks). "
-                "Wire to a 5-minute cron / launchd job."
+                "what is due (fresh date-window pulls, then the full-depth re-walk). "
+                "Wire to a 15-minute cron / launchd job."
             ),
         )
         parser.add_argument(
@@ -45,7 +45,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--loop", action="store_true",
             help=(
-                "With --background: keep ticking every 5 min "
+                "With --background: keep ticking every 15 min "
                 "(implies --no-jitter; Ctrl+C to stop). "
                 "For running in a shell when you want to watch."
             ),
