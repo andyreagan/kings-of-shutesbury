@@ -88,6 +88,9 @@ class FakeStravaClient:
         self.women = women or {}    # women's board rows; returned when gender="female"
         self._raises = list(raises or [])
         self.calls: list[tuple[int, str, int, int]] = []
+        # Paged boards for the background scheduler — see fetch_leaderboard_page.
+        self.boards: dict[tuple[int, str, str], list[dict]] = {}
+        self.page_calls: list[tuple[int, str, str, int]] = []
 
     def fetch_leaderboard(self, sid: int, filter_type: str = "overall",
                           pages: int = 1,
@@ -105,6 +108,20 @@ class FakeStravaClient:
         else:
             bucket = self.overall
         return list(bucket.get(sid, []))
+
+    def fetch_leaderboard_page(self, sid: int, page: int = 1,
+                               gender: str = "overall",
+                               date_range: str = "all_time",
+                               ) -> tuple[list[dict], int | None]:
+        """One page of 25 from `.boards[(sid, gender, date_range)]` (a full
+        board, fastest first). A missing board is an empty one."""
+        self.page_calls.append((sid, gender, date_range, page))
+        if self._raises:
+            err = self._raises.pop(0)
+            if err is not None:
+                raise err
+        board = self.boards.get((sid, gender, date_range), [])
+        return list(board[(page - 1) * 25: page * 25]), len(board)
 
     def __enter__(self):
         return self

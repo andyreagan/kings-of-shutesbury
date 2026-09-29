@@ -17,10 +17,10 @@ pytestmark = pytest.mark.django_db
 
 
 @override_settings(DEBUG=True)
-def test_background_pick_formats_under_debug(seed_segment):
-    seed_segment(1, efforts_fetched_at=None)        # phase A candidate
-    sid, depth, phase = pipeline._background_pick()
-    assert sid == 1
+def test_scheduler_picks_format_under_debug(seed_segment):
+    seed_segment(1)
+    assert pipeline._next_fresh_job()["sid"] == 1
+    assert pipeline._next_walk_job()["sid"] == 1
 
 
 @override_settings(DEBUG=True)

@@ -185,22 +185,35 @@ between ticks (and skips the per-tick jitter, since we're not racing any
 external schedule) so you can run it directly in a shell. Each tick:
 
 1. Sleeps a random 0–5 minutes (`--no-jitter` to skip).
-2. Picks ONE segment by priority:
-   - **Phase A** — stalest top-25 if older than 7 days (or never): refresh at
-     depth 1 (~3 requests).
-   - **Phase B** — shallowest segment that still has more leaderboard pages:
-     fetch ONLY the one new page (pages already ingested on earlier ticks are
-     skipped, so a deep board costs the same as a shallow one).
-   - **Phase C** — fallback maintenance refresh of the stalest top-25.
-3. Fetches, persists, prints any changelog, exits.
+2. Spends 3 requests, one leaderboard page each, on two kinds of job:
+   - **fresh** — a date-window pull using Strava's own leaderboard filter
+     (`date_range=this_month` / `this_year`). A windowed board lists everyone
+     who rode in the window, so it surfaces new athletes and PRs at *every*
+     rank, not just the top 25. A quiet board costs 1 request; one with new
+     rides costs a second for the women's window (to tag who is a woman).
+     Only new athletes and faster times are logged. Segments come due every
+     2–7 days by how busy they are, most overdue first.
+   - **walk** — the slow re-walk of the full all-time board (overall, then
+     women's), page by page, oldest-walked segment first. It catches what a
+     window can't: late uploads, un-hidden old efforts, and anything ridden
+     before January.
+3. Persists each page as it lands, prints any changelog, exits.
 
-Every tick is a flat 3 requests (one leaderboard page + following board +
-women's board), so at 15-minute cadence the loop spends ~290 requests/day,
-just under the measured ~320/day CloudFront ceiling — the old 5-minute
-cadence bounced off that limit every few hours, and deep phase-B ticks used
-to re-walk the whole board (a depth-12 tick cost ~14 requests). Phase A alone
-keeps every in-town ride segment refreshed weekly (24 ticks/day out of 96);
-the remaining ~72 ticks/day go to Phase B and fill depth fast.
+Fresh pulls get the first 2 requests when any are due; the third is always
+the walk's, so depth advances on every tick. When nothing is due all 3 go to
+the walk. A job that needs more pages than the tick has left keeps a cursor
+and resumes on the next tick.
+
+`this_month` is the default window. Once a month — from the 5th, when the
+month that just ended has had a few days for late uploads to land — each
+segment gets one `this_year` pull to close it out. After a gap (laptop shut
+for weeks) the first pull back is a `this_year` one too.
+
+Every tick is a flat 3 requests, so at 15-minute cadence the loop spends
+~290 requests/day, just under the measured ~320/day CloudFront ceiling — the
+old 5-minute cadence bounced off that limit every few hours. The all-time
+boards total ~1,700 pages: a full walk cycle takes about a week with the
+laptop always on, and 3–4 weeks at ~40 ticks/day.
 
 ### launchd (macOS native)
 

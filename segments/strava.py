@@ -273,3 +273,24 @@ class StravaClient:
             if not rows or (total is not None and page * 25 >= total):
                 break
         return efforts
+
+    def fetch_leaderboard_page(self, segment_id: int, page: int = 1,
+                               gender: str = "overall",
+                               date_range: str = "all_time",
+                               ) -> tuple[list[dict], int | None]:
+        """ONE page of a leaderboard plus the board's totalCount — the unit of
+        work for the background scheduler, which budgets per request.
+
+        `date_range` is Strava's own leaderboard date filter: "all_time",
+        "this_year", "this_month", "this_week" or "today". The windows are
+        calendar periods, not rolling ones. A windowed board lists each
+        athlete's best effort INSIDE the window, so it surfaces new athletes
+        and PRs at any rank without walking the all-time board."""
+        params = {"filter_type": "overall", "gender": gender, "page": page}
+        if date_range != "all_time":
+            params["date_range"] = date_range
+        data = self._get(
+            f"/frontend/segments/{segment_id}/leaderboard", params=params,
+        ).json()
+        rows = data.get("leaderboard") or []
+        return [_effort_from_row(r) for r in rows], data.get("totalCount")

@@ -28,16 +28,37 @@ from .strava import AuthError, RateLimitError, StravaClient, StravaError
 
 VALID_DISCIPLINES = ("road", "gravel", "mtb")
 
-# --background tunables. The picker keeps every segment's top-25 fresh on at
-# least a weekly cadence (phase A), then spends remaining ticks deepening the
-# shallowest leaderboards one page at a time (phase B). Per-tick jitter
-# desynchronizes a 5-min cron from anything else hitting strava.com.
+# --background tunables. Every tick spends a flat REQUESTS_PER_TICK requests,
+# one leaderboard page each, split between two jobs:
+#   fresh — a date-window pull (Strava's own this_month / this_year filter).
+#           A windowed board lists everyone who rode in the window, so one or
+#           two requests surface new athletes and PRs at EVERY rank.
+#   walk  — the slow re-walk of the full all-time board, page by page. It
+#           catches what a window can't: late uploads and un-hidden old efforts.
+# Per-tick jitter desynchronizes the launchd firing from anything else hitting
+# strava.com.
 BACKGROUND_JITTER_S = 300        # random 0..N seconds at the start of every tick
 BACKGROUND_TICK_INTERVAL_S = 900  # --loop: gap between ticks (script is the scheduler)
 # At 3 requests/tick this is ~290 req/day, just under the measured ~320/day
 # CloudFront ceiling — so the loop should hum along without tripping the
 # backoff ladder (the 300s cadence was bouncing off the limit every few hours).
-TOP25_FRESHNESS_DAYS = 7         # phase A threshold: top-25 older than this gets refreshed
+REQUESTS_PER_TICK = 3
+# Requests per tick held back for the walk even when fresh pulls are queued,
+# so depth always advances: a full cycle has a worst-case length.
+WALK_RESERVED_PER_TICK = 1
+# A segment is due for a fresh pull every DELTA_TARGET / (athletes who rode it
+# in the last year) days, clamped — busy boards every couple of days, quiet
+# ones weekly.
+DELTA_TARGET = 180
+DELTA_MIN_DAYS = 2
+DELTA_MAX_DAYS = 7
+# Rides reach the leaderboard only once uploaded, so a month can't be closed
+# out until this long after it ends — a pull any sooner would miss the
+# stragglers, and this_month stops showing them once the calendar turns.
+UPLOAD_LAG_DAYS = 3
+# Slop for not knowing which timezone Strava starts its calendar windows in.
+WINDOW_SLOP_DAYS = 1
+WALK_BOARDS = ("overall", "female")
 
 # Dynamic 429 backoff. Each consecutive 429 escalates one step; a successful
 # fetch in any mode resets the ladder. Past the last step we abort the tick.
@@ -427,65 +448,232 @@ def _refresh_one(client, sid: int, depth: int, from_page: int = 1) -> bool:
 
 # === background scheduler =====================================================
 
+_ELIGIBLE_SQL = (
+    "in_town = 1 AND lower(activity_type) = 'ride' "
+    "AND excluded = 0 AND fetched_at IS NOT NULL")
 
-def _background_pick() -> tuple[int, int, str] | None:
-    """Return (segment_id, depth_pages, phase_label) for this tick — or None
-    if there are no candidates at all. Priority:
-      A. stalest top-25 if older than TOP25_FRESHNESS_DAYS (or never refreshed)
-      B. shallowest segment that hasn't reached its full leaderboard yet —
-         go one page deeper than last time
-      C. fallback maintenance refresh of the stalest top-25
-    """
-    week_ago = (datetime.now(timezone.utc)
-                - timedelta(days=TOP25_FRESHNESS_DAYS)
-                ).isoformat(timespec="seconds")
 
-    # Phase A: top-25 stale or never fetched
+def _delta_window(year_fetched_at: str | None, at: datetime) -> str:
+    """this_month is the cheap default. Once a month — as soon as the month
+    that just ended has had UPLOAD_LAG_DAYS for its late uploads to land —
+    one this_year pull closes it out. The same rule recovers from a gap
+    (laptop shut for weeks): the first pull back is a this_year one. Rides
+    from before January are the walk's job."""
+    if year_fetched_at is None:
+        return "this_year"
+    month_start = at.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    closable = month_start + timedelta(
+        days=UPLOAD_LAG_DAYS + WINDOW_SLOP_DAYS)
+    if at >= closable and _parse_ts(year_fetched_at) < closable:
+        return "this_year"
+    return "this_month"
+
+
+def _delta_interval_days(riders_last_year: int) -> float:
+    return min(DELTA_MAX_DAYS,
+               max(DELTA_MIN_DAYS, DELTA_TARGET / max(riders_last_year, 1)))
+
+
+def _same_window(window: str, started_at: str, at: datetime) -> bool:
+    """False once the calendar has rolled over under an in-progress pull —
+    its remaining pages would belong to a different board."""
+    started = _parse_ts(started_at)
+    if started.year != at.year:
+        return False
+    return window == "this_year" or started.month == at.month
+
+
+def _next_fresh_job(at: datetime | None = None) -> dict | None:
+    """The fresh pull to spend the next request on: the one in progress, else
+    the most overdue segment (never-pulled first, busiest first among those).
+    None when nothing is due."""
+    at = at or datetime.now(timezone.utc)
     with connection.cursor() as cur:
         cur.execute(
-            "SELECT id FROM segments_segment WHERE "
-            "in_town = 1 AND lower(activity_type) = 'ride' "
-            "AND excluded = 0 AND fetched_at IS NOT NULL "
-            "AND (efforts_fetched_at IS NULL OR efforts_fetched_at < %s) "
-            "ORDER BY efforts_fetched_at IS NULL DESC, efforts_fetched_at ASC "
-            "LIMIT 1", [week_ago])
+            "SELECT id, delta_cursor FROM segments_segment "
+            f"WHERE {_ELIGIBLE_SQL} AND delta_cursor IS NOT NULL "
+            "ORDER BY id LIMIT 1")
         row = cur.fetchone()
     if row:
-        return row[0], 1, "A (stale top-25)"
+        cursor = json.loads(row[1])
+        if _same_window(cursor["window"], cursor["started_at"], at):
+            return {"kind": "fresh", "sid": row[0], **cursor}
+        Segment.objects.filter(pk=row[0]).update(delta_cursor=None)
+        return _next_fresh_job(at)
 
-    # Phase B: build depth on the shallowest segment that still has more
-    # leaderboard pages to fetch. last_depth_pages is the high-water mark;
-    # NULL means we've never gone past the depth-1 import seed.
+    year_ago = (at - timedelta(days=365)).isoformat(timespec="seconds")
     with connection.cursor() as cur:
         cur.execute(
-            "SELECT id, COALESCE(last_depth_pages, 1) AS depth "
-            "FROM segments_segment WHERE "
-            "in_town = 1 AND lower(activity_type) = 'ride' "
-            "AND excluded = 0 AND fetched_at IS NOT NULL "
-            "AND COALESCE(last_depth_pages, 1) * 25 < COALESCE(total_athletes, 0) "
-            "ORDER BY COALESCE(last_depth_pages, 1) ASC, "
-            "         efforts_fetched_at ASC NULLS FIRST "
-            "LIMIT 1")
-        row = cur.fetchone()
-    if row:
-        return row[0], row[1] + 1, "B (build depth)"
+            "SELECT s.id, s.delta_fetched_at, s.delta_year_fetched_at, "
+            "  (SELECT COUNT(DISTINCT l.athlete_id) FROM segments_effortlog l "
+            "   WHERE l.segment_id = s.id AND l.start_date_local >= %s) "
+            f"FROM segments_segment s WHERE {_ELIGIBLE_SQL}", [year_ago])
+        rows = cur.fetchall()
+    best = None
+    for sid, fetched_at, year_fetched_at, riders in rows:
+        if fetched_at is None:
+            key = (1, float(riders))
+        else:
+            age_days = (at - _parse_ts(fetched_at)).total_seconds() / 86400
+            overdue = age_days / _delta_interval_days(riders)
+            if overdue < 1:
+                continue
+            key = (0, overdue)
+        if best is None or key > best[0]:
+            best = (key, sid, year_fetched_at)
+    if best is None:
+        return None
+    return {"kind": "fresh", "sid": best[1],
+            "window": _delta_window(best[2], at),
+            "started_at": at.isoformat(timespec="seconds"),
+            "board": "overall", "page": 1, "new": 0}
 
-    # Phase C: everything's fresh AND everyone's at max depth. Refresh the
-    # stalest top-25 anyway so the cron never silently no-ops.
+
+def _next_walk_job() -> dict | None:
+    """The re-walk page to spend the next request on: the walk in progress,
+    else a new walk of whichever board was completed longest ago (never-walked
+    first, smallest first). None only when no segment is tracked."""
     with connection.cursor() as cur:
         cur.execute(
-            "SELECT id FROM segments_segment WHERE "
-            "in_town = 1 AND lower(activity_type) = 'ride' "
-            "AND excluded = 0 AND fetched_at IS NOT NULL "
-            "ORDER BY efforts_fetched_at ASC NULLS FIRST LIMIT 1")
+            "SELECT id, walk_cursor FROM segments_segment "
+            f"WHERE {_ELIGIBLE_SQL} AND walk_cursor IS NOT NULL "
+            "ORDER BY id LIMIT 1")
         row = cur.fetchone()
-    if row:
-        return row[0], 1, "C (idle maintenance)"
-    return None
+        if row:
+            return {"kind": "walk", "sid": row[0], **json.loads(row[1])}
+        cur.execute(
+            "SELECT id FROM segments_segment "
+            f"WHERE {_ELIGIBLE_SQL} "
+            "ORDER BY walk_completed_at IS NULL DESC, walk_completed_at ASC, "
+            "         COALESCE(total_athletes, 0) ASC, id ASC LIMIT 1")
+        row = cur.fetchone()
+    if not row:
+        return None
+    return {"kind": "walk", "sid": row[0], "started_at": now(),
+            "board": WALK_BOARDS[0], "page": 1}
+
+
+def _improvements(sid: int, efforts: list, keep_logged: bool = False) -> list:
+    """Rows from a windowed board that change what we know: athletes new to
+    the segment, or a time faster than their stored best. A window lists the
+    best ride INSIDE the window, which is usually slower than an old PR —
+    logging those would break effort_log's PR-progression meaning.
+
+    keep_logged also passes rows whose effort is already in the log, so the
+    women's board can stamp the rows the overall board inserted a request ago."""
+    ids = [e["athlete_id"] for e in efforts if e["athlete_id"] is not None]
+    best: dict[int, int] = {}
+    logged: set[str] = set()
+    for aid, t, eid in EffortLog.objects.filter(
+            segment_id=sid, athlete_id__in=ids,
+            elapsed_time__isnull=False,
+            ).values_list("athlete_id", "elapsed_time", "effort_id"):
+        if aid not in best or t < best[aid]:
+            best[aid] = t
+        logged.add(str(eid))
+    return [e for e in efforts
+            if e["athlete_id"] is not None and e["elapsed_time"] is not None
+            and (e["athlete_id"] not in best
+                 or e["elapsed_time"] < best[e["athlete_id"]]
+                 or (keep_logged and str(e["effort_id"]) in logged))]
+
+
+def _run_job(client, job: dict) -> bool:
+    """Spend ONE request on `job`: fetch its page, persist, advance or close
+    the cursor. Returns False when the tick should stop (auth, rate limit,
+    transport failure) — the cursor is left in place so the next tick retries
+    the same page. Shares the 429 backoff ladder with _refresh_one."""
+    global _last_stop
+    _last_stop = None
+    sid, board, page = job["sid"], job["board"], job["page"]
+    fresh = job["kind"] == "fresh"
+    window = job["window"] if fresh else "all_time"
+    _bg_print(f"{job['kind']} — segment {sid}, "
+              f"{window} {board} page {page}", flush=True)
+    try:
+        efforts, total = client.fetch_leaderboard_page(
+            sid, page=page, gender=board, date_range=window)
+    except AuthError as e:
+        print(f"\nAUTH ERROR: {e}")
+        _last_stop = "auth"
+        return False
+    except RateLimitError as e:
+        print(f"\nRATE LIMITED: {e}")
+        if not _backoff_escalate():
+            _last_stop = "ratelimit-exhausted"
+        else:
+            _last_stop = "ratelimit"
+        return False
+    except StravaError as e:
+        print(f"! failed {sid}: {e}")
+        return False
+
+    stamp = now()
+    gender = "F" if board == "female" else "M"
+    before = EffortLog.objects.filter(segment_id=sid).count()
+    if fresh:
+        efforts_to_log = _improvements(sid, efforts, keep_logged=gender == "F")
+    else:
+        efforts_to_log = efforts
+    _store_efforts(sid, efforts_to_log, stamp, gender=gender)
+    if gender == "F":
+        # Everyone on a women's board is a woman, including riders whose
+        # window ride was slower than their stored best and so wasn't logged.
+        Athlete.objects.filter(
+            id__in=[e["athlete_id"] for e in efforts
+                    if e["athlete_id"] is not None]).update(gender="F")
+    new = EffortLog.objects.filter(segment_id=sid).count() - before
+    print(f"  {len(efforts)} rows of {total if total is not None else '?'}, "
+          f"{new} new")
+
+    more = bool(efforts) and total is not None and page * 25 < total
+    seg = Segment.objects.filter(pk=sid)
+    if fresh:
+        found = job["new"] + new
+        if more:
+            cursor = {**job, "page": page + 1, "new": found}
+        elif board == "overall" and found:
+            # New rides turned up, so ask who among them are women. A quiet
+            # board skips this request entirely.
+            cursor = {**job, "board": "female", "page": 1, "new": found}
+        else:
+            cursor = None
+        if cursor:
+            cursor = {k: cursor[k] for k in
+                      ("window", "started_at", "board", "page", "new")}
+            seg.update(delta_cursor=json.dumps(cursor))
+        else:
+            seg.update(delta_cursor=None, delta_fetched_at=job["started_at"],
+                       efforts_fetched_at=stamp)
+            if window == "this_year":
+                seg.update(delta_year_fetched_at=job["started_at"])
+    else:
+        if board == "overall":
+            if page == 1:
+                seg.update(efforts_fetched_at=stamp)
+                if total:
+                    seg.update(total_athletes=total)
+            bump_depth_pages(sid, page)
+        if more:
+            nxt = (board, page + 1)
+        elif WALK_BOARDS.index(board) + 1 < len(WALK_BOARDS):
+            nxt = (WALK_BOARDS[WALK_BOARDS.index(board) + 1], 1)
+        else:
+            nxt = None
+        if nxt:
+            seg.update(walk_cursor=json.dumps(
+                {"started_at": job["started_at"],
+                 "board": nxt[0], "page": nxt[1]}))
+        else:
+            seg.update(walk_cursor=None, walk_completed_at=stamp)
+    _backoff_reset()
+    return True
 
 
 def background_tick(no_jitter: bool = False) -> None:
-    """One unit of background work: jitter (if enabled), pick, fetch, report."""
+    """One unit of background work: jitter (if enabled), then spend
+    REQUESTS_PER_TICK requests — fresh pulls first, with
+    WALK_RESERVED_PER_TICK always kept for the re-walk — and report."""
     if not no_jitter:
         sleep_s = random.uniform(0, BACKGROUND_JITTER_S)
         _bg_print(f"jitter sleep {sleep_s:.0f}s ...", flush=True)
@@ -493,24 +681,29 @@ def background_tick(no_jitter: bool = False) -> None:
 
     if not _backoff_gate("background"):
         return
-    pick = _background_pick()
-    if pick is None:
+    run_started_at = now()
+    spent = 0
+    with StravaClient() as client:
+        while spent < REQUESTS_PER_TICK:
+            job = None
+            if spent < REQUESTS_PER_TICK - WALK_RESERVED_PER_TICK:
+                job = _next_fresh_job()
+            job = job or _next_walk_job()
+            if job is None:
+                break
+            spent += 1
+            if not _run_job(client, job):
+                break
+    if spent == 0:
         _bg_print("no tracked in-town ride segments — nothing to do.")
         return
-    sid, depth, phase = pick
-    _bg_print(f"phase {phase} — segment {sid}, depth {depth}")
-    run_started_at = now()
-    # Phase B picks depth = last_depth_pages + 1, so the only unseen page IS
-    # `depth` — start there. Phases A/C use depth 1, where from_page=depth
-    # degenerates to a normal full (page-1) fetch.
-    with StravaClient() as client:
-        _refresh_one(client, sid, depth, from_page=depth)
     print_changelog(run_started_at)
 
 
 def run_background(loop: bool = False, no_jitter: bool = False) -> None:
-    """Background mode — picks ONE segment per tick by the phase-A/B/C
-    priority. Without loop, runs exactly one tick (cron / launchd style).
+    """Background mode — each tick spends REQUESTS_PER_TICK requests on
+    whatever is due (fresh pulls, then the re-walk). Without loop, runs
+    exactly one tick (cron / launchd style).
     With loop, keeps ticking every BACKGROUND_TICK_INTERVAL_S seconds until
     Ctrl+C — the script is its own scheduler, so we skip the per-tick jitter
     (jitter exists to desynchronize cron firings, not to space loops)."""
