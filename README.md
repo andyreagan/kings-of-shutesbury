@@ -246,6 +246,34 @@ launchctl unload ~/Library/LaunchAgents/com.andyreagan.kings-of-shutesbury.plist
 tail -f .background.log
 ```
 
+### Weekly publish
+
+The fetcher only writes `strava.db`; the site doesn't change until someone
+runs `export` and pushes. `publish.sh` does that in one go — waits for any
+in-flight tick to finish (the DB is in rollback-journal mode, so the file is
+consistent once the updater exits), exports, commits `strava.db` + the three
+`web/data*.json`, and pushes `main`, which triggers the Pages deploy. It's a
+no-op when nothing changed. A second agent runs it every Sunday at 22:00
+(launchd runs it on next wake if the laptop was asleep):
+
+```xml
+<!-- ~/Library/LaunchAgents/com.andyreagan.kings-of-shutesbury-publish.plist -->
+<key>ProgramArguments</key>
+<array>
+  <string>/bin/sh</string>
+  <string>/Users/andyreagan/projects/2026/kings-of-shutesbury/publish.sh</string>
+</array>
+<key>StartCalendarInterval</key>
+<dict>
+  <key>Weekday</key><integer>0</integer>
+  <key>Hour</key><integer>22</integer>
+  <key>Minute</key><integer>0</integer>
+</dict>
+```
+
+It logs `[publish]` lines to the same `.background.log`. Run `./publish.sh`
+by hand any time for an out-of-band refresh.
+
 ### cron (cross-platform alternative)
 
 ```cron
