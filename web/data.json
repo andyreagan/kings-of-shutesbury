@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T02:00:10+00:00",
+  "generated_at": "2026-10-26T03:45:01+00:00",
   "segments": [
     {
       "id": 1151557,
@@ -1753,7 +1753,7 @@
       "gross_gain": 263.3,
       "gross_loss": 10.1,
       "total_efforts": 4447,
-      "total_athletes": 717,
+      "total_athletes": 718,
       "difficulty": 396.2,
       "parent_segment_id": 1851661,
       "is_sub_segment": true,
@@ -3491,7 +3491,7 @@
       "gross_gain": 249.2,
       "gross_loss": 38.8,
       "total_efforts": 1688,
-      "total_athletes": 410,
+      "total_athletes": 413,
       "difficulty": 392.7,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -4895,8 +4895,8 @@
           "name": "Lucas Barad",
           "elapsed_time": 1471,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3532141076056335550",
           "activity_id": "20079713696"
@@ -5229,7 +5229,7 @@
       "gross_gain": 174.7,
       "gross_loss": 47.8,
       "total_efforts": 2006,
-      "total_athletes": 521,
+      "total_athletes": 529,
       "difficulty": 316.3,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -6736,7 +6736,19 @@
           "activity_id": "19754891435"
         },
         {
-          "rank": 83,
+          "rank": 82,
+          "athlete_id": 12355103,
+          "name": "Lucas Barad",
+          "elapsed_time": 1169,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3547047261818299928",
+          "activity_id": "20641536508"
+        },
+        {
+          "rank": 84,
           "athlete_id": 501934,
           "name": "S K",
           "elapsed_time": 1172,
@@ -6748,7 +6760,7 @@
           "activity_id": "26747088"
         },
         {
-          "rank": 84,
+          "rank": 85,
           "athlete_id": 2687257,
           "name": "Justin Lindine",
           "elapsed_time": 1174,
@@ -6760,7 +6772,7 @@
           "activity_id": "228200392"
         },
         {
-          "rank": 84,
+          "rank": 85,
           "athlete_id": 15179953,
           "name": "Melissa Warwick",
           "elapsed_time": 1174,
@@ -6772,7 +6784,7 @@
           "activity_id": "2685440176"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 86431247,
           "name": "Owen F",
           "elapsed_time": 1175,
@@ -6784,7 +6796,7 @@
           "activity_id": "14012305792"
         },
         {
-          "rank": 87,
+          "rank": 88,
           "athlete_id": 53028957,
           "name": "Riley Cole",
           "elapsed_time": 1179,
@@ -6796,7 +6808,7 @@
           "activity_id": "10931364768"
         },
         {
-          "rank": 88,
+          "rank": 89,
           "athlete_id": 297948,
           "name": "Todd Cochi",
           "elapsed_time": 1180,
@@ -6808,7 +6820,7 @@
           "activity_id": "540515261"
         },
         {
-          "rank": 88,
+          "rank": 89,
           "athlete_id": 79437,
           "name": "Daniel Nuzzo-Mueller",
           "elapsed_time": 1180,
@@ -6820,7 +6832,7 @@
           "activity_id": "2238439216"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 288693,
           "name": "Leslie Timm",
           "elapsed_time": 1181,
@@ -6832,7 +6844,7 @@
           "activity_id": "184783807"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 11329206,
           "name": "Erik Markewich",
           "elapsed_time": 1181,
@@ -6844,7 +6856,7 @@
           "activity_id": "2238444413"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 56930926,
           "name": "Ron Jacobs",
           "elapsed_time": 1181,
@@ -6856,7 +6868,7 @@
           "activity_id": "11395071652"
         },
         {
-          "rank": 93,
+          "rank": 94,
           "athlete_id": 3397424,
           "name": "Matthew Johnson",
           "elapsed_time": 1182,
@@ -6868,7 +6880,7 @@
           "activity_id": "189520705"
         },
         {
-          "rank": 94,
+          "rank": 95,
           "athlete_id": 371660,
           "name": "Emily R",
           "elapsed_time": 1183,
@@ -6880,7 +6892,7 @@
           "activity_id": "184953279"
         },
         {
-          "rank": 95,
+          "rank": 96,
           "athlete_id": 33411273,
           "name": "Nicole B",
           "elapsed_time": 1184,
@@ -6892,7 +6904,7 @@
           "activity_id": "12263401255"
         },
         {
-          "rank": 95,
+          "rank": 96,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 1184,
@@ -6904,7 +6916,7 @@
           "activity_id": "14995455118"
         },
         {
-          "rank": 97,
+          "rank": 98,
           "athlete_id": 547158,
           "name": "Swifty  \ud83e\udd53",
           "elapsed_time": 1186,
@@ -6916,7 +6928,7 @@
           "activity_id": "1961114884"
         },
         {
-          "rank": 98,
+          "rank": 99,
           "athlete_id": 338452,
           "name": "Stephen Hyde",
           "elapsed_time": 1191,
@@ -6928,7 +6940,7 @@
           "activity_id": "3489906574"
         },
         {
-          "rank": 98,
+          "rank": 99,
           "athlete_id": 21395328,
           "name": "Brad Farner",
           "elapsed_time": 1191,
@@ -6938,18 +6950,6 @@
           "points": 0,
           "effort_id": "3097593283494811026",
           "activity_id": "9151791299"
-        },
-        {
-          "rank": 100,
-          "athlete_id": 10122234,
-          "name": "gehr Locke",
-          "elapsed_time": 1192,
-          "avg_watts": 170.01300048828125,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "10169495773",
-          "activity_id": "422690086"
         }
       ]
     },
@@ -6967,7 +6967,7 @@
       "gross_gain": 167.7,
       "gross_loss": 49.3,
       "total_efforts": 4666,
-      "total_athletes": 799,
+      "total_athletes": 800,
       "difficulty": 314.7,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
@@ -8174,7 +8174,19 @@
           "activity_id": "20174149908"
         },
         {
-          "rank": 58,
+          "rank": 56,
+          "athlete_id": 136743483,
+          "name": "Ronan Greene",
+          "elapsed_time": 841,
+          "avg_watts": 272.8760070800781,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136743483/58221492/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3549152703085142636",
+          "activity_id": "20716888417"
+        },
+        {
+          "rank": 59,
           "athlete_id": 23614620,
           "name": "Austin Tero",
           "elapsed_time": 843,
@@ -8186,7 +8198,7 @@
           "activity_id": "11938218585"
         },
         {
-          "rank": 59,
+          "rank": 60,
           "athlete_id": 127309,
           "name": "Nathaniel Williams",
           "elapsed_time": 845,
@@ -8198,7 +8210,7 @@
           "activity_id": "18846361"
         },
         {
-          "rank": 59,
+          "rank": 60,
           "athlete_id": 45805906,
           "name": "Martin Cahillane",
           "elapsed_time": 845,
@@ -8210,7 +8222,7 @@
           "activity_id": "18813402337"
         },
         {
-          "rank": 61,
+          "rank": 62,
           "athlete_id": 15203613,
           "name": "Jim  Hayssen",
           "elapsed_time": 846,
@@ -8222,7 +8234,7 @@
           "activity_id": "2563370547"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 17823188,
           "name": "Wendy King",
           "elapsed_time": 847,
@@ -8234,7 +8246,7 @@
           "activity_id": "2563375186"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 106747,
           "name": "S P",
           "elapsed_time": 848,
@@ -8246,7 +8258,7 @@
           "activity_id": "75352641"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 5523987,
           "name": "Jason Ring",
           "elapsed_time": 848,
@@ -8258,7 +8270,7 @@
           "activity_id": "1529925860"
         },
         {
-          "rank": 65,
+          "rank": 66,
           "athlete_id": 178789,
           "name": "John Minturn",
           "elapsed_time": 849,
@@ -8270,7 +8282,7 @@
           "activity_id": "6353905"
         },
         {
-          "rank": 65,
+          "rank": 66,
           "athlete_id": 22726962,
           "name": "Rigo Rodriguez",
           "elapsed_time": 849,
@@ -8282,7 +8294,7 @@
           "activity_id": "11936790907"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 280427,
           "name": "Evan Burkhart",
           "elapsed_time": 850,
@@ -8294,7 +8306,7 @@
           "activity_id": "6479379"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 178535,
           "name": "Zack Noonan",
           "elapsed_time": 850,
@@ -8306,7 +8318,7 @@
           "activity_id": "6445786"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 21395328,
           "name": "Brad Farner",
           "elapsed_time": 850,
@@ -8316,18 +8328,6 @@
           "points": 0,
           "effort_id": "3262440917474743684",
           "activity_id": "12230803063"
-        },
-        {
-          "rank": 70,
-          "athlete_id": 136743483,
-          "name": "Ronan Greene",
-          "elapsed_time": 851,
-          "avg_watts": 276.5450134277344,
-          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136743483/58221492/1/large.jpg",
-          "badge": "",
-          "points": 0,
-          "effort_id": "3542667713535571224",
-          "activity_id": "20480648506"
         },
         {
           "rank": 71,
@@ -8705,7 +8705,7 @@
       "gross_gain": 179.2,
       "gross_loss": 49.0,
       "total_efforts": 1072,
-      "total_athletes": 497,
+      "total_athletes": 500,
       "difficulty": 310.7,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -12193,7 +12193,7 @@
       "gross_gain": 140.0,
       "gross_loss": 37.6,
       "total_efforts": 1089,
-      "total_athletes": 365,
+      "total_athletes": 371,
       "difficulty": 246.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -13621,8 +13621,8 @@
           "name": "John Bode",
           "elapsed_time": 686,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2233300/845144/1/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3374457175080906102",
           "activity_id": "14955360476"
@@ -15669,7 +15669,7 @@
       "gross_gain": 154.3,
       "gross_loss": 0.5,
       "total_efforts": 1058,
-      "total_athletes": 397,
+      "total_athletes": 398,
       "difficulty": 230.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -18471,6 +18471,30 @@
         },
         {
           "rank": 50,
+          "athlete_id": 34029634,
+          "name": "Tim Whitney",
+          "elapsed_time": 883,
+          "avg_watts": 253.82400512695312,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/34029634/10097164/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3546945311041431356",
+          "activity_id": "20638336856"
+        },
+        {
+          "rank": 51,
+          "athlete_id": 3040738,
+          "name": "Mike Rodrigues",
+          "elapsed_time": 884,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3546945301404402158",
+          "activity_id": "20638336101"
+        },
+        {
+          "rank": 52,
           "athlete_id": 13200719,
           "name": "Martin Miller",
           "elapsed_time": 885,
@@ -18482,7 +18506,7 @@
           "activity_id": "19432171417"
         },
         {
-          "rank": 51,
+          "rank": 53,
           "athlete_id": 2169955,
           "name": "Nate Hurwitz",
           "elapsed_time": 905,
@@ -18494,7 +18518,7 @@
           "activity_id": "15515776862"
         },
         {
-          "rank": 52,
+          "rank": 54,
           "athlete_id": 137088,
           "name": "Jeffrey Buske",
           "elapsed_time": 912,
@@ -18506,7 +18530,7 @@
           "activity_id": "5340480594"
         },
         {
-          "rank": 53,
+          "rank": 55,
           "athlete_id": 33411273,
           "name": "Nicole B",
           "elapsed_time": 916,
@@ -18518,7 +18542,7 @@
           "activity_id": "9905291742"
         },
         {
-          "rank": 53,
+          "rank": 55,
           "athlete_id": 44948118,
           "name": "David Bugbee",
           "elapsed_time": 916,
@@ -18530,7 +18554,7 @@
           "activity_id": "12241457933"
         },
         {
-          "rank": 55,
+          "rank": 57,
           "athlete_id": 70782725,
           "name": "Jason Duncan",
           "elapsed_time": 921,
@@ -18542,7 +18566,7 @@
           "activity_id": "11505312303"
         },
         {
-          "rank": 56,
+          "rank": 58,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 924,
@@ -18554,7 +18578,7 @@
           "activity_id": "9569898763"
         },
         {
-          "rank": 57,
+          "rank": 59,
           "athlete_id": 5294817,
           "name": "Andrew Moskovitz",
           "elapsed_time": 925,
@@ -18566,7 +18590,7 @@
           "activity_id": "7186315269"
         },
         {
-          "rank": 58,
+          "rank": 60,
           "athlete_id": 106552986,
           "name": "Jeffers Engelhardt",
           "elapsed_time": 926,
@@ -18578,7 +18602,7 @@
           "activity_id": "9568839706"
         },
         {
-          "rank": 58,
+          "rank": 60,
           "athlete_id": 46174781,
           "name": "Allen Vance",
           "elapsed_time": 926,
@@ -18590,7 +18614,7 @@
           "activity_id": "10441431959"
         },
         {
-          "rank": 60,
+          "rank": 62,
           "athlete_id": 3045129,
           "name": "Nathan Wilson",
           "elapsed_time": 928,
@@ -18602,7 +18626,7 @@
           "activity_id": "2752672305"
         },
         {
-          "rank": 61,
+          "rank": 63,
           "athlete_id": 4512388,
           "name": "Nathan Roy",
           "elapsed_time": 933,
@@ -18614,7 +18638,7 @@
           "activity_id": "628073172"
         },
         {
-          "rank": 62,
+          "rank": 64,
           "athlete_id": 22726962,
           "name": "Rigo Rodriguez",
           "elapsed_time": 936,
@@ -18624,30 +18648,6 @@
           "points": 0,
           "effort_id": "3039681563857571520",
           "activity_id": "4578900745"
-        },
-        {
-          "rank": 63,
-          "athlete_id": 3040738,
-          "name": "Mike Rodrigues",
-          "elapsed_time": 937,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3283147587803557500",
-          "activity_id": "12703772152"
-        },
-        {
-          "rank": 64,
-          "athlete_id": 34029634,
-          "name": "Tim Whitney",
-          "elapsed_time": 938,
-          "avg_watts": 214.2969970703125,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3283148814760042108",
-          "activity_id": "12703802837"
         },
         {
           "rank": 65,
@@ -20321,8 +20321,8 @@
           "name": "John Bode",
           "elapsed_time": 818,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2233300/845144/1/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3280261213432870028",
           "activity_id": "12639709653"
@@ -21927,8 +21927,8 @@
           "name": "Karen LaVerdiere",
           "elapsed_time": 3456,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/59047730/38125998/1/large.jpg",
+          "badge": "",
           "points": 0,
           "effort_id": "3530747178074784102",
           "activity_id": "20027166456"
@@ -22127,12 +22127,24 @@
         },
         {
           "rank": 64,
+          "athlete_id": 117777826,
+          "name": "Avery Colby",
+          "elapsed_time": 5381,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/117777826/32529858/1/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3549170531502520940",
+          "activity_id": "20717370925"
+        },
+        {
+          "rank": 65,
           "athlete_id": 14134181,
           "name": "Michele Cooke",
           "elapsed_time": 9302,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14134181/43001568/3/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3544119295914009716",
           "activity_id": "20533434334"
@@ -22153,7 +22165,7 @@
       "gross_gain": 117.8,
       "gross_loss": 3.9,
       "total_efforts": 2113,
-      "total_athletes": 511,
+      "total_athletes": 519,
       "difficulty": 205.5,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -23891,7 +23903,7 @@
       "gross_gain": 75.8,
       "gross_loss": 90.6,
       "total_efforts": 2397,
-      "total_athletes": 377,
+      "total_athletes": 379,
       "difficulty": 201.9,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -25629,7 +25641,7 @@
       "gross_gain": 86.3,
       "gross_loss": 65.3,
       "total_efforts": 3244,
-      "total_athletes": 665,
+      "total_athletes": 668,
       "difficulty": 201.6,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -27141,8 +27153,8 @@
           "name": "John Bode",
           "elapsed_time": 711,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2233300/845144/1/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "2970796069924578208",
           "activity_id": "7292968486"
@@ -27367,7 +27379,7 @@
       "gross_gain": 97.4,
       "gross_loss": 0.0,
       "total_efforts": 5844,
-      "total_athletes": 825,
+      "total_athletes": 826,
       "difficulty": 188.4,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
@@ -29105,7 +29117,7 @@
       "gross_gain": 56.9,
       "gross_loss": 194.9,
       "total_efforts": 2598,
-      "total_athletes": 582,
+      "total_athletes": 589,
       "difficulty": 177.6,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -30425,8 +30437,8 @@
           "name": "Lucas Barad",
           "elapsed_time": 721,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3532141076055060670",
           "activity_id": "20079713696"
@@ -33935,7 +33947,7 @@
       "gross_gain": 98.2,
       "gross_loss": 0.0,
       "total_efforts": 1117,
-      "total_athletes": 381,
+      "total_athletes": 387,
       "difficulty": 169.2,
       "parent_segment_id": 4529482,
       "is_sub_segment": true,
@@ -35394,7 +35406,19 @@
           "activity_id": "12753233058"
         },
         {
-          "rank": 79,
+          "rank": 78,
+          "athlete_id": 2233300,
+          "name": "John Bode",
+          "elapsed_time": 373,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2233300/845144/1/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3549148507114959148",
+          "activity_id": "20716764377"
+        },
+        {
+          "rank": 80,
           "athlete_id": 5178077,
           "name": "John Warwick",
           "elapsed_time": 375,
@@ -35406,7 +35430,7 @@
           "activity_id": "516471633"
         },
         {
-          "rank": 79,
+          "rank": 80,
           "athlete_id": 24805516,
           "name": "E_ .P ",
           "elapsed_time": 375,
@@ -35418,7 +35442,7 @@
           "activity_id": "9870064980"
         },
         {
-          "rank": 79,
+          "rank": 80,
           "athlete_id": 196127,
           "name": "Grant Van Horn",
           "elapsed_time": 375,
@@ -35430,7 +35454,7 @@
           "activity_id": "14502121571"
         },
         {
-          "rank": 79,
+          "rank": 80,
           "athlete_id": 2825931,
           "name": "Nick Davis",
           "elapsed_time": 375,
@@ -35442,7 +35466,7 @@
           "activity_id": "14583360566"
         },
         {
-          "rank": 83,
+          "rank": 84,
           "athlete_id": 6027769,
           "name": "Andy Neuman",
           "elapsed_time": 379,
@@ -35454,7 +35478,7 @@
           "activity_id": "367319389"
         },
         {
-          "rank": 83,
+          "rank": 84,
           "athlete_id": 13170539,
           "name": "Steve Bruner",
           "elapsed_time": 379,
@@ -35466,7 +35490,7 @@
           "activity_id": "3579336029"
         },
         {
-          "rank": 85,
+          "rank": 86,
           "athlete_id": 174189495,
           "name": "Noah Labich",
           "elapsed_time": 381,
@@ -35478,7 +35502,7 @@
           "activity_id": "15999521784"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 4183614,
           "name": "Kim Nedeau",
           "elapsed_time": 382,
@@ -35490,7 +35514,7 @@
           "activity_id": "187808770"
         },
         {
-          "rank": 87,
+          "rank": 88,
           "athlete_id": 23064467,
           "name": "Ryan Horne",
           "elapsed_time": 384,
@@ -35502,7 +35526,7 @@
           "activity_id": "9733548004"
         },
         {
-          "rank": 87,
+          "rank": 88,
           "athlete_id": 6003495,
           "name": "Doug Wilson",
           "elapsed_time": 384,
@@ -35514,7 +35538,7 @@
           "activity_id": "11533293515"
         },
         {
-          "rank": 89,
+          "rank": 90,
           "athlete_id": 348218,
           "name": "Kevin Pelissier",
           "elapsed_time": 385,
@@ -35526,7 +35550,7 @@
           "activity_id": "1092122885"
         },
         {
-          "rank": 89,
+          "rank": 90,
           "athlete_id": 56930926,
           "name": "Ron Jacobs",
           "elapsed_time": 385,
@@ -35538,7 +35562,19 @@
           "activity_id": "7357737737"
         },
         {
-          "rank": 91,
+          "rank": 90,
+          "athlete_id": 9276917,
+          "name": "Ken Green",
+          "elapsed_time": 385,
+          "avg_watts": null,
+          "avatar_url": null,
+          "badge": null,
+          "points": 0,
+          "effort_id": "3549147008274650732",
+          "activity_id": "20716719271"
+        },
+        {
+          "rank": 93,
           "athlete_id": 297948,
           "name": "Todd Cochi",
           "elapsed_time": 386,
@@ -35550,7 +35586,7 @@
           "activity_id": "540515261"
         },
         {
-          "rank": 91,
+          "rank": 93,
           "athlete_id": 39635332,
           "name": "Christopher Kouniotis",
           "elapsed_time": 386,
@@ -35562,7 +35598,7 @@
           "activity_id": "9607007659"
         },
         {
-          "rank": 91,
+          "rank": 93,
           "athlete_id": 2627955,
           "name": "Conan Deady",
           "elapsed_time": 386,
@@ -35574,7 +35610,7 @@
           "activity_id": "9733617655"
         },
         {
-          "rank": 91,
+          "rank": 93,
           "athlete_id": 23851525,
           "name": "Justin Vogel",
           "elapsed_time": 386,
@@ -35586,7 +35622,7 @@
           "activity_id": "14583003068"
         },
         {
-          "rank": 95,
+          "rank": 97,
           "athlete_id": 15914403,
           "name": "Andy MacDonald",
           "elapsed_time": 387,
@@ -35598,7 +35634,7 @@
           "activity_id": "14307064042"
         },
         {
-          "rank": 95,
+          "rank": 97,
           "athlete_id": 17186648,
           "name": "Kyle Clocker",
           "elapsed_time": 387,
@@ -35610,7 +35646,7 @@
           "activity_id": "18882512073"
         },
         {
-          "rank": 95,
+          "rank": 97,
           "athlete_id": 238897,
           "name": "John Bayley",
           "elapsed_time": 387,
@@ -35622,7 +35658,7 @@
           "activity_id": "18921383360"
         },
         {
-          "rank": 98,
+          "rank": 100,
           "athlete_id": 14521598,
           "name": "Wing Nut",
           "elapsed_time": 388,
@@ -35632,30 +35668,6 @@
           "points": 0,
           "effort_id": "2855631293048920316",
           "activity_id": "5703547300"
-        },
-        {
-          "rank": 98,
-          "athlete_id": 133540092,
-          "name": "Zach V",
-          "elapsed_time": 388,
-          "avg_watts": 278.2909851074219,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3255230232483731148",
-          "activity_id": "12062644388"
-        },
-        {
-          "rank": 100,
-          "athlete_id": 5279027,
-          "name": "David Goodwin",
-          "elapsed_time": 389,
-          "avg_watts": 219.32400512695312,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "30327280156",
-          "activity_id": "1228450376"
         }
       ]
     },
@@ -37243,7 +37255,7 @@
       "gross_gain": 49.5,
       "gross_loss": 159.9,
       "total_efforts": 7211,
-      "total_athletes": 1117,
+      "total_athletes": 1116,
       "difficulty": 164.9,
       "parent_segment_id": 29443366,
       "is_sub_segment": true,
@@ -38981,7 +38993,7 @@
       "gross_gain": 41.7,
       "gross_loss": 158.6,
       "total_efforts": 3221,
-      "total_athletes": 647,
+      "total_athletes": 648,
       "difficulty": 159.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -40719,7 +40731,7 @@
       "gross_gain": 69.0,
       "gross_loss": 0.0,
       "total_efforts": 7407,
-      "total_athletes": 1035,
+      "total_athletes": 1036,
       "difficulty": 156.8,
       "parent_segment_id": 1851661,
       "is_sub_segment": true,
@@ -43376,7 +43388,31 @@
           "activity_id": "7578950439"
         },
         {
-          "rank": 34,
+          "rank": 33,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 486,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150514648776",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 35,
+          "athlete_id": 136573,
+          "name": "Andy Reagan",
+          "elapsed_time": 488,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548771965762246134",
+          "activity_id": "20703351233"
+        },
+        {
+          "rank": 36,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 489,
@@ -43388,7 +43424,7 @@
           "activity_id": "12424296792"
         },
         {
-          "rank": 35,
+          "rank": 37,
           "athlete_id": 37375390,
           "name": "david mazzarese",
           "elapsed_time": 492,
@@ -43400,7 +43436,7 @@
           "activity_id": "15754546916"
         },
         {
-          "rank": 36,
+          "rank": 38,
           "athlete_id": 14175441,
           "name": "Santiago Vidales",
           "elapsed_time": 502,
@@ -43412,7 +43448,7 @@
           "activity_id": "19054496593"
         },
         {
-          "rank": 37,
+          "rank": 39,
           "athlete_id": 1469259,
           "name": "Luke Plummer",
           "elapsed_time": 508,
@@ -43424,7 +43460,7 @@
           "activity_id": "15039439181"
         },
         {
-          "rank": 37,
+          "rank": 39,
           "athlete_id": 755736,
           "name": "Sam Veggeberg",
           "elapsed_time": 508,
@@ -43436,7 +43472,7 @@
           "activity_id": "16537890538"
         },
         {
-          "rank": 39,
+          "rank": 41,
           "athlete_id": 36013792,
           "name": "Serge Capistrono",
           "elapsed_time": 509,
@@ -43448,7 +43484,7 @@
           "activity_id": "7578955497"
         },
         {
-          "rank": 40,
+          "rank": 42,
           "athlete_id": 27955,
           "name": "Peter Gill",
           "elapsed_time": 510,
@@ -43460,7 +43496,7 @@
           "activity_id": "14007203545"
         },
         {
-          "rank": 41,
+          "rank": 43,
           "athlete_id": 34799528,
           "name": "Mat Lebowitz",
           "elapsed_time": 512,
@@ -43472,7 +43508,7 @@
           "activity_id": "7743861940"
         },
         {
-          "rank": 42,
+          "rank": 44,
           "athlete_id": 5198373,
           "name": "Kurt Bahneman",
           "elapsed_time": 516,
@@ -43484,7 +43520,7 @@
           "activity_id": "19851310935"
         },
         {
-          "rank": 43,
+          "rank": 45,
           "athlete_id": 31025759,
           "name": "Keith Burgoyne",
           "elapsed_time": 523,
@@ -43496,7 +43532,7 @@
           "activity_id": "10334584358"
         },
         {
-          "rank": 44,
+          "rank": 46,
           "athlete_id": 6013400,
           "name": "judah hughes",
           "elapsed_time": 535,
@@ -43508,7 +43544,7 @@
           "activity_id": "20245075770"
         },
         {
-          "rank": 45,
+          "rank": 47,
           "athlete_id": 81362910,
           "name": "james pettengill",
           "elapsed_time": 539,
@@ -43520,7 +43556,7 @@
           "activity_id": "7990569989"
         },
         {
-          "rank": 46,
+          "rank": 48,
           "athlete_id": 40410823,
           "name": "Bill Laramee",
           "elapsed_time": 542,
@@ -43532,7 +43568,7 @@
           "activity_id": "4866582379"
         },
         {
-          "rank": 47,
+          "rank": 49,
           "athlete_id": 82571827,
           "name": "andrew stevens",
           "elapsed_time": 544,
@@ -43544,7 +43580,7 @@
           "activity_id": "7245597166"
         },
         {
-          "rank": 48,
+          "rank": 50,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 549,
@@ -43556,7 +43592,7 @@
           "activity_id": "6799172792"
         },
         {
-          "rank": 49,
+          "rank": 51,
           "athlete_id": 3325396,
           "name": "Aaron Cantrell",
           "elapsed_time": 552,
@@ -43568,7 +43604,7 @@
           "activity_id": "7990373781"
         },
         {
-          "rank": 50,
+          "rank": 52,
           "athlete_id": 827275,
           "name": "Ben Jankowski",
           "elapsed_time": 558,
@@ -43580,7 +43616,7 @@
           "activity_id": "5021763997"
         },
         {
-          "rank": 51,
+          "rank": 53,
           "athlete_id": 18725059,
           "name": "Bill Pete",
           "elapsed_time": 563,
@@ -43592,7 +43628,7 @@
           "activity_id": "5331315401"
         },
         {
-          "rank": 52,
+          "rank": 54,
           "athlete_id": 345154,
           "name": "Steve Giebutowski",
           "elapsed_time": 570,
@@ -43604,7 +43640,7 @@
           "activity_id": "5301821737"
         },
         {
-          "rank": 53,
+          "rank": 55,
           "athlete_id": 74570308,
           "name": "Clifford Wilkinson",
           "elapsed_time": 572,
@@ -43616,7 +43652,7 @@
           "activity_id": "7302852277"
         },
         {
-          "rank": 54,
+          "rank": 56,
           "athlete_id": 14568559,
           "name": "Scott Hartl",
           "elapsed_time": 575,
@@ -43628,7 +43664,7 @@
           "activity_id": "6376077441"
         },
         {
-          "rank": 55,
+          "rank": 57,
           "athlete_id": 46483452,
           "name": "phoebe gelbard",
           "elapsed_time": 576,
@@ -43640,7 +43676,7 @@
           "activity_id": "10120773623"
         },
         {
-          "rank": 55,
+          "rank": 57,
           "athlete_id": 22755070,
           "name": "Brian Coppola",
           "elapsed_time": 576,
@@ -43652,7 +43688,7 @@
           "activity_id": "10120767103"
         },
         {
-          "rank": 57,
+          "rank": 59,
           "athlete_id": 117683392,
           "name": "Donna Kelley",
           "elapsed_time": 584,
@@ -43664,7 +43700,7 @@
           "activity_id": "11575588200"
         },
         {
-          "rank": 58,
+          "rank": 60,
           "athlete_id": 66702069,
           "name": "Matt Tudryn",
           "elapsed_time": 587,
@@ -43676,7 +43712,7 @@
           "activity_id": "4885423984"
         },
         {
-          "rank": 58,
+          "rank": 60,
           "athlete_id": 6003495,
           "name": "Doug Wilson",
           "elapsed_time": 587,
@@ -43688,7 +43724,7 @@
           "activity_id": "7578944995"
         },
         {
-          "rank": 60,
+          "rank": 62,
           "athlete_id": 51423552,
           "name": "River Strong",
           "elapsed_time": 589,
@@ -43700,7 +43736,7 @@
           "activity_id": "9446633685"
         },
         {
-          "rank": 61,
+          "rank": 63,
           "athlete_id": 399375,
           "name": "Rick Gerstein",
           "elapsed_time": 596,
@@ -43712,7 +43748,7 @@
           "activity_id": "7061353877"
         },
         {
-          "rank": 62,
+          "rank": 64,
           "athlete_id": 20071154,
           "name": "Jason Kahn",
           "elapsed_time": 602,
@@ -43724,7 +43760,7 @@
           "activity_id": "7061171180"
         },
         {
-          "rank": 63,
+          "rank": 65,
           "athlete_id": 19494520,
           "name": "Charlie Merrick",
           "elapsed_time": 603,
@@ -43736,7 +43772,7 @@
           "activity_id": "15610156951"
         },
         {
-          "rank": 64,
+          "rank": 66,
           "athlete_id": 33411273,
           "name": "Nicole B",
           "elapsed_time": 605,
@@ -43748,7 +43784,7 @@
           "activity_id": "9731009900"
         },
         {
-          "rank": 65,
+          "rank": 67,
           "athlete_id": 396440,
           "name": "Paul Gerstein",
           "elapsed_time": 610,
@@ -43760,7 +43796,7 @@
           "activity_id": "7061243784"
         },
         {
-          "rank": 65,
+          "rank": 67,
           "athlete_id": 1263285,
           "name": "Jake Pratt",
           "elapsed_time": 610,
@@ -43772,7 +43808,7 @@
           "activity_id": "20478518456"
         },
         {
-          "rank": 67,
+          "rank": 69,
           "athlete_id": 18482323,
           "name": "Fred Meyer",
           "elapsed_time": 613,
@@ -43784,7 +43820,7 @@
           "activity_id": "5174725851"
         },
         {
-          "rank": 68,
+          "rank": 70,
           "athlete_id": 5648674,
           "name": "Matthew Sheldon",
           "elapsed_time": 626,
@@ -43796,7 +43832,7 @@
           "activity_id": "7933134539"
         },
         {
-          "rank": 69,
+          "rank": 71,
           "athlete_id": 41918544,
           "name": "David O'Neil",
           "elapsed_time": 632,
@@ -43808,7 +43844,7 @@
           "activity_id": "15413083482"
         },
         {
-          "rank": 70,
+          "rank": 72,
           "athlete_id": 22898641,
           "name": "Adam Rosenbaum ",
           "elapsed_time": 633,
@@ -43820,7 +43856,7 @@
           "activity_id": "7292756374"
         },
         {
-          "rank": 71,
+          "rank": 73,
           "athlete_id": 14427,
           "name": "Megan Bilodeau",
           "elapsed_time": 635,
@@ -43832,7 +43868,7 @@
           "activity_id": "7932835605"
         },
         {
-          "rank": 72,
+          "rank": 74,
           "athlete_id": 31614005,
           "name": "Dee McWilliams",
           "elapsed_time": 637,
@@ -43844,7 +43880,7 @@
           "activity_id": "11784678158"
         },
         {
-          "rank": 73,
+          "rank": 75,
           "athlete_id": 115693102,
           "name": "Ariana Walker",
           "elapsed_time": 674,
@@ -43856,7 +43892,7 @@
           "activity_id": "9939912120"
         },
         {
-          "rank": 74,
+          "rank": 76,
           "athlete_id": 18679963,
           "name": "Daniel Mazzarese",
           "elapsed_time": 678,
@@ -43868,7 +43904,7 @@
           "activity_id": "13211267135"
         },
         {
-          "rank": 75,
+          "rank": 77,
           "athlete_id": 41899627,
           "name": "Sara Hunt",
           "elapsed_time": 680,
@@ -43880,7 +43916,7 @@
           "activity_id": "7932420954"
         },
         {
-          "rank": 76,
+          "rank": 78,
           "athlete_id": 72909171,
           "name": "Joanmarie Del Vecchio",
           "elapsed_time": 703,
@@ -43892,7 +43928,7 @@
           "activity_id": "10179178656"
         },
         {
-          "rank": 77,
+          "rank": 79,
           "athlete_id": 2397202,
           "name": "Brian Katzman",
           "elapsed_time": 709,
@@ -43904,7 +43940,7 @@
           "activity_id": "4146989399"
         },
         {
-          "rank": 78,
+          "rank": 80,
           "athlete_id": 68015421,
           "name": "Theo Bellak",
           "elapsed_time": 721,
@@ -43916,7 +43952,7 @@
           "activity_id": "7785901297"
         },
         {
-          "rank": 79,
+          "rank": 81,
           "athlete_id": 7252692,
           "name": "Adam S",
           "elapsed_time": 723,
@@ -43928,7 +43964,7 @@
           "activity_id": "7272930578"
         },
         {
-          "rank": 80,
+          "rank": 82,
           "athlete_id": 23283716,
           "name": "Dana Nelson",
           "elapsed_time": 728,
@@ -43940,7 +43976,7 @@
           "activity_id": "16594486452"
         },
         {
-          "rank": 81,
+          "rank": 83,
           "athlete_id": 14778830,
           "name": "Derek Noble",
           "elapsed_time": 729,
@@ -43952,7 +43988,7 @@
           "activity_id": "9028945076"
         },
         {
-          "rank": 82,
+          "rank": 84,
           "athlete_id": 66320635,
           "name": "Chris Fisher",
           "elapsed_time": 736,
@@ -43964,7 +44000,7 @@
           "activity_id": "10068329970"
         },
         {
-          "rank": 83,
+          "rank": 85,
           "athlete_id": 34326721,
           "name": "Eddie Mientka",
           "elapsed_time": 750,
@@ -43976,7 +44012,7 @@
           "activity_id": "4926028141"
         },
         {
-          "rank": 84,
+          "rank": 86,
           "athlete_id": 7026,
           "name": "Russ Dont Ride That",
           "elapsed_time": 760,
@@ -43988,7 +44024,7 @@
           "activity_id": "7932921058"
         },
         {
-          "rank": 85,
+          "rank": 87,
           "athlete_id": 32653806,
           "name": "Mark Baran",
           "elapsed_time": 766,
@@ -44000,7 +44036,7 @@
           "activity_id": "9895360838"
         },
         {
-          "rank": 86,
+          "rank": 88,
           "athlete_id": 66607479,
           "name": "Chance Strom",
           "elapsed_time": 806,
@@ -44012,7 +44048,7 @@
           "activity_id": "7932612557"
         },
         {
-          "rank": 87,
+          "rank": 89,
           "athlete_id": 62514497,
           "name": "Christopher Harris",
           "elapsed_time": 819,
@@ -44024,7 +44060,7 @@
           "activity_id": "15028489298"
         },
         {
-          "rank": 88,
+          "rank": 90,
           "athlete_id": 89094581,
           "name": "Gavin Duncan",
           "elapsed_time": 826,
@@ -44036,7 +44072,7 @@
           "activity_id": "7036145640"
         },
         {
-          "rank": 89,
+          "rank": 91,
           "athlete_id": 1159449,
           "name": "Brian Plummer",
           "elapsed_time": 827,
@@ -44048,7 +44084,7 @@
           "activity_id": "15244747101"
         },
         {
-          "rank": 90,
+          "rank": 92,
           "athlete_id": 8471222,
           "name": "Tim Gray",
           "elapsed_time": 836,
@@ -44060,7 +44096,7 @@
           "activity_id": "6039717048"
         },
         {
-          "rank": 91,
+          "rank": 93,
           "athlete_id": 56268565,
           "name": "Sage Moore",
           "elapsed_time": 887,
@@ -44072,7 +44108,7 @@
           "activity_id": "8588261611"
         },
         {
-          "rank": 92,
+          "rank": 94,
           "athlete_id": 293647,
           "name": "Gavin Andresen",
           "elapsed_time": 902,
@@ -44084,7 +44120,7 @@
           "activity_id": "11278243303"
         },
         {
-          "rank": 93,
+          "rank": 95,
           "athlete_id": 431857,
           "name": "Brion van Over",
           "elapsed_time": 911,
@@ -44096,7 +44132,7 @@
           "activity_id": "14645916482"
         },
         {
-          "rank": 94,
+          "rank": 96,
           "athlete_id": 124403720,
           "name": "B.  Hite",
           "elapsed_time": 920,
@@ -44108,7 +44144,7 @@
           "activity_id": "20519892247"
         },
         {
-          "rank": 95,
+          "rank": 97,
           "athlete_id": 21610855,
           "name": "Sam Shoolman",
           "elapsed_time": 969,
@@ -44120,7 +44156,7 @@
           "activity_id": "5723470961"
         },
         {
-          "rank": 96,
+          "rank": 98,
           "athlete_id": 47268294,
           "name": "Matt Swift",
           "elapsed_time": 1090,
@@ -44132,7 +44168,7 @@
           "activity_id": "8809759419"
         },
         {
-          "rank": 97,
+          "rank": 99,
           "athlete_id": 32436344,
           "name": "Donald Longley",
           "elapsed_time": 1104,
@@ -44144,7 +44180,7 @@
           "activity_id": "11411054410"
         },
         {
-          "rank": 98,
+          "rank": 100,
           "athlete_id": 3285220,
           "name": "Karl Knapp",
           "elapsed_time": 1169,
@@ -44154,18 +44190,6 @@
           "points": 0,
           "effort_id": "2807676548399070598",
           "activity_id": "4328652411"
-        },
-        {
-          "rank": 99,
-          "athlete_id": 57429791,
-          "name": "Robert Ouellette",
-          "elapsed_time": 1229,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "2840348516502421086",
-          "activity_id": "5482030046"
         }
       ]
     },
@@ -45093,7 +45117,7 @@
       "gross_gain": 90.6,
       "gross_loss": 0.8,
       "total_efforts": 741,
-      "total_athletes": 379,
+      "total_athletes": 382,
       "difficulty": 147.2,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -48031,8 +48055,8 @@
           "name": "Karen LaVerdiere",
           "elapsed_time": 1622,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/59047730/38125998/1/large.jpg",
+          "badge": "",
           "points": 0,
           "effort_id": "3422368128816350570",
           "activity_id": "16398388756"
@@ -56971,6 +56995,18 @@
         },
         {
           "rank": 33,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 1964,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150516460232",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 34,
           "athlete_id": 5198373,
           "name": "Kurt Bahneman",
           "elapsed_time": 1974,
@@ -56982,7 +57018,7 @@
           "activity_id": "9213830682"
         },
         {
-          "rank": 34,
+          "rank": 35,
           "athlete_id": 7252692,
           "name": "Adam S",
           "elapsed_time": 1980,
@@ -56994,7 +57030,7 @@
           "activity_id": "11802804795"
         },
         {
-          "rank": 35,
+          "rank": 36,
           "athlete_id": 126935961,
           "name": "Ian Marsh",
           "elapsed_time": 2023,
@@ -57006,7 +57042,7 @@
           "activity_id": "11669702596"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 68650167,
           "name": "Kyle Johnston",
           "elapsed_time": 2033,
@@ -57018,7 +57054,7 @@
           "activity_id": "11387059843"
         },
         {
-          "rank": 37,
+          "rank": 38,
           "athlete_id": 57251687,
           "name": "Geir Hartl",
           "elapsed_time": 2531,
@@ -57030,7 +57066,7 @@
           "activity_id": "12246537089"
         },
         {
-          "rank": 38,
+          "rank": 39,
           "athlete_id": 17919685,
           "name": "Herkus Rudzinskas",
           "elapsed_time": 2866,
@@ -57042,7 +57078,7 @@
           "activity_id": "9128352608"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 70782725,
           "name": "Jason Duncan",
           "elapsed_time": 2869,
@@ -57054,7 +57090,7 @@
           "activity_id": "9395437372"
         },
         {
-          "rank": 40,
+          "rank": 41,
           "athlete_id": 104091172,
           "name": "Adam Howard",
           "elapsed_time": 2906,
@@ -57066,7 +57102,7 @@
           "activity_id": "9128435992"
         },
         {
-          "rank": 41,
+          "rank": 42,
           "athlete_id": 62514497,
           "name": "Christopher Harris",
           "elapsed_time": 3264,
@@ -58317,8 +58353,8 @@
           "name": "Lucas Barad",
           "elapsed_time": 559,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3533264694063711698",
           "activity_id": "20123181274"
@@ -58831,7 +58867,7 @@
       "gross_gain": 1.4,
       "gross_loss": 172.2,
       "total_efforts": 5567,
-      "total_athletes": 1154,
+      "total_athletes": 1155,
       "difficulty": 126.2,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -60569,7 +60605,7 @@
       "gross_gain": 48.9,
       "gross_loss": 0.5,
       "total_efforts": 2377,
-      "total_athletes": 597,
+      "total_athletes": 604,
       "difficulty": 124.0,
       "parent_segment_id": 1231138,
       "is_sub_segment": true,
@@ -64701,6 +64737,18 @@
         },
         {
           "rank": 12,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 273,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150516598472",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 13,
           "athlete_id": 338452,
           "name": "Stephen Hyde",
           "elapsed_time": 277,
@@ -64712,7 +64760,7 @@
           "activity_id": "4404695597"
         },
         {
-          "rank": 13,
+          "rank": 14,
           "athlete_id": 26376476,
           "name": "Carter Robertson",
           "elapsed_time": 278,
@@ -64724,7 +64772,7 @@
           "activity_id": "6060214688"
         },
         {
-          "rank": 14,
+          "rank": 15,
           "athlete_id": 1469259,
           "name": "Luke Plummer",
           "elapsed_time": 282,
@@ -64736,7 +64784,7 @@
           "activity_id": "15039439181"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 37426994,
           "name": "Elliott Kelly",
           "elapsed_time": 284,
@@ -64748,7 +64796,7 @@
           "activity_id": "4094034253"
         },
         {
-          "rank": 16,
+          "rank": 17,
           "athlete_id": 19494520,
           "name": "Charlie Merrick",
           "elapsed_time": 286,
@@ -64760,7 +64808,7 @@
           "activity_id": "6059956223"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 3325396,
           "name": "Aaron Cantrell",
           "elapsed_time": 287,
@@ -64772,7 +64820,7 @@
           "activity_id": "6060191251"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 22325412,
           "name": "Kat SawRose",
           "elapsed_time": 287,
@@ -64784,7 +64832,7 @@
           "activity_id": "8896422006"
         },
         {
-          "rank": 19,
+          "rank": 20,
           "athlete_id": 81362910,
           "name": "james pettengill",
           "elapsed_time": 288,
@@ -64796,7 +64844,7 @@
           "activity_id": "6060255585"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 6027769,
           "name": "Andy Neuman",
           "elapsed_time": 289,
@@ -64808,7 +64856,7 @@
           "activity_id": "3683828639"
         },
         {
-          "rank": 21,
+          "rank": 22,
           "athlete_id": 6295094,
           "name": "Alix Sorrell",
           "elapsed_time": 290,
@@ -64820,7 +64868,7 @@
           "activity_id": "6059992459"
         },
         {
-          "rank": 21,
+          "rank": 22,
           "athlete_id": 37375390,
           "name": "david mazzarese",
           "elapsed_time": 290,
@@ -64832,7 +64880,7 @@
           "activity_id": "15778245165"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 15379636,
           "name": "Todd Walker",
           "elapsed_time": 299,
@@ -64844,7 +64892,7 @@
           "activity_id": "11785479299"
         },
         {
-          "rank": 24,
+          "rank": 25,
           "athlete_id": 2411043,
           "name": "Matt Smith",
           "elapsed_time": 302,
@@ -64856,7 +64904,7 @@
           "activity_id": "6059938954"
         },
         {
-          "rank": 25,
+          "rank": 26,
           "athlete_id": 82571827,
           "name": "andrew stevens",
           "elapsed_time": 303,
@@ -64868,7 +64916,7 @@
           "activity_id": "7245597166"
         },
         {
-          "rank": 26,
+          "rank": 27,
           "athlete_id": 2416877,
           "name": "Tyler Prince",
           "elapsed_time": 305,
@@ -64880,7 +64928,7 @@
           "activity_id": "3474727111"
         },
         {
-          "rank": 26,
+          "rank": 27,
           "athlete_id": 827275,
           "name": "Ben Jankowski",
           "elapsed_time": 305,
@@ -64892,7 +64940,7 @@
           "activity_id": "5021763997"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 14451872,
           "name": "Justin Santoro",
           "elapsed_time": 306,
@@ -64904,7 +64952,7 @@
           "activity_id": "5905953373"
         },
         {
-          "rank": 29,
+          "rank": 30,
           "athlete_id": 70734445,
           "name": "billy bob davis",
           "elapsed_time": 307,
@@ -64916,7 +64964,7 @@
           "activity_id": "5520616762"
         },
         {
-          "rank": 30,
+          "rank": 31,
           "athlete_id": 35602805,
           "name": "Wendy Rowdybush",
           "elapsed_time": 308,
@@ -64928,7 +64976,7 @@
           "activity_id": "3694405189"
         },
         {
-          "rank": 30,
+          "rank": 31,
           "athlete_id": 17286867,
           "name": "Matt Cain",
           "elapsed_time": 308,
@@ -64940,7 +64988,7 @@
           "activity_id": "4998055776"
         },
         {
-          "rank": 32,
+          "rank": 33,
           "athlete_id": 63934419,
           "name": "Amanda S",
           "elapsed_time": 310,
@@ -64952,7 +65000,7 @@
           "activity_id": "9622522292"
         },
         {
-          "rank": 33,
+          "rank": 34,
           "athlete_id": 598075,
           "name": "Nick Rufe",
           "elapsed_time": 314,
@@ -64964,7 +65012,7 @@
           "activity_id": "4362037122"
         },
         {
-          "rank": 33,
+          "rank": 34,
           "athlete_id": 68650167,
           "name": "Kyle Johnston",
           "elapsed_time": 314,
@@ -64976,7 +65024,7 @@
           "activity_id": "9622519697"
         },
         {
-          "rank": 35,
+          "rank": 36,
           "athlete_id": 16884053,
           "name": "Nick Hight-Huf",
           "elapsed_time": 318,
@@ -64988,7 +65036,7 @@
           "activity_id": "4616309915"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 2397202,
           "name": "Brian Katzman",
           "elapsed_time": 320,
@@ -65000,7 +65048,7 @@
           "activity_id": "4146989399"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 38338824,
           "name": "Satchel Douglas",
           "elapsed_time": 320,
@@ -65012,7 +65060,7 @@
           "activity_id": "18997949308"
         },
         {
-          "rank": 38,
+          "rank": 39,
           "athlete_id": 44337458,
           "name": "Clay Ballantine",
           "elapsed_time": 323,
@@ -65024,7 +65072,7 @@
           "activity_id": "7546059552"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 20071154,
           "name": "Jason Kahn",
           "elapsed_time": 325,
@@ -65036,7 +65084,7 @@
           "activity_id": "6059941195"
         },
         {
-          "rank": 40,
+          "rank": 41,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 328,
@@ -65048,7 +65096,7 @@
           "activity_id": "9004188518"
         },
         {
-          "rank": 40,
+          "rank": 41,
           "athlete_id": 59315491,
           "name": "Andrew Tsitso",
           "elapsed_time": 328,
@@ -65060,7 +65108,7 @@
           "activity_id": "9776651188"
         },
         {
-          "rank": 42,
+          "rank": 43,
           "athlete_id": 1148683,
           "name": "Christian Day",
           "elapsed_time": 329,
@@ -65072,7 +65120,7 @@
           "activity_id": "6059946064"
         },
         {
-          "rank": 42,
+          "rank": 43,
           "athlete_id": 82549391,
           "name": "Liam Fritz",
           "elapsed_time": 329,
@@ -65084,7 +65132,7 @@
           "activity_id": "13382118603"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 2873637,
           "name": "Aaron Soules",
           "elapsed_time": 337,
@@ -65096,7 +65144,7 @@
           "activity_id": "4186019469"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 399375,
           "name": "Rick Gerstein",
           "elapsed_time": 337,
@@ -65108,7 +65156,7 @@
           "activity_id": "7061353877"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 3699755,
           "name": "james bradbury",
           "elapsed_time": 337,
@@ -65120,7 +65168,7 @@
           "activity_id": "20533514312"
         },
         {
-          "rank": 47,
+          "rank": 48,
           "athlete_id": 396440,
           "name": "Paul Gerstein",
           "elapsed_time": 340,
@@ -65132,7 +65180,7 @@
           "activity_id": "7061243784"
         },
         {
-          "rank": 48,
+          "rank": 49,
           "athlete_id": 66702069,
           "name": "Matt Tudryn",
           "elapsed_time": 341,
@@ -65144,7 +65192,7 @@
           "activity_id": "4185973386"
         },
         {
-          "rank": 49,
+          "rank": 50,
           "athlete_id": 14175441,
           "name": "Santiago Vidales",
           "elapsed_time": 350,
@@ -65156,7 +65204,7 @@
           "activity_id": "10007672848"
         },
         {
-          "rank": 50,
+          "rank": 51,
           "athlete_id": 61713305,
           "name": "Rich Ferro",
           "elapsed_time": 351,
@@ -65168,7 +65216,7 @@
           "activity_id": "3790476228"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 51423552,
           "name": "River Strong",
           "elapsed_time": 355,
@@ -65180,7 +65228,7 @@
           "activity_id": "9964663508"
         },
         {
-          "rank": 52,
+          "rank": 53,
           "athlete_id": 12036884,
           "name": "John P",
           "elapsed_time": 358,
@@ -65192,7 +65240,7 @@
           "activity_id": "8033852259"
         },
         {
-          "rank": 53,
+          "rank": 54,
           "athlete_id": 34799528,
           "name": "Mat Lebowitz",
           "elapsed_time": 360,
@@ -65204,7 +65252,7 @@
           "activity_id": "3584072462"
         },
         {
-          "rank": 53,
+          "rank": 54,
           "athlete_id": 44548224,
           "name": "Jeremy Smith",
           "elapsed_time": 360,
@@ -65216,7 +65264,7 @@
           "activity_id": "5253927888"
         },
         {
-          "rank": 53,
+          "rank": 54,
           "athlete_id": 66796911,
           "name": "John Roche",
           "elapsed_time": 360,
@@ -65228,7 +65276,7 @@
           "activity_id": "6379210511"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 10838749,
           "name": "amy kemper",
           "elapsed_time": 363,
@@ -65240,7 +65288,7 @@
           "activity_id": "6135733555"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 755736,
           "name": "Sam Veggeberg",
           "elapsed_time": 363,
@@ -65252,7 +65300,7 @@
           "activity_id": "16537890538"
         },
         {
-          "rank": 58,
+          "rank": 59,
           "athlete_id": 57448475,
           "name": "Ciaran Sleeper",
           "elapsed_time": 366,
@@ -65264,7 +65312,7 @@
           "activity_id": "7357584720"
         },
         {
-          "rank": 59,
+          "rank": 60,
           "athlete_id": 24386087,
           "name": "Colin Ruhe",
           "elapsed_time": 367,
@@ -65276,7 +65324,7 @@
           "activity_id": "2427059907"
         },
         {
-          "rank": 59,
+          "rank": 60,
           "athlete_id": 18482323,
           "name": "Fred Meyer",
           "elapsed_time": 367,
@@ -65288,7 +65336,7 @@
           "activity_id": "5281222488"
         },
         {
-          "rank": 61,
+          "rank": 62,
           "athlete_id": 16762007,
           "name": "Ben Snyder",
           "elapsed_time": 368,
@@ -65300,7 +65348,7 @@
           "activity_id": "7866372002"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 2075392,
           "name": "Alex Kahn",
           "elapsed_time": 372,
@@ -65312,7 +65360,7 @@
           "activity_id": "2042756427"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 12850431,
           "name": "Donald Simons",
           "elapsed_time": 377,
@@ -65324,7 +65372,7 @@
           "activity_id": "6059418006"
         },
         {
-          "rank": 64,
+          "rank": 65,
           "athlete_id": 39354959,
           "name": "Alan Pinsonneault",
           "elapsed_time": 379,
@@ -65336,7 +65384,7 @@
           "activity_id": "7078068209"
         },
         {
-          "rank": 65,
+          "rank": 66,
           "athlete_id": 431857,
           "name": "Brion van Over",
           "elapsed_time": 384,
@@ -65348,7 +65396,7 @@
           "activity_id": "5199088594"
         },
         {
-          "rank": 66,
+          "rank": 67,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 388,
@@ -65360,7 +65408,7 @@
           "activity_id": "8360191929"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 6013400,
           "name": "judah hughes",
           "elapsed_time": 401,
@@ -65372,7 +65420,7 @@
           "activity_id": "20245075770"
         },
         {
-          "rank": 68,
+          "rank": 69,
           "athlete_id": 31614005,
           "name": "Dee McWilliams",
           "elapsed_time": 404,
@@ -65384,7 +65432,7 @@
           "activity_id": "3643711604"
         },
         {
-          "rank": 69,
+          "rank": 70,
           "athlete_id": 40410823,
           "name": "Bill Laramee",
           "elapsed_time": 435,
@@ -65396,7 +65444,7 @@
           "activity_id": "18284160824"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 58395110,
           "name": "Piper Lacy",
           "elapsed_time": 437,
@@ -65408,7 +65456,7 @@
           "activity_id": "9291927908"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 2258377,
           "name": "Don Chiulli",
           "elapsed_time": 441,
@@ -65420,7 +65468,7 @@
           "activity_id": "6473936378"
         },
         {
-          "rank": 72,
+          "rank": 73,
           "athlete_id": 17919685,
           "name": "Herkus Rudzinskas",
           "elapsed_time": 448,
@@ -65432,7 +65480,7 @@
           "activity_id": "9291920020"
         },
         {
-          "rank": 73,
+          "rank": 74,
           "athlete_id": 66320635,
           "name": "Chris Fisher",
           "elapsed_time": 479,
@@ -65444,7 +65492,7 @@
           "activity_id": "10068329970"
         },
         {
-          "rank": 74,
+          "rank": 75,
           "athlete_id": 32484367,
           "name": "Sara Draper",
           "elapsed_time": 486,
@@ -65456,7 +65504,7 @@
           "activity_id": "6059880577"
         },
         {
-          "rank": 75,
+          "rank": 76,
           "athlete_id": 7252692,
           "name": "Adam S",
           "elapsed_time": 509,
@@ -65468,7 +65516,7 @@
           "activity_id": "15720785945"
         },
         {
-          "rank": 76,
+          "rank": 77,
           "athlete_id": 14568559,
           "name": "Scott Hartl",
           "elapsed_time": 527,
@@ -65480,7 +65528,7 @@
           "activity_id": "6376077441"
         },
         {
-          "rank": 77,
+          "rank": 78,
           "athlete_id": 8272779,
           "name": "Kalle Jahn",
           "elapsed_time": 541,
@@ -65492,7 +65540,7 @@
           "activity_id": "11557246821"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 3285220,
           "name": "Karl Knapp",
           "elapsed_time": 543,
@@ -65504,7 +65552,7 @@
           "activity_id": "3987118762"
         },
         {
-          "rank": 79,
+          "rank": 80,
           "athlete_id": 5198373,
           "name": "Kurt Bahneman",
           "elapsed_time": 564,
@@ -65516,7 +65564,7 @@
           "activity_id": "7930835971"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 31025759,
           "name": "Keith Burgoyne",
           "elapsed_time": 573,
@@ -65528,7 +65576,7 @@
           "activity_id": "6404529577"
         },
         {
-          "rank": 81,
+          "rank": 82,
           "athlete_id": 26797956,
           "name": "chris  unaitis",
           "elapsed_time": 657,
@@ -65540,7 +65588,7 @@
           "activity_id": "6060018027"
         },
         {
-          "rank": 82,
+          "rank": 83,
           "athlete_id": 3463073,
           "name": "Tyler Knapp",
           "elapsed_time": 752,
@@ -65552,7 +65600,7 @@
           "activity_id": "2043363434"
         },
         {
-          "rank": 83,
+          "rank": 84,
           "athlete_id": 6003495,
           "name": "Doug Wilson",
           "elapsed_time": 881,
@@ -65564,7 +65612,7 @@
           "activity_id": "12948535484"
         },
         {
-          "rank": 84,
+          "rank": 85,
           "athlete_id": 126935961,
           "name": "Ian Marsh",
           "elapsed_time": 974,
@@ -65591,7 +65639,7 @@
       "gross_gain": 4.5,
       "gross_loss": 130.2,
       "total_efforts": 7605,
-      "total_athletes": 1128,
+      "total_athletes": 1127,
       "difficulty": 112.2,
       "parent_segment_id": 29443366,
       "is_sub_segment": true,
@@ -67235,7 +67283,7 @@
       "gross_gain": 37.0,
       "gross_loss": 1.0,
       "total_efforts": 2393,
-      "total_athletes": 515,
+      "total_athletes": 522,
       "difficulty": 109.5,
       "parent_segment_id": 696812,
       "is_sub_segment": true,
@@ -70171,7 +70219,7 @@
       "gross_gain": 33.2,
       "gross_loss": 0.0,
       "total_efforts": 3118,
-      "total_athletes": 648,
+      "total_athletes": 649,
       "difficulty": 108.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -74959,7 +75007,7 @@
       "gross_gain": 5.3,
       "gross_loss": 129.0,
       "total_efforts": 2019,
-      "total_athletes": 551,
+      "total_athletes": 561,
       "difficulty": 107.9,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -76697,7 +76745,7 @@
       "gross_gain": 29.7,
       "gross_loss": 26.5,
       "total_efforts": 2624,
-      "total_athletes": 538,
+      "total_athletes": 539,
       "difficulty": 107.9,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -78420,7 +78468,7 @@
           "activity_id": "18484858127"
         },
         {
-          "rank": 230,
+          "rank": 231,
           "athlete_id": 136573,
           "name": "Andy Reagan",
           "elapsed_time": 255,
@@ -80139,7 +80187,7 @@
       "gross_gain": 24.4,
       "gross_loss": 3.2,
       "total_efforts": 5504,
-      "total_athletes": 816,
+      "total_athletes": 817,
       "difficulty": 107.4,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
@@ -83163,7 +83211,7 @@
       "gross_gain": 35.2,
       "gross_loss": 9.2,
       "total_efforts": 3192,
-      "total_athletes": 630,
+      "total_athletes": 636,
       "difficulty": 105.3,
       "parent_segment_id": 7226136,
       "is_sub_segment": true,
@@ -83847,8 +83895,8 @@
           "name": "Lucas Barad",
           "elapsed_time": 236,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3484270791710647300",
           "activity_id": "18295819684"
@@ -84901,7 +84949,7 @@
       "gross_gain": 27.7,
       "gross_loss": 0.0,
       "total_efforts": 4904,
-      "total_athletes": 850,
+      "total_athletes": 855,
       "difficulty": 104.1,
       "parent_segment_id": 1151557,
       "is_sub_segment": true,
@@ -89631,7 +89679,7 @@
       "gross_gain": 22.0,
       "gross_loss": 0.1,
       "total_efforts": 4040,
-      "total_athletes": 523,
+      "total_athletes": 529,
       "difficulty": 100.2,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -93107,7 +93155,7 @@
       "gross_gain": 24.4,
       "gross_loss": 0.2,
       "total_efforts": 2333,
-      "total_athletes": 506,
+      "total_athletes": 509,
       "difficulty": 96.5,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -94857,7 +94905,7 @@
       "gross_gain": 5.1,
       "gross_loss": 119.1,
       "total_efforts": 1665,
-      "total_athletes": 388,
+      "total_athletes": 389,
       "difficulty": 96.2,
       "parent_segment_id": 37850905,
       "is_sub_segment": true,
@@ -96160,7 +96208,19 @@
           "activity_id": "12062644388"
         },
         {
-          "rank": 66,
+          "rank": 64,
+          "athlete_id": 34029634,
+          "name": "Tim Whitney",
+          "elapsed_time": 208,
+          "avg_watts": 154.2259979248047,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/34029634/10097164/14/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3546945311043291964",
+          "activity_id": "20638336856"
+        },
+        {
+          "rank": 67,
           "athlete_id": 3251045,
           "name": "Ian O'Neil",
           "elapsed_time": 209,
@@ -96172,7 +96232,7 @@
           "activity_id": "1258457018"
         },
         {
-          "rank": 66,
+          "rank": 67,
           "athlete_id": 81362910,
           "name": "james pettengill",
           "elapsed_time": 209,
@@ -96184,7 +96244,7 @@
           "activity_id": "7166337195"
         },
         {
-          "rank": 68,
+          "rank": 69,
           "athlete_id": 45620551,
           "name": "Martin Hutchinson",
           "elapsed_time": 210,
@@ -96196,7 +96256,7 @@
           "activity_id": "3479678290"
         },
         {
-          "rank": 68,
+          "rank": 69,
           "athlete_id": 82549391,
           "name": "Liam Fritz",
           "elapsed_time": 210,
@@ -96208,7 +96268,7 @@
           "activity_id": "7882906383"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 903147,
           "name": "adin maynard",
           "elapsed_time": 211,
@@ -96220,7 +96280,7 @@
           "activity_id": "1732224170"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 3463073,
           "name": "Tyler Knapp",
           "elapsed_time": 212,
@@ -96232,7 +96292,7 @@
           "activity_id": "137065402"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 9326693,
           "name": "Ross Shrimpman",
           "elapsed_time": 212,
@@ -96244,19 +96304,19 @@
           "activity_id": "2740199306"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 12355103,
           "name": "Lucas Barad",
           "elapsed_time": 212,
           "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
           "points": 0,
           "effort_id": "3533264694064125394",
           "activity_id": "20123181274"
         },
         {
-          "rank": 74,
+          "rank": 75,
           "athlete_id": 9131711,
           "name": "Riley Frackleton",
           "elapsed_time": 213,
@@ -96268,7 +96328,7 @@
           "activity_id": "1246929955"
         },
         {
-          "rank": 75,
+          "rank": 76,
           "athlete_id": 38193981,
           "name": "Toby Briggs",
           "elapsed_time": 214,
@@ -96280,7 +96340,7 @@
           "activity_id": "19002459819"
         },
         {
-          "rank": 76,
+          "rank": 77,
           "athlete_id": 6550711,
           "name": "Dan Giroux",
           "elapsed_time": 215,
@@ -96292,7 +96352,7 @@
           "activity_id": "1058481042"
         },
         {
-          "rank": 76,
+          "rank": 77,
           "athlete_id": 6212322,
           "name": "Carlo Quicho",
           "elapsed_time": 215,
@@ -96304,7 +96364,7 @@
           "activity_id": "1273070750"
         },
         {
-          "rank": 76,
+          "rank": 77,
           "athlete_id": 38089349,
           "name": "Ryan Dupuis ",
           "elapsed_time": 215,
@@ -96316,7 +96376,7 @@
           "activity_id": "5516929073"
         },
         {
-          "rank": 76,
+          "rank": 77,
           "athlete_id": 10115712,
           "name": "Ben Carlis",
           "elapsed_time": 215,
@@ -96328,7 +96388,7 @@
           "activity_id": "8008688369"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 616620,
           "name": "Patrick G",
           "elapsed_time": 216,
@@ -96340,7 +96400,7 @@
           "activity_id": "302770677"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 260095,
           "name": "Le Taillevent",
           "elapsed_time": 216,
@@ -96352,7 +96412,7 @@
           "activity_id": "436775816"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 660262,
           "name": "teddy brosevelt",
           "elapsed_time": 216,
@@ -96364,7 +96424,7 @@
           "activity_id": "3247544990"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 101598,
           "name": "Ross Krause",
           "elapsed_time": 216,
@@ -96376,7 +96436,7 @@
           "activity_id": "4468733456"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 47268294,
           "name": "Matt Swift",
           "elapsed_time": 216,
@@ -96388,7 +96448,7 @@
           "activity_id": "7882847322"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 1433213,
           "name": "chris niesen",
           "elapsed_time": 216,
@@ -96400,7 +96460,7 @@
           "activity_id": "9140367356"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 189571,
           "name": "Andrew Pazmany",
           "elapsed_time": 217,
@@ -96412,7 +96472,7 @@
           "activity_id": "436770140"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 5706603,
           "name": "BobbyDigital \ud83e\udd29",
           "elapsed_time": 217,
@@ -96424,7 +96484,7 @@
           "activity_id": "1806441144"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 19494520,
           "name": "Charlie Merrick",
           "elapsed_time": 217,
@@ -96436,7 +96496,7 @@
           "activity_id": "2740301951"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 22726962,
           "name": "Rigo Rodriguez",
           "elapsed_time": 217,
@@ -96448,7 +96508,7 @@
           "activity_id": "7298135894"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 22187185,
           "name": "Patrick Frank",
           "elapsed_time": 217,
@@ -96460,7 +96520,7 @@
           "activity_id": "12663802351"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 19911329,
           "name": "Sid Doyle",
           "elapsed_time": 217,
@@ -96472,7 +96532,7 @@
           "activity_id": "18429574491"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 148692135,
           "name": "matt baird",
           "elapsed_time": 217,
@@ -96484,7 +96544,7 @@
           "activity_id": "18682293830"
         },
         {
-          "rank": 93,
+          "rank": 94,
           "athlete_id": 27955,
           "name": "Peter Gill",
           "elapsed_time": 218,
@@ -96496,7 +96556,7 @@
           "activity_id": "2335073513"
         },
         {
-          "rank": 93,
+          "rank": 94,
           "athlete_id": 65079403,
           "name": "Luke Trusel",
           "elapsed_time": 218,
@@ -96508,7 +96568,7 @@
           "activity_id": "12860820598"
         },
         {
-          "rank": 93,
+          "rank": 94,
           "athlete_id": 146190342,
           "name": "Sharon Povinelli",
           "elapsed_time": 218,
@@ -96520,7 +96580,7 @@
           "activity_id": "20037061716"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 5279027,
           "name": "David Goodwin",
           "elapsed_time": 219,
@@ -96532,7 +96592,7 @@
           "activity_id": "566743303"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 113819267,
           "name": "Julian Camera",
           "elapsed_time": 219,
@@ -96544,7 +96604,7 @@
           "activity_id": "17652606506"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 72342832,
           "name": "Jake Lehan",
           "elapsed_time": 219,
@@ -96556,7 +96616,7 @@
           "activity_id": "19817571345"
         },
         {
-          "rank": 99,
+          "rank": 100,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 220,
@@ -96566,18 +96626,6 @@
           "points": 0,
           "effort_id": "2689500651450204759",
           "activity_id": "3358294704"
-        },
-        {
-          "rank": 100,
-          "athlete_id": 990218,
-          "name": "Don DeGroot",
-          "elapsed_time": 221,
-          "avg_watts": 120.94599914550781,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "1431608123",
-          "activity_id": "72702183"
         }
       ]
     },
@@ -96867,8 +96915,8 @@
         ]
       ],
       "leader": {
-        "name": "Nick Hight-Huf",
-        "elapsed_time": 104
+        "name": "Owen Skorupski ",
+        "elapsed_time": 103
       },
       "profile": {
         "distance": [
@@ -97097,54 +97145,66 @@
       "efforts": [
         {
           "rank": 1,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 103,
+          "avg_watts": 302.9809875488281,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 9,
+          "effort_id": "3547697465298059106",
+          "activity_id": "20665117235"
+        },
+        {
+          "rank": 2,
           "athlete_id": 16884053,
           "name": "Nick Hight-Huf",
           "elapsed_time": 104,
           "avg_watts": 96.01920318603516,
           "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16884053/10089059/2/large.jpg",
           "badge": "premium",
-          "points": 9,
+          "points": 4,
           "effort_id": "2722256387039295500",
           "activity_id": "3812916055"
         },
         {
-          "rank": 2,
+          "rank": 3,
           "athlete_id": 9268427,
           "name": "Luke Protti",
           "elapsed_time": 106,
           "avg_watts": 36.46229934692383,
           "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/9268427/2886270/5/large.jpg",
           "badge": "premium",
-          "points": 4,
+          "points": 2,
           "effort_id": "3003083032213282300",
           "activity_id": "7777161336"
         },
         {
-          "rank": 3,
+          "rank": 4,
           "athlete_id": 4512388,
           "name": "Nathan Roy",
           "elapsed_time": 107,
           "avg_watts": 262.2799987792969,
           "avatar_url": null,
           "badge": null,
-          "points": 2,
+          "points": 1,
           "effort_id": "8602154822",
           "activity_id": "360677685"
         },
         {
-          "rank": 3,
+          "rank": 4,
           "athlete_id": 10958651,
           "name": "Logan Madden",
           "elapsed_time": 107,
           "avg_watts": 353.0369873046875,
           "avatar_url": null,
           "badge": null,
-          "points": 2,
+          "points": 1,
           "effort_id": "2831214690079805400",
           "activity_id": "5339846239"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "athlete_id": 11330473,
           "name": "Geno Villafano",
           "elapsed_time": 109,
@@ -97156,7 +97216,7 @@
           "activity_id": "1526085490"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "athlete_id": 31025759,
           "name": "Keith Burgoyne",
           "elapsed_time": 109,
@@ -97168,7 +97228,7 @@
           "activity_id": "4089702469"
         },
         {
-          "rank": 7,
+          "rank": 8,
           "athlete_id": 5881983,
           "name": "Alan Boguslawski",
           "elapsed_time": 110,
@@ -97180,7 +97240,7 @@
           "activity_id": "11607332948"
         },
         {
-          "rank": 8,
+          "rank": 9,
           "athlete_id": 372578,
           "name": "Paul McCloskey",
           "elapsed_time": 111,
@@ -97192,7 +97252,7 @@
           "activity_id": "20017953"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "athlete_id": 1310467,
           "name": "Mike Cousins",
           "elapsed_time": 112,
@@ -97204,7 +97264,7 @@
           "activity_id": "27331842"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 112,
@@ -97216,7 +97276,7 @@
           "activity_id": "306760087"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "athlete_id": 188840,
           "name": "Robin Carpenter",
           "elapsed_time": 112,
@@ -97228,7 +97288,7 @@
           "activity_id": "8545520304"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "athlete_id": 4229416,
           "name": "Kale Wenczel",
           "elapsed_time": 113,
@@ -97240,7 +97300,7 @@
           "activity_id": "373756864"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "athlete_id": 10122234,
           "name": "gehr Locke",
           "elapsed_time": 113,
@@ -97252,7 +97312,7 @@
           "activity_id": "397176215"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "athlete_id": 41466665,
           "name": "Craig Fitzgerald",
           "elapsed_time": 113,
@@ -97264,7 +97324,7 @@
           "activity_id": "11130808674"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 415286,
           "name": "Zach Veugen",
           "elapsed_time": 114,
@@ -97276,7 +97336,7 @@
           "activity_id": "13054721"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 2463230,
           "name": "Schuyler Lockwood",
           "elapsed_time": 114,
@@ -97288,7 +97348,7 @@
           "activity_id": "5970181468"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 1217161,
           "name": "Doug Guertin",
           "elapsed_time": 115,
@@ -97300,7 +97360,7 @@
           "activity_id": "52192722"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 1084543,
           "name": "Scott George",
           "elapsed_time": 115,
@@ -97312,7 +97372,7 @@
           "activity_id": "1952019727"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 10732017,
           "name": "Mark Protti",
           "elapsed_time": 115,
@@ -97324,7 +97384,7 @@
           "activity_id": "3322765412"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 56803670,
           "name": "Iggy .",
           "elapsed_time": 115,
@@ -97336,7 +97396,7 @@
           "activity_id": "5432287381"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 379177,
           "name": "Chris Prendergast",
           "elapsed_time": 115,
@@ -97348,7 +97408,7 @@
           "activity_id": "8545056895"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 4470513,
           "name": "Steve Scheirer",
           "elapsed_time": 116,
@@ -97360,7 +97420,7 @@
           "activity_id": "9552260533"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 1912596,
           "name": "Shawn Lakota",
           "elapsed_time": 116,
@@ -97372,7 +97432,7 @@
           "activity_id": "14079396879"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 4497,
           "name": "Jonathan O'Keeffe",
           "elapsed_time": 116,
@@ -97384,7 +97444,7 @@
           "activity_id": "18682561119"
         },
         {
-          "rank": 25,
+          "rank": 26,
           "athlete_id": 10231980,
           "name": "Jim Sullivan",
           "elapsed_time": 117,
@@ -97396,7 +97456,7 @@
           "activity_id": "346277602"
         },
         {
-          "rank": 25,
+          "rank": 26,
           "athlete_id": 1280082,
           "name": "Nathanael Kuzio",
           "elapsed_time": 117,
@@ -97408,7 +97468,7 @@
           "activity_id": "4243869045"
         },
         {
-          "rank": 25,
+          "rank": 26,
           "athlete_id": 87492708,
           "name": "Gerald Martin",
           "elapsed_time": 117,
@@ -97420,7 +97480,7 @@
           "activity_id": "19013150818"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 334394,
           "name": "Brian Donoghue",
           "elapsed_time": 118,
@@ -97432,7 +97492,7 @@
           "activity_id": "11284022"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 422842,
           "name": "Andrew Thompson",
           "elapsed_time": 118,
@@ -97444,7 +97504,7 @@
           "activity_id": "14543991"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 10258059,
           "name": "Max Rye",
           "elapsed_time": 118,
@@ -97456,7 +97516,7 @@
           "activity_id": "4371260135"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 2197,
           "name": "Justin Eichenlaub (Humanistic Coaching)",
           "elapsed_time": 118,
@@ -97468,7 +97528,7 @@
           "activity_id": "7510579232"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 56562543,
           "name": "Alex White",
           "elapsed_time": 118,
@@ -97480,7 +97540,7 @@
           "activity_id": "18388076209"
         },
         {
-          "rank": 33,
+          "rank": 34,
           "athlete_id": 412228,
           "name": "Half Hearted",
           "elapsed_time": 119,
@@ -97492,7 +97552,7 @@
           "activity_id": "10329947"
         },
         {
-          "rank": 33,
+          "rank": 34,
           "athlete_id": 15179953,
           "name": "Melissa Warwick",
           "elapsed_time": 119,
@@ -97504,7 +97564,7 @@
           "activity_id": "7367583507"
         },
         {
-          "rank": 33,
+          "rank": 34,
           "athlete_id": 136573,
           "name": "Andy Reagan",
           "elapsed_time": 119,
@@ -97516,7 +97576,7 @@
           "activity_id": "16479869942"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 802806,
           "name": "Bob Murphy",
           "elapsed_time": 120,
@@ -97528,7 +97588,7 @@
           "activity_id": "57203053"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 1998364,
           "name": "Jason \"JJ\" Hancock",
           "elapsed_time": 120,
@@ -97540,7 +97600,7 @@
           "activity_id": "306722436"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 614940,
           "name": "Sugar Hound",
           "elapsed_time": 120,
@@ -97552,7 +97612,7 @@
           "activity_id": "4045778356"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 15914403,
           "name": "Andy MacDonald",
           "elapsed_time": 120,
@@ -97562,18 +97622,6 @@
           "points": 0,
           "effort_id": "2815972568694977528",
           "activity_id": "5102387053"
-        },
-        {
-          "rank": 36,
-          "athlete_id": 129008249,
-          "name": "Owen Skorupski ",
-          "elapsed_time": 120,
-          "avg_watts": 9.616669654846191,
-          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
-          "badge": "premium",
-          "points": 0,
-          "effort_id": "3527750884764341756",
-          "activity_id": "19911692345"
         },
         {
           "rank": 41,
@@ -98943,6 +98991,18 @@
         },
         {
           "rank": 10,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 261,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150515706568",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 11,
           "athlete_id": 31614005,
           "name": "Dee McWilliams",
           "elapsed_time": 265,
@@ -98955,6 +99015,18 @@
         },
         {
           "rank": 11,
+          "athlete_id": 136573,
+          "name": "Andy Reagan",
+          "elapsed_time": 265,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548771965761267190",
+          "activity_id": "20703351233"
+        },
+        {
+          "rank": 13,
           "athlete_id": 200201,
           "name": "Alex B",
           "elapsed_time": 272,
@@ -98966,7 +99038,7 @@
           "activity_id": "11397245259"
         },
         {
-          "rank": 12,
+          "rank": 14,
           "athlete_id": 15379636,
           "name": "Todd Walker",
           "elapsed_time": 281,
@@ -98978,7 +99050,7 @@
           "activity_id": "12305897013"
         },
         {
-          "rank": 13,
+          "rank": 15,
           "athlete_id": 37375390,
           "name": "david mazzarese",
           "elapsed_time": 283,
@@ -98990,7 +99062,7 @@
           "activity_id": "16151569738"
         },
         {
-          "rank": 14,
+          "rank": 16,
           "athlete_id": 7252692,
           "name": "Adam S",
           "elapsed_time": 285,
@@ -99002,7 +99074,7 @@
           "activity_id": "11802804795"
         },
         {
-          "rank": 15,
+          "rank": 17,
           "athlete_id": 3179053,
           "name": "Jesse C",
           "elapsed_time": 290,
@@ -99014,7 +99086,7 @@
           "activity_id": "11486170776"
         },
         {
-          "rank": 16,
+          "rank": 18,
           "athlete_id": 5198373,
           "name": "Kurt Bahneman",
           "elapsed_time": 291,
@@ -99026,7 +99098,7 @@
           "activity_id": "9213830682"
         },
         {
-          "rank": 17,
+          "rank": 19,
           "athlete_id": 63934419,
           "name": "Amanda S",
           "elapsed_time": 302,
@@ -99038,7 +99110,7 @@
           "activity_id": "11549641145"
         },
         {
-          "rank": 18,
+          "rank": 20,
           "athlete_id": 3573571,
           "name": "Ethan Nedeau",
           "elapsed_time": 304,
@@ -99050,7 +99122,7 @@
           "activity_id": "11003886041"
         },
         {
-          "rank": 19,
+          "rank": 21,
           "athlete_id": 1070024,
           "name": "Mark  Buffone",
           "elapsed_time": 306,
@@ -99062,7 +99134,7 @@
           "activity_id": "9241568339"
         },
         {
-          "rank": 20,
+          "rank": 22,
           "athlete_id": 1003260,
           "name": "Eric Larsson",
           "elapsed_time": 311,
@@ -99074,7 +99146,7 @@
           "activity_id": "12001958221"
         },
         {
-          "rank": 21,
+          "rank": 23,
           "athlete_id": 2873637,
           "name": "Aaron Soules",
           "elapsed_time": 313,
@@ -99086,7 +99158,7 @@
           "activity_id": "14988982439"
         },
         {
-          "rank": 22,
+          "rank": 24,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 317,
@@ -99098,7 +99170,7 @@
           "activity_id": "9144147267"
         },
         {
-          "rank": 23,
+          "rank": 25,
           "athlete_id": 598075,
           "name": "Nick Rufe",
           "elapsed_time": 320,
@@ -99110,7 +99182,7 @@
           "activity_id": "10195964352"
         },
         {
-          "rank": 24,
+          "rank": 26,
           "athlete_id": 82571827,
           "name": "andrew stevens",
           "elapsed_time": 330,
@@ -99122,7 +99194,7 @@
           "activity_id": "9662606987"
         },
         {
-          "rank": 25,
+          "rank": 27,
           "athlete_id": 1159449,
           "name": "Brian Plummer",
           "elapsed_time": 349,
@@ -99134,7 +99206,7 @@
           "activity_id": "19382404935"
         },
         {
-          "rank": 26,
+          "rank": 28,
           "athlete_id": 162787178,
           "name": "Mark Conrad",
           "elapsed_time": 358,
@@ -99146,7 +99218,7 @@
           "activity_id": "19952481565"
         },
         {
-          "rank": 27,
+          "rank": 29,
           "athlete_id": 10838749,
           "name": "amy kemper",
           "elapsed_time": 361,
@@ -99158,7 +99230,7 @@
           "activity_id": "9310608420"
         },
         {
-          "rank": 28,
+          "rank": 30,
           "athlete_id": 40410823,
           "name": "Bill Laramee",
           "elapsed_time": 362,
@@ -99170,7 +99242,7 @@
           "activity_id": "10008989477"
         },
         {
-          "rank": 29,
+          "rank": 31,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 389,
@@ -99182,7 +99254,7 @@
           "activity_id": "12939624932"
         },
         {
-          "rank": 30,
+          "rank": 32,
           "athlete_id": 23283716,
           "name": "Dana Nelson",
           "elapsed_time": 392,
@@ -99194,7 +99266,7 @@
           "activity_id": "16594486452"
         },
         {
-          "rank": 31,
+          "rank": 33,
           "athlete_id": 82549391,
           "name": "Liam Fritz",
           "elapsed_time": 408,
@@ -99206,7 +99278,7 @@
           "activity_id": "12280908588"
         },
         {
-          "rank": 32,
+          "rank": 34,
           "athlete_id": 396440,
           "name": "Paul Gerstein",
           "elapsed_time": 452,
@@ -99218,7 +99290,7 @@
           "activity_id": "10104001592"
         },
         {
-          "rank": 33,
+          "rank": 35,
           "athlete_id": 18504326,
           "name": "Lindsey Plummer",
           "elapsed_time": 453,
@@ -99230,7 +99302,7 @@
           "activity_id": "14256527538"
         },
         {
-          "rank": 34,
+          "rank": 36,
           "athlete_id": 74570308,
           "name": "Clifford Wilkinson",
           "elapsed_time": 466,
@@ -99242,7 +99314,7 @@
           "activity_id": "10008692386"
         },
         {
-          "rank": 35,
+          "rank": 37,
           "athlete_id": 32436344,
           "name": "Donald Longley",
           "elapsed_time": 485,
@@ -99254,7 +99326,7 @@
           "activity_id": "8915079725"
         },
         {
-          "rank": 36,
+          "rank": 38,
           "athlete_id": 70734445,
           "name": "billy bob davis",
           "elapsed_time": 505,
@@ -99266,7 +99338,7 @@
           "activity_id": "9578278185"
         },
         {
-          "rank": 37,
+          "rank": 39,
           "athlete_id": 399375,
           "name": "Rick Gerstein",
           "elapsed_time": 513,
@@ -99278,7 +99350,7 @@
           "activity_id": "9101816413"
         },
         {
-          "rank": 38,
+          "rank": 40,
           "athlete_id": 1084543,
           "name": "Scott George",
           "elapsed_time": 530,
@@ -99290,7 +99362,7 @@
           "activity_id": "11449675600"
         },
         {
-          "rank": 39,
+          "rank": 41,
           "athlete_id": 18679963,
           "name": "Daniel Mazzarese",
           "elapsed_time": 549,
@@ -99302,7 +99374,7 @@
           "activity_id": "13211267135"
         },
         {
-          "rank": 40,
+          "rank": 42,
           "athlete_id": 827275,
           "name": "Ben Jankowski",
           "elapsed_time": 581,
@@ -99314,7 +99386,7 @@
           "activity_id": "10120828737"
         },
         {
-          "rank": 40,
+          "rank": 42,
           "athlete_id": 22755070,
           "name": "Brian Coppola",
           "elapsed_time": 581,
@@ -99326,7 +99398,7 @@
           "activity_id": "10120767103"
         },
         {
-          "rank": 42,
+          "rank": 44,
           "athlete_id": 46483452,
           "name": "phoebe gelbard",
           "elapsed_time": 583,
@@ -99338,7 +99410,7 @@
           "activity_id": "10120773623"
         },
         {
-          "rank": 43,
+          "rank": 45,
           "athlete_id": 38338824,
           "name": "Satchel Douglas",
           "elapsed_time": 603,
@@ -99350,7 +99422,7 @@
           "activity_id": "10091969412"
         },
         {
-          "rank": 44,
+          "rank": 46,
           "athlete_id": 34799528,
           "name": "Mat Lebowitz",
           "elapsed_time": 607,
@@ -99362,7 +99434,7 @@
           "activity_id": "9171956393"
         },
         {
-          "rank": 45,
+          "rank": 47,
           "athlete_id": 211078,
           "name": "Justin McMenamin",
           "elapsed_time": 724,
@@ -99963,7 +100035,7 @@
       "gross_gain": 0.0,
       "gross_loss": 103.4,
       "total_efforts": 2620,
-      "total_athletes": 646,
+      "total_athletes": 652,
       "difficulty": 90.0,
       "parent_segment_id": 7226136,
       "is_sub_segment": true,
@@ -103982,7 +104054,19 @@
           "activity_id": "5373292456"
         },
         {
-          "rank": 15,
+          "rank": 13,
+          "athlete_id": 16501177,
+          "name": "Stephen Arthur Cayer",
+          "elapsed_time": 35,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16501177/29714742/30/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548064632327572588",
+          "activity_id": "20679045946"
+        },
+        {
+          "rank": 16,
           "athlete_id": 552019,
           "name": "Chris Sammartano",
           "elapsed_time": 36,
@@ -103994,7 +104078,7 @@
           "activity_id": "10429838"
         },
         {
-          "rank": 15,
+          "rank": 16,
           "athlete_id": 2625193,
           "name": "Robert Schrader",
           "elapsed_time": 36,
@@ -104006,7 +104090,7 @@
           "activity_id": "658967537"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 2011839,
           "name": "Mitch Isaacson",
           "elapsed_time": 37,
@@ -104018,7 +104102,7 @@
           "activity_id": "120856347"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 6271059,
           "name": "Ryan DeGroot",
           "elapsed_time": 37,
@@ -104030,7 +104114,7 @@
           "activity_id": "191432708"
         },
         {
-          "rank": 17,
+          "rank": 18,
           "athlete_id": 18681483,
           "name": "George Eglesfield",
           "elapsed_time": 37,
@@ -104042,7 +104126,7 @@
           "activity_id": "6044185563"
         },
         {
-          "rank": 20,
+          "rank": 21,
           "athlete_id": 15379636,
           "name": "Todd Walker",
           "elapsed_time": 38,
@@ -104054,7 +104138,7 @@
           "activity_id": "5487313629"
         },
         {
-          "rank": 21,
+          "rank": 22,
           "athlete_id": 26838510,
           "name": "Tommy Servetas",
           "elapsed_time": 39,
@@ -104066,7 +104150,7 @@
           "activity_id": "5938904697"
         },
         {
-          "rank": 22,
+          "rank": 23,
           "athlete_id": 4512388,
           "name": "Nathan Roy",
           "elapsed_time": 44,
@@ -104078,7 +104162,7 @@
           "activity_id": "460808873"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 618768,
           "name": "tommy montovani",
           "elapsed_time": 45,
@@ -104090,7 +104174,7 @@
           "activity_id": "46999968"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 10789073,
           "name": "Akshat Dhankher",
           "elapsed_time": 45,
@@ -104102,7 +104186,7 @@
           "activity_id": "367671655"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 1013669,
           "name": "Andrew Tolopko",
           "elapsed_time": 45,
@@ -104114,7 +104198,7 @@
           "activity_id": "707263245"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 805290,
           "name": "Jason Weakley",
           "elapsed_time": 45,
@@ -104126,7 +104210,7 @@
           "activity_id": "3768307061"
         },
         {
-          "rank": 23,
+          "rank": 24,
           "athlete_id": 24705293,
           "name": "Miles Winston Gaddy Sr.",
           "elapsed_time": 45,
@@ -104138,7 +104222,7 @@
           "activity_id": "16013623210"
         },
         {
-          "rank": 28,
+          "rank": 29,
           "athlete_id": 3142193,
           "name": "Drew Best",
           "elapsed_time": 46,
@@ -104150,7 +104234,7 @@
           "activity_id": "2202550754"
         },
         {
-          "rank": 29,
+          "rank": 30,
           "athlete_id": 3899936,
           "name": "brian fitzgerald",
           "elapsed_time": 48,
@@ -104162,7 +104246,7 @@
           "activity_id": "2622607033"
         },
         {
-          "rank": 29,
+          "rank": 30,
           "athlete_id": 52257357,
           "name": "isaac hoeh",
           "elapsed_time": 48,
@@ -104174,7 +104258,7 @@
           "activity_id": "4361980593"
         },
         {
-          "rank": 31,
+          "rank": 32,
           "athlete_id": 2928336,
           "name": "Elijah Grundel",
           "elapsed_time": 49,
@@ -104186,7 +104270,7 @@
           "activity_id": "766828121"
         },
         {
-          "rank": 31,
+          "rank": 32,
           "athlete_id": 3179053,
           "name": "Jesse C",
           "elapsed_time": 49,
@@ -104198,7 +104282,7 @@
           "activity_id": "2900124731"
         },
         {
-          "rank": 33,
+          "rank": 34,
           "athlete_id": 5381197,
           "name": "Sean C",
           "elapsed_time": 53,
@@ -104210,7 +104294,7 @@
           "activity_id": "3853505788"
         },
         {
-          "rank": 34,
+          "rank": 35,
           "athlete_id": 6675534,
           "name": "Folnetti La Familia",
           "elapsed_time": 54,
@@ -104222,7 +104306,7 @@
           "activity_id": "614392178"
         },
         {
-          "rank": 34,
+          "rank": 35,
           "athlete_id": 118351362,
           "name": "Matthew Richardson",
           "elapsed_time": 54,
@@ -104234,7 +104318,7 @@
           "activity_id": "10318485478"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 4463985,
           "name": "Edward Redonnet",
           "elapsed_time": 55,
@@ -104246,7 +104330,7 @@
           "activity_id": "944080122"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 19494520,
           "name": "Charlie Merrick",
           "elapsed_time": 55,
@@ -104258,7 +104342,7 @@
           "activity_id": "2373305438"
         },
         {
-          "rank": 38,
+          "rank": 39,
           "athlete_id": 5191199,
           "name": "Tom Beyer",
           "elapsed_time": 56,
@@ -104270,7 +104354,7 @@
           "activity_id": "2373816034"
         },
         {
-          "rank": 38,
+          "rank": 39,
           "athlete_id": 10732017,
           "name": "Mark Protti",
           "elapsed_time": 56,
@@ -104282,7 +104366,7 @@
           "activity_id": "3602712620"
         },
         {
-          "rank": 38,
+          "rank": 39,
           "athlete_id": 44948118,
           "name": "David Bugbee",
           "elapsed_time": 56,
@@ -104294,7 +104378,7 @@
           "activity_id": "7732467549"
         },
         {
-          "rank": 41,
+          "rank": 42,
           "athlete_id": 193722,
           "name": "Peter Crowley",
           "elapsed_time": 57,
@@ -104306,7 +104390,7 @@
           "activity_id": "791679003"
         },
         {
-          "rank": 41,
+          "rank": 42,
           "athlete_id": 22571808,
           "name": "Joey Green",
           "elapsed_time": 57,
@@ -104318,7 +104402,7 @@
           "activity_id": "5862171794"
         },
         {
-          "rank": 41,
+          "rank": 42,
           "athlete_id": 21286575,
           "name": "Clif Read",
           "elapsed_time": 57,
@@ -104330,7 +104414,7 @@
           "activity_id": "18776044164"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 3383644,
           "name": "Drew Jett",
           "elapsed_time": 58,
@@ -104342,7 +104426,7 @@
           "activity_id": "346236744"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 31614005,
           "name": "Dee McWilliams",
           "elapsed_time": 58,
@@ -104354,7 +104438,7 @@
           "activity_id": "2668023670"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 3181736,
           "name": "J W",
           "elapsed_time": 58,
@@ -104366,7 +104450,7 @@
           "activity_id": "3768360350"
         },
         {
-          "rank": 47,
+          "rank": 48,
           "athlete_id": 34511451,
           "name": "Noah Vamosy",
           "elapsed_time": 59,
@@ -104378,7 +104462,7 @@
           "activity_id": "5092765793"
         },
         {
-          "rank": 47,
+          "rank": 48,
           "athlete_id": 124403720,
           "name": "B.  Hite",
           "elapsed_time": 59,
@@ -104390,7 +104474,7 @@
           "activity_id": "11952452085"
         },
         {
-          "rank": 47,
+          "rank": 48,
           "athlete_id": 163382432,
           "name": "Silas Yesu",
           "elapsed_time": 59,
@@ -104402,7 +104486,7 @@
           "activity_id": "15987010853"
         },
         {
-          "rank": 50,
+          "rank": 51,
           "athlete_id": 17152059,
           "name": "Peter Gagarin",
           "elapsed_time": 60,
@@ -104414,7 +104498,7 @@
           "activity_id": "5944180318"
         },
         {
-          "rank": 50,
+          "rank": 51,
           "athlete_id": 5618658,
           "name": "Elise Innes",
           "elapsed_time": 60,
@@ -104426,7 +104510,7 @@
           "activity_id": "11714317110"
         },
         {
-          "rank": 52,
+          "rank": 53,
           "athlete_id": 2463230,
           "name": "Schuyler Lockwood",
           "elapsed_time": 61,
@@ -104438,7 +104522,7 @@
           "activity_id": "6997910816"
         },
         {
-          "rank": 52,
+          "rank": 53,
           "athlete_id": 57448475,
           "name": "Ciaran Sleeper",
           "elapsed_time": 61,
@@ -104450,7 +104534,7 @@
           "activity_id": "7357584720"
         },
         {
-          "rank": 52,
+          "rank": 53,
           "athlete_id": 86431247,
           "name": "Owen F",
           "elapsed_time": 61,
@@ -104462,7 +104546,7 @@
           "activity_id": "10070011300"
         },
         {
-          "rank": 55,
+          "rank": 56,
           "athlete_id": 66702342,
           "name": "Eben Holderness",
           "elapsed_time": 62,
@@ -104474,7 +104558,7 @@
           "activity_id": "19231342961"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 160177,
           "name": "John Thibbitts",
           "elapsed_time": 63,
@@ -104486,7 +104570,7 @@
           "activity_id": "56475014"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 1003260,
           "name": "Eric Larsson",
           "elapsed_time": 63,
@@ -104498,7 +104582,7 @@
           "activity_id": "386195003"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 4183614,
           "name": "Kim Nedeau",
           "elapsed_time": 63,
@@ -104510,7 +104594,7 @@
           "activity_id": "2055415853"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 2397202,
           "name": "Brian Katzman",
           "elapsed_time": 63,
@@ -104522,7 +104606,7 @@
           "activity_id": "2786896746"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 3285220,
           "name": "Karl Knapp",
           "elapsed_time": 63,
@@ -104534,7 +104618,7 @@
           "activity_id": "4044673730"
         },
         {
-          "rank": 56,
+          "rank": 57,
           "athlete_id": 38883757,
           "name": "Bill Arduser",
           "elapsed_time": 63,
@@ -104546,7 +104630,7 @@
           "activity_id": "12519131519"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 10564805,
           "name": "Nicholas Guarnaccia",
           "elapsed_time": 64,
@@ -104558,7 +104642,7 @@
           "activity_id": "3869930045"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 127309,
           "name": "Nathaniel Williams",
           "elapsed_time": 64,
@@ -104570,7 +104654,7 @@
           "activity_id": "4868553664"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 266609,
           "name": "David Lemery",
           "elapsed_time": 64,
@@ -104582,7 +104666,7 @@
           "activity_id": "5323538780"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 56930926,
           "name": "Ron Jacobs",
           "elapsed_time": 64,
@@ -104594,7 +104678,7 @@
           "activity_id": "18058015137"
         },
         {
-          "rank": 66,
+          "rank": 67,
           "athlete_id": 1193609,
           "name": "Mary Guertin",
           "elapsed_time": 65,
@@ -104606,7 +104690,7 @@
           "activity_id": "4152218761"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 10838749,
           "name": "amy kemper",
           "elapsed_time": 66,
@@ -104618,7 +104702,7 @@
           "activity_id": "1721277620"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 68189074,
           "name": "Alan Kuusisto",
           "elapsed_time": 66,
@@ -104630,7 +104714,7 @@
           "activity_id": "18950513595"
         },
         {
-          "rank": 69,
+          "rank": 70,
           "athlete_id": 104927744,
           "name": "Michaela Thomas",
           "elapsed_time": 67,
@@ -104642,7 +104726,7 @@
           "activity_id": "20453549174"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 12036884,
           "name": "John P",
           "elapsed_time": 68,
@@ -104654,7 +104738,7 @@
           "activity_id": "2900113879"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 43577409,
           "name": "Ellen Perrella",
           "elapsed_time": 69,
@@ -104666,7 +104750,7 @@
           "activity_id": "6855853045"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 69,
@@ -104678,7 +104762,7 @@
           "activity_id": "9152844798"
         },
         {
-          "rank": 71,
+          "rank": 72,
           "athlete_id": 2075926,
           "name": "Eddie Zelonish",
           "elapsed_time": 69,
@@ -104690,7 +104774,7 @@
           "activity_id": "14860047846"
         },
         {
-          "rank": 74,
+          "rank": 75,
           "athlete_id": 27955,
           "name": "Peter Gill",
           "elapsed_time": 71,
@@ -104702,7 +104786,7 @@
           "activity_id": "2773999890"
         },
         {
-          "rank": 74,
+          "rank": 75,
           "athlete_id": 200201,
           "name": "Alex B",
           "elapsed_time": 71,
@@ -104714,7 +104798,7 @@
           "activity_id": "5503707549"
         },
         {
-          "rank": 74,
+          "rank": 75,
           "athlete_id": 129608433,
           "name": "Andrew Metz",
           "elapsed_time": 71,
@@ -104726,19 +104810,7 @@
           "activity_id": "11973130090"
         },
         {
-          "rank": 74,
-          "athlete_id": 16501177,
-          "name": "Stephen Arthur Cayer",
-          "elapsed_time": 71,
-          "avg_watts": null,
-          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16501177/29714742/30/large.jpg",
-          "badge": "premium",
-          "points": 0,
-          "effort_id": "3342248367072765108",
-          "activity_id": "14052415453"
-        },
-        {
-          "rank": 74,
+          "rank": 75,
           "athlete_id": 199551820,
           "name": "Jason Duncan",
           "elapsed_time": 71,
@@ -105029,7 +105101,7 @@
       "gross_gain": 20.2,
       "gross_loss": 0.0,
       "total_efforts": 1019,
-      "total_athletes": 414,
+      "total_athletes": 420,
       "difficulty": 84.5,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -109328,7 +109400,19 @@
           "activity_id": "6128704311"
         },
         {
-          "rank": 30,
+          "rank": 27,
+          "athlete_id": 12355103,
+          "name": "Lucas Barad",
+          "elapsed_time": 142,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3547047261817155096",
+          "activity_id": "20641536508"
+        },
+        {
+          "rank": 31,
           "athlete_id": 9268427,
           "name": "Luke Protti",
           "elapsed_time": 143,
@@ -109340,7 +109424,7 @@
           "activity_id": "549550174"
         },
         {
-          "rank": 30,
+          "rank": 31,
           "athlete_id": 3277761,
           "name": "Chris Patstone",
           "elapsed_time": 143,
@@ -109352,7 +109436,7 @@
           "activity_id": "549670479"
         },
         {
-          "rank": 30,
+          "rank": 31,
           "athlete_id": 9131711,
           "name": "Riley Frackleton",
           "elapsed_time": 143,
@@ -109364,7 +109448,7 @@
           "activity_id": "2011131178"
         },
         {
-          "rank": 30,
+          "rank": 31,
           "athlete_id": 6893679,
           "name": "Paul Gebers",
           "elapsed_time": 143,
@@ -109376,7 +109460,7 @@
           "activity_id": "5695801379"
         },
         {
-          "rank": 30,
+          "rank": 31,
           "athlete_id": 56930926,
           "name": "Ron Jacobs",
           "elapsed_time": 143,
@@ -109388,7 +109472,7 @@
           "activity_id": "15169486634"
         },
         {
-          "rank": 35,
+          "rank": 36,
           "athlete_id": 189571,
           "name": "Andrew Pazmany",
           "elapsed_time": 144,
@@ -109400,7 +109484,7 @@
           "activity_id": "24901384"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 4512388,
           "name": "Nathan Roy",
           "elapsed_time": 145,
@@ -109412,7 +109496,7 @@
           "activity_id": "395813506"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 6003495,
           "name": "Doug Wilson",
           "elapsed_time": 145,
@@ -109424,7 +109508,7 @@
           "activity_id": "9969274987"
         },
         {
-          "rank": 36,
+          "rank": 37,
           "athlete_id": 1479989,
           "name": "Nick Tooker",
           "elapsed_time": 145,
@@ -109436,7 +109520,7 @@
           "activity_id": "12408985244"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 2011839,
           "name": "Mitch Isaacson",
           "elapsed_time": 146,
@@ -109448,7 +109532,7 @@
           "activity_id": "132040256"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 970619,
           "name": "C Z",
           "elapsed_time": 146,
@@ -109460,7 +109544,7 @@
           "activity_id": "222498177"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 5178077,
           "name": "John Warwick",
           "elapsed_time": 146,
@@ -109472,7 +109556,7 @@
           "activity_id": "516471633"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 70782725,
           "name": "Jason Duncan",
           "elapsed_time": 146,
@@ -109484,7 +109568,7 @@
           "activity_id": "9438521706"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 6550711,
           "name": "Dan Giroux",
           "elapsed_time": 146,
@@ -109496,7 +109580,7 @@
           "activity_id": "9969273619"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 376782,
           "name": "Scott Yarosh",
           "elapsed_time": 147,
@@ -109508,7 +109592,7 @@
           "activity_id": "265091248"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 38423041,
           "name": "Carsten Redenz",
           "elapsed_time": 147,
@@ -109520,7 +109604,7 @@
           "activity_id": "9758273120"
         },
         {
-          "rank": 46,
+          "rank": 47,
           "athlete_id": 2932842,
           "name": "Mark Wendolowski",
           "elapsed_time": 148,
@@ -109532,7 +109616,7 @@
           "activity_id": "265163649"
         },
         {
-          "rank": 46,
+          "rank": 47,
           "athlete_id": 5279027,
           "name": "David Goodwin",
           "elapsed_time": 148,
@@ -109544,7 +109628,7 @@
           "activity_id": "607434894"
         },
         {
-          "rank": 48,
+          "rank": 49,
           "athlete_id": 2687257,
           "name": "Justin Lindine",
           "elapsed_time": 149,
@@ -109556,7 +109640,7 @@
           "activity_id": "228200392"
         },
         {
-          "rank": 48,
+          "rank": 49,
           "athlete_id": 3045129,
           "name": "Nathan Wilson",
           "elapsed_time": 149,
@@ -109568,7 +109652,7 @@
           "activity_id": "3255423815"
         },
         {
-          "rank": 48,
+          "rank": 49,
           "athlete_id": 90192605,
           "name": "Jake Steve",
           "elapsed_time": 149,
@@ -109580,7 +109664,7 @@
           "activity_id": "9126393806"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 10122234,
           "name": "gehr Locke",
           "elapsed_time": 151,
@@ -109592,7 +109676,7 @@
           "activity_id": "425302204"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 2829147,
           "name": "Patrick Pezzati",
           "elapsed_time": 151,
@@ -109604,7 +109688,7 @@
           "activity_id": "4111448176"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 15445482,
           "name": "Nino F",
           "elapsed_time": 151,
@@ -109616,7 +109700,7 @@
           "activity_id": "5905412409"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 34511451,
           "name": "Noah Vamosy",
           "elapsed_time": 151,
@@ -109628,7 +109712,7 @@
           "activity_id": "5917511309"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 38089349,
           "name": "Ryan Dupuis ",
           "elapsed_time": 151,
@@ -109640,7 +109724,7 @@
           "activity_id": "6146598482"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 17351606,
           "name": "Casey Brown",
           "elapsed_time": 151,
@@ -109652,7 +109736,7 @@
           "activity_id": "12479260337"
         },
         {
-          "rank": 51,
+          "rank": 52,
           "athlete_id": 647258,
           "name": "Carlos Nieto",
           "elapsed_time": 151,
@@ -109664,7 +109748,7 @@
           "activity_id": "15825265913"
         },
         {
-          "rank": 58,
+          "rank": 59,
           "athlete_id": 987273,
           "name": "Patrick Staples",
           "elapsed_time": 152,
@@ -109676,7 +109760,7 @@
           "activity_id": "2017117881"
         },
         {
-          "rank": 58,
+          "rank": 59,
           "athlete_id": 17071558,
           "name": "Timothy Cote",
           "elapsed_time": 152,
@@ -109688,7 +109772,7 @@
           "activity_id": "3483829783"
         },
         {
-          "rank": 58,
+          "rank": 59,
           "athlete_id": 22726962,
           "name": "Rigo Rodriguez",
           "elapsed_time": 152,
@@ -109700,7 +109784,7 @@
           "activity_id": "7298135894"
         },
         {
-          "rank": 58,
+          "rank": 59,
           "athlete_id": 3599077,
           "name": "Carsten Braun",
           "elapsed_time": 152,
@@ -109712,7 +109796,7 @@
           "activity_id": "11739021259"
         },
         {
-          "rank": 58,
+          "rank": 59,
           "athlete_id": 103762918,
           "name": "Nick L",
           "elapsed_time": 152,
@@ -109724,7 +109808,7 @@
           "activity_id": "18536668449"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 6075127,
           "name": "Mike Moraites",
           "elapsed_time": 153,
@@ -109736,7 +109820,7 @@
           "activity_id": "591149963"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 15179953,
           "name": "Melissa Warwick",
           "elapsed_time": 153,
@@ -109748,7 +109832,7 @@
           "activity_id": "10892391703"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 16089617,
           "name": "Abe P",
           "elapsed_time": 153,
@@ -109760,7 +109844,7 @@
           "activity_id": "7292814492"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 19042841,
           "name": "Josh Liddy",
           "elapsed_time": 153,
@@ -109772,7 +109856,7 @@
           "activity_id": "9515267739"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 40014521,
           "name": "Josh Tostado",
           "elapsed_time": 153,
@@ -109784,7 +109868,7 @@
           "activity_id": "11825479339"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 621654,
           "name": "Dixon Shay",
           "elapsed_time": 153,
@@ -109796,7 +109880,7 @@
           "activity_id": "18264860500"
         },
         {
-          "rank": 63,
+          "rank": 64,
           "athlete_id": 34894418,
           "name": "Chris Poplawski",
           "elapsed_time": 153,
@@ -109808,7 +109892,7 @@
           "activity_id": "19274854759"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 4518384,
           "name": "Neal Bachmann",
           "elapsed_time": 154,
@@ -109820,7 +109904,7 @@
           "activity_id": "2083663632"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 10732017,
           "name": "Mark Protti",
           "elapsed_time": 154,
@@ -109832,7 +109916,7 @@
           "activity_id": "3432295617"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 996720,
           "name": "Ryan Davis",
           "elapsed_time": 154,
@@ -109844,7 +109928,7 @@
           "activity_id": "5905922029"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 18267600,
           "name": "Cooper  E",
           "elapsed_time": 154,
@@ -109856,7 +109940,7 @@
           "activity_id": "6930719888"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 5629797,
           "name": "Will Carlino",
           "elapsed_time": 154,
@@ -109868,7 +109952,7 @@
           "activity_id": "8861221707"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 1034100,
           "name": "D Joseph Jerry",
           "elapsed_time": 154,
@@ -109880,7 +109964,7 @@
           "activity_id": "9545389355"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 52056900,
           "name": "Thomas Leete",
           "elapsed_time": 154,
@@ -109892,7 +109976,7 @@
           "activity_id": "9742799749"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 154,
@@ -109904,7 +109988,7 @@
           "activity_id": "9982221117"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 618768,
           "name": "tommy montovani",
           "elapsed_time": 155,
@@ -109916,7 +110000,7 @@
           "activity_id": "222126295"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 3142193,
           "name": "Drew Best",
           "elapsed_time": 155,
@@ -109928,7 +110012,7 @@
           "activity_id": "3808244978"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 155,
@@ -109940,7 +110024,7 @@
           "activity_id": "4060629640"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 22891476,
           "name": "Jakob Oddleifson",
           "elapsed_time": 155,
@@ -109952,7 +110036,7 @@
           "activity_id": "8783883386"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 15914403,
           "name": "Andy MacDonald",
           "elapsed_time": 155,
@@ -109964,7 +110048,7 @@
           "activity_id": "9862884867"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 196127,
           "name": "Grant Van Horn",
           "elapsed_time": 155,
@@ -109976,7 +110060,7 @@
           "activity_id": "12017960172"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 23513066,
           "name": "Sean McBeath",
           "elapsed_time": 155,
@@ -109988,7 +110072,7 @@
           "activity_id": "15492839797"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 47004055,
           "name": "Marc Littman",
           "elapsed_time": 155,
@@ -110000,7 +110084,7 @@
           "activity_id": "15490507374"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 2670037,
           "name": "John McCarthy",
           "elapsed_time": 156,
@@ -110012,7 +110096,7 @@
           "activity_id": "70457326"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 6027769,
           "name": "Andy Neuman",
           "elapsed_time": 156,
@@ -110024,7 +110108,7 @@
           "activity_id": "3965885722"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 24603218,
           "name": "Caleb Smith ",
           "elapsed_time": 156,
@@ -110036,7 +110120,7 @@
           "activity_id": "8783315702"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 21561536,
           "name": "Seamus Gahan",
           "elapsed_time": 156,
@@ -110048,7 +110132,7 @@
           "activity_id": "9502449693"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 4497,
           "name": "Jonathan O'Keeffe",
           "elapsed_time": 157,
@@ -110060,7 +110144,7 @@
           "activity_id": "770036458"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 26369948,
           "name": "Brian Rutter",
           "elapsed_time": 157,
@@ -110072,7 +110156,7 @@
           "activity_id": "1295761527"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 10115712,
           "name": "Ben Carlis",
           "elapsed_time": 157,
@@ -110084,7 +110168,7 @@
           "activity_id": "3918615213"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 24805516,
           "name": "E_ .P ",
           "elapsed_time": 157,
@@ -110096,7 +110180,7 @@
           "activity_id": "3965869600"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 9169931,
           "name": "Cameron Blackman",
           "elapsed_time": 157,
@@ -110108,7 +110192,7 @@
           "activity_id": "7974304277"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 5944231,
           "name": "Daniel Lass",
           "elapsed_time": 157,
@@ -110120,7 +110204,7 @@
           "activity_id": "9737914753"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 5518230,
           "name": "Erik Nedeau - Wheelworks",
           "elapsed_time": 158,
@@ -110132,7 +110216,7 @@
           "activity_id": "3821231963"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 485753,
           "name": "eric petersen",
           "elapsed_time": 158,
@@ -110144,7 +110228,7 @@
           "activity_id": "6121844486"
         },
         {
-          "rank": 98,
+          "rank": 99,
           "athlete_id": 18725059,
           "name": "Bill Pete",
           "elapsed_time": 159,
@@ -110156,7 +110240,7 @@
           "activity_id": "1844094983"
         },
         {
-          "rank": 98,
+          "rank": 99,
           "athlete_id": 13200719,
           "name": "Martin Miller",
           "elapsed_time": 159,
@@ -110166,18 +110250,6 @@
           "points": 0,
           "effort_id": "3508506161810177020",
           "activity_id": "19177949000"
-        },
-        {
-          "rank": 100,
-          "athlete_id": 297948,
-          "name": "Todd Cochi",
-          "elapsed_time": 160,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3355732459998205242",
-          "activity_id": "736727812"
         }
       ]
     },
@@ -110195,7 +110267,7 @@
       "gross_gain": 28.7,
       "gross_loss": 7.5,
       "total_efforts": 724,
-      "total_athletes": 366,
+      "total_athletes": 371,
       "difficulty": 79.2,
       "parent_segment_id": 39674721,
       "is_sub_segment": true,
@@ -113667,7 +113739,7 @@
       "gross_gain": 4.4,
       "gross_loss": 4.6,
       "total_efforts": 3449,
-      "total_athletes": 598,
+      "total_athletes": 602,
       "difficulty": 75.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
@@ -117138,6 +117210,30 @@
           "points": 0,
           "effort_id": "60612152807",
           "activity_id": "1904704250"
+        },
+        {
+          "rank": 123,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 618,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150518197960",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 123,
+          "athlete_id": 136573,
+          "name": "Andy Reagan",
+          "elapsed_time": 618,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548771965763736054",
+          "activity_id": "20703351233"
         }
       ]
     },
@@ -120121,6 +120217,18 @@
         },
         {
           "rank": 61,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 269,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150515333832",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 62,
           "athlete_id": 19494520,
           "name": "Charlie Merrick",
           "elapsed_time": 271,
@@ -120132,7 +120240,7 @@
           "activity_id": "15610156951"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 40710795,
           "name": "Justin Rathbun",
           "elapsed_time": 274,
@@ -120144,7 +120252,7 @@
           "activity_id": "3753934739"
         },
         {
-          "rank": 62,
+          "rank": 63,
           "athlete_id": 2411043,
           "name": "Matt Smith",
           "elapsed_time": 274,
@@ -120156,7 +120264,7 @@
           "activity_id": "6059938954"
         },
         {
-          "rank": 64,
+          "rank": 65,
           "athlete_id": 5279027,
           "name": "David Goodwin",
           "elapsed_time": 276,
@@ -120168,7 +120276,7 @@
           "activity_id": "413726273"
         },
         {
-          "rank": 64,
+          "rank": 65,
           "athlete_id": 66796911,
           "name": "John Roche",
           "elapsed_time": 276,
@@ -120180,7 +120288,7 @@
           "activity_id": "6379210511"
         },
         {
-          "rank": 64,
+          "rank": 65,
           "athlete_id": 726900,
           "name": "scott smith",
           "elapsed_time": 276,
@@ -120192,7 +120300,7 @@
           "activity_id": "9642175296"
         },
         {
-          "rank": 67,
+          "rank": 68,
           "athlete_id": 14451872,
           "name": "Justin Santoro",
           "elapsed_time": 278,
@@ -120204,7 +120312,7 @@
           "activity_id": "5905953373"
         },
         {
-          "rank": 68,
+          "rank": 69,
           "athlete_id": 396440,
           "name": "Paul Gerstein",
           "elapsed_time": 279,
@@ -120216,7 +120324,7 @@
           "activity_id": "5098195008"
         },
         {
-          "rank": 68,
+          "rank": 69,
           "athlete_id": 755736,
           "name": "Sam Veggeberg",
           "elapsed_time": 279,
@@ -120228,7 +120336,7 @@
           "activity_id": "16537890538"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 34799528,
           "name": "Mat Lebowitz",
           "elapsed_time": 282,
@@ -120240,7 +120348,7 @@
           "activity_id": "3484698494"
         },
         {
-          "rank": 70,
+          "rank": 71,
           "athlete_id": 18482323,
           "name": "Fred Meyer",
           "elapsed_time": 282,
@@ -120252,7 +120360,7 @@
           "activity_id": "5281222488"
         },
         {
-          "rank": 72,
+          "rank": 73,
           "athlete_id": 86797025,
           "name": "Phin pyecroft",
           "elapsed_time": 283,
@@ -120264,7 +120372,7 @@
           "activity_id": "5506508035"
         },
         {
-          "rank": 73,
+          "rank": 74,
           "athlete_id": 2416877,
           "name": "Tyler Prince",
           "elapsed_time": 284,
@@ -120276,7 +120384,7 @@
           "activity_id": "3474727111"
         },
         {
-          "rank": 73,
+          "rank": 74,
           "athlete_id": 7252692,
           "name": "Adam S",
           "elapsed_time": 284,
@@ -120288,7 +120396,7 @@
           "activity_id": "15720785945"
         },
         {
-          "rank": 75,
+          "rank": 76,
           "athlete_id": 28551863,
           "name": "Melissa Giroux",
           "elapsed_time": 286,
@@ -120300,7 +120408,7 @@
           "activity_id": "2852382668"
         },
         {
-          "rank": 76,
+          "rank": 77,
           "athlete_id": 427907,
           "name": "Brad Knipes",
           "elapsed_time": 287,
@@ -120312,7 +120420,7 @@
           "activity_id": "7110195326"
         },
         {
-          "rank": 77,
+          "rank": 78,
           "athlete_id": 2338419,
           "name": "Darren Wilkes",
           "elapsed_time": 288,
@@ -120324,7 +120432,7 @@
           "activity_id": "3753950300"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 1021841,
           "name": "Jacob Roy",
           "elapsed_time": 292,
@@ -120336,7 +120444,7 @@
           "activity_id": "414331651"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 14161358,
           "name": "Brian Dussault",
           "elapsed_time": 292,
@@ -120348,7 +120456,7 @@
           "activity_id": "9640751029"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 20071154,
           "name": "Jason Kahn",
           "elapsed_time": 294,
@@ -120360,7 +120468,7 @@
           "activity_id": "6059941195"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 51423552,
           "name": "River Strong",
           "elapsed_time": 294,
@@ -120372,7 +120480,7 @@
           "activity_id": "9964663508"
         },
         {
-          "rank": 82,
+          "rank": 83,
           "athlete_id": 66702069,
           "name": "Matt Tudryn",
           "elapsed_time": 295,
@@ -120384,7 +120492,7 @@
           "activity_id": "4185973386"
         },
         {
-          "rank": 83,
+          "rank": 84,
           "athlete_id": 3383644,
           "name": "Drew Jett",
           "elapsed_time": 297,
@@ -120396,7 +120504,7 @@
           "activity_id": "346236744"
         },
         {
-          "rank": 83,
+          "rank": 84,
           "athlete_id": 3372227,
           "name": "Sam Whitney",
           "elapsed_time": 297,
@@ -120408,7 +120516,7 @@
           "activity_id": "3645300897"
         },
         {
-          "rank": 85,
+          "rank": 86,
           "athlete_id": 14175441,
           "name": "Santiago Vidales",
           "elapsed_time": 298,
@@ -120420,7 +120528,7 @@
           "activity_id": "10007672848"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 70492998,
           "name": "Lucas Griffin",
           "elapsed_time": 307,
@@ -120432,7 +120540,7 @@
           "activity_id": "5825614460"
         },
         {
-          "rank": 87,
+          "rank": 88,
           "athlete_id": 4512388,
           "name": "Nathan Roy",
           "elapsed_time": 308,
@@ -120444,7 +120552,7 @@
           "activity_id": "414987296"
         },
         {
-          "rank": 88,
+          "rank": 89,
           "athlete_id": 2075392,
           "name": "Alex Kahn",
           "elapsed_time": 314,
@@ -120456,7 +120564,7 @@
           "activity_id": "2042756427"
         },
         {
-          "rank": 89,
+          "rank": 90,
           "athlete_id": 35602805,
           "name": "Wendy Rowdybush",
           "elapsed_time": 316,
@@ -120468,7 +120576,7 @@
           "activity_id": "3694405189"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 3699755,
           "name": "james bradbury",
           "elapsed_time": 322,
@@ -120480,7 +120588,7 @@
           "activity_id": "20533514312"
         },
         {
-          "rank": 91,
+          "rank": 92,
           "athlete_id": 399375,
           "name": "Rick Gerstein",
           "elapsed_time": 323,
@@ -120492,7 +120600,7 @@
           "activity_id": "6474342006"
         },
         {
-          "rank": 92,
+          "rank": 93,
           "athlete_id": 66320635,
           "name": "Chris Fisher",
           "elapsed_time": 327,
@@ -120504,7 +120612,7 @@
           "activity_id": "10068329970"
         },
         {
-          "rank": 93,
+          "rank": 94,
           "athlete_id": 29406917,
           "name": "Steve  Taylor",
           "elapsed_time": 329,
@@ -120516,7 +120624,7 @@
           "activity_id": "11714126066"
         },
         {
-          "rank": 94,
+          "rank": 95,
           "athlete_id": 2258377,
           "name": "Don Chiulli",
           "elapsed_time": 331,
@@ -120528,7 +120636,7 @@
           "activity_id": "6473936378"
         },
         {
-          "rank": 95,
+          "rank": 96,
           "athlete_id": 8272779,
           "name": "Kalle Jahn",
           "elapsed_time": 341,
@@ -120540,7 +120648,7 @@
           "activity_id": "11557246821"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 3285220,
           "name": "Karl Knapp",
           "elapsed_time": 348,
@@ -120552,7 +120660,7 @@
           "activity_id": "5167110643"
         },
         {
-          "rank": 97,
+          "rank": 98,
           "athlete_id": 431857,
           "name": "Brion van Over",
           "elapsed_time": 360,
@@ -120564,7 +120672,7 @@
           "activity_id": "5199088594"
         },
         {
-          "rank": 98,
+          "rank": 99,
           "athlete_id": 126935961,
           "name": "Ian Marsh",
           "elapsed_time": 373,
@@ -120576,7 +120684,7 @@
           "activity_id": "12948529202"
         },
         {
-          "rank": 99,
+          "rank": 100,
           "athlete_id": 7575714,
           "name": "Ben Algeroy",
           "elapsed_time": 381,
@@ -120586,18 +120694,6 @@
           "points": 0,
           "effort_id": "2712338636790940410",
           "activity_id": "1707101732"
-        },
-        {
-          "rank": 100,
-          "athlete_id": 81362910,
-          "name": "james pettengill",
-          "elapsed_time": 403,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "3003448980738407400",
-          "activity_id": "7781873553"
         }
       ]
     },
@@ -124005,6 +124101,18 @@
         },
         {
           "rank": 95,
+          "athlete_id": 950725,
+          "name": "Kait Kehoe",
+          "elapsed_time": 559,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/950725/6433582/3/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3549185084403949030",
+          "activity_id": "20717349000"
+        },
+        {
+          "rank": 96,
           "athlete_id": 45620551,
           "name": "Martin Hutchinson",
           "elapsed_time": 561,
@@ -124016,7 +124124,7 @@
           "activity_id": "3532725931"
         },
         {
-          "rank": 96,
+          "rank": 97,
           "athlete_id": 21610855,
           "name": "Sam Shoolman",
           "elapsed_time": 562,
@@ -124028,7 +124136,7 @@
           "activity_id": "5723470961"
         },
         {
-          "rank": 97,
+          "rank": 98,
           "athlete_id": 1755366,
           "name": "Huckleberry Shredz",
           "elapsed_time": 603,
@@ -124040,7 +124148,7 @@
           "activity_id": "8039299270"
         },
         {
-          "rank": 98,
+          "rank": 99,
           "athlete_id": 63934419,
           "name": "Amanda S",
           "elapsed_time": 678,
@@ -124052,7 +124160,7 @@
           "activity_id": "4924363538"
         },
         {
-          "rank": 99,
+          "rank": 100,
           "athlete_id": 3285220,
           "name": "Karl Knapp",
           "elapsed_time": 695,
@@ -124062,18 +124170,6 @@
           "points": 0,
           "effort_id": "2804768437232315014",
           "activity_id": "4924338082"
-        },
-        {
-          "rank": 100,
-          "athlete_id": 727821,
-          "name": "Dan K",
-          "elapsed_time": 700,
-          "avg_watts": null,
-          "avatar_url": null,
-          "badge": null,
-          "points": 0,
-          "effort_id": "2993957606882873250",
-          "activity_id": "7638331471"
         }
       ]
     },
@@ -124091,7 +124187,7 @@
       "gross_gain": 0.6,
       "gross_loss": 48.5,
       "total_efforts": 2725,
-      "total_athletes": 649,
+      "total_athletes": 655,
       "difficulty": 65.9,
       "parent_segment_id": 7226136,
       "is_sub_segment": true,
@@ -132164,7 +132260,19 @@
           "activity_id": "7286287087"
         },
         {
-          "rank": 37,
+          "rank": 36,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 352,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150518608584",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 38,
           "athlete_id": 14451872,
           "name": "Justin Santoro",
           "elapsed_time": 385,
@@ -132176,7 +132284,7 @@
           "activity_id": "7127132162"
         },
         {
-          "rank": 38,
+          "rank": 39,
           "athlete_id": 440055,
           "name": "Jared Newell",
           "elapsed_time": 391,
@@ -132188,7 +132296,7 @@
           "activity_id": "8172182438"
         },
         {
-          "rank": 39,
+          "rank": 40,
           "athlete_id": 19494520,
           "name": "Charlie Merrick",
           "elapsed_time": 399,
@@ -132200,7 +132308,7 @@
           "activity_id": "6059956223"
         },
         {
-          "rank": 40,
+          "rank": 41,
           "athlete_id": 14568559,
           "name": "Scott Hartl",
           "elapsed_time": 437,
@@ -132212,7 +132320,7 @@
           "activity_id": "11549711727"
         },
         {
-          "rank": 41,
+          "rank": 42,
           "athlete_id": 17919685,
           "name": "Herkus Rudzinskas",
           "elapsed_time": 442,
@@ -132224,7 +132332,7 @@
           "activity_id": "3170004308"
         },
         {
-          "rank": 42,
+          "rank": 43,
           "athlete_id": 19110794,
           "name": "Oskar O'Hara",
           "elapsed_time": 457,
@@ -132236,7 +132344,7 @@
           "activity_id": "3169690482"
         },
         {
-          "rank": 43,
+          "rank": 44,
           "athlete_id": 26797956,
           "name": "chris  unaitis",
           "elapsed_time": 510,
@@ -132248,7 +132356,7 @@
           "activity_id": "6060018027"
         },
         {
-          "rank": 44,
+          "rank": 45,
           "athlete_id": 1148683,
           "name": "Christian Day",
           "elapsed_time": 515,
@@ -132260,7 +132368,7 @@
           "activity_id": "6059946064"
         },
         {
-          "rank": 45,
+          "rank": 46,
           "athlete_id": 66320635,
           "name": "Chris Fisher",
           "elapsed_time": 546,
@@ -132272,7 +132380,7 @@
           "activity_id": "10068329970"
         },
         {
-          "rank": 46,
+          "rank": 47,
           "athlete_id": 126935961,
           "name": "Ian Marsh",
           "elapsed_time": 582,
@@ -132284,7 +132392,7 @@
           "activity_id": "11898183969"
         },
         {
-          "rank": 46,
+          "rank": 47,
           "athlete_id": 37375390,
           "name": "david mazzarese",
           "elapsed_time": 582,
@@ -132296,7 +132404,7 @@
           "activity_id": "16098416457"
         },
         {
-          "rank": 48,
+          "rank": 49,
           "athlete_id": 755736,
           "name": "Sam Veggeberg",
           "elapsed_time": 664,
@@ -136287,6 +136395,18 @@
         },
         {
           "rank": 77,
+          "athlete_id": 59047730,
+          "name": "Karen LaVerdiere",
+          "elapsed_time": 696,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/59047730/38125998/1/large.jpg",
+          "badge": "",
+          "points": 0,
+          "effort_id": "3548442808921894600",
+          "activity_id": "20692771190"
+        },
+        {
+          "rank": 78,
           "athlete_id": 9979520,
           "name": "Peg Piwonka",
           "elapsed_time": 699,
@@ -136298,7 +136418,7 @@
           "activity_id": "17976402265"
         },
         {
-          "rank": 78,
+          "rank": 79,
           "athlete_id": 348218,
           "name": "Kevin Pelissier",
           "elapsed_time": 702,
@@ -136310,7 +136430,7 @@
           "activity_id": "1030396106"
         },
         {
-          "rank": 79,
+          "rank": 80,
           "athlete_id": 2038243,
           "name": "Nicole Hoyle",
           "elapsed_time": 706,
@@ -136322,7 +136442,7 @@
           "activity_id": "1120873390"
         },
         {
-          "rank": 80,
+          "rank": 81,
           "athlete_id": 3484050,
           "name": "Jacob Sheppard-Saidel",
           "elapsed_time": 723,
@@ -136334,7 +136454,7 @@
           "activity_id": "19599332297"
         },
         {
-          "rank": 81,
+          "rank": 82,
           "athlete_id": 50191231,
           "name": "David Paquette",
           "elapsed_time": 725,
@@ -136346,7 +136466,7 @@
           "activity_id": "19589587485"
         },
         {
-          "rank": 81,
+          "rank": 82,
           "athlete_id": 32484367,
           "name": "Sara Draper",
           "elapsed_time": 725,
@@ -136358,7 +136478,7 @@
           "activity_id": "19589617547"
         },
         {
-          "rank": 83,
+          "rank": 84,
           "athlete_id": 10838749,
           "name": "amy kemper",
           "elapsed_time": 756,
@@ -136370,7 +136490,7 @@
           "activity_id": "3262409332"
         },
         {
-          "rank": 84,
+          "rank": 85,
           "athlete_id": 4292750,
           "name": "Paddy Lescaret",
           "elapsed_time": 772,
@@ -136382,7 +136502,7 @@
           "activity_id": "541857196"
         },
         {
-          "rank": 85,
+          "rank": 86,
           "athlete_id": 14521598,
           "name": "Wing Nut",
           "elapsed_time": 775,
@@ -136394,7 +136514,7 @@
           "activity_id": "551944675"
         },
         {
-          "rank": 86,
+          "rank": 87,
           "athlete_id": 25534372,
           "name": "Karin Eichelman",
           "elapsed_time": 787,
@@ -136406,7 +136526,7 @@
           "activity_id": "9159861905"
         },
         {
-          "rank": 87,
+          "rank": 88,
           "athlete_id": 6003495,
           "name": "Doug Wilson",
           "elapsed_time": 791,
@@ -136418,7 +136538,7 @@
           "activity_id": "9159822763"
         },
         {
-          "rank": 88,
+          "rank": 89,
           "athlete_id": 4144482,
           "name": "jane rathbun",
           "elapsed_time": 817,
@@ -136430,7 +136550,7 @@
           "activity_id": "5852251572"
         },
         {
-          "rank": 89,
+          "rank": 90,
           "athlete_id": 72937,
           "name": "M. McDonald",
           "elapsed_time": 823,
@@ -136442,7 +136562,7 @@
           "activity_id": "12112449366"
         },
         {
-          "rank": 90,
+          "rank": 91,
           "athlete_id": 139514541,
           "name": "Michael Cutler",
           "elapsed_time": 903,
@@ -136454,7 +136574,7 @@
           "activity_id": "19433678370"
         },
         {
-          "rank": 91,
+          "rank": 92,
           "athlete_id": 20861139,
           "name": "Christy Jens",
           "elapsed_time": 924,
@@ -136466,7 +136586,7 @@
           "activity_id": "1120860205"
         },
         {
-          "rank": 92,
+          "rank": 93,
           "athlete_id": 710537,
           "name": "Karen Lynn",
           "elapsed_time": 927,
@@ -136478,7 +136598,7 @@
           "activity_id": "1120917706"
         },
         {
-          "rank": 93,
+          "rank": 94,
           "athlete_id": 140294309,
           "name": "Tom Bull",
           "elapsed_time": 1169,
@@ -136490,7 +136610,7 @@
           "activity_id": "14286377931"
         },
         {
-          "rank": 94,
+          "rank": 95,
           "athlete_id": 136573,
           "name": "Andy Reagan",
           "elapsed_time": 1552,
@@ -144507,18 +144627,30 @@
         },
         {
           "rank": 2,
+          "athlete_id": 129008249,
+          "name": "Owen Skorupski ",
+          "elapsed_time": 287,
+          "avg_watts": null,
+          "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129008249/29499477/4/large.jpg",
+          "badge": "premium",
+          "points": 0,
+          "effort_id": "3548767150516295368",
+          "activity_id": "20703169662"
+        },
+        {
+          "rank": 3,
           "athlete_id": 136573,
           "name": "Andy Reagan",
-          "elapsed_time": 294,
+          "elapsed_time": 289,
           "avg_watts": null,
           "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/136573/95851/2/large.jpg",
           "badge": "premium",
           "points": 0,
-          "effort_id": "3486168237533789000",
-          "activity_id": "18366253651"
+          "effort_id": "3548771965763247606",
+          "activity_id": "20703351233"
         },
         {
-          "rank": 3,
+          "rank": 4,
           "athlete_id": 40796461,
           "name": "Andy Danylchuk",
           "elapsed_time": 344,
@@ -144530,7 +144662,7 @@
           "activity_id": "4398494382"
         },
         {
-          "rank": 4,
+          "rank": 5,
           "athlete_id": 11970817,
           "name": "Andrew Bellak",
           "elapsed_time": 375,
@@ -144542,7 +144674,7 @@
           "activity_id": "10124450219"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "athlete_id": 13200719,
           "name": "Martin Miller",
           "elapsed_time": 398,
@@ -144554,7 +144686,7 @@
           "activity_id": "9202728770"
         },
         {
-          "rank": 6,
+          "rank": 7,
           "athlete_id": 2847382,
           "name": "Brian McLaughlin",
           "elapsed_time": 522,
