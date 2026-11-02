@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T03:45:02+00:00",
+  "generated_at": "2026-11-02T03:00:06+00:00",
   "segments": [
     {
       "id": 648901,
@@ -12,7 +12,7 @@
       "is_sub_segment": false,
       "captured": 399,
       "total_athletes": 398,
-      "efforts_fetched_at": "2026-10-25T00:50:58+00:00"
+      "efforts_fetched_at": "2026-11-01T00:52:48+00:00"
     },
     {
       "id": 696812,
@@ -23,9 +23,9 @@
       "difficulty": 205.5,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 519,
+      "captured": 524,
       "total_athletes": 519,
-      "efforts_fetched_at": "2026-10-25T12:44:14+00:00"
+      "efforts_fetched_at": "2026-11-02T02:51:21+00:00"
     },
     {
       "id": 696825,
@@ -36,9 +36,9 @@
       "difficulty": 169.2,
       "parent_segment_id": 4529482,
       "is_sub_segment": true,
-      "captured": 388,
+      "captured": 392,
       "total_athletes": 387,
-      "efforts_fetched_at": "2026-10-25T12:24:21+00:00"
+      "efforts_fetched_at": "2026-10-31T02:52:42+00:00"
     },
     {
       "id": 699178,
@@ -49,9 +49,9 @@
       "difficulty": 164.9,
       "parent_segment_id": 29443366,
       "is_sub_segment": true,
-      "captured": 1118,
+      "captured": 1120,
       "total_athletes": 1116,
-      "efforts_fetched_at": "2026-10-25T07:21:08+00:00"
+      "efforts_fetched_at": "2026-10-31T16:12:18+00:00"
     },
     {
       "id": 700762,
@@ -62,9 +62,9 @@
       "difficulty": 314.7,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
-      "captured": 801,
+      "captured": 803,
       "total_athletes": 800,
-      "efforts_fetched_at": "2026-10-25T14:11:38+00:00"
+      "efforts_fetched_at": "2026-10-31T15:32:48+00:00"
     },
     {
       "id": 705819,
@@ -75,9 +75,9 @@
       "difficulty": 104.1,
       "parent_segment_id": 1151557,
       "is_sub_segment": true,
-      "captured": 855,
+      "captured": 862,
       "total_athletes": 855,
-      "efforts_fetched_at": "2026-10-25T15:04:42+00:00"
+      "efforts_fetched_at": "2026-10-31T15:14:31+00:00"
     },
     {
       "id": 719391,
@@ -90,7 +90,7 @@
       "is_sub_segment": false,
       "captured": 136,
       "total_athletes": 136,
-      "efforts_fetched_at": "2026-10-25T01:06:19+00:00"
+      "efforts_fetched_at": "2026-11-01T07:54:40+00:00"
     },
     {
       "id": 726685,
@@ -101,9 +101,9 @@
       "difficulty": 201.9,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 380,
+      "captured": 381,
       "total_athletes": 379,
-      "efforts_fetched_at": "2026-10-22T21:47:43+00:00"
+      "efforts_fetched_at": "2026-10-31T09:13:21+00:00"
     },
     {
       "id": 869580,
@@ -116,7 +116,7 @@
       "is_sub_segment": true,
       "captured": 389,
       "total_athletes": 389,
-      "efforts_fetched_at": "2026-10-24T10:33:26+00:00"
+      "efforts_fetched_at": "2026-11-01T03:33:38+00:00"
     },
     {
       "id": 1151557,
@@ -129,7 +129,7 @@
       "is_sub_segment": false,
       "captured": 691,
       "total_athletes": 724,
-      "efforts_fetched_at": "2026-10-25T12:07:10+00:00"
+      "efforts_fetched_at": "2026-11-01T22:46:30+00:00"
     },
     {
       "id": 1215581,
@@ -142,7 +142,7 @@
       "is_sub_segment": true,
       "captured": 719,
       "total_athletes": 718,
-      "efforts_fetched_at": "2026-10-22T23:18:54+00:00"
+      "efforts_fetched_at": "2026-10-31T03:39:23+00:00"
     },
     {
       "id": 1229267,
@@ -155,7 +155,7 @@
       "is_sub_segment": false,
       "captured": 79,
       "total_athletes": 79,
-      "efforts_fetched_at": "2026-10-25T04:05:34+00:00"
+      "efforts_fetched_at": "2026-11-01T04:24:45+00:00"
     },
     {
       "id": 1229482,
@@ -166,9 +166,9 @@
       "difficulty": 215.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 292,
-      "total_athletes": 292,
-      "efforts_fetched_at": "2026-10-22T21:10:21+00:00"
+      "captured": 295,
+      "total_athletes": 295,
+      "efforts_fetched_at": "2026-11-01T16:53:22+00:00"
     },
     {
       "id": 1231138,
@@ -179,9 +179,9 @@
       "difficulty": 316.3,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 529,
+      "captured": 532,
       "total_athletes": 529,
-      "efforts_fetched_at": "2026-10-25T03:08:38+00:00"
+      "efforts_fetched_at": "2026-10-31T14:54:41+00:00"
     },
     {
       "id": 1301854,
@@ -192,9 +192,9 @@
       "difficulty": 107.9,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 561,
+      "captured": 567,
       "total_athletes": 561,
-      "efforts_fetched_at": "2026-10-24T00:16:36+00:00"
+      "efforts_fetched_at": "2026-11-01T23:39:12+00:00"
     },
     {
       "id": 2297396,
@@ -206,8 +206,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 108,
-      "total_athletes": 109,
-      "efforts_fetched_at": "2026-10-25T03:45:45+00:00"
+      "total_athletes": 110,
+      "efforts_fetched_at": "2026-11-01T04:44:59+00:00"
     },
     {
       "id": 2710312,
@@ -220,7 +220,7 @@
       "is_sub_segment": false,
       "captured": 34,
       "total_athletes": 34,
-      "efforts_fetched_at": "2026-10-25T10:04:17+00:00"
+      "efforts_fetched_at": "2026-11-01T10:14:55+00:00"
     },
     {
       "id": 4087630,
@@ -231,9 +231,9 @@
       "difficulty": 75.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 603,
+      "captured": 604,
       "total_athletes": 602,
-      "efforts_fetched_at": "2026-10-23T22:50:28+00:00"
+      "efforts_fetched_at": "2026-11-01T20:17:16+00:00"
     },
     {
       "id": 5220664,
@@ -246,7 +246,7 @@
       "is_sub_segment": false,
       "captured": 9,
       "total_athletes": 9,
-      "efforts_fetched_at": "2026-10-25T08:12:22+00:00"
+      "efforts_fetched_at": "2026-11-01T08:29:21+00:00"
     },
     {
       "id": 5220689,
@@ -259,7 +259,7 @@
       "is_sub_segment": false,
       "captured": 21,
       "total_athletes": 21,
-      "efforts_fetched_at": "2026-10-25T08:12:27+00:00"
+      "efforts_fetched_at": "2026-11-01T08:48:54+00:00"
     },
     {
       "id": 5893673,
@@ -270,9 +270,9 @@
       "difficulty": 79.2,
       "parent_segment_id": 39674721,
       "is_sub_segment": true,
-      "captured": 372,
+      "captured": 376,
       "total_athletes": 371,
-      "efforts_fetched_at": "2026-10-24T00:53:43+00:00"
+      "efforts_fetched_at": "2026-11-01T10:14:49+00:00"
     },
     {
       "id": 5894573,
@@ -283,9 +283,9 @@
       "difficulty": 99.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 213,
-      "total_athletes": 212,
-      "efforts_fetched_at": "2026-10-25T13:55:33+00:00"
+      "captured": 215,
+      "total_athletes": 215,
+      "efforts_fetched_at": "2026-11-01T16:13:25+00:00"
     },
     {
       "id": 5896382,
@@ -296,9 +296,9 @@
       "difficulty": 121.3,
       "parent_segment_id": 39674721,
       "is_sub_segment": true,
-      "captured": 362,
-      "total_athletes": 363,
-      "efforts_fetched_at": "2026-10-23T23:06:40+00:00"
+      "captured": 367,
+      "total_athletes": 368,
+      "efforts_fetched_at": "2026-11-02T00:39:48+00:00"
     },
     {
       "id": 7042087,
@@ -309,9 +309,9 @@
       "difficulty": 392.7,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 413,
+      "captured": 418,
       "total_athletes": 413,
-      "efforts_fetched_at": "2026-10-25T06:26:15+00:00"
+      "efforts_fetched_at": "2026-10-29T10:59:54+00:00"
     },
     {
       "id": 7226136,
@@ -322,9 +322,9 @@
       "difficulty": 177.6,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 588,
+      "captured": 590,
       "total_athletes": 589,
-      "efforts_fetched_at": "2026-10-24T05:09:13+00:00"
+      "efforts_fetched_at": "2026-11-02T01:56:16+00:00"
     },
     {
       "id": 8364429,
@@ -335,9 +335,9 @@
       "difficulty": 172.6,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 68,
-      "total_athletes": 68,
-      "efforts_fetched_at": "2026-10-25T08:32:18+00:00"
+      "captured": 70,
+      "total_athletes": 70,
+      "efforts_fetched_at": "2026-11-01T08:48:59+00:00"
     },
     {
       "id": 8429503,
@@ -348,9 +348,9 @@
       "difficulty": 167.2,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 86,
-      "total_athletes": 85,
-      "efforts_fetched_at": "2026-10-25T01:56:03+00:00"
+      "captured": 87,
+      "total_athletes": 86,
+      "efforts_fetched_at": "2026-11-01T02:04:38+00:00"
     },
     {
       "id": 8432897,
@@ -363,7 +363,7 @@
       "is_sub_segment": false,
       "captured": 669,
       "total_athletes": 668,
-      "efforts_fetched_at": "2026-10-23T10:41:19+00:00"
+      "efforts_fetched_at": "2026-11-01T07:54:28+00:00"
     },
     {
       "id": 9269972,
@@ -376,7 +376,7 @@
       "is_sub_segment": false,
       "captured": 623,
       "total_athletes": 649,
-      "efforts_fetched_at": "2026-10-24T16:32:26+00:00"
+      "efforts_fetched_at": "2026-11-01T02:47:05+00:00"
     },
     {
       "id": 9444969,
@@ -387,9 +387,9 @@
       "difficulty": 112.2,
       "parent_segment_id": 29443366,
       "is_sub_segment": true,
-      "captured": 1129,
+      "captured": 1131,
       "total_athletes": 1127,
-      "efforts_fetched_at": "2026-10-25T19:21:40+00:00"
+      "efforts_fetched_at": "2026-10-31T17:09:54+00:00"
     },
     {
       "id": 9563376,
@@ -400,9 +400,9 @@
       "difficulty": 83.6,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 2384,
-      "total_athletes": 2382,
-      "efforts_fetched_at": "2026-10-24T05:25:20+00:00"
+      "captured": 2389,
+      "total_athletes": 2387,
+      "efforts_fetched_at": "2026-10-30T15:21:30+00:00"
     },
     {
       "id": 9830204,
@@ -413,9 +413,9 @@
       "difficulty": 107.6,
       "parent_segment_id": 29443366,
       "is_sub_segment": true,
-      "captured": 1320,
-      "total_athletes": 1317,
-      "efforts_fetched_at": "2026-10-23T23:58:34+00:00"
+      "captured": 1324,
+      "total_athletes": 1321,
+      "efforts_fetched_at": "2026-11-01T22:29:26+00:00"
     },
     {
       "id": 9963222,
@@ -428,7 +428,7 @@
       "is_sub_segment": false,
       "captured": 26,
       "total_athletes": 26,
-      "efforts_fetched_at": "2026-10-25T10:04:23+00:00"
+      "efforts_fetched_at": "2026-11-01T10:34:04+00:00"
     },
     {
       "id": 10186077,
@@ -441,7 +441,7 @@
       "is_sub_segment": true,
       "captured": 67,
       "total_athletes": 67,
-      "efforts_fetched_at": "2026-10-25T06:46:13+00:00"
+      "efforts_fetched_at": "2026-11-01T06:49:49+00:00"
     },
     {
       "id": 10914505,
@@ -454,7 +454,7 @@
       "is_sub_segment": false,
       "captured": 63,
       "total_athletes": 63,
-      "efforts_fetched_at": "2026-10-25T04:22:11+00:00"
+      "efforts_fetched_at": "2026-11-01T04:44:46+00:00"
     },
     {
       "id": 11014539,
@@ -465,9 +465,9 @@
       "difficulty": 108.0,
       "parent_segment_id": 700762,
       "is_sub_segment": true,
-      "captured": 967,
+      "captured": 971,
       "total_athletes": 966,
-      "efforts_fetched_at": "2026-10-24T03:55:25+00:00"
+      "efforts_fetched_at": "2026-11-02T00:39:43+00:00"
     },
     {
       "id": 11434752,
@@ -480,7 +480,7 @@
       "is_sub_segment": false,
       "captured": 509,
       "total_athletes": 509,
-      "efforts_fetched_at": "2026-10-23T13:56:14+00:00"
+      "efforts_fetched_at": "2026-11-01T22:46:36+00:00"
     },
     {
       "id": 12816230,
@@ -493,7 +493,7 @@
       "is_sub_segment": false,
       "captured": 33,
       "total_athletes": 33,
-      "efforts_fetched_at": "2026-10-25T10:21:12+00:00"
+      "efforts_fetched_at": "2026-11-01T10:34:10+00:00"
     },
     {
       "id": 12816315,
@@ -505,8 +505,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 49,
-      "total_athletes": 48,
-      "efforts_fetched_at": "2026-10-25T08:52:05+00:00"
+      "total_athletes": 49,
+      "efforts_fetched_at": "2026-11-01T09:06:31+00:00"
     },
     {
       "id": 13002570,
@@ -517,9 +517,9 @@
       "difficulty": 72.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 190,
-      "total_athletes": 189,
-      "efforts_fetched_at": "2026-10-25T04:54:59+00:00"
+      "captured": 192,
+      "total_athletes": 192,
+      "efforts_fetched_at": "2026-11-01T13:33:29+00:00"
     },
     {
       "id": 15835806,
@@ -530,9 +530,9 @@
       "difficulty": 109.5,
       "parent_segment_id": 696812,
       "is_sub_segment": true,
-      "captured": 523,
+      "captured": 527,
       "total_athletes": 522,
-      "efforts_fetched_at": "2026-10-26T03:44:52+00:00"
+      "efforts_fetched_at": "2026-10-31T04:54:10+00:00"
     },
     {
       "id": 16201241,
@@ -545,7 +545,7 @@
       "is_sub_segment": false,
       "captured": 31,
       "total_athletes": 31,
-      "efforts_fetched_at": "2026-10-25T07:02:58+00:00"
+      "efforts_fetched_at": "2026-11-01T07:05:28+00:00"
     },
     {
       "id": 17125257,
@@ -558,7 +558,7 @@
       "is_sub_segment": false,
       "captured": 530,
       "total_athletes": 529,
-      "efforts_fetched_at": "2026-10-22T09:34:45+00:00"
+      "efforts_fetched_at": "2026-10-30T22:43:52+00:00"
     },
     {
       "id": 17351533,
@@ -571,7 +571,7 @@
       "is_sub_segment": false,
       "captured": 70,
       "total_athletes": 70,
-      "efforts_fetched_at": "2026-10-25T05:32:13+00:00"
+      "efforts_fetched_at": "2026-11-01T05:37:32+00:00"
     },
     {
       "id": 17971873,
@@ -582,9 +582,9 @@
       "difficulty": 240.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 1058,
+      "captured": 1060,
       "total_athletes": 1057,
-      "efforts_fetched_at": "2026-10-24T13:38:52+00:00"
+      "efforts_fetched_at": "2026-11-01T11:45:00+00:00"
     },
     {
       "id": 18804145,
@@ -597,7 +597,7 @@
       "is_sub_segment": true,
       "captured": 123,
       "total_athletes": 127,
-      "efforts_fetched_at": "2026-10-25T04:05:28+00:00"
+      "efforts_fetched_at": "2026-11-01T09:40:59+00:00"
     },
     {
       "id": 20708611,
@@ -608,9 +608,9 @@
       "difficulty": 73.1,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 124,
-      "total_athletes": 122,
-      "efforts_fetched_at": "2026-10-25T07:21:03+00:00"
+      "captured": 125,
+      "total_athletes": 125,
+      "efforts_fetched_at": "2026-11-01T07:05:34+00:00"
     },
     {
       "id": 21189355,
@@ -623,7 +623,7 @@
       "is_sub_segment": false,
       "captured": 29,
       "total_athletes": 29,
-      "efforts_fetched_at": "2026-10-25T08:52:10+00:00"
+      "efforts_fetched_at": "2026-11-01T09:06:36+00:00"
     },
     {
       "id": 24663876,
@@ -635,8 +635,8 @@
       "parent_segment_id": 16201241,
       "is_sub_segment": true,
       "captured": 111,
-      "total_athletes": 110,
-      "efforts_fetched_at": "2026-10-25T05:50:17+00:00"
+      "total_athletes": 111,
+      "efforts_fetched_at": "2026-11-01T05:37:37+00:00"
     },
     {
       "id": 25449117,
@@ -649,7 +649,7 @@
       "is_sub_segment": false,
       "captured": 58,
       "total_athletes": 58,
-      "efforts_fetched_at": "2026-10-25T07:41:16+00:00"
+      "efforts_fetched_at": "2026-11-01T07:54:34+00:00"
     },
     {
       "id": 25449170,
@@ -661,8 +661,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 85,
-      "total_athletes": 84,
-      "efforts_fetched_at": "2026-10-25T05:14:54+00:00"
+      "total_athletes": 85,
+      "efforts_fetched_at": "2026-11-01T05:19:34+00:00"
     },
     {
       "id": 25504390,
@@ -675,7 +675,7 @@
       "is_sub_segment": false,
       "captured": 55,
       "total_athletes": 55,
-      "efforts_fetched_at": "2026-10-25T05:50:23+00:00"
+      "efforts_fetched_at": "2026-11-01T05:54:04+00:00"
     },
     {
       "id": 27660250,
@@ -687,8 +687,8 @@
       "parent_segment_id": 40047711,
       "is_sub_segment": true,
       "captured": 101,
-      "total_athletes": 99,
-      "efforts_fetched_at": "2026-10-25T04:39:04+00:00"
+      "total_athletes": 101,
+      "efforts_fetched_at": "2026-11-01T05:02:02+00:00"
     },
     {
       "id": 29443366,
@@ -699,9 +699,9 @@
       "difficulty": 159.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 650,
+      "captured": 651,
       "total_athletes": 648,
-      "efforts_fetched_at": "2026-10-22T07:49:28+00:00"
+      "efforts_fetched_at": "2026-10-30T20:33:48+00:00"
     },
     {
       "id": 29766236,
@@ -714,7 +714,7 @@
       "is_sub_segment": true,
       "captured": 1038,
       "total_athletes": 1036,
-      "efforts_fetched_at": "2026-10-25T19:39:45+00:00"
+      "efforts_fetched_at": "2026-10-30T23:33:59+00:00"
     },
     {
       "id": 31815192,
@@ -725,9 +725,9 @@
       "difficulty": 188.4,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
-      "captured": 827,
+      "captured": 829,
       "total_athletes": 826,
-      "efforts_fetched_at": "2026-10-23T15:03:02+00:00"
+      "efforts_fetched_at": "2026-11-01T15:37:04+00:00"
     },
     {
       "id": 32664667,
@@ -740,7 +740,7 @@
       "is_sub_segment": false,
       "captured": 18,
       "total_athletes": 18,
-      "efforts_fetched_at": "2026-10-25T06:08:41+00:00"
+      "efforts_fetched_at": "2026-11-01T06:13:35+00:00"
     },
     {
       "id": 32792165,
@@ -753,7 +753,7 @@
       "is_sub_segment": false,
       "captured": 35,
       "total_athletes": 35,
-      "efforts_fetched_at": "2026-10-25T06:46:08+00:00"
+      "efforts_fetched_at": "2026-11-01T06:49:43+00:00"
     },
     {
       "id": 33202985,
@@ -766,7 +766,7 @@
       "is_sub_segment": false,
       "captured": 66,
       "total_athletes": 66,
-      "efforts_fetched_at": "2026-10-25T04:22:05+00:00"
+      "efforts_fetched_at": "2026-11-01T04:44:52+00:00"
     },
     {
       "id": 33238695,
@@ -778,8 +778,8 @@
       "parent_segment_id": 31992302,
       "is_sub_segment": true,
       "captured": 1409,
-      "total_athletes": 1405,
-      "efforts_fetched_at": "2026-10-24T17:12:22+00:00"
+      "total_athletes": 1406,
+      "efforts_fetched_at": "2026-10-31T03:23:51+00:00"
     },
     {
       "id": 33445442,
@@ -790,9 +790,9 @@
       "difficulty": 220.1,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 139,
-      "total_athletes": 139,
-      "efforts_fetched_at": "2026-10-25T01:22:21+00:00"
+      "captured": 140,
+      "total_athletes": 140,
+      "efforts_fetched_at": "2026-11-01T07:05:40+00:00"
     },
     {
       "id": 34137123,
@@ -803,9 +803,9 @@
       "difficulty": 124.0,
       "parent_segment_id": 1231138,
       "is_sub_segment": true,
-      "captured": 604,
+      "captured": 607,
       "total_athletes": 604,
-      "efforts_fetched_at": "2026-10-24T16:32:31+00:00"
+      "efforts_fetched_at": "2026-10-31T03:58:55+00:00"
     },
     {
       "id": 35336219,
@@ -818,7 +818,7 @@
       "is_sub_segment": false,
       "captured": 13,
       "total_athletes": 13,
-      "efforts_fetched_at": "2026-10-25T09:11:58+00:00"
+      "efforts_fetched_at": "2026-11-01T09:25:20+00:00"
     },
     {
       "id": 35664632,
@@ -830,8 +830,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 42,
-      "total_athletes": 41,
-      "efforts_fetched_at": "2026-10-25T09:28:21+00:00"
+      "total_athletes": 42,
+      "efforts_fetched_at": "2026-11-01T09:25:26+00:00"
     },
     {
       "id": 35745747,
@@ -843,8 +843,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 47,
-      "total_athletes": 45,
-      "efforts_fetched_at": "2026-10-25T06:26:09+00:00"
+      "total_athletes": 47,
+      "efforts_fetched_at": "2026-11-01T06:13:40+00:00"
     },
     {
       "id": 37124454,
@@ -856,8 +856,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 7,
-      "total_athletes": 6,
-      "efforts_fetched_at": "2026-10-25T07:56:36+00:00"
+      "total_athletes": 7,
+      "efforts_fetched_at": "2026-11-01T08:13:17+00:00"
     },
     {
       "id": 37531167,
@@ -868,9 +868,9 @@
       "difficulty": 64.6,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 23,
-      "total_athletes": 23,
-      "efforts_fetched_at": "2026-10-25T07:56:43+00:00"
+      "captured": 24,
+      "total_athletes": 24,
+      "efforts_fetched_at": "2026-11-01T08:29:15+00:00"
     },
     {
       "id": 37850886,
@@ -883,7 +883,7 @@
       "is_sub_segment": true,
       "captured": 209,
       "total_athletes": 209,
-      "efforts_fetched_at": "2026-10-25T01:39:59+00:00"
+      "efforts_fetched_at": "2026-11-01T15:37:16+00:00"
     },
     {
       "id": 37850905,
@@ -896,7 +896,7 @@
       "is_sub_segment": false,
       "captured": 165,
       "total_athletes": 165,
-      "efforts_fetched_at": "2026-10-25T02:14:57+00:00"
+      "efforts_fetched_at": "2026-11-01T12:35:42+00:00"
     },
     {
       "id": 38206226,
@@ -907,9 +907,9 @@
       "difficulty": 142.0,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 116,
-      "total_athletes": 116,
-      "efforts_fetched_at": "2026-10-23T16:13:49+00:00"
+      "captured": 117,
+      "total_athletes": 117,
+      "efforts_fetched_at": "2026-11-01T01:46:13+00:00"
     },
     {
       "id": 39076952,
@@ -921,8 +921,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 1186,
-      "total_athletes": 1181,
-      "efforts_fetched_at": "2026-10-25T19:06:09+00:00"
+      "total_athletes": 1185,
+      "efforts_fetched_at": "2026-11-01T15:01:46+00:00"
     },
     {
       "id": 39077051,
@@ -933,9 +933,9 @@
       "difficulty": 107.4,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
-      "captured": 818,
+      "captured": 820,
       "total_athletes": 817,
-      "efforts_fetched_at": "2026-10-24T18:59:58+00:00"
+      "efforts_fetched_at": "2026-10-31T06:54:57+00:00"
     },
     {
       "id": 39133354,
@@ -946,9 +946,9 @@
       "difficulty": 80.8,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 327,
-      "total_athletes": 326,
-      "efforts_fetched_at": "2026-10-24T14:31:14+00:00"
+      "captured": 329,
+      "total_athletes": 329,
+      "efforts_fetched_at": "2026-11-01T22:11:20+00:00"
     },
     {
       "id": 39159918,
@@ -959,9 +959,9 @@
       "difficulty": 64.4,
       "parent_segment_id": 29443366,
       "is_sub_segment": true,
-      "captured": 1159,
+      "captured": 1161,
       "total_athletes": 1157,
-      "efforts_fetched_at": "2026-10-25T20:17:00+00:00"
+      "efforts_fetched_at": "2026-10-31T08:56:28+00:00"
     },
     {
       "id": 39674721,
@@ -973,8 +973,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 65,
-      "total_athletes": 64,
-      "efforts_fetched_at": "2026-10-25T00:32:48+00:00"
+      "total_athletes": 65,
+      "efforts_fetched_at": "2026-11-01T00:33:18+00:00"
     },
     {
       "id": 40028803,
@@ -986,8 +986,8 @@
       "parent_segment_id": null,
       "is_sub_segment": false,
       "captured": 95,
-      "total_athletes": 94,
-      "efforts_fetched_at": "2026-10-25T02:33:59+00:00"
+      "total_athletes": 95,
+      "efforts_fetched_at": "2026-11-01T02:47:10+00:00"
     },
     {
       "id": 40047711,
@@ -1000,7 +1000,7 @@
       "is_sub_segment": false,
       "captured": 3,
       "total_athletes": 3,
-      "efforts_fetched_at": "2026-10-25T09:28:27+00:00"
+      "efforts_fetched_at": "2026-11-01T09:40:46+00:00"
     },
     {
       "id": 40058798,
@@ -1013,7 +1013,7 @@
       "is_sub_segment": false,
       "captured": 19,
       "total_athletes": 19,
-      "efforts_fetched_at": "2026-10-25T09:45:47+00:00"
+      "efforts_fetched_at": "2026-11-01T09:59:35+00:00"
     },
     {
       "id": 40062521,
@@ -1026,7 +1026,7 @@
       "is_sub_segment": false,
       "captured": 3,
       "total_athletes": 3,
-      "efforts_fetched_at": "2026-10-25T10:21:18+00:00"
+      "efforts_fetched_at": "2026-11-01T10:53:49+00:00"
     },
     {
       "id": 41490658,
@@ -1037,9 +1037,9 @@
       "difficulty": 47.9,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 150,
-      "total_athletes": 150,
-      "efforts_fetched_at": "2026-10-25T02:51:11+00:00"
+      "captured": 151,
+      "total_athletes": 151,
+      "efforts_fetched_at": "2026-11-01T12:03:12+00:00"
     },
     {
       "id": 31992302,
@@ -1052,7 +1052,7 @@
       "is_sub_segment": false,
       "captured": 1157,
       "total_athletes": 1155,
-      "efforts_fetched_at": "2026-10-25T12:44:19+00:00"
+      "efforts_fetched_at": "2026-11-01T22:29:31+00:00"
     },
     {
       "id": 39133356,
@@ -1063,9 +1063,9 @@
       "difficulty": 84.5,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 421,
+      "captured": 425,
       "total_athletes": 420,
-      "efforts_fetched_at": "2026-10-25T19:57:46+00:00"
+      "efforts_fetched_at": "2026-10-31T01:22:30+00:00"
     },
     {
       "id": 34137126,
@@ -1076,9 +1076,9 @@
       "difficulty": 65.9,
       "parent_segment_id": 7226136,
       "is_sub_segment": true,
-      "captured": 655,
+      "captured": 656,
       "total_athletes": 655,
-      "efforts_fetched_at": "2026-10-24T16:14:54+00:00"
+      "efforts_fetched_at": "2026-11-02T02:35:07+00:00"
     },
     {
       "id": 4529482,
@@ -1089,9 +1089,9 @@
       "difficulty": 246.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 371,
+      "captured": 375,
       "total_athletes": 371,
-      "efforts_fetched_at": "2026-10-23T22:50:34+00:00"
+      "efforts_fetched_at": "2026-11-01T08:13:12+00:00"
     },
     {
       "id": 700796,
@@ -1102,9 +1102,9 @@
       "difficulty": 251.3,
       "parent_segment_id": 3677552,
       "is_sub_segment": true,
-      "captured": 1298,
-      "total_athletes": 1298,
-      "efforts_fetched_at": "2026-10-24T02:18:14+00:00"
+      "captured": 1300,
+      "total_athletes": 1300,
+      "efforts_fetched_at": "2026-11-02T00:57:42+00:00"
     },
     {
       "id": 4258626,
@@ -1117,7 +1117,7 @@
       "is_sub_segment": false,
       "captured": 379,
       "total_athletes": 379,
-      "efforts_fetched_at": "2026-10-21T01:53:38+00:00"
+      "efforts_fetched_at": "2026-10-28T17:12:25+00:00"
     },
     {
       "id": 27735469,
@@ -1130,7 +1130,7 @@
       "is_sub_segment": false,
       "captured": 500,
       "total_athletes": 500,
-      "efforts_fetched_at": "2026-10-25T02:51:17+00:00"
+      "efforts_fetched_at": "2026-11-01T03:33:43+00:00"
     },
     {
       "id": 801781,
@@ -1141,9 +1141,9 @@
       "difficulty": 141.9,
       "parent_segment_id": 9456225,
       "is_sub_segment": true,
-      "captured": 1226,
+      "captured": 1227,
       "total_athletes": 1225,
-      "efforts_fetched_at": "2026-10-24T12:48:11+00:00"
+      "efforts_fetched_at": "2026-11-01T00:16:27+00:00"
     },
     {
       "id": 41407026,
@@ -1154,9 +1154,9 @@
       "difficulty": 89.1,
       "parent_segment_id": 9456225,
       "is_sub_segment": true,
-      "captured": 1498,
-      "total_athletes": 1496,
-      "efforts_fetched_at": "2026-10-23T23:22:20+00:00"
+      "captured": 1501,
+      "total_athletes": 1499,
+      "efforts_fetched_at": "2026-11-01T22:11:15+00:00"
     },
     {
       "id": 32143596,
@@ -1167,9 +1167,9 @@
       "difficulty": 105.3,
       "parent_segment_id": 7226136,
       "is_sub_segment": true,
-      "captured": 636,
+      "captured": 638,
       "total_athletes": 636,
-      "efforts_fetched_at": "2026-10-24T16:52:15+00:00"
+      "efforts_fetched_at": "2026-11-02T02:51:15+00:00"
     },
     {
       "id": 29443359,
@@ -1180,9 +1180,9 @@
       "difficulty": 133.4,
       "parent_segment_id": 1851661,
       "is_sub_segment": true,
-      "captured": 1360,
-      "total_athletes": 1358,
-      "efforts_fetched_at": "2026-10-24T20:11:30+00:00"
+      "captured": 1361,
+      "total_athletes": 1359,
+      "efforts_fetched_at": "2026-10-31T07:32:59+00:00"
     },
     {
       "id": 8552556,
@@ -1195,7 +1195,7 @@
       "is_sub_segment": false,
       "captured": 539,
       "total_athletes": 539,
-      "efforts_fetched_at": "2026-10-22T23:01:15+00:00"
+      "efforts_fetched_at": "2026-10-31T08:07:34+00:00"
     },
     {
       "id": 12816249,
@@ -1208,7 +1208,7 @@
       "is_sub_segment": false,
       "captured": 27,
       "total_athletes": 27,
-      "efforts_fetched_at": "2026-10-25T09:45:53+00:00"
+      "efforts_fetched_at": "2026-11-01T09:59:41+00:00"
     },
     {
       "id": 1912941,
@@ -1219,9 +1219,9 @@
       "difficulty": 169.4,
       "parent_segment_id": null,
       "is_sub_segment": false,
-      "captured": 135,
-      "total_athletes": 135,
-      "efforts_fetched_at": "2026-10-25T03:08:44+00:00"
+      "captured": 136,
+      "total_athletes": 136,
+      "efforts_fetched_at": "2026-11-01T11:10:29+00:00"
     },
     {
       "id": 37682459,
@@ -1232,9 +1232,9 @@
       "difficulty": 90.0,
       "parent_segment_id": 7226136,
       "is_sub_segment": true,
-      "captured": 652,
+      "captured": 654,
       "total_athletes": 652,
-      "efforts_fetched_at": "2026-10-23T22:31:02+00:00"
+      "efforts_fetched_at": "2026-11-02T01:39:14+00:00"
     },
     {
       "id": 838985,
@@ -1247,7 +1247,7 @@
       "is_sub_segment": false,
       "captured": 382,
       "total_athletes": 382,
-      "efforts_fetched_at": "2026-10-25T03:27:47+00:00"
+      "efforts_fetched_at": "2026-11-01T04:08:03+00:00"
     }
   ],
   "legends": [
@@ -3154,6 +3154,72 @@
       ]
     },
     {
+      "athlete_id": 22726962,
+      "name": "Rigo Rodriguez",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        648901,
+        696812,
+        696825,
+        699178,
+        700762,
+        700796,
+        705819,
+        726685,
+        801781,
+        869580,
+        1151557,
+        1215581,
+        1229482,
+        1231138,
+        1301854,
+        4087630,
+        4529482,
+        5893673,
+        5894573,
+        5896382,
+        7042087,
+        7226136,
+        8432897,
+        8552556,
+        9269972,
+        9444969,
+        9563376,
+        9830204,
+        11014539,
+        11434752,
+        13002570,
+        15835806,
+        17125257,
+        17971873,
+        20708611,
+        29443359,
+        29443366,
+        29766236,
+        31815192,
+        31992302,
+        32143596,
+        33238695,
+        33445442,
+        34137123,
+        34137126,
+        37531167,
+        37682459,
+        37850886,
+        37850905,
+        38206226,
+        39076952,
+        39077051,
+        39133354,
+        39133356,
+        39159918,
+        40028803,
+        41407026
+      ]
+    },
+    {
       "athlete_id": 189571,
       "name": "Andrew Pazmany",
       "avatar_url": null,
@@ -3604,70 +3670,6 @@
         39159918,
         41407026,
         41490658
-      ]
-    },
-    {
-      "athlete_id": 22726962,
-      "name": "Rigo Rodriguez",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        648901,
-        696812,
-        696825,
-        699178,
-        700762,
-        700796,
-        705819,
-        726685,
-        801781,
-        869580,
-        1151557,
-        1215581,
-        1229482,
-        1231138,
-        1301854,
-        4087630,
-        4529482,
-        5893673,
-        5894573,
-        5896382,
-        7042087,
-        7226136,
-        8432897,
-        8552556,
-        9269972,
-        9444969,
-        9563376,
-        9830204,
-        11014539,
-        11434752,
-        13002570,
-        15835806,
-        17125257,
-        17971873,
-        29443359,
-        29443366,
-        29766236,
-        31815192,
-        31992302,
-        32143596,
-        33238695,
-        33445442,
-        34137123,
-        34137126,
-        37682459,
-        37850886,
-        37850905,
-        38206226,
-        39076952,
-        39077051,
-        39133354,
-        39133356,
-        39159918,
-        40028803,
-        41407026
       ]
     },
     {
@@ -5073,6 +5075,64 @@
       ]
     },
     {
+      "athlete_id": 5944231,
+      "name": "Daniel Lass",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696825,
+        699178,
+        700762,
+        700796,
+        705819,
+        726685,
+        801781,
+        1215581,
+        1229267,
+        1229482,
+        1231138,
+        1301854,
+        4087630,
+        4529482,
+        5220689,
+        5893673,
+        5894573,
+        5896382,
+        8364429,
+        8432897,
+        8552556,
+        9269972,
+        9444969,
+        9830204,
+        10914505,
+        11014539,
+        11434752,
+        12816230,
+        12816249,
+        13002570,
+        17125257,
+        17971873,
+        20708611,
+        29443359,
+        29443366,
+        29766236,
+        31815192,
+        31992302,
+        33238695,
+        33445442,
+        34137123,
+        38206226,
+        39076952,
+        39077051,
+        39133354,
+        39133356,
+        39159918,
+        40028803,
+        41407026
+      ]
+    },
+    {
       "athlete_id": 137088,
       "name": "Jeffrey Buske",
       "avatar_url": null,
@@ -5756,62 +5816,6 @@
         39076952,
         39077051,
         39159918,
-        41407026
-      ]
-    },
-    {
-      "athlete_id": 5944231,
-      "name": "Daniel Lass",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696825,
-        699178,
-        700762,
-        700796,
-        705819,
-        726685,
-        801781,
-        1215581,
-        1229267,
-        1229482,
-        1231138,
-        1301854,
-        4087630,
-        4529482,
-        5220689,
-        5893673,
-        5894573,
-        5896382,
-        8364429,
-        8432897,
-        8552556,
-        9269972,
-        9444969,
-        9830204,
-        10914505,
-        11014539,
-        11434752,
-        12816230,
-        12816249,
-        13002570,
-        17125257,
-        17971873,
-        20708611,
-        29443359,
-        29443366,
-        29766236,
-        31815192,
-        31992302,
-        33238695,
-        34137123,
-        39076952,
-        39077051,
-        39133354,
-        39133356,
-        39159918,
-        40028803,
         41407026
       ]
     },
@@ -6702,8 +6706,8 @@
     {
       "athlete_id": 21868316,
       "name": "Liam Cregan",
-      "avatar_url": null,
-      "badge": null,
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/21868316/7418771/18/large.jpg",
+      "badge": "",
       "gender": "M",
       "segs": [
         699178,
@@ -7808,6 +7812,57 @@
       ]
     },
     {
+      "athlete_id": 238897,
+      "name": "John Bayley",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/238897/398603/3/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        696812,
+        696825,
+        699178,
+        700762,
+        700796,
+        726685,
+        801781,
+        869580,
+        1215581,
+        1231138,
+        1301854,
+        1912941,
+        4087630,
+        4529482,
+        5893673,
+        5894573,
+        5896382,
+        7042087,
+        7226136,
+        8432897,
+        9444969,
+        9830204,
+        11014539,
+        11434752,
+        13002570,
+        15835806,
+        17125257,
+        17971873,
+        29443359,
+        29443366,
+        29766236,
+        31815192,
+        32143596,
+        33238695,
+        34137123,
+        34137126,
+        37682459,
+        39076952,
+        39077051,
+        39133356,
+        39159918,
+        41407026
+      ]
+    },
+    {
       "athlete_id": 24010532,
       "name": "Matt Green",
       "avatar_url": null,
@@ -8511,6 +8566,55 @@
       ]
     },
     {
+      "athlete_id": 81362910,
+      "name": "james pettengill",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        696825,
+        705819,
+        869580,
+        1231138,
+        1301854,
+        1912941,
+        2297396,
+        4087630,
+        5220689,
+        5893673,
+        5894573,
+        7042087,
+        7226136,
+        8364429,
+        9269972,
+        9830204,
+        11434752,
+        12816315,
+        13002570,
+        15835806,
+        17351533,
+        18804145,
+        20708611,
+        24663876,
+        25449170,
+        25504390,
+        27660250,
+        32143596,
+        33238695,
+        34137123,
+        34137126,
+        37682459,
+        37850886,
+        37850905,
+        39076952,
+        39133354,
+        39133356,
+        41407026,
+        41490658
+      ]
+    },
+    {
       "athlete_id": 28011390,
       "name": "Joe Laviolette",
       "avatar_url": null,
@@ -8557,55 +8661,6 @@
         39159918,
         41407026,
         41490658
-      ]
-    },
-    {
-      "athlete_id": 238897,
-      "name": "John Bayley",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696812,
-        696825,
-        699178,
-        700762,
-        700796,
-        726685,
-        801781,
-        869580,
-        1215581,
-        1231138,
-        1301854,
-        4087630,
-        4529482,
-        5893673,
-        5894573,
-        5896382,
-        7226136,
-        8432897,
-        9444969,
-        9830204,
-        11014539,
-        11434752,
-        13002570,
-        15835806,
-        17125257,
-        17971873,
-        29443359,
-        29443366,
-        29766236,
-        31815192,
-        32143596,
-        33238695,
-        34137123,
-        34137126,
-        37682459,
-        39076952,
-        39077051,
-        39133356,
-        39159918,
-        41407026
       ]
     },
     {
@@ -9043,54 +9098,6 @@
         39159918,
         40028803,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 81362910,
-      "name": "james pettengill",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696812,
-        696825,
-        869580,
-        1231138,
-        1301854,
-        1912941,
-        2297396,
-        4087630,
-        5220689,
-        5893673,
-        5894573,
-        7042087,
-        7226136,
-        8364429,
-        9269972,
-        9830204,
-        11434752,
-        12816315,
-        13002570,
-        15835806,
-        17351533,
-        18804145,
-        20708611,
-        24663876,
-        25449170,
-        25504390,
-        27660250,
-        32143596,
-        33238695,
-        34137123,
-        34137126,
-        37682459,
-        37850886,
-        37850905,
-        39076952,
-        39133354,
-        39133356,
-        41407026,
-        41490658
       ]
     },
     {
@@ -10783,6 +10790,96 @@
       ]
     },
     {
+      "athlete_id": 106552986,
+      "name": "Jeffers Engelhardt",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        700762,
+        705819,
+        869580,
+        1215581,
+        1231138,
+        1301854,
+        4087630,
+        5893673,
+        5894573,
+        5896382,
+        7042087,
+        7226136,
+        8432897,
+        8552556,
+        9269972,
+        11014539,
+        15835806,
+        17125257,
+        29443359,
+        29766236,
+        31815192,
+        31992302,
+        32143596,
+        33238695,
+        33445442,
+        34137123,
+        34137126,
+        37682459,
+        37850886,
+        38206226,
+        39076952,
+        39077051,
+        39674721,
+        41407026,
+        41490658
+      ]
+    },
+    {
+      "athlete_id": 10558653,
+      "name": "John Marshall",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/10558653/10624508/3/large.jpg",
+      "badge": "",
+      "gender": "M",
+      "segs": [
+        696812,
+        696825,
+        699178,
+        700762,
+        700796,
+        705819,
+        801781,
+        1151557,
+        1215581,
+        1231138,
+        1301854,
+        4087630,
+        4529482,
+        5894573,
+        7226136,
+        8552556,
+        9269972,
+        9444969,
+        9830204,
+        11014539,
+        15835806,
+        29443359,
+        29443366,
+        29766236,
+        31815192,
+        31992302,
+        32143596,
+        33238695,
+        34137123,
+        34137126,
+        37682459,
+        39076952,
+        39077051,
+        39133356,
+        39159918,
+        41407026
+      ]
+    },
+    {
       "athlete_id": 145938971,
       "name": "Joshua Marriott",
       "avatar_url": null,
@@ -11764,6 +11861,49 @@
       ]
     },
     {
+      "athlete_id": 3325396,
+      "name": "Aaron Cantrell",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        648901,
+        696812,
+        705819,
+        869580,
+        1231138,
+        1301854,
+        1912941,
+        2297396,
+        4087630,
+        5893673,
+        5894573,
+        5896382,
+        7042087,
+        7226136,
+        8429503,
+        9269972,
+        9830204,
+        11434752,
+        13002570,
+        15835806,
+        17125257,
+        17351533,
+        18804145,
+        21189355,
+        24663876,
+        25449170,
+        25504390,
+        27660250,
+        32143596,
+        34137123,
+        34137126,
+        37682459,
+        37850886,
+        37850905
+      ]
+    },
+    {
       "athlete_id": 44360288,
       "name": "Charles Mathers",
       "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/44360288/19823895/3/large.jpg",
@@ -11883,49 +12023,6 @@
         32143596,
         33238695,
         34137123,
-        34137126,
-        37682459,
-        39076952,
-        39077051,
-        39133356,
-        39159918,
-        41407026
-      ]
-    },
-    {
-      "athlete_id": 10558653,
-      "name": "John Marshall",
-      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/10558653/10624508/3/large.jpg",
-      "badge": "",
-      "gender": "M",
-      "segs": [
-        696812,
-        696825,
-        699178,
-        700762,
-        700796,
-        705819,
-        801781,
-        1151557,
-        1215581,
-        1301854,
-        4087630,
-        4529482,
-        5894573,
-        7226136,
-        8552556,
-        9269972,
-        9444969,
-        9830204,
-        11014539,
-        15835806,
-        29443359,
-        29443366,
-        29766236,
-        31815192,
-        31992302,
-        32143596,
-        33238695,
         34137126,
         37682459,
         39076952,
@@ -12148,48 +12245,6 @@
         39133356,
         39159918,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 3325396,
-      "name": "Aaron Cantrell",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        648901,
-        696812,
-        869580,
-        1231138,
-        1301854,
-        1912941,
-        2297396,
-        4087630,
-        5893673,
-        5894573,
-        5896382,
-        7042087,
-        7226136,
-        8429503,
-        9269972,
-        9830204,
-        11434752,
-        13002570,
-        15835806,
-        17125257,
-        17351533,
-        18804145,
-        21189355,
-        24663876,
-        25449170,
-        25504390,
-        27660250,
-        32143596,
-        34137123,
-        34137126,
-        37682459,
-        37850886,
-        37850905
       ]
     },
     {
@@ -12697,6 +12752,48 @@
       ]
     },
     {
+      "athlete_id": 174189495,
+      "name": "Noah Labich",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        696825,
+        699178,
+        700796,
+        801781,
+        1215581,
+        1301854,
+        4087630,
+        4529482,
+        5893673,
+        5896382,
+        7226136,
+        8432897,
+        9269972,
+        9444969,
+        9830204,
+        15835806,
+        17125257,
+        17971873,
+        29443359,
+        29443366,
+        29766236,
+        31992302,
+        32143596,
+        33238695,
+        33445442,
+        34137126,
+        37682459,
+        38206226,
+        39076952,
+        39133356,
+        39159918,
+        41407026
+      ]
+    },
+    {
       "athlete_id": 31207706,
       "name": "Paul Chojnowski",
       "avatar_url": null,
@@ -13028,8 +13125,8 @@
       ]
     },
     {
-      "athlete_id": 106552986,
-      "name": "Jeffers Engelhardt",
+      "athlete_id": 18501091,
+      "name": "Juan Hernandez",
       "avatar_url": null,
       "badge": null,
       "gender": "M",
@@ -13040,7 +13137,8 @@
         1215581,
         1231138,
         1301854,
-        4087630,
+        1912941,
+        4258626,
         5893673,
         5894573,
         5896382,
@@ -13049,23 +13147,22 @@
         8432897,
         8552556,
         9269972,
+        9563376,
+        9830204,
+        11434752,
         15835806,
-        17125257,
+        25504390,
         29443359,
         29766236,
-        31992302,
         32143596,
-        33238695,
         33445442,
         34137123,
         34137126,
         37682459,
         37850886,
-        38206226,
+        37850905,
         39076952,
-        39674721,
-        41407026,
-        41490658
+        41407026
       ]
     },
     {
@@ -13674,46 +13771,6 @@
       ]
     },
     {
-      "athlete_id": 18501091,
-      "name": "Juan Hernandez",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696812,
-        869580,
-        1215581,
-        1231138,
-        1301854,
-        1912941,
-        4258626,
-        5893673,
-        5894573,
-        5896382,
-        7042087,
-        7226136,
-        8432897,
-        8552556,
-        9269972,
-        9563376,
-        9830204,
-        11434752,
-        15835806,
-        25504390,
-        29443359,
-        29766236,
-        32143596,
-        33445442,
-        34137123,
-        34137126,
-        37682459,
-        37850886,
-        37850905,
-        39076952,
-        41407026
-      ]
-    },
-    {
       "athlete_id": 1647679,
       "name": "justin rathbun",
       "avatar_url": null,
@@ -13827,46 +13884,6 @@
         34137126,
         37682459,
         37850886,
-        39076952,
-        39133356,
-        39159918,
-        41407026
-      ]
-    },
-    {
-      "athlete_id": 174189495,
-      "name": "Noah Labich",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696812,
-        696825,
-        699178,
-        801781,
-        1215581,
-        1301854,
-        4087630,
-        4529482,
-        5893673,
-        5896382,
-        7226136,
-        8432897,
-        9269972,
-        9444969,
-        9830204,
-        15835806,
-        17125257,
-        29443359,
-        29443366,
-        29766236,
-        31992302,
-        32143596,
-        33238695,
-        33445442,
-        34137126,
-        37682459,
-        38206226,
         39076952,
         39133356,
         39159918,
@@ -14731,6 +14748,44 @@
         39159918,
         40028803,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 15306857,
+      "name": "Bob Dizon",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        705819,
+        869580,
+        1229482,
+        1912941,
+        5893673,
+        5894573,
+        5896382,
+        7042087,
+        7226136,
+        9269972,
+        9830204,
+        11434752,
+        13002570,
+        15835806,
+        17125257,
+        25504390,
+        29443359,
+        29766236,
+        32143596,
+        33445442,
+        34137126,
+        37682459,
+        37850886,
+        37850905,
+        39076952,
+        39133356,
+        41407026,
+        41490658
       ]
     },
     {
@@ -15833,7 +15888,7 @@
     {
       "athlete_id": 186344,
       "name": "Garth Schwellenbach",
-      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/186344/123913/11/large.jpg",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/186344/123913/12/large.jpg",
       "badge": "",
       "gender": "M",
       "segs": [
@@ -17494,41 +17549,6 @@
         39133356,
         39674721,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 15306857,
-      "name": "Bob Dizon",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696812,
-        869580,
-        1912941,
-        5893673,
-        5894573,
-        7042087,
-        7226136,
-        9269972,
-        9830204,
-        11434752,
-        13002570,
-        15835806,
-        17125257,
-        25504390,
-        29443359,
-        29766236,
-        32143596,
-        33445442,
-        34137126,
-        37682459,
-        37850886,
-        37850905,
-        39076952,
-        39133356,
-        41407026,
-        41490658
       ]
     },
     {
@@ -20000,6 +20020,38 @@
       ]
     },
     {
+      "athlete_id": 46174781,
+      "name": "Allen Vance",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/46174781/47663897/1/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        696812,
+        705819,
+        869580,
+        1215581,
+        1912941,
+        4087630,
+        5894573,
+        7042087,
+        7226136,
+        9269972,
+        11434752,
+        15835806,
+        29443359,
+        29766236,
+        31992302,
+        32143596,
+        33238695,
+        33445442,
+        34137126,
+        37682459,
+        37850886,
+        37850905,
+        38206226
+      ]
+    },
+    {
       "athlete_id": 25615539,
       "name": "Anna Plummer",
       "avatar_url": null,
@@ -20155,6 +20207,38 @@
         39076952,
         39077051,
         39133354,
+        39159918,
+        41407026
+      ]
+    },
+    {
+      "athlete_id": 12269618,
+      "name": "Brent Richter",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        699178,
+        801781,
+        1215581,
+        1229482,
+        1231138,
+        1301854,
+        4087630,
+        7042087,
+        7226136,
+        9444969,
+        9563376,
+        9830204,
+        11434752,
+        29443359,
+        29443366,
+        29766236,
+        32143596,
+        34137123,
+        34137126,
+        37682459,
+        39076952,
         39159918,
         41407026
       ]
@@ -21245,37 +21329,6 @@
       ]
     },
     {
-      "athlete_id": 12269618,
-      "name": "Brent Richter",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        699178,
-        801781,
-        1215581,
-        1229482,
-        1231138,
-        1301854,
-        4087630,
-        7226136,
-        9444969,
-        9563376,
-        9830204,
-        11434752,
-        29443359,
-        29443366,
-        29766236,
-        32143596,
-        34137123,
-        34137126,
-        37682459,
-        39076952,
-        39159918,
-        41407026
-      ]
-    },
-    {
       "athlete_id": 5481751,
       "name": "Carlton Ho",
       "avatar_url": null,
@@ -21926,36 +21979,6 @@
       ]
     },
     {
-      "athlete_id": 46174781,
-      "name": "Allen Vance",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        705819,
-        869580,
-        1215581,
-        1912941,
-        4087630,
-        5894573,
-        7042087,
-        7226136,
-        9269972,
-        11434752,
-        29443359,
-        29766236,
-        31992302,
-        32143596,
-        33238695,
-        33445442,
-        34137126,
-        37682459,
-        37850886,
-        37850905,
-        38206226
-      ]
-    },
-    {
       "athlete_id": 65648595,
       "name": "Aviva Weinbaum",
       "avatar_url": null,
@@ -22073,6 +22096,36 @@
         37682459,
         39077051,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 191884,
+      "name": "chris shotwell",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696825,
+        1231138,
+        1301854,
+        4529482,
+        5893673,
+        5896382,
+        7042087,
+        7226136,
+        11014539,
+        11434752,
+        13002570,
+        17125257,
+        29443359,
+        29766236,
+        31992302,
+        32143596,
+        33238695,
+        34137123,
+        34137126,
+        37682459,
+        39133356
       ]
     },
     {
@@ -22313,6 +22366,36 @@
         33238695,
         39159918,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 72342832,
+      "name": "Jake Lehan",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        705819,
+        869580,
+        1231138,
+        1301854,
+        1912941,
+        4087630,
+        5893673,
+        5896382,
+        7042087,
+        7226136,
+        8432897,
+        9269972,
+        11434752,
+        15835806,
+        32143596,
+        34137123,
+        34137126,
+        37682459,
+        37850886,
+        37850905
       ]
     },
     {
@@ -23698,35 +23781,6 @@
         39077051,
         39159918,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 72342832,
-      "name": "Jake Lehan",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696812,
-        869580,
-        1231138,
-        1301854,
-        1912941,
-        4087630,
-        5893673,
-        5896382,
-        7042087,
-        7226136,
-        8432897,
-        9269972,
-        11434752,
-        15835806,
-        32143596,
-        34137123,
-        34137126,
-        37682459,
-        37850886,
-        37850905
       ]
     },
     {
@@ -25237,6 +25291,34 @@
       ]
     },
     {
+      "athlete_id": 12355103,
+      "name": "Lucas Barad",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        696812,
+        726685,
+        869580,
+        1231138,
+        1301854,
+        7042087,
+        7226136,
+        9830204,
+        15835806,
+        32143596,
+        34137123,
+        34137126,
+        37682459,
+        37850886,
+        37850905,
+        39076952,
+        39133354,
+        41407026,
+        41490658
+      ]
+    },
+    {
       "athlete_id": 825805,
       "name": "Mark Poirier",
       "avatar_url": null,
@@ -25626,6 +25708,34 @@
         39076952,
         39133356,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 16501177,
+      "name": "Stephen Arthur Cayer",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16501177/29714742/30/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        648901,
+        696812,
+        699178,
+        700796,
+        705819,
+        719391,
+        869580,
+        1301854,
+        4258626,
+        7042087,
+        9269972,
+        9444969,
+        9830204,
+        15835806,
+        17125257,
+        17971873,
+        29443359,
+        29443366,
+        39159918
       ]
     },
     {
@@ -26414,33 +26524,6 @@
         33445442,
         39077051,
         39159918
-      ]
-    },
-    {
-      "athlete_id": 12355103,
-      "name": "Lucas Barad",
-      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/12355103/13177028/10/large.jpg",
-      "badge": "premium",
-      "gender": "M",
-      "segs": [
-        696812,
-        726685,
-        869580,
-        1231138,
-        1301854,
-        7042087,
-        7226136,
-        9830204,
-        15835806,
-        32143596,
-        34137123,
-        34137126,
-        37682459,
-        37850886,
-        37850905,
-        39076952,
-        39133354,
-        41407026
       ]
     },
     {
@@ -28579,31 +28662,6 @@
       ]
     },
     {
-      "athlete_id": 191884,
-      "name": "chris shotwell",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        1231138,
-        1301854,
-        5893673,
-        5896382,
-        7042087,
-        7226136,
-        11434752,
-        17125257,
-        29443359,
-        29766236,
-        31992302,
-        32143596,
-        33238695,
-        34137123,
-        34137126,
-        37682459
-      ]
-    },
-    {
       "athlete_id": 4656681,
       "name": "Christopher Evans",
       "avatar_url": null,
@@ -29026,6 +29084,31 @@
         37682459,
         37850886,
         37850905
+      ]
+    },
+    {
+      "athlete_id": 12086,
+      "name": "Jennifer Wright",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "F",
+      "segs": [
+        696825,
+        1231138,
+        1301854,
+        4087630,
+        4529482,
+        7226136,
+        11014539,
+        13002570,
+        17125257,
+        31992302,
+        32143596,
+        33238695,
+        34137123,
+        34137126,
+        37682459,
+        39133356
       ]
     },
     {
@@ -29887,6 +29970,30 @@
       ]
     },
     {
+      "athlete_id": 201803731,
+      "name": "Eric Donnelly",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        696825,
+        705819,
+        719391,
+        869580,
+        4087630,
+        9830204,
+        11014539,
+        15835806,
+        32143596,
+        37850886,
+        37850905,
+        39133356,
+        41407026,
+        41490658
+      ]
+    },
+    {
       "athlete_id": 9582,
       "name": "Eric Nichols",
       "avatar_url": null,
@@ -30148,6 +30255,30 @@
         33445442,
         38206226,
         39077051
+      ]
+    },
+    {
+      "athlete_id": 68620121,
+      "name": "John McAllister",
+      "avatar_url": "https://lh3.googleusercontent.com/a/ACg8ocIxyW6JgpzNOgswCycnGfDlajs9I4_30Iz1L01L3URdfK-jxd7u=s96-c",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        1229267,
+        1229482,
+        1231138,
+        1301854,
+        1912941,
+        5893673,
+        5896382,
+        7042087,
+        8432897,
+        8552556,
+        9269972,
+        29443359,
+        34137123,
+        39076952,
+        41407026
       ]
     },
     {
@@ -30700,6 +30831,30 @@
         31992302,
         33238695,
         39077051
+      ]
+    },
+    {
+      "athlete_id": 44148961,
+      "name": "Vince Eldering",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        699178,
+        705819,
+        801781,
+        1151557,
+        1215581,
+        1301854,
+        9444969,
+        9830204,
+        11434752,
+        13002570,
+        29443359,
+        29766236,
+        33238695,
+        39159918,
+        41407026
       ]
     },
     {
@@ -31991,29 +32146,6 @@
       ]
     },
     {
-      "athlete_id": 44148961,
-      "name": "Vince Eldering",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        699178,
-        705819,
-        801781,
-        1151557,
-        1215581,
-        9444969,
-        9830204,
-        11434752,
-        13002570,
-        29443359,
-        29766236,
-        33238695,
-        39159918,
-        41407026
-      ]
-    },
-    {
       "athlete_id": 62719917,
       "name": "Xavier Plourde",
       "avatar_url": null,
@@ -33200,6 +33332,28 @@
         33238695,
         39159918,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 32484367,
+      "name": "Sara Draper",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "F",
+      "segs": [
+        1231138,
+        1301854,
+        2297396,
+        7226136,
+        8364429,
+        11434752,
+        24663876,
+        25449170,
+        32143596,
+        34137123,
+        34137126,
+        37682459,
+        40028803
       ]
     },
     {
@@ -34710,27 +34864,6 @@
       ]
     },
     {
-      "athlete_id": 68620121,
-      "name": "John McAllister",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        1229267,
-        1229482,
-        1231138,
-        1912941,
-        7042087,
-        8432897,
-        8552556,
-        9269972,
-        29443359,
-        34137123,
-        39076952,
-        41407026
-      ]
-    },
-    {
       "athlete_id": 24459311,
       "name": "John Pompei",
       "avatar_url": null,
@@ -35550,27 +35683,6 @@
       ]
     },
     {
-      "athlete_id": 32484367,
-      "name": "Sara Draper",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "F",
-      "segs": [
-        1231138,
-        1301854,
-        2297396,
-        7226136,
-        11434752,
-        24663876,
-        25449170,
-        32143596,
-        34137123,
-        34137126,
-        37682459,
-        40028803
-      ]
-    },
-    {
       "athlete_id": 52184417,
       "name": "Sarah Hurley",
       "avatar_url": null,
@@ -35652,27 +35764,6 @@
         33238695,
         39159918,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 16501177,
-      "name": "Stephen Arthur Cayer",
-      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16501177/29714742/30/large.jpg",
-      "badge": "premium",
-      "gender": "M",
-      "segs": [
-        648901,
-        696812,
-        700796,
-        705819,
-        719391,
-        869580,
-        1301854,
-        4258626,
-        9269972,
-        15835806,
-        17125257,
-        29443359
       ]
     },
     {
@@ -38951,22 +39042,22 @@
       ]
     },
     {
-      "athlete_id": 201803731,
-      "name": "Eric Donnelly",
-      "avatar_url": null,
-      "badge": null,
+      "athlete_id": 37426994,
+      "name": "Elliott Kelly",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/37426994/11010344/4/large.jpg",
+      "badge": "premium",
       "gender": "M",
       "segs": [
-        696825,
-        719391,
-        869580,
-        9830204,
-        11014539,
-        32143596,
-        37850886,
-        37850905,
-        39133356,
-        41490658
+        2297396,
+        5220664,
+        17125257,
+        18804145,
+        20708611,
+        24663876,
+        25449117,
+        25449170,
+        33202985,
+        37682459
       ]
     },
     {
@@ -39821,6 +39912,25 @@
         29766236,
         39076952,
         39159918,
+        41407026
+      ]
+    },
+    {
+      "athlete_id": 576749,
+      "name": "Mark Sadecki",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/576749/24952519/1/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        648901,
+        1229482,
+        1301854,
+        5893673,
+        5896382,
+        7042087,
+        11434752,
+        29443359,
+        39076952,
         41407026
       ]
     },
@@ -42133,24 +42243,6 @@
       ]
     },
     {
-      "athlete_id": 37426994,
-      "name": "Elliott Kelly",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        2297396,
-        5220664,
-        17125257,
-        18804145,
-        20708611,
-        24663876,
-        25449117,
-        25449170,
-        33202985
-      ]
-    },
-    {
       "athlete_id": 53450095,
       "name": "Emily Vigeant",
       "avatar_url": null,
@@ -42778,24 +42870,6 @@
         17125257,
         39159918,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 12086,
-      "name": "Jennifer Wright",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "F",
-      "segs": [
-        1231138,
-        1301854,
-        4087630,
-        17125257,
-        31992302,
-        33238695,
-        34137123,
-        34137126,
-        37682459
       ]
     },
     {
@@ -43858,6 +43932,24 @@
         11434752,
         34137123,
         39674721
+      ]
+    },
+    {
+      "athlete_id": 17366598,
+      "name": "Matthew J. Domnarski",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        700762,
+        700796,
+        726685,
+        838985,
+        9563376,
+        11014539,
+        27735469,
+        31815192,
+        39077051
       ]
     },
     {
@@ -45343,6 +45435,23 @@
         29443359,
         31992302,
         33238695
+      ]
+    },
+    {
+      "athlete_id": 117777826,
+      "name": "Avery Colby",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/117777826/32529858/1/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        696812,
+        1231138,
+        1301854,
+        5893673,
+        5896382,
+        15835806,
+        34137123,
+        39674721
       ]
     },
     {
@@ -47570,6 +47679,23 @@
         34137123,
         39076952,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 128103103,
+      "name": "Marshall Fay",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        1231138,
+        1301854,
+        5893673,
+        5896382,
+        8429503,
+        15835806,
+        34137123
       ]
     },
     {
@@ -50058,6 +50184,22 @@
         29766236,
         39159918,
         41407026
+      ]
+    },
+    {
+      "athlete_id": 50191231,
+      "name": "David Paquette",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        1231138,
+        1301854,
+        2297396,
+        8364429,
+        11434752,
+        34137123,
+        40028803
       ]
     },
     {
@@ -53364,21 +53506,6 @@
       ]
     },
     {
-      "athlete_id": 50191231,
-      "name": "David Paquette",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        1231138,
-        1301854,
-        2297396,
-        11434752,
-        34137123,
-        40028803
-      ]
-    },
-    {
       "athlete_id": 165720299,
       "name": "Derek Franklin",
       "avatar_url": null,
@@ -53856,6 +53983,21 @@
         34137126,
         37682459,
         37850886
+      ]
+    },
+    {
+      "athlete_id": 61105906,
+      "name": "Isaac Homstead",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        699178,
+        801781,
+        9444969,
+        9830204,
+        39159918,
+        41407026
       ]
     },
     {
@@ -55251,6 +55393,21 @@
         27735469,
         31815192,
         39077051
+      ]
+    },
+    {
+      "athlete_id": 113980737,
+      "name": "Ryan Carkin",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        838985,
+        9830204,
+        27735469,
+        39076952,
+        39133354,
+        41407026
       ]
     },
     {
@@ -56880,6 +57037,20 @@
         17971873,
         31992302,
         33238695
+      ]
+    },
+    {
+      "athlete_id": 25876579,
+      "name": "Dave K",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696825,
+        1229482,
+        4529482,
+        5894573,
+        39133356
       ]
     },
     {
@@ -58661,6 +58832,20 @@
       ]
     },
     {
+      "athlete_id": 32550642,
+      "name": "Mark Sharer",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        7042087,
+        7226136,
+        32143596,
+        34137126,
+        37682459
+      ]
+    },
+    {
       "athlete_id": 9700967,
       "name": "Matt Arrants",
       "avatar_url": null,
@@ -60075,6 +60260,20 @@
       ]
     },
     {
+      "athlete_id": 31554547,
+      "name": "Twinkie Telschow",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "F",
+      "segs": [
+        696825,
+        1301854,
+        4529482,
+        5894573,
+        39133356
+      ]
+    },
+    {
       "athlete_id": 469163,
       "name": "Tyler Ellis",
       "avatar_url": null,
@@ -60914,6 +61113,19 @@
         9563376,
         29443359,
         29766236
+      ]
+    },
+    {
+      "athlete_id": 17575379,
+      "name": "Chuck Sherman",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696825,
+        1301854,
+        5894573,
+        39133356
       ]
     },
     {
@@ -62711,19 +62923,6 @@
       ]
     },
     {
-      "athlete_id": 576749,
-      "name": "Mark Sadecki",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        648901,
-        1301854,
-        11434752,
-        39076952
-      ]
-    },
-    {
       "athlete_id": 6502525,
       "name": "Martin Naley",
       "avatar_url": null,
@@ -63317,19 +63516,6 @@
       "segs": [
         801781,
         1229482,
-        39076952,
-        41407026
-      ]
-    },
-    {
-      "athlete_id": 113980737,
-      "name": "Ryan Carkin",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        838985,
-        27735469,
         39076952,
         41407026
       ]
@@ -65383,18 +65569,6 @@
         1229482,
         39076952,
         41407026
-      ]
-    },
-    {
-      "athlete_id": 25876579,
-      "name": "Dave K",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        696825,
-        5894573,
-        39133356
       ]
     },
     {
@@ -67750,6 +67924,18 @@
       ]
     },
     {
+      "athlete_id": 46757128,
+      "name": "Luke Detwiler",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        696812,
+        705819,
+        15835806
+      ]
+    },
+    {
       "athlete_id": 4766196,
       "name": "Lynn Barry Hetherington",
       "avatar_url": null,
@@ -68191,18 +68377,6 @@
         8432897,
         31992302,
         33238695
-      ]
-    },
-    {
-      "athlete_id": 17366598,
-      "name": "Matthew J. Domnarski",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        838985,
-        9563376,
-        27735469
       ]
     },
     {
@@ -70746,17 +70920,6 @@
       "segs": [
         5893673,
         8432897
-      ]
-    },
-    {
-      "athlete_id": 117777826,
-      "name": "Avery Colby",
-      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/117777826/32529858/1/large.jpg",
-      "badge": "premium",
-      "gender": "M",
-      "segs": [
-        15835806,
-        39674721
       ]
     },
     {
@@ -75982,6 +76145,17 @@
       "segs": [
         648901,
         726685
+      ]
+    },
+    {
+      "athlete_id": 1505333008,
+      "name": "Skinny Chungus",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        9830204,
+        39133354
       ]
     },
     {
@@ -82006,6 +82180,16 @@
       ]
     },
     {
+      "athlete_id": 1757391,
+      "name": "Dimitri Curtil",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        9563376
+      ]
+    },
+    {
       "athlete_id": 10621782,
       "name": "Ding (Thomas) Shi",
       "avatar_url": null,
@@ -82653,6 +82837,16 @@
       "gender": "M",
       "segs": [
         41407026
+      ]
+    },
+    {
+      "athlete_id": 114460870,
+      "name": "Emerson Kiefer",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        9563376
       ]
     },
     {
@@ -83636,6 +83830,16 @@
       ]
     },
     {
+      "athlete_id": 103719100,
+      "name": "George Frick",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/103719100/27268742/11/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        9563376
+      ]
+    },
+    {
       "athlete_id": 2794520,
       "name": "George Hall",
       "avatar_url": null,
@@ -84348,6 +84552,16 @@
     {
       "athlete_id": 2399131,
       "name": "Ignacio Inglessis",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        9563376
+      ]
+    },
+    {
+      "athlete_id": 104539609,
+      "name": "Igor Aliczi",
       "avatar_url": null,
       "badge": null,
       "gender": "M",
@@ -86596,6 +86810,16 @@
       ]
     },
     {
+      "athlete_id": 144244020,
+      "name": "Josh Bergendahl",
+      "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/144244020/32618204/6/large.jpg",
+      "badge": "premium",
+      "gender": "M",
+      "segs": [
+        9563376
+      ]
+    },
+    {
       "athlete_id": 1952310,
       "name": "Josh Chu",
       "avatar_url": null,
@@ -88646,6 +88870,16 @@
       ]
     },
     {
+      "athlete_id": 112724,
+      "name": "Mark Steffen",
+      "avatar_url": null,
+      "badge": null,
+      "gender": "M",
+      "segs": [
+        9563376
+      ]
+    },
+    {
       "athlete_id": 9848982,
       "name": "Mark Stockwell",
       "avatar_url": null,
@@ -89087,7 +89321,7 @@
     },
     {
       "athlete_id": 17002738,
-      "name": "Matthew Gross",
+      "name": "Matthew G",
       "avatar_url": null,
       "badge": null,
       "gender": "M",
@@ -91078,16 +91312,6 @@
     {
       "athlete_id": 9991,
       "name": "Pete Downs",
-      "avatar_url": null,
-      "badge": null,
-      "gender": "M",
-      "segs": [
-        9563376
-      ]
-    },
-    {
-      "athlete_id": 112724,
-      "name": "Pete Mitchell",
       "avatar_url": null,
       "badge": null,
       "gender": "M",
